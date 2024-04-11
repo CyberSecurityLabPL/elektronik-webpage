@@ -5,6 +5,7 @@
   @layer base {
     :root {
       --background: 0 0% 100%;
+      --background-accent: 0, 0%, 96%;
       --foreground: 217, 33%, 17%;
       
 

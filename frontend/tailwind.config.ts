@@ -18,11 +18,18 @@ const config = {
       },
     },
     extend: {
+      backgroundImage: {
+        'splash-transition': "url('/splash-transition-single.svg')",
+        'footer-squares': "url('/footer-squares.svg')"
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
+        background:{
+          DEFAULT: "hsl(var(--background))",
+          accent: "hsl(var(--background-accent))"
+        } ,
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
