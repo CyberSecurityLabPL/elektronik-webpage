@@ -60,9 +60,9 @@ function SocialMedia(){
     return (
         <div className="flex justify-center ml-4 w-64">
             <div className="flex justify-center flex-col h-full mx-2">
-                <LinkIcon icon={Facebook} href="" />
+                <LinkIcon icon={Facebook} href="https://www.facebook.com/zgelektronik/?locale=pl_PL" />
                 <LinkIcon icon={Github} href="https://github.com/CyberSecurityLabPL/elektronik-webpage" />
-                <LinkIcon icon={Instagram} href="" />
+                <LinkIcon icon={Instagram} href="https://www.instagram.com/zgelektronik/" />
             </div>
             <div className="flex justify-center flex-col w-20 relative">
                 <Link passHref href={"/"}>
