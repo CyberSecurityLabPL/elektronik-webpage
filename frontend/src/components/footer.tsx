@@ -3,6 +3,7 @@ import Image from "next/image"
 import { Button } from "./ui/button"
 import { ReactNode } from "react"
 import Link from "next/link"
+import { LucideProps, Github, Facebook, Instagram } from "lucide-react"
 
 export default function Footer(){
     return (
@@ -19,9 +20,13 @@ export default function Footer(){
 }
 
 //component for social media panel
-function TempIcon(){
+function LinkIcon({icon: Icon, href} : {icon: React.FC<LucideProps>, href: string}){
     return (
-        <div className="w-8 h-8 bg-background m-2 rounded-full"></div>
+        <Link passHref href={href}>
+            <div className="w-8 h-8 bg-primary m-2 rounded-full flex justify-center items-center text-background">
+                <Icon />
+            </div>
+        </Link>
     )
 }
 
@@ -55,12 +60,14 @@ function SocialMedia(){
     return (
         <div className="flex justify-center ml-4 w-64">
             <div className="flex justify-center flex-col h-full mx-2">
-                <TempIcon />
-                <TempIcon />
-                <TempIcon />
+                <LinkIcon icon={Facebook} href="" />
+                <LinkIcon icon={Github} href="https://github.com/CyberSecurityLabPL/elektronik-webpage" />
+                <LinkIcon icon={Instagram} href="" />
             </div>
             <div className="flex justify-center flex-col w-20 relative">
-                <Image alt="logo" fill src={"/logo-white.svg"} />
+                <Link passHref href={"/"}>
+                    <Image alt="logo" fill src={"/logo-white.svg"} />
+                </Link>
             </div>
         </div>
     )

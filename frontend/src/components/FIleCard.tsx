@@ -45,11 +45,9 @@ export default function FileCard({name, date, url, fileType} : {name: string, da
 
 function DownloadIcon() {
   return (
-    <Link href={"#"} passHref>
-        <Button variant="ghost" size="icon">
-          <Download className="h-5 w-5" />
-        </Button>
-    </Link>
+    <Button variant="ghost" size="icon">
+        <Download className="h-5 w-5" />
+    </Button>
   )
 }
 
