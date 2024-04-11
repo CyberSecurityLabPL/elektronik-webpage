@@ -9,7 +9,7 @@ export default function Footer(){
         <footer className="flex flex-col justify-end w-full min-h-96 h-fit mt-[-16rem]">
             <div className="bg-repeat-x bg-footer-squares w-full h-80"></div>
             <div className="bg-repeat-x bg-splash-transition w-full h-52"></div>
-            <div className="flex justify-between bg-primary w-full min-h-32 h-fit pb-4 pt-8">
+            <div className="flex justify-between max-sm:items-center max-sm:flex-col bg-primary w-full min-h-32 h-fit pb-4 pt-8">
                 <SocialMedia />
                 <MainPanel />
                 <Donate />
@@ -59,7 +59,7 @@ function SocialMedia(){
                 <TempIcon />
                 <TempIcon />
             </div>
-            <div className="flex justify-center flex-col w-20 h-full relative">
+            <div className="flex justify-center flex-col w-20 relative">
                 <Image alt="logo" fill src={"/logo-white.svg"} />
             </div>
         </div>
@@ -68,7 +68,7 @@ function SocialMedia(){
 
 function MainPanel(){
     return (
-        <div className="flex justify-center">
+        <div className="flex justify-center max-sm:my-8">
             <div className="flex justify-around flex-col">
                 <div className="text-background text-3xl font-extrabold text-center">Odwiedziło nas już <span className="text-primary font-extrabold text-3xl bg-background p-2 rounded-2xl">1280959</span> osób!</div>
                 <div className="flex justify-center m-12">
