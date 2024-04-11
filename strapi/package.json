@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "@_sh/strapi-plugin-ckeditor": "^2.1.1",
-    "@exfabrica/strapi-plugin-awesome-help": "^1.0.8",
     "@strapi/plugin-cloud": "4.22.1",
     "@strapi/plugin-i18n": "4.22.1",
     "@strapi/plugin-seo": "^1.9.8",
