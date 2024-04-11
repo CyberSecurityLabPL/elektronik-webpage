@@ -1,12 +1,43 @@
-import Header from "@/components/Header";
+import NewsCard from "@/components/NewsCard";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex justify-center flex-col w-full">
-      <Header title="Witaj na stronie" subtitle="Rozpoczynamy nabór na rok szkolny 2024! Nasza szkoła to miejsce, gdzie każdy uczeń znajdzie wsparcie, inspirację i możliwości rozwoju. Dołącz do naszej społeczności, gdzie stawiamy na aktywne metody nauczania, rozwój kompetencji społecznych i kreatywność. Niezależnie od zainteresowań - zapraszamy do aplikowania i dołączenia do naszego wspaniałego środowiska edukacyjnego!">
-      
-      </Header>
-      <div className="flex justify-center items-center h-96 w-full border border-black z-10">Main content</div>
+    <main className="flex justify-center flex-col w-screen">
+      <header className="flex flex-col relative  ">
+        <div className="flex w-full justify-around  h-[calc(100vh-8rem)] bg-hero-squares bg-no-repeat  items-center ">
+          <div className="flex justify-center flex-col my-4">
+              <h1 className="text-6xl font-extrabold py-2 bg-gradient-to-r from-primary  to-foreground inline-block text-transparent bg-clip-text">Witaj w Elektroniku</h1>
+                  <div className="flex flex-col my-4">
+                      <p className="flex  text-left items-center text-xl max-w-[32rem] text-primary-foreground leading-relaxed">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed est eu turpis porta fringilla. Vivamus tristique, odio et accumsan mollis.
+                      </p>
+                      <span className="w-full flex justify-center py-4">
+                      <Button asChild>
+                        <Link href="/aktualnosci">Dowiedz się więcej</Link>
+                      </Button>
+                      </span>
+                  </div>
+          </div>
+          <div className="relative w-2/5 h-4/5">
+              <Image alt="dyrektor" src={"/hero-img-modified.png"} fill />
+          </div>
+        </div>
+        
+        <div className="w-full h-48 bg-repeat-x bg-splash-transition "></div>
+        <div className="w-full h-64 bg-repeat-x bg-wave-transition "></div>
+      </header>
+      {/*border  border-black */}
+      <div className="flex justify-center flex-wrap items-center gap-4 w-full  z-10">
+        {/* Main content */}
+        
+        <NewsCard  />
+        <NewsCard  />
+        <NewsCard  />
+      </div>
+
     </main>
   );
 }

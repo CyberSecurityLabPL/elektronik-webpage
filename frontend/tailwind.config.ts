@@ -20,7 +20,10 @@ const config = {
     extend: {
       backgroundImage: {
         'splash-transition': "url('/splash-transition-single.svg')",
-        'footer-squares': "url('/footer-squares.svg')"
+        'footer-squares': "url('/footer-squares.svg')",
+        'hero-squares': "url('/hero-squares.svg')",
+        'wave-transition': "url('/bg-wave-transition.svg')"
+        
       },
       colors: {
         border: "hsl(var(--border))",
