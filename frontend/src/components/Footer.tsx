@@ -3,6 +3,7 @@ import Image from "next/image"
 import { Button } from "./ui/button"
 import { ReactNode } from "react"
 import Link from "next/link"
+import { LucideProps, Github, Facebook, Instagram } from "lucide-react"
 
 export default function Footer(){
     return (
@@ -19,9 +20,13 @@ export default function Footer(){
 }
 
 //component for social media panel
-function TempIcon(){
+function LinkIcon({icon: Icon, href} : {icon: React.FC<LucideProps>, href: string}){
     return (
-        <div className="w-8 h-8 bg-background m-2 rounded-full"></div>
+        <Link passHref href={href}>
+            <div className="w-8 h-8 bg-primary m-2 rounded-full flex justify-center items-center text-background">
+                <Icon />
+            </div>
+        </Link>
     )
 }
 
@@ -55,12 +60,14 @@ function SocialMedia(){
     return (
         <div className="flex justify-center ml-4 w-64">
             <div className="flex justify-center flex-col h-full mx-2">
-                <TempIcon />
-                <TempIcon />
-                <TempIcon />
+                <LinkIcon icon={Facebook} href="https://www.facebook.com/zgelektronik/?locale=pl_PL" />
+                <LinkIcon icon={Github} href="https://github.com/CyberSecurityLabPL/elektronik-webpage" />
+                <LinkIcon icon={Instagram} href="https://www.instagram.com/zgelektronik/" />
             </div>
             <div className="flex justify-center flex-col w-20 relative">
-                <Image alt="logo" fill src={"/logo-white.svg"} />
+                <Link passHref href={"/"}>
+                    <Image alt="logo" fill src={"/logo-white.svg"} />
+                </Link>
             </div>
         </div>
     )
@@ -85,8 +92,8 @@ function MainPanel(){
                     </LinkPanel>
                     <LinkPanel title="Uczeń">
                         <LinkItem name="Ocenianie zachowania" href="" />
-                        <LinkItem name="Zastępstwa" href="" />
-                        <LinkItem name="Dokumenty do pobrania" href="" />
+                        <LinkItem name="Zastępstwa" href="/zastepstwa" />
+                        <LinkItem name="Dokumenty do pobrania" href="/dokumenty" />
                         <LinkItem name="Oferty pracy dla absolwentów" href="" />
                     </LinkPanel>
                     <LinkPanel title="Rodzic">
@@ -94,9 +101,9 @@ function MainPanel(){
                         <LinkItem name="Rada Rodziców" href="" />
                     </LinkPanel>
                     <LinkPanel title="Maturzysta">
-                        <LinkItem name="Egzamin maturalny" href="" />
+                        <LinkItem name="Egzamin maturalny" href="http://www.oke.poznan.pl/index.php?menu_st_id=5&el_id=718&submit_element=1" />
                         <LinkItem name="Egzamin zawodowy" href="" />
-                        <LinkItem name="OKE w Poznaniu" href="" />
+                        <LinkItem name="OKE w Poznaniu" href="http://www.oke.poznan.pl/" />
                         <LinkItem name="Komunikaty Dyrektora CKE" href="" />
                     </LinkPanel>
                     <LinkPanel title="Nabór">
