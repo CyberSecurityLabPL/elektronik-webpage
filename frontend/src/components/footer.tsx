@@ -85,8 +85,8 @@ function MainPanel(){
                     </LinkPanel>
                     <LinkPanel title="Uczeń">
                         <LinkItem name="Ocenianie zachowania" href="" />
-                        <LinkItem name="Zastępstwa" href="" />
-                        <LinkItem name="Dokumenty do pobrania" href="" />
+                        <LinkItem name="Zastępstwa" href="/zastepstwa" />
+                        <LinkItem name="Dokumenty do pobrania" href="/dokumenty" />
                         <LinkItem name="Oferty pracy dla absolwentów" href="" />
                     </LinkPanel>
                     <LinkPanel title="Rodzic">
@@ -94,9 +94,9 @@ function MainPanel(){
                         <LinkItem name="Rada Rodziców" href="" />
                     </LinkPanel>
                     <LinkPanel title="Maturzysta">
-                        <LinkItem name="Egzamin maturalny" href="" />
+                        <LinkItem name="Egzamin maturalny" href="http://www.oke.poznan.pl/index.php?menu_st_id=5&el_id=718&submit_element=1" />
                         <LinkItem name="Egzamin zawodowy" href="" />
-                        <LinkItem name="OKE w Poznaniu" href="" />
+                        <LinkItem name="OKE w Poznaniu" href="http://www.oke.poznan.pl/" />
                         <LinkItem name="Komunikaty Dyrektora CKE" href="" />
                     </LinkPanel>
                     <LinkPanel title="Nabór">
