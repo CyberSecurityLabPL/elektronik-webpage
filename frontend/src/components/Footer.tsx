@@ -83,10 +83,10 @@ function MainPanel(){
                         <LinkItem name="Osiągnięcia" href="" />
                         <LinkItem name="Kadra" href="" />
                         <LinkItem name="Galeria" href="" />
-                        <LinkItem name="Aktualności" href="" />
+                        <LinkItem name="Aktualności" href="/aktualnosci" />
                     </LinkPanel>
                     <LinkPanel title="Edukacja">
-                        <LinkItem name="Praktyki" href="" />
+                        <LinkItem name="Praktyki" href="/praktyki" />
                         <LinkItem name="Warsztaty" href="" />
                         <LinkItem name="Programy Nauczania" href="" />
                     </LinkPanel>
@@ -94,7 +94,7 @@ function MainPanel(){
                         <LinkItem name="Ocenianie zachowania" href="" />
                         <LinkItem name="Zastępstwa" href="/zastepstwa" />
                         <LinkItem name="Dokumenty do pobrania" href="/dokumenty" />
-                        <LinkItem name="Oferty pracy dla absolwentów" href="" />
+                        <LinkItem name="Oferty pracy dla absolwentów" href="/praca" />
                     </LinkPanel>
                     <LinkPanel title="Rodzic">
                         <LinkItem name="Podręczniki" href="" />
@@ -108,7 +108,7 @@ function MainPanel(){
                     </LinkPanel>
                     <LinkPanel title="Nabór">
                         <LinkItem name="Regulamin" href="" />
-                        <LinkItem name="Kierunki" href="" />
+                        <LinkItem name="Kierunki" href="/nabor" />
                     </LinkPanel>
                 </div>
                 <div className="flex justify-around flex-col">
