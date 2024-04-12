@@ -66,10 +66,10 @@ const page = () => {
                 </TableHeader>
                 <TableBody>
                     {data.map((row) => (
-                    <TableRow key={row.klasa} className="grid grid-cols-3">
-                        <TableCell className="text-center">{row.klasa}</TableCell>
-                        <TableCell className='text-center'>{row.specjalizacja}</TableCell>
-                        <TableCell className='text-center'>{row.termin}</TableCell>
+                    <TableRow key={row.klasa} className="grid grid-cols-3 hover:bg-muted/90">
+                        <TableCell className="flex items-center justify-center text-center">{row.klasa}</TableCell>
+                        <TableCell className='flex items-center justify-center text-center'>{row.specjalizacja}</TableCell>
+                        <TableCell className='flex items-center justify-center text-center'>{row.termin}</TableCell>
                     </TableRow>
                     ))}
                 </TableBody>
