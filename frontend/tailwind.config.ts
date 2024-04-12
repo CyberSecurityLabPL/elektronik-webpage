@@ -22,7 +22,9 @@ const config = {
         'splash-transition': "url('/splash-transition-single.svg')",
         'footer-squares': "url('/footer-squares.svg')",
         'hero-squares': "url('/hero-squares.svg')",
-        'wave-transition': "url('/bg-wave-transition.svg')"
+        'wave-transition': "url('/bg-wave-transition.svg')",
+        'overview-bg': "url('/bg-overview.svg')",
+        'about-bg': "url('/bg-about.svg')"
         
       },
       colors: {
