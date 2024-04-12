@@ -22,7 +22,7 @@ export default function JobCard({name, src, minPay, maxPay, location, badges} : 
                 <div className="w-60 h-full overflow-hidden rounded-[inherit] bg-slate-600 relative">
                     <Image alt={name+" image"} src={src} fill objectFit="cover"/>
                 </div>
-                <div>
+                <div className="max-w-md overflow-clip">
                     <CardHeader>
                         <CardTitle className="text-slate-800">{name}</CardTitle>
                         <CardDescription className="font-bold text-primary">{`${numberWithSpaces(minPay)} PLN - ${numberWithSpaces(maxPay)} PLN`}</CardDescription>
