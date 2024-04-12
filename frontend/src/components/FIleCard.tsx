@@ -10,7 +10,7 @@ import {
 import { Download, File, FileText, FileSpreadsheet, FileAxis3D } from "lucide-react"
 import { LucideProps } from 'lucide-react';
 import { Button } from "@/components/ui/button"
-import IconComponent from "./Icon"
+import { FileIcon } from "./Icon"
 import { IconColors } from "./Icon"
 import Link from "next/link";
 
@@ -28,7 +28,7 @@ export default function FileCard({name, date, url, fileType} : {name: string, da
             <Card className="w-[20rem] mx-4 my-2 aspect-[493/96] flex justify-between items-center cursor-pointer">
                 <div className="flex justify-center">
                     <CardContent className="flex justify-center items-center space-y-0 p-0 mx-2">
-                        <IconComponent icon={fileProps.icon} color={fileProps.color} />
+                        <FileIcon icon={fileProps.icon} color={fileProps.color} />
                     </CardContent>
                     <CardHeader className="flex flex-col items-start space-y-0 p-0">
                         <CardTitle className="text-base font-normal text-slate-950">{name}</CardTitle>
