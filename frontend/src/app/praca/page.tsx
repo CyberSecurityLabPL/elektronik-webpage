@@ -61,7 +61,7 @@ export default function Page(){
             <div className="flex justify-center items-center flex-col mt-4">
                 {data.map(item => 
                     <JobDialog key={item.name} company={item.company} jobName={item.name} date={item.date} tasks={item.tasks} reqs={item.reqs}>
-                        <JobCard name={item.name} src={item.src} minPay={item.minPay} maxPay={item.maxPay} location={item.location} badges={item.badges} />
+                        <JobCard name={item.name} src={item.src} date={item.date} minPay={item.minPay} maxPay={item.maxPay} location={item.location} badges={item.badges} />
                     </JobDialog>
                 )}
             </div>

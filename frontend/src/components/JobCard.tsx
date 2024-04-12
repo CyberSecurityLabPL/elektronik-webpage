@@ -15,7 +15,7 @@ function numberWithSpaces(x: number) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 }
 
-export default function JobCard({name, src, minPay, maxPay, location, badges} : {name: string, src: string, minPay: number, maxPay: number, location: string, badges: string[]}) {
+export default function JobCard({name, src, date, minPay, maxPay, location, badges} : {name: string, src: string, date: string, minPay: number, maxPay: number, location: string, badges: string[]}) {
     return (
         <Card className="w-[58rem] rounded-3xl mx-4 my-2 aspect-[935/136] flex justify-between items-center cursor-pointer shadow-sm">
             <div className={`flex h-full rounded-[inherit] rounded-r-none`}>
@@ -27,15 +27,18 @@ export default function JobCard({name, src, minPay, maxPay, location, badges} : 
                         <CardTitle className="text-slate-800">{name}</CardTitle>
                         <CardDescription className="font-bold text-primary">{`${numberWithSpaces(minPay)} PLN - ${numberWithSpaces(maxPay)} PLN`}</CardDescription>
                     </CardHeader>
-                    <CardFooter className="text-slate-400 text-sm font-semibold">
+                    <CardFooter className="text-slate-400 text-sm font-semibold py-0">
                         <MapPin className="p-[2px] ml-[-4px]" />
                         <div>{location}</div>
                     </CardFooter>
                 </div>
             </div>
-            <div className="flex items-start h-full mt-4 p-5">
-                <Badge className="mx-1 bg-primary/25 text-primary hover:bg-primary/20">{badges[0]}</Badge>
-                <Badge className="mx-1 text-primary border-primary" variant="outline" >{badges[1]}</Badge>
+            <div className="flex flex-col justify-between h-full mt-4 p-5">
+                <div className="flex justify-center items-center">
+                    <Badge className="mx-1 bg-primary/25 text-primary hover:bg-primary/20">{badges[0]}</Badge>
+                    <Badge className="mx-1 text-primary border-primary" variant="outline" >{badges[1]}</Badge>
+                </div>
+                <div className="flex justify-end items-center text-slate-400 text-xs font-light">{date}</div>
             </div>
         </Card>
     )
