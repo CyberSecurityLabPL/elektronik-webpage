@@ -86,7 +86,7 @@ function MainPanel(){
                         <LinkItem name="Aktualności" href="/aktualnosci" />
                     </LinkPanel>
                     <LinkPanel title="Edukacja">
-                        <LinkItem name="Praktyki" href="" />
+                        <LinkItem name="Praktyki" href="/praktyki" />
                         <LinkItem name="Warsztaty" href="" />
                         <LinkItem name="Programy Nauczania" href="" />
                     </LinkPanel>
