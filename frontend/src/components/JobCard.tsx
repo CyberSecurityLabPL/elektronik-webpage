@@ -20,7 +20,7 @@ export default function JobCard({name, src, minPay, maxPay, location, badges} : 
         <Card className="w-[58rem] rounded-3xl mx-4 my-2 aspect-[935/136] flex justify-between items-center cursor-pointer shadow-sm">
             <div className={`flex h-full rounded-[inherit] rounded-r-none`}>
                 <div className="w-60 h-full overflow-hidden rounded-[inherit] bg-slate-600 relative">
-                    <Image alt={name+" image"} src={src} fill/>
+                    <Image alt={name+" image"} src={src} fill objectFit="cover"/>
                 </div>
                 <div>
                     <CardHeader>
