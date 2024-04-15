@@ -17,7 +17,9 @@ function Navbar() {
             
         </div>
         <div className='flex gap-4 justify-center items-center px-4 '>
-            <Button variant={'ghost'}>Plan lekcji</Button>
+            <Button variant={'ghost'} asChild>
+                <Link href={'https://zseis.vercel.app/plan?timetableId=o18'}>Plan lekcji</Link>
+            </Button>
             <Button asChild>
                 <Link href="https://uonetplus.vulcan.net.pl/zielonagora">E-dziennik</Link>
             </Button>

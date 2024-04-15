@@ -21,8 +21,8 @@ function Map() {
                         <p className='text-right'>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut nam eligendi nostrum ad voluptatem repellat quis earum adipisci, rerum iste laborum hic odio iusto est.</p>
                     </div>
                 </div>
-                <Card className='w-2/3 h-16 absolute bottom-1 flex justify-between p-2 '>
-                    <div className='flex justify-center items-center gap-2'>
+                <Card className='w-fit h-16 absolute bottom-1 flex justify-between p-2 px-4 gap-12 '>
+                    <div className='flex justify-center items-center '>
                         <IconComponent icon={Phone} color='blue' IsCircle={true}  />
                         <div className='flex flex-col '>
                             <span className='text-slate-400'>Telefon</span>

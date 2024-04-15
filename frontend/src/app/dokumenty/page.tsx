@@ -34,8 +34,10 @@ function FileGroup({title, children} : {title: string, children?: ReactNode}) {
     return (
         <div className="flex justify-center flex-col w-3/4">
             <div className="flex justify-start text-left w-full text-slate-500 font-semibold text-2xl">{title}</div>
-            <div className="flex justify-center items-center flex-wrap p-8">
-                {children}
+            <div className="flex justify-center items-center">
+                <div className="grid gap-4 2xl:grid-cols-3 xl:grid-cols-2 sm:grid-cols-1 p-8">
+                    {children}
+                </div>
             </div>
         </div>
     )
