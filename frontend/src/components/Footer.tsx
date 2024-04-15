@@ -98,7 +98,7 @@ function MainPanel(){
                     </LinkPanel>
                     <LinkPanel title="Rodzic">
                         <LinkItem name="Podręczniki" href="" />
-                        <LinkItem name="Rada Rodziców" href="" />
+                        <LinkItem name="Rada Rodziców" href="/rada" />
                     </LinkPanel>
                     <LinkPanel title="Maturzysta">
                         <LinkItem name="Egzamin maturalny" href="http://www.oke.poznan.pl/index.php?menu_st_id=5&el_id=718&submit_element=1" />
