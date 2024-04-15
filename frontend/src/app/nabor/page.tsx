@@ -52,7 +52,12 @@ export default function Page(){
             <div className="w-1/2 flex flex-col">
                 <div className="flex justify-between my-8">
                     <div className="text-3xl font-semibold flex items-center">Technikum 5 letnie</div>
-                    <div className="flex items-center">Jesli potrzebujesz dokumentów znajdziesz je&nbsp;<Link className="text-primary hover:underline" href="/dokumenty">tutaj</Link></div>
+                    <div className="flex items-center">
+                        <p>
+                            Jesli potrzebujesz dokumentów znajdziesz je&nbsp;
+                            <Link className="text-primary hover:underline" href="/dokumenty">tutaj</Link>
+                        </p>
+                    </div>
                 </div>
                 <div>
                     <Table className="font-medium">
