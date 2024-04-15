@@ -97,7 +97,7 @@ function MainPanel(){
                         <LinkItem name="Oferty pracy dla absolwentów" href="/praca" />
                     </LinkPanel>
                     <LinkPanel title="Rodzic">
-                        <LinkItem name="Podręczniki" href="" />
+                        <LinkItem name="Podręczniki" href="/podreczniki" />
                         <LinkItem name="Rada Rodziców" href="/rada" />
                     </LinkPanel>
                     <LinkPanel title="Maturzysta">
