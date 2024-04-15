@@ -81,7 +81,7 @@ function MainPanel(){
                 <div className="flex justify-center m-12">
                     <LinkPanel title="O szkole">
                         <LinkItem name="Osiągnięcia" href="" />
-                        <LinkItem name="Kadra" href="" />
+                        <LinkItem name="Kadra" href="/kadra" />
                         <LinkItem name="Galeria" href="" />
                         <LinkItem name="Aktualności" href="/aktualnosci" />
                     </LinkPanel>
