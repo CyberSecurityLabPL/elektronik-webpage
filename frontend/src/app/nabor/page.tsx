@@ -45,12 +45,19 @@ export default function Page(){
                 subtitle={`Rozpoczynamy nabór na rok szkolny ${year}! Nasza szkoła to miejsce, gdzie każdy uczeń znajdzie wsparcie, inspirację i możliwości rozwoju. Dołącz do naszej społeczności, gdzie stawiamy na aktywne metody nauczania, rozwój kompetencji społecznych i kreatywność. Niezależnie od zainteresowań - zapraszamy do aplikowania i dołączenia do naszego wspaniałego środowiska edukacyjnego!`}
             >
                 <div className="mt-8 text-lg font-semibold">Jesteś już zdecydowany wypełnij wniosek o przyjęcie już teraz!</div>
-                <Button variant={"outline"} className="m-4">Wypełnij wniosek Online</Button>
+                <Button asChild variant={"outline"} className="m-4">
+                    <Link href={'https://nabor.pcss.pl/zielonagora/szkolaponadpodstawowa/start'}>Wypełnij wniosek Online</Link>
+                </Button>
             </Header>
             <div className="w-1/2 flex flex-col">
                 <div className="flex justify-between my-8">
                     <div className="text-3xl font-semibold flex items-center">Technikum 5 letnie</div>
-                    <div className="flex items-center">Jesli potrzebujesz dokumentów znajdziesz je&nbsp;<Link className="text-primary hover:underline" href="/dokumenty">tutaj</Link></div>
+                    <div className="flex items-center">
+                        <p>
+                            Jesli potrzebujesz dokumentów znajdziesz je&nbsp;
+                            <Link className="text-primary hover:underline" href="/dokumenty">tutaj</Link>
+                        </p>
+                    </div>
                 </div>
                 <div>
                     <Table className="font-medium">

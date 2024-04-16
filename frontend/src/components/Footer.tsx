@@ -65,7 +65,7 @@ function SocialMedia(){
                 <LinkIcon icon={Instagram} href="https://www.instagram.com/zgelektronik/" />
             </div>
             <div className="flex justify-center flex-col w-20 relative">
-                <Link passHref href={"/"}>
+                <Link passHref href={"/"} className="w-full h-full relative">
                     <Image alt="logo" fill src={"/logo-white.svg"} />
                 </Link>
             </div>
@@ -80,14 +80,14 @@ function MainPanel(){
                 <div className="text-background text-3xl font-extrabold text-center">Odwiedziło nas już <span className="text-primary font-extrabold text-3xl bg-background p-2 rounded-2xl">1280959</span> osób!</div>
                 <div className="flex justify-center m-12">
                     <LinkPanel title="O szkole">
-                        <LinkItem name="Osiągnięcia" href="" />
+                        <LinkItem name="Osiągnięcia" href="/osiagniecia" />
                         <LinkItem name="Kadra" href="/kadra" />
-                        <LinkItem name="Galeria" href="" />
+                        <LinkItem name="Galeria" href="/galeria" />
                         <LinkItem name="Aktualności" href="/aktualnosci" />
                     </LinkPanel>
                     <LinkPanel title="Edukacja">
                         <LinkItem name="Praktyki" href="/praktyki" />
-                        <LinkItem name="Warsztaty" href="" />
+                        <LinkItem name="Warsztaty" href="https://zseis.zgora.pl/warsztaty/" />
                         <LinkItem name="Programy Nauczania" href="" />
                     </LinkPanel>
                     <LinkPanel title="Uczeń">
