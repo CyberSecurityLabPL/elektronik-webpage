@@ -2,12 +2,11 @@ FROM node:18
 ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
 WORKDIR /opt/
-COPY ./package.json ./
+COPY ./package.json ./package-lock.json ./
 ENV PATH /opt/node_modules/.bin:$PATH
-RUN corepack enable
-COPY ./yarn.lock ./
+RUN npm install
 WORKDIR /opt/app
 COPY ./ .
-RUN yarn install --network-timeout 100000
+RUN npm run build
 EXPOSE ${PORT}
 CMD ["npm", "run", "develop"]

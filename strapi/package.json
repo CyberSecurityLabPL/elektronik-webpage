@@ -9,30 +9,30 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
+  "workspaces": ["./src/plugins/strapi-plugin-ckeditor"],
+  "devDependencies": {},
   "dependencies": {
-    "@_sh/strapi-plugin-ckeditor": "^2.1.1",
-    "@strapi/plugin-cloud": "4.22.1",
-    "@strapi/plugin-i18n": "4.22.1",
-    "@strapi/plugin-seo": "^1.9.8",
-    "@strapi/plugin-users-permissions": "4.22.1",
-    "@strapi/strapi": "4.22.1",
+    "@ckeditor/strapi-plugin-ckeditor": "^0.0.11",
+    "@strapi/plugin-cloud": "4.23.0",
+    "@strapi/plugin-i18n": "4.23.0",
+    "@strapi/plugin-users-permissions": "4.23.0",
+    "@strapi/strapi": "4.23.0",
     "mysql": "2.18.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
-    "strapi-plugin-navigation": "^2.4.0",
-    "strapi-plugin-publisher": "^1.5.7",
     "styled-components": "5.3.3"
   },
   "author": {
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "9e77983f-2125-4a53-bdad-858f1b031c1d"
+    "uuid": "ac642650-a24d-4eb5-a76b-7facd272c578"
   },
   "engines": {
     "node": ">=18.0.0 <=20.x.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }

@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_elements_overview_rows",
+  "info": {
+    "displayName": "Overview Row",
+    "icon": "bulletList"
+  },
+  "options": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Description": {
+      "type": "text"
+    },
+    "Image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

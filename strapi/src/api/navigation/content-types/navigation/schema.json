@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "navigations",
+  "info": {
+    "singularName": "navigation",
+    "pluralName": "navigations",
+    "displayName": "Navigation"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "logo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "link_groups": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::link-group.link-group"
+    },
+    "timetable": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.button-link"
+    },
+    "gradebook": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.button-link"
+    }
+  }
+}
