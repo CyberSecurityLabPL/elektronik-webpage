@@ -3,16 +3,18 @@ import { Card } from '../ui/card'
 import IconComponent from '../Icon'
 import { Mail, MapPin, Phone } from 'lucide-react'
 import { Separator } from '../ui/separator'
+import GoogleMaps from '../maps/GoogleMaps'
 
 function Map() {
+    const API_KEY = process.env.GOOGLE_MAPS_API_KEY!;
+
     return (
     <div>
         
         <div className="w-full h-64 bg-repeat-x bg-wave-transition rotate-180 "></div>
             <div className='w-full h-screen bg-primary flex justify-center items-center px-24 py-4 relative'>
                 <Card className='w-2/3 h-5/6'>
-                    {/* map */}
-                    
+                    <GoogleMaps apiKey={API_KEY} />
                 </Card>
                 <div className='w-1/3 h-5/6 text-white px-4'>
                     <h1 className='text-6xl font-semibold pb-4'>Znajdziesz nas tutaj</h1>
