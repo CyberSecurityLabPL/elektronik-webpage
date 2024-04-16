@@ -44,22 +44,22 @@ export default function Page(){
                 title={`Nabór ${year}`}
                 subtitle={`Rozpoczynamy nabór na rok szkolny ${year}! Nasza szkoła to miejsce, gdzie każdy uczeń znajdzie wsparcie, inspirację i możliwości rozwoju. Dołącz do naszej społeczności, gdzie stawiamy na aktywne metody nauczania, rozwój kompetencji społecznych i kreatywność. Niezależnie od zainteresowań - zapraszamy do aplikowania i dołączenia do naszego wspaniałego środowiska edukacyjnego!`}
             >
-                <div className="mt-8 text-lg font-semibold">Jesteś już zdecydowany wypełnij wniosek o przyjęcie już teraz!</div>
+                <div className="mt-8 lg:text-lg text-xs text-center font-semibold">Jesteś już zdecydowany wypełnij wniosek o przyjęcie już teraz!</div>
                 <Button asChild variant={"outline"} className="m-4">
                     <Link href={'https://nabor.pcss.pl/zielonagora/szkolaponadpodstawowa/start'}>Wypełnij wniosek Online</Link>
                 </Button>
             </Header>
-            <div className="w-1/2 flex flex-col">
-                <div className="flex justify-between my-8">
-                    <div className="text-3xl font-semibold flex items-center">Technikum 5 letnie</div>
+            <div className="w-1/2 flex flex-col items-center">
+                <div className="flex lg:flex-row flex-col justify-between my-8 lg:gap-24">
+                    <div className="lg:text-3xl text-base font-semibold flex items-center">Technikum 5 letnie</div>
                     <div className="flex items-center">
-                        <p>
+                        <p className="lg:text-base text-xs">
                             Jesli potrzebujesz dokumentów znajdziesz je&nbsp;
                             <Link className="text-primary hover:underline" href="/dokumenty">tutaj</Link>
                         </p>
                     </div>
                 </div>
-                <div>
+                <div className="w-fit overflow-auto flex justify-center">
                     <Table className="font-medium">
                         <TableHeader>
                             <TableRow>
@@ -68,7 +68,7 @@ export default function Page(){
                                 <TableHead className="text-center">Liczba oddziałów</TableHead>
                             </TableRow>
                         </TableHeader>
-                        <TableBody>
+                        <TableBody className="lg:text-base text-xs">
                             {data.map(row => (
                                 <TableRow className="bg-background hover:bg-muted/90" key={row.name}>
                                     <TableCell className="font-medium">{row.name}</TableCell>
