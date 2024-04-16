@@ -5,10 +5,16 @@ import News from "@/components/landingpage/News";
 import Overview from "@/components/landingpage/Overview";
 import Sponsors from "@/components/landingpage/Sponsors";
 import { Button } from "@/components/ui/button";
+import { getNavigation } from "@/lib/api";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
+export default async function Home() {
+  const navigation = await getNavigation();
+
+  console.log(navigation);
+  
+
   return (
     <main className="flex justify-center flex-col w-full">
       <header className="flex flex-col relative">
