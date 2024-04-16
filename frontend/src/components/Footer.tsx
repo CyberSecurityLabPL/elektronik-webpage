@@ -4,13 +4,14 @@ import { Button } from "./ui/button"
 import { ReactNode } from "react"
 import Link from "next/link"
 import { LucideProps, Github, Facebook, Instagram } from "lucide-react"
+import { Separator } from "./ui/separator"
 
 export default function Footer(){
     return (
-        <footer className="flex flex-col justify-end w-full min-h-96 h-fit mt-[-16rem]">
+        <footer className="flex flex-col items-center justify-end w-full min-h-96 h-fit mt-[-16rem]">
             <div className="bg-repeat-x bg-footer-squares w-full h-80"></div>
             <div className="bg-repeat-x bg-splash-transition w-full h-52"></div>
-            <div className="flex justify-between max-sm:items-center max-sm:flex-col bg-primary w-full min-h-32 h-fit pb-4 pt-8">
+            <div className="flex justify-between max-xl:items-center max-xl:flex-col bg-primary w-full min-h-32 h-fit pb-4 pt-8 overflow-auto">
                 <SocialMedia />
                 <MainPanel />
                 <Donate />
@@ -40,7 +41,7 @@ function DonationButton(){
 //components for main panel
 function LinkPanel({title, children} : {children?: ReactNode, title: string}){
     return (
-        <div className="flex justify-start flex-col mx-4 max-w-24">
+        <div className="flex justify-start flex-col sm:mx-4 max-sm:my-4 max-w-24">
             <div className="text-background text-lg font-semibold">{title}</div>
             {children}
         </div>
@@ -58,14 +59,14 @@ function LinkItem({name, href} : {name: string, href: string}) {
 
 function SocialMedia(){
     return (
-        <div className="flex justify-center ml-4 w-64">
-            <div className="flex justify-center flex-col h-full mx-2">
+        <div className="flex max-xl:flex-col-reverse max-xl:mb-4 justify-center max-xl:items-center ml-4 w-64">
+            <div className="flex justify-center xl:flex-col xl:h-full max-xl:w-full mx-2">
                 <LinkIcon icon={Facebook} href="https://www.facebook.com/zgelektronik/?locale=pl_PL" />
                 <LinkIcon icon={Github} href="https://github.com/CyberSecurityLabPL/elektronik-webpage" />
                 <LinkIcon icon={Instagram} href="https://www.instagram.com/zgelektronik/" />
             </div>
-            <div className="flex justify-center flex-col w-20 relative">
-                <Link passHref href={"/"} className="w-full h-full relative">
+            <div className="flex justify-center lg:flex-col w-20 max-xl:h-20 relative">
+                <Link passHref href={"/"} className="flex justify-center items-center w-full h-full relative">
                     <Image alt="logo" fill src={"/logo-white.svg"} />
                 </Link>
             </div>
@@ -77,43 +78,45 @@ function MainPanel(){
     return (
         <div className="flex justify-center max-sm:my-8">
             <div className="flex justify-around flex-col">
-                <div className="text-background text-3xl font-extrabold text-center">Odwiedziło nas już <span className="text-primary font-extrabold text-3xl bg-background p-2 rounded-2xl">1280959</span> osób!</div>
-                <div className="flex justify-center m-12">
-                    <LinkPanel title="O szkole">
-                        <LinkItem name="Osiągnięcia" href="/osiagniecia" />
-                        <LinkItem name="Kadra" href="/kadra" />
-                        <LinkItem name="Galeria" href="/galeria" />
-                        <LinkItem name="Aktualności" href="/aktualnosci" />
-                    </LinkPanel>
-                    <LinkPanel title="Edukacja">
-                        <LinkItem name="Praktyki" href="/praktyki" />
-                        <LinkItem name="Warsztaty" href="https://zseis.zgora.pl/warsztaty/" />
-                        <LinkItem name="Programy Nauczania" href="" />
-                    </LinkPanel>
-                    <LinkPanel title="Uczeń">
-                        <LinkItem name="Ocenianie zachowania" href="" />
-                        <LinkItem name="Zastępstwa" href="/zastepstwa" />
-                        <LinkItem name="Dokumenty do pobrania" href="/dokumenty" />
-                        <LinkItem name="Oferty pracy dla absolwentów" href="/praca" />
-                    </LinkPanel>
-                    <LinkPanel title="Rodzic">
-                        <LinkItem name="Podręczniki" href="/podreczniki" />
-                        <LinkItem name="Rada Rodziców" href="/rada" />
-                    </LinkPanel>
-                    <LinkPanel title="Maturzysta">
-                        <LinkItem name="Egzamin maturalny" href="http://www.oke.poznan.pl/index.php?menu_st_id=5&el_id=718&submit_element=1" />
-                        <LinkItem name="Egzamin zawodowy" href="" />
-                        <LinkItem name="OKE w Poznaniu" href="http://www.oke.poznan.pl/" />
-                        <LinkItem name="Komunikaty Dyrektora CKE" href="" />
-                    </LinkPanel>
-                    <LinkPanel title="Nabór">
-                        <LinkItem name="Regulamin" href="" />
-                        <LinkItem name="Kierunki" href="/nabor" />
-                    </LinkPanel>
+                <div className="text-background text-3xl font-extrabold text-center max-sm:leading-relaxed">Odwiedziło nas już <span className="text-primary font-extrabold text-3xl bg-background p-2 rounded-2xl">1280959</span> osób!</div>
+                <div className="flex max-sm:flex-col max-sm:items-center justify-center m-12">
+                    <div className="flex justify-center max-sm:flex-col max-sm:items-start">
+                        <LinkPanel title="O szkole">
+                            <LinkItem name="Osiągnięcia" href="/osiagniecia" />
+                            <LinkItem name="Kadra" href="/kadra" />
+                            <LinkItem name="Galeria" href="/galeria" />
+                            <LinkItem name="Aktualności" href="/aktualnosci" />
+                        </LinkPanel>
+                        <LinkPanel title="Edukacja">
+                            <LinkItem name="Praktyki" href="/praktyki" />
+                            <LinkItem name="Warsztaty" href="https://zseis.zgora.pl/warsztaty/" />
+                            <LinkItem name="Programy Nauczania" href="" />
+                        </LinkPanel>
+                        <LinkPanel title="Uczeń">
+                            <LinkItem name="Ocenianie zachowania" href="" />
+                            <LinkItem name="Zastępstwa" href="/zastepstwa" />
+                            <LinkItem name="Dokumenty do pobrania" href="/dokumenty" />
+                            <LinkItem name="Oferty pracy dla absolwentów" href="/praca" />
+                        </LinkPanel>
+                        <LinkPanel title="Rodzic">
+                            <LinkItem name="Podręczniki" href="/podreczniki" />
+                            <LinkItem name="Rada Rodziców" href="/rada" />
+                        </LinkPanel>
+                        <LinkPanel title="Maturzysta">
+                            <LinkItem name="Egzamin maturalny" href="http://www.oke.poznan.pl/index.php?menu_st_id=5&el_id=718&submit_element=1" />
+                            <LinkItem name="Egzamin zawodowy" href="" />
+                            <LinkItem name="OKE w Poznaniu" href="http://www.oke.poznan.pl/" />
+                            <LinkItem name="Komunikaty Dyrektora CKE" href="" />
+                        </LinkPanel>
+                        <LinkPanel title="Nabór">
+                            <LinkItem name="Regulamin" href="" />
+                            <LinkItem name="Kierunki" href="/nabor" />
+                        </LinkPanel>
+                    </div>
                 </div>
                 <div className="flex justify-around flex-col">
-                    <div className="flex justify-center items-center text-background text-base font-bold m-1">Made with 🍷 by Kacper, Krzysiek, Mikołaj, Wojtek & Filip</div>
-                    <div className="flex justify-center items-center text-background-accent text-xs m-1">@Copyright 2001-2024 Zespół Szkół Elektronicznych i Samochodowych</div>
+                    <div className="flex justify-center items-center text-background text-base font-bold m-1 text-center">Made with 🍷 by Kacper, Krzysiek, Mikołaj, Wojtek & Filip</div>
+                    <div className="flex justify-center items-center text-background-accent text-xs m-1 text-center">@Copyright 2001-2024 Zespół Szkół Elektronicznych i Samochodowych</div>
                 </div>
             </div>
         </div>
@@ -122,7 +125,7 @@ function MainPanel(){
 
 function Donate(){
     return (
-        <div className="flex flex-col justify-center w-64 mr-4">
+        <div className="flex flex-col justify-center w-64 mr-4 max-xl:hidden">
             <div className="flex justify-center"><DonationButton /></div>
             <div className="text-background mt-2">Spodobała Ci się nowa strona? Rozważ wsparcie twórców ✨✨</div>
         </div>
