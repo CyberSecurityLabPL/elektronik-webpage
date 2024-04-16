@@ -3,7 +3,7 @@ import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../ui/card
 import { Dribbble, Dumbbell, Headphones } from 'lucide-react'
 import Image from 'next/image'
 
-export default function About() {
+export default function Benefits() {
     return (
     <div className=' w-full  h-fit flex flex-col justify-center items-center'>
         <h1 className='text-5xl font-semibold text-slate-800 py-8'>Dlaczego warto wybrać Elektrona?</h1>

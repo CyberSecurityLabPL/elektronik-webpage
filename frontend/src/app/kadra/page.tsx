@@ -5,32 +5,32 @@ export default function Page() {
     const data = [
         {
             titles: "mgr, inż",
-            name: "Sigma Slipko",
-            src: "/slipko.png",
+            name: "Mariusz Kmiećkowiak",
+            src: "/kmieciu.svg",
             position: "Nauczyciel",
             description: "Przedmioty elektroniczne i informatyczne, plan lekcji oraz arkusz organizacji pracy szkoły.",
             duty: "Dyżur: Poniedziałek 7.50 - 14.50"
         },
         {
             titles: "mgr, inż",
-            name: "Sigma Slipko",
-            src: "/slipko.png",
+            name: "Mariusz Kmiećkowiak",
+            src: "/kmieciu.svg",
             position: "Nauczyciel",
             description: "Najwiekszy sigma w szkole ",
             duty: "Dyżur: Poniedziałek 7.50 - 14.50"
         },
         {
             titles: "mgr, inż",
-            name: "Sigma Slipko",
-            src: "/slipko.png",
+            name: "Mariusz Kmiećkowiak",
+            src: "/kmieciu.svg",
             position: "Nauczyciel",
             description: "Przedmioty elektroniczne i informatyczne, plan lekcji oraz arkusz organizacji pracy szkoły.",
             duty: "Dyżur: Poniedziałek 7.50 - 14.50"
         },
         {
             titles: "mgr, inż",
-            name: "Sigma Slipko",
-            src: "/slipko.png",
+            name: "Mariusz Kmiećkowiak",
+            src: "/kmieciu.svg",
             position: "Nauczyciel",
             description: "Przedmioty elektroniczne i informatyczne, plan lekcji oraz arkusz organizacji pracy szkoły.",
             duty: "Dyżur: Poniedziałek 7.50 - 14.50"

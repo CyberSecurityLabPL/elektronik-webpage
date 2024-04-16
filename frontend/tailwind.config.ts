@@ -19,12 +19,13 @@ const config = {
     },
     extend: {
       backgroundImage: {
-        'splash-transition': "url('/splash-transition-single.svg')",
-        'footer-squares': "url('/footer-squares.svg')",
-        'hero-squares': "url('/hero-squares.svg')",
-        'wave-transition': "url('/bg-wave-transition.svg')",
-        'overview-bg': "url('/bg-overview.svg')",
-        'about-bg': "url('/bg-about.svg')"
+        'splash-transition': "url('/backgrounds/splash-transition-single.svg')",
+        'footer-squares': "url('/backgrounds/footer-squares.svg')",
+        'hero-squares': "url('/backgrounds/hero-squares.svg')",
+        'wave-transition': "url('/backgrounds/bg-wave-transition.svg')",
+        'overview-bg': "url('/backgrounds/bg-overview.svg')",
+        'about-bg': "url('/backgrounds/bg-about.svg')",
+        'nav': "url('/cards/zofiki.png')"
         
       },
       colors: {
