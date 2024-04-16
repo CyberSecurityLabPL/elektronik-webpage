@@ -214,7 +214,7 @@ return (
             </NavigationMenuContent>
         </NavigationMenuItem>
         {navItems.map((item) => (
-            <NavigationMenuItem>
+            <NavigationMenuItem key={item.title}>
                 <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
                 <NavigationMenuContent>
                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
