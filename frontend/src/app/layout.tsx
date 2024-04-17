@@ -4,7 +4,7 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/sonner"
-import Head from "next/head";
+
 
 
 
@@ -22,9 +22,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="w-full ">
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-      </Head>
       <body className={inter.className}>
         <Navbar />
         <div className="w-full min-h-[calc(100vh-100px)] relative flex justify-center">

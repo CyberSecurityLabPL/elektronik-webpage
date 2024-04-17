@@ -1,6 +1,6 @@
 import Header from '@/components/Header'
 import React from 'react'
-import NewsCard from '@/components/NewsCard'
+import NewsCard from '@/components/cards/NewsCard'
 
 const data = [
     {

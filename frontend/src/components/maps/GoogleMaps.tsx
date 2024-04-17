@@ -4,10 +4,10 @@ import MarkerWithInfowindow from './MarkerWithInfoWindow';
 
 export default function GoogleMaps({apiKey} : {apiKey: string}){
     return (
-        <div className='w-full h-full flex justify-center items-center  '>
+        <div className='w-full h-full flex justify-center items-center   '>
             <APIProvider apiKey={apiKey}>
                 <Map
-                    style={{width: '100%', height: '100%'}}
+                    style={{width: '100%', height: '100%',borderRadius:"10px"}}
                     defaultCenter={{lat: 51.946736, lng: 15.519100}}
                     defaultZoom={18}
                     gestureHandling={'greedy'}
