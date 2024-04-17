@@ -34,10 +34,10 @@ function page() {
     <div>
         <Header title='Aktualności i ogłoszenia' subtitle='O to co dzieje się w naszej szkole!'   />
         <div className='flex flex-cols-3'>
-        {data.map((item => 
-        <NewsCard author={item.author} src={item.src} date={item.date} opis={item.opis} title={item.title} link={item.link}></NewsCard>
-))}
-</div>
+        {data.map(item => 
+            <NewsCard key={item.title} {...item} />
+        )}
+        </div>
     </div>
     )
 }
