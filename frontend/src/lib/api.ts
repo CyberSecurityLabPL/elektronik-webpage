@@ -30,7 +30,7 @@ export async function getNavigation(): Promise<any> {
     let data = await res.json()
 
 
-    return flatten(data);
+    return flatten(data, ["data", "attributes"]);
   } catch (error) {
     console.error(error);
   }
