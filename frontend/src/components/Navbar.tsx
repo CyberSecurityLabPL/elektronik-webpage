@@ -3,21 +3,18 @@ import Image from 'next/image'
 import React from 'react'
 import { Button } from './ui/button'
 import Link from 'next/link'
-import { Navigation } from './Navigation'
 import { revalidateTag } from 'next/cache'
-
-
-
+import { Navigation } from './Navigation'
 
 function Navbar({ data }: { data?: any }) {
     revalidateTag('navigation')
     
 
     return (
-    <div className='h-32 w-full flex justify-between '>
-        <div className='w-48 flex justify-center items-center px-4'>
-            <Link href={'/'}>
-                <Image src={'logo.svg'} width={80} height={60} alt='Logo' />
+    <div className='h-32 w-full flex justify-between relative '>
+        <div className=' flex justify-center items-center px-8 '>
+            <Link href={'/'} passHref>
+                <Image src={'logo.svg'} width={80} height={60} alt='Logo'  />
             </Link>
             
         </div>
