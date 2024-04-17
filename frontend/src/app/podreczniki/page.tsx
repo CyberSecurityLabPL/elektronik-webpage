@@ -1,5 +1,5 @@
 import Header from "@/components/Header"
-import BookCard from "@/components/BookCard"
+import BookCard from "@/components/cards/BookCard"
 
 export default function Page(){
     const data = [

@@ -1,5 +1,5 @@
 import Header from "@/components/Header";
-import JobCard from "@/components/JobCard";
+import JobCard from "@/components/cards/JobCard";
 import JobDialog from "@/components/JobDialog";
 
 export default function Page(){

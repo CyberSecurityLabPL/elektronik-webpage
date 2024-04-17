@@ -33,7 +33,7 @@ const AccordionTrigger = React.forwardRef<
       )}
       {...props}
     > 
-      <div className="flex items-center gap-2">
+      <div className="flex text-left w-5/6 gap-2">
         {children}
       </div>
       <Minus  className="minus absolute right-0 rotate-90  transition-transform duration-200" />

@@ -1,4 +1,4 @@
-import AchieveCard from "@/components/AchieveCard";
+import AchieveCard from "@/components/cards/AchieveCard";
 import AchieveDialog from "@/components/AchieveDialog";
 import Header from "@/components/Header";
 

@@ -1,34 +1,34 @@
 import Header from "@/components/Header"
-import ParentCard from "@/components/ParentCard"
+import ParentCard from "@/components/cards/ParentCard"
 import { Button } from "@/components/ui/button"
 
 export default function Page() {
     const data = [
         {
             titles: "mgr, inż",
-            name: "Sigma Slipko",
-            src: "/slipko.png",
+            name: "Mariusz Kmiećkowiak",
+            src: "/kmieciu.svg",
             position: "Nauczyciel",
             description: "Przedmioty elektroniczne i informatyczne, plan lekcji oraz arkusz organizacji pracy szkoły.",
         },
         {
             titles: "mgr, inż",
-            name: "Sigma Slipko",
-            src: "/slipko.png",
+            name: "Mariusz Kmiećkowiak",
+            src: "/kmieciu.svg",
             position: "Nauczyciel",
             description: "Najwiekszy sigma w szkole ",
         },
         {
             titles: "mgr, inż",
-            name: "Sigma Slipko",
-            src: "/slipko.png",
+            name: "Mariusz Kmiećkowiak",
+            src: "/kmieciu.svg",
             position: "Nauczyciel",
             description: "Przedmioty elektroniczne i informatyczne, plan lekcji oraz arkusz organizacji pracy szkoły.",
         },
         {
             titles: "",
-            name: "Sigma Slipko",
-            src: "/slipko.png",
+            name: "Mariusz Kmiećkowiak",
+            src: "/kmieciu.svg",
             position: "Rodzic",
             description: "Przedmioty elektroniczne i informatyczne, plan lekcji oraz arkusz organizacji pracy szkoły.",
         }
