@@ -22,7 +22,7 @@ export default function Overview() {
                 <p className='text-2xl pr-8 text-left '>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed est eu turpis porta fringilla. Vivamus tristique, odio et accumsan mollis.</p>
             </div>
             <div className="w-3/5 h-[50vh] relative">
-                <Image alt="dyrektor" src={"/sections/hero.svg"} fill/>
+                <Image alt="dyrektor" src={"/sections/overview.svg"} fill/>
             </div>
         </div>
     </div>
