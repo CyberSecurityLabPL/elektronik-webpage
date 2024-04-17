@@ -35,3 +35,14 @@ export async function getNavigation(): Promise<any> {
     console.error(error);
   }
 }
+
+export async function getLandingPage(): Promise<any> {
+  try {
+    const { data }: AxiosResponse<any> = await api.get("/landing-page");
+
+
+    return flatten(data, ["data", "attributes"]);
+  } catch (error) {
+    console.error(error);
+  }
+}

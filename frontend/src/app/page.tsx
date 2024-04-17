@@ -5,14 +5,14 @@ import News from "@/components/landingpage/News";
 import Overview from "@/components/landingpage/Overview";
 import Sponsors from "@/components/landingpage/Sponsors";
 import { Button } from "@/components/ui/button";
-import { getNavigation } from "@/lib/api";
+import { getLandingPage } from "@/lib/api";
 import Image from "next/image";
 import Link from "next/link";
 
 export default async function Home() {
-  const navigation = await getNavigation();
+  const data = await getLandingPage();
 
-  console.log(navigation);
+  console.log(data);
   
 
   return (

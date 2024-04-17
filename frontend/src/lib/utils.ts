@@ -9,6 +9,10 @@ export function flatten(obj: any, flatteners: string[]){
     const isObject = (obj: any) =>
         Object.prototype.toString.call(obj) === "[object Object]";
 
+    const isArray = (obj: any) =>
+        Object.prototype.toString.call(obj) === "[object Array]";
+
+
     for (const key of flatteners) {
         if(hasKey(obj, key)){
             obj = obj[key]
@@ -16,7 +20,7 @@ export function flatten(obj: any, flatteners: string[]){
     }
 
     for (const key of Object.keys(obj)){
-        if(isObject(obj[key])){
+        if(isObject(obj[key]) || isArray(obj[key])) {
             obj[key] = flatten(obj[key], flatteners)
         }
     }
