@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { flattenObj } from './utils';
+import { flatten } from './utils';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
 /**
@@ -27,10 +27,10 @@ export async function getNavigation(): Promise<any> {
       }
      })
 
-    const data = await res.json()
+    let data = await res.json()
 
 
-    return data.data;
+    return flatten(data);
   } catch (error) {
     console.error(error);
   }
