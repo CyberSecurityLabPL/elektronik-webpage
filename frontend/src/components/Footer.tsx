@@ -65,8 +65,8 @@ function SocialMedia(){
                 <LinkIcon icon={Github} href="https://github.com/CyberSecurityLabPL/elektronik-webpage" />
                 <LinkIcon icon={Instagram} href="https://www.instagram.com/zgelektronik/" />
             </div>
-            <div className="flex justify-center lg:flex-col w-20 max-xl:h-20 relative">
-                <Link passHref href={"/"} className="flex justify-center items-center w-full h-full relative">
+            <div className="flex justify-center items-center lg:flex-col w-20 max-xl:h-20 xl:h-full relative">
+                <Link passHref href={"/"} className="flex justify-center items-center w-full h-20 relative">
                     <Image alt="logo" fill src={"/logo-white.svg"} />
                 </Link>
             </div>
