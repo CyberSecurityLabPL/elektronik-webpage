@@ -11,11 +11,6 @@
     },
     "description": {
       "type": "string"
-    },
-    "form": {
-      "type": "component",
-      "repeatable": false,
-      "component": "elements.form"
     }
   }
 }

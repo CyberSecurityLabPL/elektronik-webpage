@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "book_groups",
+  "info": {
+    "singularName": "book-group",
+    "pluralName": "book-groups",
+    "displayName": "Book Group"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "text"
+    },
+    "books": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::book.book",
+      "mappedBy": "book_group"
+    }
+  }
+}

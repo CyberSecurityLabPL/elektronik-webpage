@@ -20,6 +20,7 @@ services:
       - ./.env:/opt/app/.env
       - ./public:/opt/app/public # don't set it to /uploads (Krystian Wybranowski reference), because it block import functionallity
       # - ./database/data.db:/opt/app/database/data.db
+      - ./types/:/opt/app/types
     ports:
       - '5000:5000'
     networks:
