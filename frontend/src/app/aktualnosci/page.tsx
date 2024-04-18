@@ -1,42 +1,20 @@
 import Header from '@/components/Header'
 import React from 'react'
 import NewsCard from '@/components/cards/NewsCard'
+import { getNews } from '@/lib/api'
+import { format } from 'date-fns'
+import { formatDate } from '@/lib/utils'
 
-const data = [
-    {
-        author: "Wygrana w biegach",
-        src: "/typo.jpg",
-        date: "10.05.2019r",
-        title: 'Tytuł',
-        link: '/kontakt',
-        opis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    },
-    {
-        author: "Wygrana w biegach",
-        src: "/typo.jpg",
-        date: "10.05.2019r",
-        title: 'uuuuu',
-        link: '/kontakt',
-        opis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    },
-    {
-        author: "Wygrana w biegach",
-        src: "/typo.jpg",
-        date: "10.05.2019r",
-        title: 'rrrrrrr',
-        link: '/kontakt',
-        opis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-    },
-]
+async function page() {
+    const data = await getNews()
 
-function page() {
     return (
     <div>
         <Header title='Aktualności i ogłoszenia' subtitle='O to co dzieje się w naszej szkole!'   />
-        <div className='flex flex-cols-3'>
-        {data.map(item => 
-            <NewsCard key={item.title} {...item} />
-        )}
+        <div className='flex flex-cols-3 gap-4 justify-center w-full'>
+        {data? data.data.map((item: any, index: number) => 
+            <NewsCard key={index + item.title} title={item.title} author={item.updatedBy ?? "No creator found!"} description={item.description} link={"/aktualnosci/"+(index + 1)} date={formatDate(item.updatedAt)} src='' />
+        ) : "Brak Danych!"}
         </div>
     </div>
     )
