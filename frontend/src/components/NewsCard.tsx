@@ -11,7 +11,16 @@ import Image from 'next/image'
 import { CalendarPlus, User } from 'lucide-react'
 import Link from 'next/link'
 
-export default function NewsCard({author, src, date, opis, title, link} : {author: string, src: string, date: string, opis: string, title: string, link: string}) {
+interface NewsCardProps {
+    author: string,
+    src: string,
+    date: string,
+    opis: string,
+    title: string,
+    link: string
+}
+
+export default function NewsCard({author, src, date, opis, title, link} : NewsCardProps) {
     return (
         <Card className='w-96 h-96 ml-8'>
                 

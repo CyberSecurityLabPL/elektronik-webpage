@@ -24,7 +24,7 @@ const config = {
         'hero-squares': "url('/backgrounds/hero-squares.svg')",
         'wave-transition': "url('/backgrounds/bg-wave-transition.svg')",
         'overview-bg': "url('/backgrounds/bg-overview.svg')",
-        'about-bg': "url('/backgrounds/bg-about.svg')",
+        'benefits-bg': "url('/backgrounds/bg-benefits.svg')",
         'nav': "url('/cards/zofiki.png')"
         
       },

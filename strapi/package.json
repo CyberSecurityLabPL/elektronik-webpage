@@ -9,12 +9,15 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "workspaces": ["./src/plugins/strapi-plugin-ckeditor"],
+  "workspaces": [
+    "./src/plugins/strapi-plugin-ckeditor"
+  ],
   "devDependencies": {},
   "dependencies": {
     "@ckeditor/strapi-plugin-ckeditor": "^0.0.11",
     "@strapi/plugin-cloud": "4.23.0",
     "@strapi/plugin-i18n": "4.23.0",
+    "@strapi/plugin-seo": "^1.9.8",
     "@strapi/plugin-users-permissions": "4.23.0",
     "@strapi/strapi": "4.23.0",
     "mysql": "2.18.1",

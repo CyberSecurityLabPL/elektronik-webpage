@@ -1,21 +1,25 @@
 "use client"
 import Image from "next/image"
 import { Button } from "./ui/button"
-import { ReactNode } from "react"
+import React, { ReactNode } from "react"
 import Link from "next/link"
-import { LucideProps, Github, Facebook, Instagram } from "lucide-react"
-import { Separator } from "./ui/separator"
+import { LucideProps, Github, Facebook, Instagram, Coffee } from "lucide-react"
 
 export default function Footer(){
     return (
-        <footer className="flex flex-col items-center justify-end w-full min-h-96 h-fit mt-[-16rem]">
+        <footer className="flex flex-col items-center justify-end w-full min-h-96 h-fit -mt-64">
             <div className="bg-repeat-x bg-footer-squares w-full h-80"></div>
             <div className="bg-repeat-x bg-splash-transition w-full h-52"></div>
-            <div className="flex justify-between max-xl:items-center max-xl:flex-col bg-primary w-full min-h-32 h-fit pb-4 pt-8 overflow-auto">
-                <SocialMedia />
-                <MainPanel />
-                <Donate />
+            <div className="w-full h-fit min-h-32 bg-primary flex flex-col justify-between gap-6 pb-4 pt-8 px-8 overflow-auto">
+                <Counter />
+                <div className="flex justify-center items-center flex-col-reverse gap-4 xl:flex-row">
+                    <SocialMedia />
+                    <MainPanel />
+                    <Donate />
+                </div>
+                <Copyrights />
             </div>
+            
         </footer>
     )
 }
@@ -24,26 +28,22 @@ export default function Footer(){
 function LinkIcon({icon: Icon, href} : {icon: React.FC<LucideProps>, href: string}){
     return (
         <Link passHref href={href}>
-            <div className="w-8 h-8 bg-primary m-2 rounded-full flex justify-center items-center text-background">
+            <div className="w-8 h-8 bg-primary m-2 rounded-full flex justify-center items-center text-slate-200">
                 <Icon />
             </div>
         </Link>
     )
 }
 
-//component for donation panel
-function DonationButton(){
-    return (
-        <Button variant={"secondary"} className="w-56 h-16 rounded-lg flex justify-center items-center">Buy us a coffee</Button>
-    )
-}
 
 //components for main panel
 function LinkPanel({title, children} : {children?: ReactNode, title: string}){
     return (
-        <div className="flex justify-start flex-col sm:mx-4 max-sm:my-4 max-w-24">
-            <div className="text-background text-lg font-semibold">{title}</div>
-            {children}
+        <div className="w-full flex justify-center sm:justify-start items-center text-center sm:text-left flex-col sm:mx-4 max-sm:my-4 ">
+            <div className="w-full text-background text-xl  pb-3 mt-6 font-semibold text-nowrap">{title}</div>
+            <div className="w-full flex flex-col  gap-4 ">
+                {children}
+            </div>
         </div>
     )
 }
@@ -51,22 +51,20 @@ function LinkPanel({title, children} : {children?: ReactNode, title: string}){
 //components for main panel
 function LinkItem({name, href} : {name: string, href: string}) {
     return (
-        <div className="mb-2">
-            <Link className="text-background font-medium text-xs" href={href}>{name}</Link>
-        </div>
+            <Link className="text-slate-200 font-medium text-xs" href={href}>{name}</Link>
     )
 }
 
 function SocialMedia(){
     return (
-        <div className="flex max-xl:flex-col-reverse max-xl:mb-4 justify-center max-xl:items-center ml-4 w-64">
-            <div className="flex justify-center xl:flex-col xl:h-full max-xl:w-full mx-2">
+        <div className="flex max-xl:flex-col-reverse  justify-center items-center  w-64 pb-4">
+            <div className="flex justify-center xl:flex-col xl:h-full max-xl:w-full ">
                 <LinkIcon icon={Facebook} href="https://www.facebook.com/zgelektronik/?locale=pl_PL" />
                 <LinkIcon icon={Github} href="https://github.com/CyberSecurityLabPL/elektronik-webpage" />
                 <LinkIcon icon={Instagram} href="https://www.instagram.com/zgelektronik/" />
             </div>
-            <div className="flex justify-center lg:flex-col w-20 max-xl:h-20 relative">
-                <Link passHref href={"/"} className="flex justify-center items-center w-full h-full relative">
+            <div className="flex justify-center items-center lg:flex-col w-20 max-xl:h-20 xl:h-full relative">
+                <Link passHref href={"/"} className="flex justify-center items-center w-full h-20 relative">
                     <Image alt="logo" fill src={"/logo-white.svg"} />
                 </Link>
             </div>
@@ -77,10 +75,9 @@ function SocialMedia(){
 function MainPanel(){
     return (
         <div className="flex justify-center max-sm:my-8">
-            <div className="flex justify-around flex-col">
-                <div className="text-background text-3xl font-extrabold text-center max-sm:leading-relaxed">Odwiedziło nas już <span className="text-primary font-extrabold text-3xl bg-background p-2 rounded-2xl">1280959</span> osób!</div>
-                <div className="flex max-sm:flex-col max-sm:items-center justify-center m-12">
-                    <div className="flex justify-center max-sm:flex-col max-sm:items-start">
+            <div className="flex justify-around flex-col gap-6">
+                <div className=" flex max-sm:flex-col max-sm:items-center justify-center">
+                    <div className="w-full flex justify-center max-sm:flex-col max-sm:items-center">
                         <LinkPanel title="O szkole">
                             <LinkItem name="Osiągnięcia" href="/osiagniecia" />
                             <LinkItem name="Kadra" href="/kadra" />
@@ -114,20 +111,50 @@ function MainPanel(){
                         </LinkPanel>
                     </div>
                 </div>
-                <div className="flex justify-around flex-col">
-                    <div className="flex justify-center items-center text-background text-base font-bold m-1 text-center">Made with 🍷 by Kacper, Krzysiek, Mikołaj, Wojtek & Filip</div>
-                    <div className="flex justify-center items-center text-background-accent text-xs m-1 text-center">@Copyright 2001-2024 Zespół Szkół Elektronicznych i Samochodowych</div>
-                </div>
             </div>
+        </div>
+    )
+}
+const authors = [
+    "Krzysiek",
+    "Kacper",
+    "Mikołaj",
+    "Wojtek",
+    "Filipek"
+]
+function Copyrights(){
+    return (
+        <div className="flex justify-around flex-col gap-4">
+            <div className="flex justify-center items-center text-background text-base font-semibold px-4 text-center">
+                {/* make names bold without char ,*/}
+                Made with 🍷 by{" "}
+                Kacper, Krzysiek, Mikołaj, Wojtek & Filip 
+            </div>
+            <div className="flex justify-center items-center text-slate-400 text-xs px-4 text-center">@Copyright 2001-2024 Zespół Szkół Elektronicznych i Samochodowych</div>
+        </div>
+    )
+}
+function Counter(){
+    return (
+        <div className="text-background flex justify-center items-center flex-col sm:flex-row gap-1 text-3xl font-extrabold text-center max-sm:leading-relaxed">
+            Odwiedziło nas już 
+            <div className=" w-fit text-primary font-extrabold text-3xl bg-background mx-2 p-2 rounded-2xl">
+                1280959
+            </div>
+            osób!
         </div>
     )
 }
 
 function Donate(){
     return (
-        <div className="flex flex-col justify-center w-64 mr-4 max-xl:hidden">
-            <div className="flex justify-center"><DonationButton /></div>
-            <div className="text-background mt-2">Spodobała Ci się nowa strona? Rozważ wsparcie twórców ✨✨</div>
+        <div className=" flex-col justify-center w-64  flex">
+            <div className="flex justify-center">
+            <Button variant={"secondary"} className="w-56 h-16 rounded-lg flex justify-center items-center gap-4">
+                <Coffee className="mr-2 h-8 w-8" />Buy us a coffee
+            </Button>
+            </div>
+            <div className="text-background text-center mt-2">Spodobała Ci się nowa strona? Rozważ wsparcie twórców ✨✨</div>
         </div>
     )
 }

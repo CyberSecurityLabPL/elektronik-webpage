@@ -1,6 +1,6 @@
 import Header from "@/components/Header"
 import { ReactNode } from "react"
-import FileCard from "@/components/FIleCard"
+import FileCard from "@/components/cards/FIleCard"
 
 export default function DocumentsPage(){
     const data = [

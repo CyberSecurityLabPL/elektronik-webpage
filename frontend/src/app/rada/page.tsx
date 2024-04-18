@@ -1,5 +1,5 @@
 import Header from "@/components/Header"
-import ParentCard from "@/components/ParentCard"
+import ParentCard from "@/components/cards/ParentCard"
 import { Button } from "@/components/ui/button"
 
 export default function Page() {
