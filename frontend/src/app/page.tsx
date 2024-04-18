@@ -13,7 +13,7 @@ import Link from "next/link";
 export default async function Home() {
   const data = await getLandingPage();
 
-  console.log(data);
+  //console.log(data);
   
 
   return (

@@ -7,7 +7,22 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export function flatten(obj: any, flatteners: string[]){
+/**
+ * Flattens the strapi response getting rid of .specified keys eg .data or .attributes .
+ * @param obj - The data obj to flatten
+ * @param flatteners - The keys array eg .data or .attributes
+ * @param keepMeta - Determines if the obj shouldn't be flatten at the top level
+ * @returns The flattened data.
+ */
+export function flattenStrapiResponse(obj: any, flatteners: string[], keepMeta?: boolean){
+    if(keepMeta) {
+        for (const key of flatteners) {
+            if(hasKey(obj, key)) obj[key] = flatten(obj[key], flatteners)
+        }
+    } else flatten(obj, flatteners)
+}
+
+function flatten(obj: any, flatteners: string[]){
     const isObject = (obj: any) =>
         Object.prototype.toString.call(obj) === "[object Object]";
 

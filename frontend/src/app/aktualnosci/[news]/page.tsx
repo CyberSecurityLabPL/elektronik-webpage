@@ -17,8 +17,7 @@ export default async function Page({params} : {params: {news: string}}) {
          \n **This is bold text**\n __This is bold text__\n*This is italic text*\n_This is italic text_\n`,
     } //await getNews(params.news)
 
-    // const real = await getNews(params.news);
-    // console.log(real)
+    const real = await getNews();
 
     return (
         <main className="w-full flex flex-col items-center gap-4">

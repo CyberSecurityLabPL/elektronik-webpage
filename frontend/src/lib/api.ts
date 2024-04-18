@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { flatten } from './utils';
+import { flattenStrapiResponse } from './utils';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
 /**
@@ -30,7 +30,7 @@ export async function getNavigation(): Promise<any> {
     const data = await res.json()
 
 
-    return flatten(data, ["data", "attributes"]);
+    return flattenStrapiResponse(data, ["data", "attributes"]);
   } catch (error) {
     console.error(error);
   }
@@ -41,7 +41,7 @@ export async function getLandingPage(): Promise<any> {
     const { data }: AxiosResponse<any> = await api.get("/landing-page");
 
 
-    return flatten(data, ["data", "attributes"]);
+    return flattenStrapiResponse(data, ["data", "attributes"]);
   } catch (error) {
     console.error(error);
   }
@@ -49,9 +49,10 @@ export async function getLandingPage(): Promise<any> {
 
 export async function getNews(params?: string): Promise<any> {
   try {
-    const { data }: AxiosResponse<any> = await api.get(params ? `/articles/${params}` : `articles`);
-
-    return flatten(data, ["data", "attributes"]);
+    const { data }: AxiosResponse<any> = await api.get(params ? `/article/${params}` : `articles`);
+    console.log(data);
+    
+    return flattenStrapiResponse(data, ["data", "attributes"], true);
   } catch (error) {
     console.error(error);
   }
