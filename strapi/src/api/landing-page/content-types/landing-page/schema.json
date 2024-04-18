@@ -4,8 +4,7 @@
   "info": {
     "singularName": "landing-page",
     "pluralName": "landing-pages",
-    "displayName": "Landing Page",
-    "description": ""
+    "displayName": "Landing Page"
   },
   "options": {
     "draftAndPublish": true
@@ -26,17 +25,9 @@
       "components": [
         "blocks.contact",
         "blocks.hero",
-        "blocks.benefits",
-        "blocks.faq",
-        "blocks.map",
-        "blocks.overview",
-        "blocks.sponsors"
+        "blocks.pricing",
+        "blocks.row"
       ]
-    },
-    "seo": {
-      "type": "component",
-      "repeatable": false,
-      "component": "shared.seo"
     }
   }
 }

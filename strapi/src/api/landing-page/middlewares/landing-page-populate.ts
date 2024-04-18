@@ -8,29 +8,28 @@ const populate = {
   populate: {
     blocks: {
       populate: {
-        image: {
+        Image: {
           fields: ["name", "alternativeText", "url"]
         },
-        linkButton: {
+        Link: {
           populate: true
         },
-        row: {
+        Card: {
           populate: {
             Image: {
               fields: ["name", "alternativeText", "url"]
             }
           }
         },
-        benefitCard: {
-          populate: true
+        Plan: {
+          populate: ["services", "Link"]
         },
-        sponsors: {
-          populate: true
+        Contact: {
+          form: {
+            populate: ["input", "button"]
+          }
         }
       }
-    },
-    seo: {
-      fields: ["metaTitle", "metaDescription", "keywords"]
     }
   }
 }

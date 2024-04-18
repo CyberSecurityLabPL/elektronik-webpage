@@ -1067,7 +1067,6 @@ export interface ApiLandingPageLandingPage extends Schema.SingleType {
     singularName: 'landing-page';
     pluralName: 'landing-pages';
     displayName: 'Landing Page';
-    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1077,17 +1076,8 @@ export interface ApiLandingPageLandingPage extends Schema.SingleType {
     description: Attribute.String;
     slug: Attribute.UID;
     blocks: Attribute.DynamicZone<
-      [
-        'blocks.contact',
-        'blocks.hero',
-        'blocks.benefits',
-        'blocks.faq',
-        'blocks.map',
-        'blocks.overview',
-        'blocks.sponsors'
-      ]
+      ['blocks.contact', 'blocks.hero', 'blocks.pricing', 'blocks.row']
     >;
-    seo: Attribute.Component<'shared.seo'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

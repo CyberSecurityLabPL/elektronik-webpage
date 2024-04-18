@@ -21,6 +21,7 @@ export interface BlocksContact extends Schema.Component {
   attributes: {
     heading: Attribute.String;
     description: Attribute.String;
+    form: Attribute.Component<'elements.form'>;
   };
 }
 
@@ -51,10 +52,10 @@ export interface BlocksHero extends Schema.Component {
     description: '';
   };
   attributes: {
-    heading: Attribute.String;
-    content: Attribute.Text;
-    linkButton: Attribute.Component<'elements.button-link'>;
-    image: Attribute.Media;
+    Heading: Attribute.String;
+    Text: Attribute.Text;
+    Link: Attribute.Component<'elements.button-link'>;
+    Image: Attribute.Media;
     sectionId: Attribute.String;
   };
 }
@@ -83,7 +84,28 @@ export interface BlocksOverview extends Schema.Component {
   };
   attributes: {
     sectionId: Attribute.String;
-    row: Attribute.Component<'elements.overview-row', true>;
+    Row: Attribute.Component<'elements.overview-row', true>;
+  };
+}
+
+export interface BlocksPricing extends Schema.Component {
+  collectionName: 'components_blocks_pricings';
+  info: {
+    displayName: 'Pricing';
+  };
+  attributes: {
+    Name: Attribute.String;
+    Description: Attribute.String;
+  };
+}
+
+export interface BlocksRow extends Schema.Component {
+  collectionName: 'components_blocks_rows';
+  info: {
+    displayName: 'Row';
+  };
+  attributes: {
+    Card: Attribute.Component<'elements.card', true>;
   };
 }
 
@@ -135,12 +157,24 @@ export interface ElementsCard extends Schema.Component {
   info: {
     displayName: 'Card';
     icon: 'cube';
-    description: '';
   };
   attributes: {
-    image: Attribute.Media;
-    heading: Attribute.String;
-    description: Attribute.Text;
+    Image: Attribute.Media;
+    Heading: Attribute.String;
+    Description: Attribute.Text;
+  };
+}
+
+export interface ElementsForm extends Schema.Component {
+  collectionName: 'components_elements_forms';
+  info: {
+    displayName: 'Form';
+  };
+  attributes: {
+    header: Attribute.String;
+    description: Attribute.String;
+    input: Attribute.Component<'elements.input', true>;
+    button: Attribute.Component<'elements.button-link'>;
   };
 }
 
@@ -161,12 +195,11 @@ export interface ElementsOverviewRow extends Schema.Component {
   info: {
     displayName: 'Overview Row';
     icon: 'bulletList';
-    description: '';
   };
   attributes: {
-    title: Attribute.String;
-    description: Attribute.Text;
-    image: Attribute.Media;
+    Title: Attribute.String;
+    Description: Attribute.Text;
+    Image: Attribute.Media;
   };
 }
 
@@ -241,10 +274,13 @@ declare module '@strapi/types' {
       'blocks.hero': BlocksHero;
       'blocks.map': BlocksMap;
       'blocks.overview': BlocksOverview;
+      'blocks.pricing': BlocksPricing;
+      'blocks.row': BlocksRow;
       'blocks.sponsors': BlocksSponsors;
       'elements.benefit-card': ElementsBenefitCard;
       'elements.button-link': ElementsButtonLink;
       'elements.card': ElementsCard;
+      'elements.form': ElementsForm;
       'elements.input': ElementsInput;
       'elements.overview-row': ElementsOverviewRow;
       'shared.meta-social': SharedMetaSocial;

@@ -10,7 +10,7 @@
     "sectionId": {
       "type": "string"
     },
-    "row": {
+    "Row": {
       "type": "component",
       "repeatable": true,
       "component": "elements.overview-row"
