@@ -24,19 +24,19 @@ export default function JobDialog({company, jobName, date, tasks, reqs, children
             {date}
           </DialogDescription>
         </DialogHeader>
-        <div className="flex items-center flex-col">
+        <div className="flex items-start flex-col">
             <div className="p-1">
                 <div className="text-sm font-semibold">Zadania</div>
                 <ul className="list-disc">
-                    {tasks.map((task) => <li className="text-xs font-light my-1 ml-4" key={task}>{task}</li>)}
+                    {tasks.map((task: any) => <li className="text-xs font-light my-1 ml-4" key={task.id+task.value}>{task.value}</li>)}
                 </ul>
             </div>
             <Separator className="my-4" />
             <div className="p-1">
-            <div className="text-sm font-semibold">Wymagania</div>
-                <ul className="list-disc">
-                    {reqs.map((req) => <li className="text-xs font-light my-1 ml-4" key={req}>{req}</li>)}
-                </ul>
+              <div className="text-sm font-semibold">Wymagania</div>
+              <ul className="list-disc">
+                  {reqs.map((req: any) => <li className="text-xs font-light my-1 ml-4" key={req.id+req.value}>{req.value}</li>)}
+              </ul>
             </div>
         </div>
       </DialogContent>

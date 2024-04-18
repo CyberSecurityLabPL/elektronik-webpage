@@ -7,7 +7,6 @@ import { formatDate } from '@/lib/utils'
 
 async function page() {
     const data = await getNews()
-    console.log(data);
 
     return (
     <div>

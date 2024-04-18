@@ -56,3 +56,23 @@ export async function getNews(params?: string): Promise<any> {
     console.error(error);
   }
 }
+
+export async function getSubstitutions() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get("/substitutions-page");    
+
+    return flattenStrapiResponse(data, ["data", "attributes"]);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getJobs() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get("/jobs-page?populate[jobs][populate][badges][populate]=true&populate[jobs][populate][tasks][populate]=true&populate[jobs][populate][requirements][populate]=true");    
+
+    return flattenStrapiResponse(data, ["data", "attributes"]);
+  } catch (error) {
+    console.error(error);
+  }
+}
