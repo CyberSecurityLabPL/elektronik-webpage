@@ -1,5 +1,7 @@
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
+import ReactMarkdown, { Options } from "react-markdown"
+import rehypeRaw from "rehype-raw"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -30,4 +32,22 @@ export function flatten(obj: any, flatteners: string[]){
 
 function hasKey(obj: any, key: string){
     return Object.keys(obj).includes(key)
+}
+
+export function renderMarkdown(markdown: string, options?: Readonly<Options>) {
+    const imagesFolder = "uploads"
+    const newHostname = process.env.NEXT_PUBLIC_CONTENT_URL
+    const imageBlockRegex = /\!\[(.*?)\]\((.*?)\/uploads\/(.*?)\)/g
+  
+    const formattedMarkdown = markdown.replace(imageBlockRegex, (...fragments: string[]) => {
+      const [fullImageString, alt, hostname, image] = fragments
+  
+      return `![${alt}](${newHostname}/${imagesFolder}/${image})`
+    }) 
+    
+    return (
+      <ReactMarkdown rehypePlugins={[rehypeRaw]} {...options}>
+        {formattedMarkdown}
+      </ReactMarkdown>
+    )
 }

@@ -27,7 +27,7 @@ export async function getNavigation(): Promise<any> {
       }
      })
 
-    let data = await res.json()
+    const data = await res.json()
 
 
     return flatten(data, ["data", "attributes"]);
@@ -40,6 +40,16 @@ export async function getLandingPage(): Promise<any> {
   try {
     const { data }: AxiosResponse<any> = await api.get("/landing-page");
 
+
+    return flatten(data, ["data", "attributes"]);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getNews(params?: string): Promise<any> {
+  try {
+    const { data }: AxiosResponse<any> = await api.get(params ? `/articles/${params}` : `articles`);
 
     return flatten(data, ["data", "attributes"]);
   } catch (error) {
