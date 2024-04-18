@@ -12,7 +12,8 @@ NavigationMenuList,
 NavigationMenuTrigger,
 navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { Accessibility, BugIcon } from "lucide-react"
+import { Accessibility, BugIcon, ChevronDown } from "lucide-react"
+
 
 interface NavItemProps {
     title: string; 
@@ -233,11 +234,12 @@ return (
             </NavigationMenuItem>
         ))}
         <NavigationMenuItem>
-        <Link href="/kontakt" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-            Kontakt
-            </NavigationMenuLink>
-        </Link>
+            <Link href="/kontakt" legacyBehavior passHref>
+                <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                Kontakt
+                </NavigationMenuLink>
+            </Link>
+
         </NavigationMenuItem>
     </NavigationMenuList>
     </NavigationMenu>

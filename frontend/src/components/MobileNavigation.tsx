@@ -15,10 +15,12 @@ import { ChevronDown, Menu } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import {
-    Collapsible,
-    CollapsibleContent,
-    CollapsibleTrigger,
-} from "@/components/ui/collapsible"
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+  } from "@/components/ui/mobileAccordion"
+  
 
 
 export default  function MobileNavigation() {
@@ -69,13 +71,14 @@ export default  function MobileNavigation() {
                             <LinkItem name="Kierunki" href="/nabor" />
                         </LinkPanel>
                 </div>
-                <DrawerFooter className='text-lg'>
-                <Button asChild>
-                    <Link href={'/'}>E-dziennik</Link>
-                </Button>
+                <DrawerFooter className='text-lg flex justify-center items-center'>
                 <Button variant={'ghost'} asChild>
                     <Link href={'/'}>Plan Lekcji</Link>
                 </Button>
+                <Button asChild>
+                    <Link href={'/'}>E-dziennik</Link>
+                </Button>
+                
                 
                 </DrawerFooter>
             </DrawerContent>
@@ -87,15 +90,17 @@ export default  function MobileNavigation() {
 
 function LinkPanel({title, children} : {children?: ReactNode, title: string}){
     return (
-        <Collapsible className=''>
-            <CollapsibleTrigger className='text-2xl font-semibold  flex justify-between items-center'>
-                <span>{title}</span>
-                <ChevronDown />
-            </CollapsibleTrigger>
-            <CollapsibleContent className='flex flex-col gap-6'>
-                {children}
-            </CollapsibleContent>
-        </Collapsible>
+        <Accordion  type="single" collapsible className='w-full flex flex-col gap-4 '>
+            <AccordionItem value={title}>
+                <AccordionTrigger className='w-full text-2xl font-semibold flex justify-between gap-4 items-center  py-2 [&[data-state=open]>svg]:rotate-180'>
+                    <span className='truncate w-2/3 text-left'>{title}</span>
+                </AccordionTrigger>
+                <AccordionContent className='flex flex-col gap-6 last:pb-4 '>
+                    {children}
+                </AccordionContent>
+            </AccordionItem>
+        </Accordion>
+
     )
 }
 

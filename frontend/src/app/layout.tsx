@@ -22,7 +22,7 @@ export default async function RootLayout({
 }>) {
   const data = await getNavigation();
   return (
-    <html lang="en" className="w-full ">
+    <html lang="en">
       <body className={inter.className}>
         <Navbar data={data} />
         <div className="w-full min-h-[calc(100vh-100px)] relative flex justify-center">

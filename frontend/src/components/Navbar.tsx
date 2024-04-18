@@ -6,6 +6,15 @@ import Link from 'next/link'
 import { revalidateTag } from 'next/cache'
 import { Navigation } from './Navigation'
 import MobileNavigation from './MobileNavigation'
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Menu } from 'lucide-react'
 
 export default  function Navbar({ data }: { data?: any }) {
     // revalidateTag('navigation')
@@ -25,16 +34,26 @@ export default  function Navbar({ data }: { data?: any }) {
 
         </div>
         <div className='  px-8 flex justify-center items-center '>
-            <div className='hidden lg:flex  gap-4'>
+            <div className='hidden xl:flex  gap-4'>
             <Button variant={'ghost'} asChild>
                 <Link href={'/'}>Plan Lekcji</Link>
-                
                 {/* <Link href={data.timetable.link ?? 'https://zseis.vercel.app/plan?timetableId=o18'}>{data.timetable.title ?? "Plan Lekcji"}</Link> */}
             </Button>
             <Button asChild>
                 <Link href={'/'}>E-dziennik</Link>
                 {/* <Link href={data.gradebook.link ?? "https://uonetplus.vulcan.net.pl/zielonagora"}>{data.gradebook.title ?? "E-Dziennik"}</Link> */}
             </Button>
+            </div>
+            <div className='hidden lg:block xl:hidden px-4'>
+            <DropdownMenu>
+                <DropdownMenuTrigger><Menu /></DropdownMenuTrigger>
+                <DropdownMenuContent>
+                    <DropdownMenuLabel>Plan Lekcji</DropdownMenuLabel>
+                    <DropdownMenuItem>E-dziennik</DropdownMenuItem>
+                    
+                </DropdownMenuContent>
+            </DropdownMenu>
+
             </div>
             <div className='flex lg:hidden justify-center items-center'>
                 <MobileNavigation />

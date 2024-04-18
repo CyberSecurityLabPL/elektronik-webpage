@@ -5,10 +5,8 @@ import Map from "@/components/landingpage/Map";
 import News from "@/components/landingpage/News";
 import Overview from "@/components/landingpage/Overview";
 import Sponsors from "@/components/landingpage/Sponsors";
-import { Button } from "@/components/ui/button";
 import { getLandingPage } from "@/lib/api";
-import Image from "next/image";
-import Link from "next/link";
+
 
 export default async function Home() {
   const data = await getLandingPage();
