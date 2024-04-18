@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/dialog"
 import { Separator } from "./ui/separator"
 import { ReactNode } from "react"
+import { formatDateYear } from "@/lib/utils"
 
 export default function JobDialog({company, jobName, date, tasks, reqs, children} : {company: string, jobName: string, date: string, tasks: string[], reqs: string[], children?: ReactNode}) {
   return (
@@ -21,7 +22,7 @@ export default function JobDialog({company, jobName, date, tasks, reqs, children
         <DialogHeader>
           <DialogTitle className="w-11/12">{`${company} - ${jobName}`}</DialogTitle>
           <DialogDescription>
-            {date}
+            {formatDateYear(date)}
           </DialogDescription>
         </DialogHeader>
         <div className="flex items-start flex-col">

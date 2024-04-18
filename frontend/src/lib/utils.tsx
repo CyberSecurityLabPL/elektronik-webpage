@@ -84,6 +84,15 @@ export function formatDate(date?: string){
 }
 
 /**
+ * Formats provided date string to dd/MM/yyyy HH:mm
+ * @param date - The date string if null will use current
+ * @returns The formatted date
+ */
+export function formatDateYear(date?: string){
+    return format(new Date(date ?? new Date().toISOString()), "dd/MM/yyyy")
+}
+
+/**
  * Formats provided date string to eeee dd/MM/yyyy
  * @param date - The date string if null will use current
  * @returns The formatted date with a week name in front

@@ -10,6 +10,7 @@ import { Badge } from "../ui/badge";
 import IconComponent from "../Icon";
 import { MapPin } from "lucide-react";
 import Image from "next/image";
+import { formatDateYear } from "@/lib/utils";
 
 function numberWithSpaces(x: number) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
@@ -41,7 +42,7 @@ export default function JobCard({name, src, date, minPay, maxPay, location, badg
                     <Badge className="mx-1 bg-primary/25 text-primary hover:bg-primary/20">{badges[0]?.name ?? "No badge"}</Badge>
                     <Badge className="mx-1 text-primary border-primary" variant="outline" >{badges[1]?.name ?? "No badge"}</Badge>
                 </div>
-                <div className="flex justify-center sm:justify-end items-center text-slate-400 text-xs font-light">{date}</div>
+                <div className="flex justify-center sm:justify-end items-center text-slate-400 text-xs font-light">{formatDateYear(date)}</div>
             </div>
         </Card>
     )
