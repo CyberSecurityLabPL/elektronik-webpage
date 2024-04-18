@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "apprenticeships",
+  "info": {
+    "singularName": "apprenticeship",
+    "pluralName": "apprenticeships",
+    "displayName": "Apprenticeship"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "class": {
+      "type": "string"
+    },
+    "specialization": {
+      "type": "string"
+    },
+    "date": {
+      "type": "date"
+    }
+  }
+}
