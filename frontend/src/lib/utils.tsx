@@ -84,7 +84,7 @@ export function formatDate(date?: string){
 }
 
 /**
- * Formats provided date string to dd/MM/yyyy HH:mm
+ * Formats provided date string to dd/MM/yyyy
  * @param date - The date string if null will use current
  * @returns The formatted date
  */
