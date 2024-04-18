@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_utility_string_arrays",
+  "info": {
+    "displayName": "String Array",
+    "icon": "archive"
+  },
+  "options": {},
+  "attributes": {
+    "value": {
+      "type": "text"
+    }
+  }
+}
