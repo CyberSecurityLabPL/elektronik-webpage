@@ -7,18 +7,18 @@
   },
   "options": {},
   "attributes": {
-    "heading": {
+    "Heading": {
       "type": "string"
     },
-    "content": {
+    "Text": {
       "type": "text"
     },
-    "linkButton": {
+    "Link": {
       "type": "component",
       "repeatable": false,
       "component": "elements.button-link"
     },
-    "image": {
+    "Image": {
       "type": "media",
       "multiple": false,
       "required": false,

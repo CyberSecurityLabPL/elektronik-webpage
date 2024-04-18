@@ -2,23 +2,21 @@
   "collectionName": "components_elements_cards",
   "info": {
     "displayName": "Card",
-    "icon": "cube",
-    "description": ""
+    "icon": "cube"
   },
   "options": {},
   "attributes": {
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
+    "Image": {
       "allowedTypes": [
         "images"
-      ]
+      ],
+      "type": "media",
+      "multiple": false
     },
-    "heading": {
+    "Heading": {
       "type": "string"
     },
-    "description": {
+    "Description": {
       "type": "text"
     }
   }

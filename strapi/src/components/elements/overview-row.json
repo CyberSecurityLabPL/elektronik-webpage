@@ -2,24 +2,22 @@
   "collectionName": "components_elements_overview_rows",
   "info": {
     "displayName": "Overview Row",
-    "icon": "bulletList",
-    "description": ""
+    "icon": "bulletList"
   },
   "options": {},
   "attributes": {
-    "title": {
+    "Title": {
       "type": "string"
     },
-    "description": {
+    "Description": {
       "type": "text"
     },
-    "image": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
+    "Image": {
       "allowedTypes": [
         "images"
-      ]
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
