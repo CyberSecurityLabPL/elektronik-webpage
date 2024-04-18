@@ -2,6 +2,7 @@ import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import ReactMarkdown, { Options } from "react-markdown"
 import rehypeRaw from "rehype-raw"
+import { format } from "date-fns"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -19,7 +20,8 @@ export function flattenStrapiResponse(obj: any, flatteners: string[], keepMeta?:
         for (const key of flatteners) {
             if(hasKey(obj, key)) obj[key] = flatten(obj[key], flatteners)
         }
-    } else flatten(obj, flatteners)
+        return obj
+    } else return flatten(obj, flatteners)
 }
 
 function flatten(obj: any, flatteners: string[]){
@@ -65,4 +67,13 @@ export function renderMarkdown(markdown: string, options?: Readonly<Options>) {
         {formattedMarkdown}
       </ReactMarkdown>
     )
+}
+
+/**
+ * Formats provided date string to dd/MM/yyyy HH:mm
+ * @param date - The date string if null will use current
+ * @returns The formatted date
+ */
+export function formatDate(date?: string){
+    return format(new Date(date ?? new Date().toISOString()), "dd/MM/yyyy HH:mm")
 }
