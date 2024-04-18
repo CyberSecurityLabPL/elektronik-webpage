@@ -27,20 +27,20 @@ export default async function Page({params} : {params: {news: string}}) {
                     />
                 </div>
                 <div className="flex flex-col items-center w-full gap-4">
-                    <h1 className="flex w-full justify-start text-left py-2 font-semibold text-xl sm:text-3xl">{data.title ?? "Couldn't load title!"}</h1>
+                    <h1 className="flex w-full justify-start text-left py-2 font-semibold text-xl sm:text-3xl">{data?.title ?? `Couldn't load ${params.news} article!`}</h1>
                     <div className="flex w-full flex-col items-start">
                         <span className='flex gap-1 justify-center items-center text-sm sm:text-base'>
                             <CalendarPlus className='text-primary size-3 sm:size-4'/>
-                            <p>{formatDate(data.updatedAt)}</p>
+                            <p>{formatDate(data?.updatedAt)}</p>
                         </span>
                         <span className='flex gap-1 justify-center items-center text-sm sm:text-base'>
                             <User className='text-primary size-3 sm:size-4'/>
-                            <p>{data.updatedBy ?? "Nikt"}</p>
+                            <p>{data?.updatedBy ?? "No creator found!"}</p>
                         </span>
                     </div>
                     <Separator />
                     <div className="w-full py-2 text-xs sm:text-base">
-                        {renderMarkdown(data.content ?? "Couldn't load content!", {
+                        {renderMarkdown(data?.content ?? "Couldn't load content!", {
                             components: {
                                 h1: H1,
                                 h2: H2,
