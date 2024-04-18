@@ -15,9 +15,10 @@ export default async function Page({params} : {params: {news: string}}) {
         author: "Mariusz Kmieckowiak",
         markdown: `### seiam\n ## siema\n # lol\n --- \n whot \n - Xd \n - 2dshfksdf \n - lol \n 1. xd \n 2. lol
          \n **This is bold text**\n __This is bold text__\n*This is italic text*\n_This is italic text_\n`,
-    } //await getNews(params.news)
+    }
 
-    const real = await getNews();
+    const real = await getNews(params.news);
+    console.log(real);
 
     return (
         <main className="w-full flex flex-col items-center gap-4">

@@ -49,10 +49,9 @@ export async function getLandingPage(): Promise<any> {
 
 export async function getNews(params?: string): Promise<any> {
   try {
-    const { data }: AxiosResponse<any> = await api.get(params ? `/article/${params}` : `articles`);
-    console.log(data);
+    const { data }: AxiosResponse<any> = await api.get(params ? `articles/${params}` : `articles`);
     
-    return flattenStrapiResponse(data, ["data", "attributes"], true);
+    return flattenStrapiResponse(data, ["data", "attributes"], params ? false : true);
   } catch (error) {
     console.error(error);
   }
