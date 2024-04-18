@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_blocks_sponsors",
+  "info": {
+    "displayName": "Sponsors",
+    "icon": "shoppingCart"
+  },
+  "options": {},
+  "attributes": {
+    "sectionId": {
+      "type": "string"
+    },
+    "sponsors": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::sponsor.sponsor"
+    }
+  }
+}

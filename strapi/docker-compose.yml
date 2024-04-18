@@ -18,8 +18,9 @@ services:
       - ./package.json:/opt/package.json
       - ./package-lock.json:/opt/package-lock.json
       - ./.env:/opt/app/.env
-      - ./public/uploads:/opt/app/public/uploads
+      - ./public:/opt/app/public # don't set it to /uploads (Krystian Wybranowski reference), because it block import functionallity
       # - ./database/data.db:/opt/app/database/data.db
+      - ./types/:/opt/app/types
     ports:
       - '5000:5000'
     networks:
