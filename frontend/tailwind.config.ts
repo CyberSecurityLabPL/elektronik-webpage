@@ -25,7 +25,9 @@ const config = {
         'wave-transition': "url('/backgrounds/bg-wave-transition.svg')",
         'overview-bg': "url('/backgrounds/bg-overview.svg')",
         'benefits-bg': "url('/backgrounds/bg-benefits.svg')",
-        'nav': "url('/cards/zofiki.png')"
+        'nav': "url('/cards/zofiki.png')",
+        'yellow-blob': "url('/backgrounds/yellow-blob.svg')",
+        'violet-blob': "url('/backgrounds/violet-blob.svg')"
         
       },
       colors: {

@@ -1,0 +1,25 @@
+{
+  "collectionName": "components_elements_forms",
+  "info": {
+    "displayName": "Form"
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "input": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.input"
+    },
+    "button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.button-link"
+    }
+  }
+}

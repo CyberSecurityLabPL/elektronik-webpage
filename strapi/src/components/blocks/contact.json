@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_blocks_contacts",
+  "info": {
+    "displayName": "Contact",
+    "icon": "phone"
+  },
+  "options": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "form": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.form"
+    }
+  }
+}

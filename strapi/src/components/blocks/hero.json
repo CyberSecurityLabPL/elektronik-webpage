@@ -1,0 +1,33 @@
+{
+  "collectionName": "components_blocks_heroes",
+  "info": {
+    "displayName": "Hero",
+    "icon": "grid",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "Heading": {
+      "type": "string"
+    },
+    "Text": {
+      "type": "text"
+    },
+    "Link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.button-link"
+    },
+    "Image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "sectionId": {
+      "type": "string"
+    }
+  }
+}

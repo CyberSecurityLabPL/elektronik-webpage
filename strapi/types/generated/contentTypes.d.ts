@@ -590,50 +590,6 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
-export interface PluginAwesomeHelpHelp extends Schema.CollectionType {
-  collectionName: 'helps';
-  info: {
-    singularName: 'help';
-    pluralName: 'helps';
-    displayName: 'help';
-  };
-  options: {
-    draftAndPublish: false;
-    comment: '';
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    contentType: Attribute.String;
-    path: Attribute.String;
-    helpContent: Attribute.String;
-    fieldName: Attribute.String;
-    containerType: Attribute.String;
-    zoneName: Attribute.String;
-    componentName: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::awesome-help.help',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::awesome-help.help',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginI18NLocale extends Schema.CollectionType {
   collectionName: 'i18n_locale';
   info: {
@@ -832,31 +788,31 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
-export interface PluginNavigationAudience extends Schema.CollectionType {
-  collectionName: 'audience';
+export interface ApiApprenticeshipApprenticeship extends Schema.CollectionType {
+  collectionName: 'apprenticeships';
   info: {
-    singularName: 'audience';
-    pluralName: 'audiences';
-    displayName: 'Audience';
-    name: 'audience';
+    singularName: 'apprenticeship';
+    pluralName: 'apprenticeships';
+    displayName: 'Apprenticeship';
   };
   options: {
-    increments: true;
-    comment: 'Audience';
+    draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.String & Attribute.Required;
-    key: Attribute.UID<'plugin::navigation.audience', 'name'>;
+    class: Attribute.String;
+    specialization: Attribute.String;
+    date: Attribute.Date;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'plugin::navigation.audience',
+      'api::apprenticeship.apprenticeship',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'plugin::navigation.audience',
+      'api::apprenticeship.apprenticeship',
       'oneToOne',
       'admin::user'
     > &
@@ -864,51 +820,379 @@ export interface PluginNavigationAudience extends Schema.CollectionType {
   };
 }
 
-export interface PluginNavigationNavigation extends Schema.CollectionType {
+export interface ApiApprenticeshipsPageApprenticeshipsPage
+  extends Schema.SingleType {
+  collectionName: 'apprenticeships_pages';
+  info: {
+    singularName: 'apprenticeships-page';
+    pluralName: 'apprenticeships-pages';
+    displayName: 'Apprenticeships Page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    apprenticeships: Attribute.Relation<
+      'api::apprenticeships-page.apprenticeships-page',
+      'oneToMany',
+      'api::apprenticeship.apprenticeship'
+    >;
+    seo: Attribute.Component<'shared.seo'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::apprenticeships-page.apprenticeships-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::apprenticeships-page.apprenticeships-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiBadgeBadge extends Schema.CollectionType {
+  collectionName: 'badges';
+  info: {
+    singularName: 'badge';
+    pluralName: 'badges';
+    displayName: 'Badge';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    job: Attribute.Relation<'api::badge.badge', 'manyToOne', 'api::job.job'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::badge.badge',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::badge.badge',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiBookBook extends Schema.CollectionType {
+  collectionName: 'books';
+  info: {
+    singularName: 'book';
+    pluralName: 'books';
+    displayName: 'Book';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    subject: Attribute.String;
+    image: Attribute.Media;
+    title: Attribute.Text;
+    distributor: Attribute.String;
+    book_group: Attribute.Relation<
+      'api::book.book',
+      'manyToOne',
+      'api::book-group.book-group'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::book.book', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::book.book', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiBookGroupBookGroup extends Schema.CollectionType {
+  collectionName: 'book_groups';
+  info: {
+    singularName: 'book-group';
+    pluralName: 'book-groups';
+    displayName: 'Book Group';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.Text;
+    books: Attribute.Relation<
+      'api::book-group.book-group',
+      'oneToMany',
+      'api::book.book'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::book-group.book-group',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::book-group.book-group',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiBooksPageBooksPage extends Schema.SingleType {
+  collectionName: 'books_pages';
+  info: {
+    singularName: 'books-page';
+    pluralName: 'books-pages';
+    displayName: 'Books Page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    book_groups: Attribute.Relation<
+      'api::books-page.books-page',
+      'oneToMany',
+      'api::book-group.book-group'
+    >;
+    seo: Attribute.Component<'shared.seo'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::books-page.books-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::books-page.books-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiJobJob extends Schema.CollectionType {
+  collectionName: 'jobs';
+  info: {
+    singularName: 'job';
+    pluralName: 'jobs';
+    displayName: 'Job';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    image: Attribute.String;
+    minPay: Attribute.BigInteger;
+    maxPay: Attribute.BigInteger;
+    location: Attribute.String;
+    date: Attribute.Date;
+    company: Attribute.Text;
+    tasks: Attribute.Component<'utility.string-array', true>;
+    badges: Attribute.Relation<'api::job.job', 'oneToMany', 'api::badge.badge'>;
+    requirements: Attribute.Component<'utility.string-array', true>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::job.job', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::job.job', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiJobsPageJobsPage extends Schema.SingleType {
+  collectionName: 'jobs_pages';
+  info: {
+    singularName: 'jobs-page';
+    pluralName: 'jobs-pages';
+    displayName: 'Jobs Page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    jobs: Attribute.Relation<
+      'api::jobs-page.jobs-page',
+      'oneToMany',
+      'api::job.job'
+    >;
+    description: Attribute.Text;
+    seo: Attribute.Component<'shared.seo'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::jobs-page.jobs-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::jobs-page.jobs-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLandingPageLandingPage extends Schema.SingleType {
+  collectionName: 'landing_pages';
+  info: {
+    singularName: 'landing-page';
+    pluralName: 'landing-pages';
+    displayName: 'Landing Page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.String;
+    slug: Attribute.UID;
+    blocks: Attribute.DynamicZone<
+      ['blocks.contact', 'blocks.hero', 'blocks.pricing', 'blocks.row']
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::landing-page.landing-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::landing-page.landing-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLinkLink extends Schema.CollectionType {
+  collectionName: 'links';
+  info: {
+    singularName: 'link';
+    pluralName: 'links';
+    displayName: 'Link';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    href: Attribute.String;
+    description: Attribute.String;
+    link_group: Attribute.Relation<
+      'api::link.link',
+      'manyToOne',
+      'api::link-group.link-group'
+    >;
+    isExternal: Attribute.Boolean & Attribute.DefaultTo<false>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::link.link', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::link.link', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
+export interface ApiLinkGroupLinkGroup extends Schema.CollectionType {
+  collectionName: 'link_groups';
+  info: {
+    singularName: 'link-group';
+    pluralName: 'link-groups';
+    displayName: 'Link Group';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    links: Attribute.Relation<
+      'api::link-group.link-group',
+      'oneToMany',
+      'api::link.link'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::link-group.link-group',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::link-group.link-group',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiNavigationNavigation extends Schema.SingleType {
   collectionName: 'navigations';
   info: {
     singularName: 'navigation';
     pluralName: 'navigations';
     displayName: 'Navigation';
-    name: 'navigation';
   };
   options: {
-    increments: true;
-    comment: '';
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
+    draftAndPublish: true;
   };
   attributes: {
-    name: Attribute.Text & Attribute.Required;
-    slug: Attribute.UID & Attribute.Required;
-    visible: Attribute.Boolean & Attribute.DefaultTo<false>;
-    items: Attribute.Relation<
-      'plugin::navigation.navigation',
+    logo: Attribute.Media;
+    link_groups: Attribute.Relation<
+      'api::navigation.navigation',
       'oneToMany',
-      'plugin::navigation.navigation-item'
+      'api::link-group.link-group'
     >;
-    localizations: Attribute.Relation<
-      'plugin::navigation.navigation',
-      'oneToMany',
-      'plugin::navigation.navigation'
-    >;
-    localeCode: Attribute.String;
+    timetable: Attribute.Component<'elements.button-link'>;
+    gradebook: Attribute.Component<'elements.button-link'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'plugin::navigation.navigation',
+      'api::navigation.navigation',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'plugin::navigation.navigation',
+      'api::navigation.navigation',
       'oneToOne',
       'admin::user'
     > &
@@ -916,166 +1200,95 @@ export interface PluginNavigationNavigation extends Schema.CollectionType {
   };
 }
 
-export interface PluginNavigationNavigationItem extends Schema.CollectionType {
-  collectionName: 'navigations_items';
+export interface ApiQuestionQuestion extends Schema.CollectionType {
+  collectionName: 'questions';
   info: {
-    singularName: 'navigation-item';
-    pluralName: 'navigation-items';
-    displayName: 'Navigation Item';
-    name: 'navigation-item';
-  };
-  options: {
-    increments: true;
-    timestamps: true;
-    comment: 'Navigation Item';
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-    i18n: {
-      localized: false;
-    };
-  };
-  attributes: {
-    title: Attribute.Text &
-      Attribute.Required &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: false;
-        };
-      }>;
-    type: Attribute.Enumeration<['INTERNAL', 'EXTERNAL', 'WRAPPER']> &
-      Attribute.DefaultTo<'INTERNAL'>;
-    path: Attribute.Text;
-    externalPath: Attribute.Text;
-    uiRouterKey: Attribute.String;
-    menuAttached: Attribute.Boolean & Attribute.DefaultTo<false>;
-    order: Attribute.Integer & Attribute.DefaultTo<0>;
-    collapsed: Attribute.Boolean & Attribute.DefaultTo<false>;
-    related: Attribute.Relation<
-      'plugin::navigation.navigation-item',
-      'oneToOne',
-      'plugin::navigation.navigations-items-related'
-    >;
-    parent: Attribute.Relation<
-      'plugin::navigation.navigation-item',
-      'oneToOne',
-      'plugin::navigation.navigation-item'
-    >;
-    master: Attribute.Relation<
-      'plugin::navigation.navigation-item',
-      'manyToOne',
-      'plugin::navigation.navigation'
-    >;
-    audience: Attribute.Relation<
-      'plugin::navigation.navigation-item',
-      'oneToMany',
-      'plugin::navigation.audience'
-    >;
-    additionalFields: Attribute.JSON & Attribute.DefaultTo<{}>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::navigation.navigation-item',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::navigation.navigation-item',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginNavigationNavigationsItemsRelated
-  extends Schema.CollectionType {
-  collectionName: 'navigations_items_related';
-  info: {
-    singularName: 'navigations-items-related';
-    pluralName: 'navigations-items-relateds';
-    displayName: 'Navigations Items Related';
-    name: 'navigations_items_related';
-  };
-  options: {
-    increments: true;
-    timestamps: false;
-    populateCreatorFields: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-    i18n: {
-      localized: false;
-    };
-  };
-  attributes: {
-    related_id: Attribute.String & Attribute.Required;
-    related_type: Attribute.String & Attribute.Required;
-    field: Attribute.String & Attribute.Required;
-    order: Attribute.Integer & Attribute.Required;
-    master: Attribute.String & Attribute.Required;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::navigation.navigations-items-related',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::navigation.navigations-items-related',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface PluginPublisherAction extends Schema.CollectionType {
-  collectionName: 'actions';
-  info: {
-    singularName: 'action';
-    pluralName: 'actions';
-    displayName: 'actions';
+    singularName: 'question';
+    pluralName: 'questions';
+    displayName: 'Question';
   };
   options: {
     draftAndPublish: false;
-    comment: '';
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
   };
   attributes: {
-    executeAt: Attribute.DateTime;
-    mode: Attribute.String;
-    entityId: Attribute.Integer;
-    entitySlug: Attribute.String;
+    question: Attribute.String;
+    answer: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'plugin::publisher.action',
+      'api::question.question',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
     updatedBy: Attribute.Relation<
-      'plugin::publisher.action',
+      'api::question.question',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSponsorSponsor extends Schema.CollectionType {
+  collectionName: 'sponsors';
+  info: {
+    singularName: 'sponsor';
+    pluralName: 'sponsors';
+    displayName: 'Sponsor';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    image: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::sponsor.sponsor',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::sponsor.sponsor',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSubstitutionsPageSubstitutionsPage
+  extends Schema.SingleType {
+  collectionName: 'substitutions_pages';
+  info: {
+    singularName: 'substitutions-page';
+    pluralName: 'substitutions-pages';
+    displayName: 'Substitutions Page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    date: Attribute.Date;
+    content: Attribute.RichText;
+    seo: Attribute.Component<'shared.seo'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::substitutions-page.substitutions-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::substitutions-page.substitutions-page',
       'oneToOne',
       'admin::user'
     > &
@@ -1097,16 +1310,25 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
-      'plugin::awesome-help.help': PluginAwesomeHelpHelp;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
-      'plugin::navigation.audience': PluginNavigationAudience;
-      'plugin::navigation.navigation': PluginNavigationNavigation;
-      'plugin::navigation.navigation-item': PluginNavigationNavigationItem;
-      'plugin::navigation.navigations-items-related': PluginNavigationNavigationsItemsRelated;
-      'plugin::publisher.action': PluginPublisherAction;
+      'api::apprenticeship.apprenticeship': ApiApprenticeshipApprenticeship;
+      'api::apprenticeships-page.apprenticeships-page': ApiApprenticeshipsPageApprenticeshipsPage;
+      'api::badge.badge': ApiBadgeBadge;
+      'api::book.book': ApiBookBook;
+      'api::book-group.book-group': ApiBookGroupBookGroup;
+      'api::books-page.books-page': ApiBooksPageBooksPage;
+      'api::job.job': ApiJobJob;
+      'api::jobs-page.jobs-page': ApiJobsPageJobsPage;
+      'api::landing-page.landing-page': ApiLandingPageLandingPage;
+      'api::link.link': ApiLinkLink;
+      'api::link-group.link-group': ApiLinkGroupLinkGroup;
+      'api::navigation.navigation': ApiNavigationNavigation;
+      'api::question.question': ApiQuestionQuestion;
+      'api::sponsor.sponsor': ApiSponsorSponsor;
+      'api::substitutions-page.substitutions-page': ApiSubstitutionsPageSubstitutionsPage;
     }
   }
 }

@@ -1,0 +1,32 @@
+{
+  "kind": "singleType",
+  "collectionName": "apprenticeships_pages",
+  "info": {
+    "singularName": "apprenticeships-page",
+    "pluralName": "apprenticeships-pages",
+    "displayName": "Apprenticeships Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "apprenticeships": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::apprenticeship.apprenticeship"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

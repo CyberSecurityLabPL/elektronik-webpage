@@ -1,0 +1,33 @@
+{
+  "kind": "singleType",
+  "collectionName": "landing_pages",
+  "info": {
+    "singularName": "landing-page",
+    "pluralName": "landing-pages",
+    "displayName": "Landing Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "uid"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "blocks.contact",
+        "blocks.hero",
+        "blocks.pricing",
+        "blocks.row"
+      ]
+    }
+  }
+}

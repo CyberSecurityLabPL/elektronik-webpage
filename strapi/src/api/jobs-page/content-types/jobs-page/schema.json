@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "jobs_pages",
+  "info": {
+    "singularName": "jobs-page",
+    "pluralName": "jobs-pages",
+    "displayName": "Jobs Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "jobs": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::job.job"
+    },
+    "description": {
+      "type": "text"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

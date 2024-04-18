@@ -1,5 +1,5 @@
 import Header from "@/components/Header"
-import WorkerCard from "@/components/WorkerCard"
+import WorkerCard from "@/components/cards/WorkerCard"
 
 export default function Page() {
     const data = [
