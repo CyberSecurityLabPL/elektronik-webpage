@@ -96,3 +96,14 @@ export async function getBooks() {
     console.error(error);
   }
 }
+
+export async function getTeachers(){
+  try {
+    const { data }: AxiosResponse<any> = await api.get("/teachers-page?populate[teacher_groups][populate][teachers][populate][image][populate]=true");    
+    // console.log(data);
+    
+    return flattenStrapiResponse(data);
+  } catch (error) {
+    console.error(error);
+  }
+}

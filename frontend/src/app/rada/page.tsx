@@ -17,7 +17,7 @@ export default function Page() {
             src: "/kmieciu.svg",
             position: "Nauczyciel",
             description: "Najwiekszy sigma w szkole ",
-        },
+        },  
         {
             titles: "mgr, inż",
             name: "Mariusz Kmiećkowiak",

@@ -35,7 +35,7 @@ function flatten(obj: any, flatteners: string[]){
 
     for (const key of flatteners) {
         if(hasKey(obj, key)){
-            obj = obj[key]
+            obj = obj[key] === null || obj[key] === undefined ? obj = {} : obj[key]
         }
     }
 
