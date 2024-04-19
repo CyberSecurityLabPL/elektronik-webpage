@@ -76,3 +76,13 @@ export async function getJobs() {
     console.error(error);
   }
 }
+
+export async function getApprenticeships() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get("/apprenticeships-page");    
+
+    return flattenStrapiResponse(data, ["data", "attributes"]);
+  } catch (error) {
+    console.error(error);
+  }
+}

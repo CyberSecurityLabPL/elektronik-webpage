@@ -10,46 +10,12 @@ import {
     TableHeader,
     TableRow,
   } from "@/components/ui/table"
+import { getApprenticeships } from '@/lib/api'
+import { formatDateYear } from '@/lib/utils'
 
-  const data = [
-    {
-      klasa: "4th",
-      specjalizacja: "technik programista",
-      termin: "30.10-24.11.2024",
-    },
-    {
-      klasa: "2tf",
-      specjalizacja: "technik mechatronik",
-      termin: "02.10-27.10.2024",
-    },
-    {
-      klasa: "3tc",
-      specjalizacja: "technik elektronik",
-      termin: "02.10-27.10.2024",
-    },
-    {
-      klasa: "5ta",
-      specjalizacja: "technik informatyk",
-      termin: "03.04-30.04.2024",
-    },
-    {
-      klasa: "5tg",
-      specjalizacja: "technik pojazdów samochodowych",
-      termin: "26.02-22.03.2024",
-    },
-    {
-      klasa: "3tf",
-      specjalizacja: "mechanik pojazdów samochodowych",
-      termin: "03.04-30.04.2024",
-    },
-    {
-      klasa: "4tb",
-      specjalizacja: "technik urządzeń i sys. energetyki odnawialnej",
-      termin: "27.11-22.12.2024",
-    },
-  ]
+const page = async () => {
+  const data = await getApprenticeships()
 
-const page = () => {
   return (
     <div>
       <Header title="Praktyki Zawodowe" subtitle="Tutaj zobaczysz harmonogram praktyk na rok 2023/2024.
@@ -65,13 +31,13 @@ const page = () => {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {data.map((row) => (
-                    <TableRow key={row.klasa} className="grid grid-cols-3 hover:bg-muted/90">
-                        <TableCell className="flex items-center justify-center text-center">{row.klasa}</TableCell>
-                        <TableCell className='flex items-center justify-center text-center'>{row.specjalizacja}</TableCell>
-                        <TableCell className='flex items-center justify-center text-center'>{row.termin}</TableCell>
+                    {data?.apprenticeships.map((row: any, index: number) => (
+                    <TableRow key={row.class+index} className="grid grid-cols-3 hover:bg-muted/90">
+                        <TableCell className="flex items-center justify-center text-center">{row.class}</TableCell>
+                        <TableCell className='flex items-center justify-center text-center'>{row.specialization}</TableCell>
+                        <TableCell className='flex items-center justify-center text-center'>{formatDateYear(row.date)}</TableCell>
                     </TableRow>
-                    ))}
+                    )) ?? "Brak danych"}
                 </TableBody>
             </Table>
         </div>
