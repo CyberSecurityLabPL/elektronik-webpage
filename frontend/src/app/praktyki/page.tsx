@@ -17,10 +17,10 @@ const page = async () => {
   const data = await getApprenticeships()
 
   return (
-    <div>
+    <div className='w-full'>
       <Header title={data.heading ?? "Praktyki Zawodowe"} subtitle={data.description ?? "Tutaj zobaczysz harmonogram praktyk na rok 2023/2024. Sprawdź kiedy twoja klasa ma praktyki"} />
-        <div className='flex justify-center items-center'>
-        <div className= 'pt-8 w-3/4'>
+      <div className='flex justify-center items-center w-full'>
+        <div className= 'pt-8 w-11/12 sm:w-1/2'>
             <Table className='bg-white pt-8 '>
                 <TableHeader className=''>
                     <TableRow className='grid grid-cols-3'>
@@ -40,7 +40,7 @@ const page = async () => {
                 </TableBody>
             </Table>
         </div>
-    </div>
+      </div>
     </div>
   )
 }
