@@ -22,7 +22,7 @@ interface NewsCardProps {
 
 export default function NewsCard({author, src, date, description, title, link} : NewsCardProps) {
     return (
-        <Card className='w-72 sm:w-96 md:w-full xl:w-96 px-0'>
+        <Card className='w-72 sm:w-96 md:w-full xl:w-96 px-0 max-w-96'>
                 
             <CardContent className='h-48  bg-neutral-200 rounded-t-lg relative '>
                 <Image src={src} alt='Image' fill className="rounded-t-md object-cover" />
