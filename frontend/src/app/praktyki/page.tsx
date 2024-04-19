@@ -18,7 +18,7 @@ const page = async () => {
 
   return (
     <div className='w-full'>
-      <Header title={data.heading ?? "Praktyki Zawodowe"} subtitle={data.description ?? "Tutaj zobaczysz harmonogram praktyk na rok 2023/2024. Sprawdź kiedy twoja klasa ma praktyki"} />
+      <Header title={data?.heading ?? "Praktyki Zawodowe"} subtitle={data?.description ?? "Tutaj zobaczysz harmonogram praktyk na rok 2023/2024. Sprawdź kiedy twoja klasa ma praktyki"} />
       <div className='flex justify-center items-center w-full'>
         <div className= 'pt-8 w-11/12 sm:w-1/2'>
             <Table className='bg-white pt-8 '>

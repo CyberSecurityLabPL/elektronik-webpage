@@ -16,7 +16,7 @@ export function cn(...inputs: ClassValue[]) {
  * @param keepMeta - Determines if the obj shouldn't be flatten at the top level
  * @returns The flattened data.
  */
-export function flattenStrapiResponse(obj: any, flatteners: string[], keepMeta?: boolean){
+export function flattenStrapiResponse(obj: any, keepMeta?: boolean, flatteners: string[] = ["data", "attributes"]){
     if(keepMeta) {
         for (const key of flatteners) {
             if(hasKey(obj, key)) obj[key] = flatten(obj[key], flatteners)
@@ -80,7 +80,7 @@ export function capitalizeFirstLetter(str: string){
  * @returns The formatted date
  */
 export function formatDate(date?: string){
-    return format(new Date(date ?? new Date().toISOString()), "dd/MM/yyyy HH:mm")
+    return format(new Date(date ?? new Date()), "dd/MM/yyyy HH:mm")
 }
 
 /**
@@ -89,7 +89,7 @@ export function formatDate(date?: string){
  * @returns The formatted date
  */
 export function formatDateYear(date?: string){
-    return format(new Date(date ?? new Date().toISOString()), "dd/MM/yyyy")
+    return format(new Date(date ?? new Date()), "dd/MM/yyyy")
 }
 
 /**
@@ -99,5 +99,5 @@ export function formatDateYear(date?: string){
  */
 export function formatDateWeek(date?: string){
     //@ts-expect-error locale throws error even though it shouldn't
-    return capitalizeFirstLetter(format(new Date(date ?? new Date().toISOString()), "eeee dd/MM/yyyy", { locale: pl }))
+    return capitalizeFirstLetter(format(new Date(date ?? new Date()), "eeee dd/MM/yyyy", { locale: pl }))
 }
