@@ -2,12 +2,8 @@
 import React, { ReactNode } from 'react'
 import {
     Drawer,
-    DrawerClose,
     DrawerContent,
-    DrawerDescription,
     DrawerFooter,
-    DrawerHeader,
-    DrawerTitle,
     DrawerTrigger,
 } from "@/components/ui/drawer"
 import { Button } from './ui/button'
@@ -19,8 +15,8 @@ import {
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
-  } from "@/components/ui/mobileAccordion"
-  
+} from "@/components/ui/accordionMobile"
+
 
 
 export default  function MobileNavigation() {
@@ -32,7 +28,7 @@ export default  function MobileNavigation() {
                         scale: 1.5,
                         transition: { duration: 1 },
                     }}
-                    whileTap={{ scale: 0.9 }}
+                    whileTap={{ scale: 0.7 }}
                     >
                     <Menu className='w-8 h-8'/>
                 </motion.div>

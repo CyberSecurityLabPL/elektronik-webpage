@@ -11,11 +11,11 @@ import { getLandingPage } from "@/lib/api";
 export default async function Home() {
   const data = await getLandingPage();
 
-  console.log(data);
+  //console.log(data);
   
 
   return (
-    <main className="flex justify-center flex-col w-full">
+    <main className="flex justify-center flex-col w-full gap-16">
       <header className="flex flex-col ">
         <Hero />
         <div className="w-full h-64 bg-repeat-x bg-wave-transition"></div>
