@@ -86,3 +86,13 @@ export async function getApprenticeships() {
     console.error(error);
   }
 }
+
+export async function getBooks() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get("/books-page");    
+
+    return flattenStrapiResponse(data, ["data", "attributes"]);
+  } catch (error) {
+    console.error(error);
+  }
+}
