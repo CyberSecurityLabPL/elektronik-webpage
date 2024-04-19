@@ -25,8 +25,8 @@ export default  function Navbar({ data }: { data?: any }) {
 
         </div>
         <div className='  px-8 flex justify-center items-center '>
-            <div className='hidden lg:flex  gap-4'>
-            <Button variant={'ghost'} asChild>
+            <div className='hidden lg:flex flex-col-reverse xl:flex-row  gap-4'>
+            <Button variant={'secondary'} asChild>
                 <Link href={'/'}>Plan Lekcji</Link>
                 
                 {/* <Link href={data.timetable.link ?? 'https://zseis.vercel.app/plan?timetableId=o18'}>{data.timetable.title ?? "Plan Lekcji"}</Link> */}

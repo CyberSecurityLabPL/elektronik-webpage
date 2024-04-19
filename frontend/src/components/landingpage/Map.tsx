@@ -11,12 +11,12 @@ export default function Map() {
     <div>
         
         <div className="w-full h-64 bg-repeat-x bg-wave-transition rotate-180 "></div>
-            <div className='w-full h-screen bg-primary flex flex-col gap-4  justify-center items-center px-6 py-4 relative'>
-                <div className='w-full h-2/3 flex flex-col-reverse lg:flex-row justify-center items-center gap-8'>
+            <div className='w-full h-screen bg-primary flex flex-col gap-4 justify-center items-center px-6 md:px-10 py-4 relative'>
+                <div className='w-full h-2/3 flex flex-col-reverse lg:flex-row justify-center items-start xl:items-center gap-8'>
                     <Card className='w-full h-full lg:w-3/5'>
                         <GoogleMaps apiKey={API_KEY} />
                     </Card>
-                    <div className=' w-full lg:w-2/5 h-auto lg:h-3/5   text-white'>
+                    <div className=' w-full lg:w-2/5  lg:h-3/5 text-white'>
                         <h1 className='text-5xl lg:text-6xl lg:text-left text-center font-semibold pb-4 lg:pb-8'>Znajdziesz nas tutaj</h1>
                         <div className='hidden lg:flex flex-col gap-4'>
                             <p>
@@ -29,12 +29,12 @@ export default function Map() {
                     </div>
                 </div>
                 {/* absolute bottom-[15%]  translate-y-[15%] */}
-                <Card className='w-fit flex flex-col md:flex-row md:justify-between md:absolute md:bottom-[15%] lg:h-16  md:translate-y-[15%] items-center p-2 px-4  gap-2 lg:gap-12 mx-4'>
+                <Card className='w-fit flex flex-col md:flex-row md:justify-between md:absolute md:bottom-[13%] lg:h-16  md:translate-y-[15%] items-center p-2 px-4  gap-2 lg:gap-12 mx-4'>
                     <div className='flex justify-start items-center gap-2 py-2  w-full border-b-2 md:border-none'>
                         <IconComponent icon={Phone} color='blue' IsCircle={true}  />
                         <div className='flex flex-col '>
                             <span className='text-slate-400'>Telefon</span>
-                            <span className='font-semibold'>+48 684525100</span>
+                            <span className='font-semibold text-nowrap'>+48 684525100</span>
                         </div>
                     </div>
                     <Separator orientation='vertical' className='hidden md:block'  />

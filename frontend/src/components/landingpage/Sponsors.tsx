@@ -28,12 +28,12 @@ const images = [
 export default function Sponsors() {
 
     return (
-    <div className='w-full h-[50vh]  '>
+    <div className='w-full h-[50vh] bg-sponsors-bg bg-cover flex justify-center items-center  '>
         <m.div 
             className='absoulte left-0 flex gap-12' 
             animate={{
                 // fix this animation
-                x: ['0%', '-96%'],
+                x: ['0%', '-80%'],
                 transition: {
                     ease: 'linear',
                     duration: 48,

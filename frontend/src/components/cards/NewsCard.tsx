@@ -22,10 +22,10 @@ interface NewsCardProps {
 
 export default function NewsCard({author, src, date, description, title, link} : NewsCardProps) {
     return (
-        <Card className='w-72 sm:w-96 md:w-full xl:w-96  px-0  '>
+        <Card className='w-64 sm:w-96 md:w-full xl:w-96 '>
                 
             <CardContent className='h-48  bg-neutral-200 rounded-t-lg relative '>
-                <Image src={src} alt='Image' fill className="rounded-t-md  " objectFit='cover' />
+                <Image src={src} alt='Image' fill className="rounded-t-md  "  />
             </CardContent>
             <CardHeader className=' pt-3 pb-0 px-3'>
                 <CardTitle>
@@ -41,11 +41,11 @@ export default function NewsCard({author, src, date, description, title, link} :
             </CardContent>
             <CardFooter className=' py-3 px-3 flex justify-between  text-xs'>
                 <span className='flex gap-2 justify-center items-center'>
-                    <CalendarPlus className='text-primary w-6 h-6 sm:w-4 sm:h-4'/>
+                    <CalendarPlus className='text-primary w-4 h-4 sm:w-5 sm:h-5'/>
                     <p className='text-[8px] xl:text-[10px] '>{date}</p>
                 </span>
                 <span className='flex gap-2 justify-center items-center'>
-                    <User className='text-primary w-6 h-6 sm:w-4 sm:h-4'/>
+                    <User className='text-primary w-4 h-4 sm:w-5 sm:h-5'/>
                     <p className='text-[8px] xl:text-[10px] '>{author}</p>
                 </span>
             </CardFooter>

@@ -2,12 +2,8 @@
 import React, { ReactNode } from 'react'
 import {
     Drawer,
-    DrawerClose,
     DrawerContent,
-    DrawerDescription,
     DrawerFooter,
-    DrawerHeader,
-    DrawerTitle,
     DrawerTrigger,
 } from "@/components/ui/drawer"
 import { Button } from './ui/button'
@@ -15,10 +11,12 @@ import { ChevronDown, Menu } from 'lucide-react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import {
-    Collapsible,
-    CollapsibleContent,
-    CollapsibleTrigger,
-} from "@/components/ui/collapsible"
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordionMobile"
+
 
 
 export default  function MobileNavigation() {
@@ -30,7 +28,7 @@ export default  function MobileNavigation() {
                         scale: 1.5,
                         transition: { duration: 1 },
                     }}
-                    whileTap={{ scale: 0.9 }}
+                    whileTap={{ scale: 0.7 }}
                     >
                     <Menu className='w-8 h-8'/>
                 </motion.div>
@@ -87,15 +85,16 @@ export default  function MobileNavigation() {
 
 function LinkPanel({title, children} : {children?: ReactNode, title: string}){
     return (
-        <Collapsible className=''>
-            <CollapsibleTrigger className='text-2xl font-semibold  flex justify-between items-center'>
+        <Accordion type="single" collapsible>
+            <AccordionItem value="item-1">
+            <AccordionTrigger className='text-2xl font-semibold  flex justify-between items-center'>
                 <span>{title}</span>
-                <ChevronDown />
-            </CollapsibleTrigger>
-            <CollapsibleContent className='flex flex-col gap-6'>
+            </AccordionTrigger>
+            <AccordionContent className='flex flex-col gap-6'>
                 {children}
-            </CollapsibleContent>
-        </Collapsible>
+            </AccordionContent>
+            </AccordionItem>
+        </Accordion>
     )
 }
 
