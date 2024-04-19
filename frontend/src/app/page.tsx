@@ -10,8 +10,6 @@ import { getLandingPage } from "@/lib/api";
 
 export default async function Home() {
   const data = await getLandingPage();
-
-  //console.log(data);
   
 
   return (

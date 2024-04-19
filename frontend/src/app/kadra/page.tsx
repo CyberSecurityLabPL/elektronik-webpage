@@ -3,9 +3,7 @@ import WorkerCard from "@/components/cards/WorkerCard"
 import { getTeachers } from "@/lib/api"
 
 export default async function Page() {
-    const data = await getTeachers()
-    // console.log(data);
-    
+    const data = await getTeachers()    
 
     return (
         <main className="flex items-center flex-col w-full">

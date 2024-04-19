@@ -1,5 +1,5 @@
 {
-  "name": "frontend",
+  "name": "school-website",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
+  },
+  "engines": {
+    "npm": "^9.0.0"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",

@@ -46,12 +46,18 @@ export async function getLandingPage(): Promise<any> {
   }
 }
 
-export async function getNews(params?: string): Promise<any> {
+export async function getNews({
+  params,
+  flatteners
+}: {
+  params?: string
+  flatteners?: string[]
+}): Promise<any> {
   try {
     const url = params ? `articles/${params}` : `articles`
     const { data }: AxiosResponse<any> = await api.get(url);    
 
-    return flattenStrapiResponse(data, params ? false : true);
+    return flattenStrapiResponse(data, params ? false : true, flatteners);
   } catch (error) {
     console.error(error);
   }
@@ -100,7 +106,6 @@ export async function getBooks() {
 export async function getTeachers(){
   try {
     const { data }: AxiosResponse<any> = await api.get("/teachers-page?populate[teacher_groups][populate][teachers][populate][image][populate]=true");    
-    // console.log(data);
     
     return flattenStrapiResponse(data);
   } catch (error) {
