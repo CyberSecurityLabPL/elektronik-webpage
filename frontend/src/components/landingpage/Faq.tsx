@@ -13,7 +13,7 @@ import Link from 'next/link'
 export default function Faq() {
     return (
         <div className='w-full h-screen flex justify-center items-center'>
-            <Card className='w-4/5 h-fit'>
+            <Card className='w-4/5 h-fit z-20'>
                 <CardHeader>
                     <CardTitle>FAQ</CardTitle>
                     <CardDescription>Zobacz najczęściej zadawane pytania</CardDescription>

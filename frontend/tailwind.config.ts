@@ -27,8 +27,8 @@ const config = {
         'benefits-bg': "url('/backgrounds/bg-benefits.svg')",
         'nav': "url('/cards/zofiki.png')",
         'yellow-blob': "url('/backgrounds/yellow-blob.svg')",
-        'violet-blob': "url('/backgrounds/violet-blob.svg')"
-        
+        'violet-blob': "url('/backgrounds/violet-blob.svg')",
+        'sponsors-bg': "url('/backgrounds/bg-sponsors.svg')"
       },
       colors: {
         border: "hsl(var(--border))",

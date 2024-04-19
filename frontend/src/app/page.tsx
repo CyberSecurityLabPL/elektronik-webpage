@@ -17,7 +17,7 @@ export default async function Home() {
   
 
   return (
-    <main className="flex justify-center flex-col w-full">
+    <main className="flex justify-center flex-col w-full gap-16">
       <header className="flex flex-col ">
         <Hero />
         <div className="w-full h-64 bg-repeat-x bg-wave-transition"></div>
