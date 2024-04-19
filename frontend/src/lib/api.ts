@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from "axios";
-import { flatten } from './utils';
+import { flattenStrapiResponse } from './utils';
 import { revalidatePath, revalidateTag } from 'next/cache';
 
 /**
@@ -27,10 +27,10 @@ export async function getNavigation(): Promise<any> {
       }
      })
 
-    let data = await res.json()
+    const data = await res.json()
 
 
-    return flatten(data, ["data", "attributes"]);
+    return flattenStrapiResponse(data, ["data", "attributes"]);
   } catch (error) {
     console.error(error);
   }
@@ -40,8 +40,58 @@ export async function getLandingPage(): Promise<any> {
   try {
     const { data }: AxiosResponse<any> = await api.get("/landing-page");
 
+    return flattenStrapiResponse(data, ["data", "attributes"]);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-    return flatten(data, ["data", "attributes"]);
+export async function getNews(params?: string): Promise<any> {
+  try {
+    const url = params ? `articles/${params}` : `articles`
+    const { data }: AxiosResponse<any> = await api.get(url);    
+
+    return flattenStrapiResponse(data, ["data", "attributes"], params ? false : true);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getSubstitutions() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get("/substitutions-page");    
+
+    return flattenStrapiResponse(data, ["data", "attributes"]);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getJobs() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get("/jobs-page?populate[jobs][populate][badges][populate]=true&populate[jobs][populate][tasks][populate]=true&populate[jobs][populate][requirements][populate]=true");    
+
+    return flattenStrapiResponse(data, ["data", "attributes"]);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getApprenticeships() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get("/apprenticeships-page");    
+
+    return flattenStrapiResponse(data, ["data", "attributes"]);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+export async function getBooks() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get("/books-page");    
+
+    return flattenStrapiResponse(data, ["data", "attributes"]);
   } catch (error) {
     console.error(error);
   }
