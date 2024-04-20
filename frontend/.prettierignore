@@ -4,4 +4,9 @@ public
 *.ico
 *.md
 *.json
+# for . (dot)files
 .*
+
+*.{png,jpg,jpeg,gif,svg}
+*.log
+*.lock

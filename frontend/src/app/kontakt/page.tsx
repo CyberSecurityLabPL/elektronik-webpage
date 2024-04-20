@@ -14,7 +14,7 @@ import React from "react"
 
 function page() {
   return (
-    <div className="w-full flex flex-col  items-center ">
+    <div className="flex w-full flex-col  items-center ">
       <Header
         title={"Kontakt"}
         subtitle={
@@ -22,7 +22,7 @@ function page() {
         }
       />
 
-      <div className="flex flex-col  justify-center  items-center gap-6 w-full ">
+      <div className="flex w-full  flex-col  items-center justify-center gap-6 ">
         <ContactCard />
         <Card className="w-2/4 ">
           <CardHeader>

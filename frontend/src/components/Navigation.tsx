@@ -151,7 +151,7 @@ export function Navigation() {
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <a
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-nav bg-cover text-background p-6 no-underline outline-none focus:shadow-md"
+                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-nav bg-cover p-6 text-background no-underline outline-none focus:shadow-md"
                     href="https://www.instagram.com/zofiki/"
                   >
                     <Accessibility className="h-6 w-6" />

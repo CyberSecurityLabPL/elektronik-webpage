@@ -43,9 +43,9 @@ export default function DocumentsPage() {
   ]
 
   return (
-    <main className="flex justify-around items-center flex-col w-full">
+    <main className="flex w-full flex-col items-center justify-around">
       <Header title="Dokumenty" />
-      <div className="flex justify-center flex-col w-full items-center">
+      <div className="flex w-full flex-col items-center justify-center">
         <FileGroup title="Ostatnio Dodane">
           {data.map((item) => (
             <FileCard
@@ -92,12 +92,12 @@ function FileGroup({
   children?: ReactNode
 }) {
   return (
-    <div className="flex justify-center flex-col w-3/4">
-      <div className="flex justify-start text-left w-full text-slate-500 font-semibold text-2xl">
+    <div className="flex w-3/4 flex-col justify-center">
+      <div className="flex w-full justify-start text-left text-2xl font-semibold text-slate-500">
         {title}
       </div>
-      <div className="flex justify-center items-center">
-        <div className="grid gap-4 2xl:grid-cols-3 xl:grid-cols-2 sm:grid-cols-1 p-8">
+      <div className="flex items-center justify-center">
+        <div className="grid gap-4 p-8 sm:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3">
           {children}
         </div>
       </div>

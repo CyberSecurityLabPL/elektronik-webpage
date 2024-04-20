@@ -16,7 +16,7 @@ async function page() {
         title="Aktualności i ogłoszenia"
         subtitle="O to co dzieje się w naszej szkole!"
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-items-center place-content-center w-full">
+      <div className="grid w-full grid-cols-1 place-content-center place-items-center gap-4 md:grid-cols-2 lg:grid-cols-3">
         {data.length
           ? data
               .reverse()

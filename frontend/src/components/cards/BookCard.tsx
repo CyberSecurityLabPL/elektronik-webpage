@@ -24,37 +24,37 @@ export default function BookCard({
   url: string
 }) {
   return (
-    <Card className="flex w-fit aspect-[55/26] m-4 shadow-sm p-3">
-      <div className="w-20 lg:w-32 h-full relative">
+    <Card className="m-4 flex aspect-[55/26] w-fit p-3 shadow-sm">
+      <div className="relative h-full w-20 lg:w-32">
         <Image alt={`${title} img`} src={src} fill className="object-cover" />
       </div>
-      <div className="w-52 lg:w-[19rem] h-full">
+      <div className="h-full w-52 lg:w-[19rem]">
         <CardHeader className="py-0 lg:pb-2">
-          <CardTitle className="font-semibold text-foreground text-lg lg:text-2xl">
+          <CardTitle className="text-lg font-semibold text-foreground lg:text-2xl">
             {subject}
           </CardTitle>
         </CardHeader>
-        <CardContent className="text-xs lg:text-sm text-foreground py-0 lg:pb-2">
+        <CardContent className="py-0 text-xs text-foreground lg:pb-2 lg:text-sm">
           <p className="font-light">Tytuł: </p>
-          <p className="font-medium mb-1">{title}</p>
+          <p className="mb-1 font-medium">{title}</p>
           <p className="font-light">Wydawnictwo: </p>
           <p className="font-medium">{dist}</p>
         </CardContent>
-        <CardFooter className="flex justify-center items-center w-full py-1 lg:py-0 my-0">
+        <CardFooter className="my-0 flex w-full items-center justify-center py-1 lg:py-0">
           <Button
-            className="max-lg:hidden text-xs lg:text-sm"
+            className="text-xs max-lg:hidden lg:text-sm"
             asChild
             variant={"outline"}
           >
             <Link href={url}>Kup Teraz</Link>
           </Button>
           <Button
-            className="lg:hidden text-xs lg:text-sm p-[6px]"
+            className="p-[6px] text-xs lg:hidden lg:text-sm"
             size={"sm"}
             asChild
             variant={"outline"}
           >
-            <Link href={url} className="w-fit h-fit">
+            <Link href={url} className="h-fit w-fit">
               Kup Teraz
             </Link>
           </Button>

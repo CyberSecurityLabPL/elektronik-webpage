@@ -40,9 +40,9 @@ export default function FileCard({
 
   return (
     <Link passHref href={url}>
-      <Card className="w-[20rem] mx-4 my-2 aspect-[493/96] flex justify-between items-center cursor-pointer">
+      <Card className="mx-4 my-2 flex aspect-[493/96] w-[20rem] cursor-pointer items-center justify-between">
         <div className="flex justify-center">
-          <CardContent className="flex justify-center items-center space-y-0 p-0 mx-2">
+          <CardContent className="mx-2 flex items-center justify-center space-y-0 p-0">
             <FileIcon icon={fileProps.icon} color={fileProps.color} />
           </CardContent>
           <CardHeader className="flex flex-col items-start space-y-0 p-0">
@@ -54,7 +54,7 @@ export default function FileCard({
             </CardDescription>
           </CardHeader>
         </div>
-        <CardContent className="flex justify-center items-center space-y-0 p-0 m-2">
+        <CardContent className="m-2 flex items-center justify-center space-y-0 p-0">
           <DownloadIcon />
         </CardContent>
       </Card>

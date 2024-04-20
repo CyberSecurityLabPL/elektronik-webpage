@@ -29,28 +29,28 @@ export default function NewsCard({
   link,
 }: NewsCardProps) {
   return (
-    <Card className="w-72 sm:w-96 md:w-full xl:w-96 px-0 max-w-96">
-      <CardContent className="h-48  bg-neutral-200 rounded-t-lg relative ">
+    <Card className="w-72 max-w-96 px-0 sm:w-96 md:w-full xl:w-96">
+      <CardContent className="relative  h-48 rounded-t-lg bg-neutral-200 ">
         <Image src={src} alt="Image" fill className="rounded-t-md  " />
       </CardContent>
-      <CardHeader className=" pt-3 pb-0 px-3">
+      <CardHeader className=" px-3 pb-0 pt-3">
         <CardTitle>
           <Link href={link} className="hover:underline">
             {title}
           </Link>
         </CardTitle>
       </CardHeader>
-      <CardContent className="p-3 h-24 text-xs overflow-hidden relative">
-        <div className="w-full h-full bg-gradient-to-b  from-transparent to-white absolute top-0 right-0 pointer-events-none"></div>
+      <CardContent className="relative h-24 overflow-hidden p-3 text-xs">
+        <div className="pointer-events-none absolute right-0  top-0 h-full w-full bg-gradient-to-b from-transparent to-white"></div>
         <p className=" ">{description}</p>
       </CardContent>
-      <CardFooter className=" py-3 px-3 flex justify-between  text-xs">
-        <span className="flex gap-2 justify-center items-center">
-          <CalendarPlus className="text-primary w-5 h-5 sm:w-4 sm:h-4" />
+      <CardFooter className=" flex justify-between px-3 py-3  text-xs">
+        <span className="flex items-center justify-center gap-2">
+          <CalendarPlus className="h-5 w-5 text-primary sm:h-4 sm:w-4" />
           <p className="text-[8px] xl:text-[10px] ">{date}</p>
         </span>
-        <span className="flex gap-2 justify-center items-center">
-          <User className="text-primary w-5 h-5 sm:w-4 sm:h-4" />
+        <span className="flex items-center justify-center gap-2">
+          <User className="h-5 w-5 text-primary sm:h-4 sm:w-4" />
           <p className="text-[8px] xl:text-[10px] ">{author}</p>
         </span>
       </CardFooter>

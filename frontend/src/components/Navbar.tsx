@@ -20,18 +20,18 @@ export default function Navbar({ data }: { data?: any }) {
   // revalidateTag('navigation')
 
   return (
-    <div className="h-32 w-full flex justify-between relative ">
-      <div className=" flex justify-center items-center px-8 ">
+    <div className="relative flex h-32 w-full justify-between ">
+      <div className=" flex items-center justify-center px-8 ">
         <Link href={"/"} passHref>
           <Image src={"logo.svg"} width={80} height={60} alt="Logo" />
         </Link>
       </div>
-      <div className="hidden lg:flex justify-center items-center absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-50">
+      <div className="absolute left-1/2 top-1/2 z-50 hidden -translate-x-1/2 -translate-y-1/2 items-center justify-center lg:flex">
         {/* To-do navigation */}
         <Navigation />
       </div>
-      <div className="  px-8 flex justify-center items-center ">
-        <div className="hidden lg:flex flex-col-reverse xl:flex-row  gap-4">
+      <div className="  flex items-center justify-center px-8 ">
+        <div className="hidden flex-col-reverse gap-4 lg:flex  xl:flex-row">
           <Button variant={"secondary"} asChild>
             <Link href={"/"}>Plan Lekcji</Link>
             {/* <Link href={data.timetable.link ?? 'https://zseis.vercel.app/plan?timetableId=o18'}>{data.timetable.title ?? "Plan Lekcji"}</Link> */}
@@ -41,7 +41,7 @@ export default function Navbar({ data }: { data?: any }) {
             {/* <Link href={data.gradebook.link ?? "https://uonetplus.vulcan.net.pl/zielonagora"}>{data.gradebook.title ?? "E-Dziennik"}</Link> */}
           </Button>
         </div>
-        <div className="hidden lg:block xl:hidden px-4">
+        <div className="hidden px-4 lg:block xl:hidden">
           <DropdownMenu>
             <DropdownMenuTrigger>
               <Menu />
@@ -52,7 +52,7 @@ export default function Navbar({ data }: { data?: any }) {
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-        <div className="flex lg:hidden justify-center items-center">
+        <div className="flex items-center justify-center lg:hidden">
           <MobileNavigation />
         </div>
       </div>

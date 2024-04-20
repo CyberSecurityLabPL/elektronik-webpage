@@ -6,7 +6,7 @@ export default async function Page() {
   const data = await getBooks()
 
   return (
-    <main className="flex items-center flex-col w-full">
+    <main className="flex w-full flex-col items-center">
       <Header
         title={data.heading}
         subtitle={
@@ -14,13 +14,13 @@ export default async function Page() {
           "Wykaz podręczników dla klas I-V - przedmioty ogólnokształcące na rok szkolny 2023/2024:"
         }
       />
-      <div className="flex items-center flex-col">
+      <div className="flex flex-col items-center">
         {data?.book_groups.map((group: any) => (
           <div
-            className="flex flex-col justify-center items-center w-11/12 my-2"
+            className="my-2 flex w-11/12 flex-col items-center justify-center"
             key={group.title}
           >
-            <div className="flex justify-start w-full font-semibold text-xl lg:text-3xl">
+            <div className="flex w-full justify-start text-xl font-semibold lg:text-3xl">
               {group.title}
             </div>
             <div className="grid gap-4 xl:grid-cols-2 2xl:grid-cols-3">

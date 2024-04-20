@@ -10,13 +10,13 @@ export default function Header({
   children?: ReactNode
 }) {
   return (
-    <header className="flex justify-center items-center flex-col w-full">
-      <div className="text-3xl lg:text-6xl text-center font-extrabold py-2 bg-gradient-to-r from-primary to-primary-foreground inline-block text-transparent bg-clip-text text-wrap lg:w-auto w-screen">
+    <header className="flex w-full flex-col items-center justify-center">
+      <div className="inline-block w-screen text-wrap bg-gradient-to-r from-primary to-primary-foreground bg-clip-text py-2 text-center text-3xl font-extrabold text-transparent lg:w-auto lg:text-6xl">
         {title}
       </div>
       {subtitle ? (
-        <div className="flex justify-center items-center m-4 w-4/5">
-          <div className="flex justify-center text-center items-center lg:text-xl text-xs max-w-[54rem] text-primary-foreground leading-relaxed">
+        <div className="m-4 flex w-4/5 items-center justify-center">
+          <div className="flex max-w-[54rem] items-center justify-center text-center text-xs leading-relaxed text-primary-foreground lg:text-xl">
             {subtitle}
           </div>
         </div>

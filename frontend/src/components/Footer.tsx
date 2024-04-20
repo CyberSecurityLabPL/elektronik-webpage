@@ -7,12 +7,12 @@ import { LucideProps, Github, Facebook, Instagram, Coffee } from "lucide-react"
 
 export default function Footer() {
   return (
-    <footer className="flex flex-col items-center justify-end w-full min-h-96 h-fit -mt-64">
-      <div className="bg-repeat-x bg-footer-squares w-full h-80"></div>
-      <div className="bg-repeat-x bg-splash-transition w-full h-52"></div>
-      <div className="w-full h-fit min-h-32 bg-primary flex flex-col justify-between gap-6 pb-4 pt-8 px-8 overflow-auto">
+    <footer className="-mt-64 flex h-fit min-h-96 w-full flex-col items-center justify-end">
+      <div className="h-80 w-full bg-footer-squares bg-repeat-x"></div>
+      <div className="h-52 w-full bg-splash-transition bg-repeat-x"></div>
+      <div className="flex h-fit min-h-32 w-full flex-col justify-between gap-6 overflow-auto bg-primary px-8 pb-4 pt-8">
         <Counter />
-        <div className="flex justify-center items-center flex-col-reverse gap-4 xl:flex-row">
+        <div className="flex flex-col-reverse items-center justify-center gap-4 xl:flex-row">
           <SocialMedia />
           <MainPanel />
           <Donate />
@@ -33,7 +33,7 @@ function LinkIcon({
 }) {
   return (
     <Link passHref href={href}>
-      <div className="w-8 h-8 bg-primary m-2 rounded-full flex justify-center items-center text-slate-200">
+      <div className="m-2 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-slate-200">
         <Icon />
       </div>
     </Link>
@@ -49,11 +49,11 @@ function LinkPanel({
   title: string
 }) {
   return (
-    <div className="w-full flex justify-center sm:justify-start items-center text-center sm:text-left flex-col sm:mx-4 max-sm:my-4 ">
-      <div className="w-full text-background text-xl  pb-3 mt-6 font-semibold text-nowrap">
+    <div className="flex w-full flex-col items-center justify-center text-center max-sm:my-4 sm:mx-4 sm:justify-start sm:text-left ">
+      <div className="mt-6 w-full text-nowrap  pb-3 text-xl font-semibold text-background">
         {title}
       </div>
-      <div className="w-full flex flex-col  gap-4 ">{children}</div>
+      <div className="flex w-full flex-col  gap-4 ">{children}</div>
     </div>
   )
 }
@@ -61,7 +61,7 @@ function LinkPanel({
 //components for main panel
 function LinkItem({ name, href }: { name: string; href: string }) {
   return (
-    <Link className="text-slate-200 font-medium text-xs" href={href}>
+    <Link className="text-xs font-medium text-slate-200" href={href}>
       {name}
     </Link>
   )
@@ -69,8 +69,8 @@ function LinkItem({ name, href }: { name: string; href: string }) {
 
 function SocialMedia() {
   return (
-    <div className="flex max-xl:flex-col-reverse  justify-center items-center  w-64 pb-4">
-      <div className="flex justify-center xl:flex-col xl:h-full max-xl:w-full ">
+    <div className="flex w-64  items-center justify-center  pb-4 max-xl:flex-col-reverse">
+      <div className="flex justify-center max-xl:w-full xl:h-full xl:flex-col ">
         <LinkIcon
           icon={Facebook}
           href="https://www.facebook.com/zgelektronik/?locale=pl_PL"
@@ -84,11 +84,11 @@ function SocialMedia() {
           href="https://www.instagram.com/zgelektronik/"
         />
       </div>
-      <div className="flex justify-center items-center lg:flex-col w-20 max-xl:h-20 xl:h-full relative">
+      <div className="relative flex w-20 items-center justify-center max-xl:h-20 lg:flex-col xl:h-full">
         <Link
           passHref
           href={"/"}
-          className="flex justify-center items-center w-full h-20 relative"
+          className="relative flex h-20 w-full items-center justify-center"
         >
           <Image alt="logo" fill src={"/logo-white.svg"} />
         </Link>
@@ -100,9 +100,9 @@ function SocialMedia() {
 function MainPanel() {
   return (
     <div className="flex justify-center max-sm:my-8">
-      <div className="flex justify-around flex-col gap-6">
-        <div className=" flex max-sm:flex-col max-sm:items-center justify-center">
-          <div className="w-full flex justify-center max-sm:flex-col max-sm:items-center">
+      <div className="flex flex-col justify-around gap-6">
+        <div className=" flex justify-center max-sm:flex-col max-sm:items-center">
+          <div className="flex w-full justify-center max-sm:flex-col max-sm:items-center">
             <LinkPanel title="O szkole">
               <LinkItem name="Osiągnięcia" href="/osiagniecia" />
               <LinkItem name="Kadra" href="/kadra" />
@@ -152,12 +152,12 @@ function MainPanel() {
 const authors = ["Krzysiek", "Kacper", "Mikołaj", "Wojtek", "Filipek"]
 function Copyrights() {
   return (
-    <div className="flex justify-around flex-col gap-4">
-      <div className="flex justify-center items-center text-background text-base font-semibold px-4 text-center">
+    <div className="flex flex-col justify-around gap-4">
+      <div className="flex items-center justify-center px-4 text-center text-base font-semibold text-background">
         {/* make names bold without char ,*/}
         Made with 🍷 by Kacper, Krzysiek, Mikołaj, Wojtek & Filip
       </div>
-      <div className="flex justify-center items-center text-slate-400 text-xs px-4 text-center">
+      <div className="flex items-center justify-center px-4 text-center text-xs text-slate-400">
         @Copyright 2001-2024 Zespół Szkół Elektronicznych i Samochodowych
       </div>
     </div>
@@ -165,9 +165,9 @@ function Copyrights() {
 }
 function Counter() {
   return (
-    <div className="text-background flex justify-center items-center flex-col sm:flex-row gap-1 text-3xl font-extrabold text-center max-sm:leading-relaxed">
+    <div className="flex flex-col items-center justify-center gap-1 text-center text-3xl font-extrabold text-background max-sm:leading-relaxed sm:flex-row">
       Odwiedziło nas już
-      <div className=" w-fit text-primary font-extrabold text-3xl bg-background mx-2 p-2 rounded-2xl">
+      <div className=" mx-2 w-fit rounded-2xl bg-background p-2 text-3xl font-extrabold text-primary">
         1280959
       </div>
       osób!
@@ -177,17 +177,17 @@ function Counter() {
 
 function Donate() {
   return (
-    <div className=" flex-col justify-center w-64  flex">
+    <div className=" flex w-64 flex-col  justify-center">
       <div className="flex justify-center">
         <Button
           variant={"secondary"}
-          className="w-56 h-16 rounded-lg flex justify-center items-center gap-4"
+          className="flex h-16 w-56 items-center justify-center gap-4 rounded-lg"
         >
           <Coffee className="mr-2 h-8 w-8" />
           Buy us a coffee
         </Button>
       </div>
-      <div className="text-background text-center mt-2">
+      <div className="mt-2 text-center text-background">
         Spodobała Ci się nowa strona? Rozważ wsparcie twórców ✨✨
       </div>
     </div>

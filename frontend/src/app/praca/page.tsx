@@ -7,14 +7,14 @@ export default async function Page() {
   const data = await getJobs()
 
   return (
-    <main className="flex items-center flex-col w-full">
+    <main className="flex w-full flex-col items-center">
       <Header
         title={data?.heading ?? "Oferty Pracy"}
         subtitle={
           data?.description ?? "Oferty pracy dla absolwentów naszej szkoły."
         }
       />
-      <div className="flex justify-center items-center flex-col mt-4">
+      <div className="mt-4 flex flex-col items-center justify-center">
         {data?.jobs.map((item: any) => (
           <JobDialog
             key={item.name}

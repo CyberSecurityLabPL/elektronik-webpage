@@ -8,10 +8,10 @@ export default async function SubstitutionPage() {
   const data = await getSubstitutions()
 
   return (
-    <main className="flex items-center flex-col w-full gap-4">
+    <main className="flex w-full flex-col items-center gap-4">
       <Header title="Zastępstwa" subtitle={formatDateWeek(data?.date)} />
-      <div className="min-h-96 h-fit w-3/4 p-2 bg-background border rounded-lg shadow-sm">
-        <div className="py-2 px-8 text-xs sm:text-base">
+      <div className="h-fit min-h-96 w-3/4 rounded-lg border bg-background p-2 shadow-sm">
+        <div className="px-8 py-2 text-xs sm:text-base">
           {renderMarkdown(data?.content ?? "Couldn't load content!", {
             components: {
               h1: H1,
@@ -19,10 +19,10 @@ export default async function SubstitutionPage() {
               h3: H3,
               hr: () => <Separator className="my-2" />,
               ul: (props) => (
-                <ul className="list-disc pl-4 py-2">{props.children}</ul>
+                <ul className="list-disc py-2 pl-4">{props.children}</ul>
               ),
               ol: (props) => (
-                <ol className="list-decimal pl-4 py-2">{props.children}</ol>
+                <ol className="list-decimal py-2 pl-4">{props.children}</ol>
               ),
             },
           })}

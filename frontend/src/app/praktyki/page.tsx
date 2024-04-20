@@ -25,18 +25,18 @@ const page = async () => {
           "Tutaj zobaczysz harmonogram praktyk na rok 2023/2024. Sprawdź kiedy twoja klasa ma praktyki"
         }
       />
-      <div className="flex justify-center items-center w-full">
-        <div className="pt-8 w-11/12 sm:w-1/2">
+      <div className="flex w-full items-center justify-center">
+        <div className="w-11/12 pt-8 sm:w-1/2">
           <Table className="bg-white pt-8 ">
             <TableHeader className="">
               <TableRow className="grid grid-cols-3">
-                <TableHead className="flex items-center justify-center text-lg text-bold">
+                <TableHead className="text-bold flex items-center justify-center text-lg">
                   Klasa
                 </TableHead>
-                <TableHead className="flex items-center justify-center text-lg text-bold">
+                <TableHead className="text-bold flex items-center justify-center text-lg">
                   Specjalizacja
                 </TableHead>
-                <TableHead className="flex items-center justify-center text-lg text-bold">
+                <TableHead className="text-bold flex items-center justify-center text-lg">
                   Termin Praktyk
                 </TableHead>
               </TableRow>

@@ -93,7 +93,7 @@ export function ContactForm() {
               <FormControl>
                 <Textarea
                   placeholder="Elektronik to taka cudowna szkoła"
-                  className="resize-none h-64"
+                  className="h-64 resize-none"
                   {...field}
                 />
               </FormControl>

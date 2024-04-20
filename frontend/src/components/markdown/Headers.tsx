@@ -16,7 +16,7 @@ export default function H1({ children }: PropsWithChildren<{}>) {
         //@ts-expect-error no such attribute as icon but we can still use it as custom attr
         icon="🔗"
         id={formattedLink}
-        className={`before:content-[attr(icon)] before:invisible hover:before:visible hover:underline relative before:absolute before:-left-10 before:text-muted-foreground ${fontSizes.h1} ${fontSizes.shared}`}
+        className={`relative before:invisible before:absolute before:-left-10 before:text-muted-foreground before:content-[attr(icon)] hover:underline hover:before:visible ${fontSizes.h1} ${fontSizes.shared}`}
       >
         {children}
       </h2>
@@ -32,7 +32,7 @@ export function H2({ children }: PropsWithChildren<{}>) {
         //@ts-expect-error no such attribute as icon but we can still use it as custom attr
         icon="🔗"
         id={formattedLink}
-        className={`before:content-[attr(icon)] before:invisible hover:before:visible hover:underline relative before:absolute before:-left-10 before:text-muted-foreground ${fontSizes.h2} ${fontSizes.shared}`}
+        className={`relative before:invisible before:absolute before:-left-10 before:text-muted-foreground before:content-[attr(icon)] hover:underline hover:before:visible ${fontSizes.h2} ${fontSizes.shared}`}
       >
         {children}
       </h2>
@@ -48,7 +48,7 @@ export function H3({ children }: PropsWithChildren<{}>) {
         //@ts-expect-error no such attribute as icon but we can still use it as custom attr
         icon="🔗"
         id={formattedLink}
-        className={`before:content-[attr(icon)] before:invisible hover:before:visible hover:underline relative before:absolute before:-left-10 before:text-muted-foreground ${fontSizes.h3} ${fontSizes.shared}`}
+        className={`relative before:invisible before:absolute before:-left-10 before:text-muted-foreground before:content-[attr(icon)] hover:underline hover:before:visible ${fontSizes.h3} ${fontSizes.shared}`}
       >
         {children}
       </h2>

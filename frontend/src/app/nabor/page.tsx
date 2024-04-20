@@ -39,12 +39,12 @@ export default function Page() {
   ]
 
   return (
-    <main className="flex items-center flex-col w-full">
+    <main className="flex w-full flex-col items-center">
       <Header
         title={`Nabór ${year}`}
         subtitle={`Rozpoczynamy nabór na rok szkolny ${year}! Nasza szkoła to miejsce, gdzie każdy uczeń znajdzie wsparcie, inspirację i możliwości rozwoju. Dołącz do naszej społeczności, gdzie stawiamy na aktywne metody nauczania, rozwój kompetencji społecznych i kreatywność. Niezależnie od zainteresowań - zapraszamy do aplikowania i dołączenia do naszego wspaniałego środowiska edukacyjnego!`}
       >
-        <div className="mt-8 lg:text-lg text-xs text-center font-semibold">
+        <div className="mt-8 text-center text-xs font-semibold lg:text-lg">
           Jesteś już zdecydowany wypełnij wniosek o przyjęcie już teraz!
         </div>
         <Button asChild variant={"outline"} className="m-4">
@@ -57,13 +57,13 @@ export default function Page() {
           </Link>
         </Button>
       </Header>
-      <div className="w-1/2 flex flex-col items-center">
-        <div className="flex lg:flex-row flex-col justify-between my-8 lg:gap-24">
-          <div className="lg:text-3xl text-base font-semibold flex items-center">
+      <div className="flex w-1/2 flex-col items-center">
+        <div className="my-8 flex flex-col justify-between lg:flex-row lg:gap-24">
+          <div className="flex items-center text-base font-semibold lg:text-3xl">
             Technikum 5 letnie
           </div>
           <div className="flex items-center">
-            <p className="lg:text-base text-xs">
+            <p className="text-xs lg:text-base">
               Jesli potrzebujesz dokumentów znajdziesz je&nbsp;
               <Link className="text-primary hover:underline" href="/dokumenty">
                 tutaj
@@ -71,16 +71,16 @@ export default function Page() {
             </p>
           </div>
         </div>
-        <div className="w-fit overflow-auto flex justify-center">
+        <div className="flex w-fit justify-center overflow-auto">
           <Table className="font-medium">
             <TableHeader>
               <TableRow>
-                <TableHead className="text-center w-[400px]">Zawód</TableHead>
+                <TableHead className="w-[400px] text-center">Zawód</TableHead>
                 <TableHead className="text-center">Ilość miejsc</TableHead>
                 <TableHead className="text-center">Liczba oddziałów</TableHead>
               </TableRow>
             </TableHeader>
-            <TableBody className="lg:text-base text-xs">
+            <TableBody className="text-xs lg:text-base">
               {data.map((row) => (
                 <TableRow
                   className="bg-background hover:bg-muted/90"

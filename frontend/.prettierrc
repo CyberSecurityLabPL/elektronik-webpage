@@ -4,5 +4,8 @@
   "semi": false,
   "singleQuote": false,
   "bracketSpacing": true,
-  "bracketSameLine": false
+  "bracketSameLine": false,
+  "plugins": ["prettier-plugin-tailwindcss"],
+  "tailwindConfig": "./tailwind.config.ts",
+  "tailwindFunctions": ["clsx", "cn"]
 }

@@ -24,8 +24,8 @@ export default function WorkerCard({
   duty: string
 }) {
   return (
-    <Card className="flex w-[38rem] aspect-[55/22] m-8 shadow-sm">
-      <div className="w-1/3 h-full relative">
+    <Card className="m-8 flex aspect-[55/22] w-[38rem] shadow-sm">
+      <div className="relative h-full w-1/3">
         <Image
           className="rounded-l-md"
           alt={`${name} img`}
@@ -34,15 +34,15 @@ export default function WorkerCard({
           objectFit="cover"
         />
       </div>
-      <div className="w-2/3 h-full">
+      <div className="h-full w-2/3">
         <CardHeader>
-          <CardDescription className="font-bold text-xs text-slate-400 leading-tight">
+          <CardDescription className="text-xs font-bold leading-tight text-slate-400">
             {titles}
           </CardDescription>
-          <CardTitle className="font-bold text-primary text-2xl leading-none">
+          <CardTitle className="text-2xl font-bold leading-none text-primary">
             {name}
           </CardTitle>
-          <CardDescription className="font-bold text-foreground text-base leading-none">
+          <CardDescription className="text-base font-bold leading-none text-foreground">
             {position}
           </CardDescription>
         </CardHeader>

@@ -19,8 +19,8 @@ import Link from "next/link"
 
 export default function Faq() {
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <Card className="w-4/5 h-fit z-50">
+    <div className="flex h-screen w-full items-center justify-center">
+      <Card className="z-50 h-fit w-4/5">
         <CardHeader>
           <CardTitle>FAQ</CardTitle>
           <CardDescription>Zobacz najczęściej zadawane pytania</CardDescription>
@@ -68,7 +68,7 @@ export default function Faq() {
               </AccordionItem>
             </Accordion>
           </div>
-          <div className="hidden w-2/5 lg:flex justify-center relative">
+          <div className="relative hidden w-2/5 justify-center lg:flex">
             <Image
               src={"/images/faq.svg"}
               alt="faq image"
@@ -78,8 +78,8 @@ export default function Faq() {
             />
           </div>
         </CardContent>
-        <CardFooter className="flex flex-col justify-center items-center gap-2">
-          <h1 className="font-semibold text-center  ">
+        <CardFooter className="flex flex-col items-center justify-center gap-2">
+          <h1 className="text-center font-semibold  ">
             Jeśli masz do nas inne pytania napisz do nas!
           </h1>
           <Button variant={"outline"} asChild>

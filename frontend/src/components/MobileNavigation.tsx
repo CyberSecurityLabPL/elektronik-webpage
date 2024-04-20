@@ -28,11 +28,11 @@ export default function MobileNavigation() {
           }}
           whileTap={{ scale: 0.7 }}
         >
-          <Menu className="w-8 h-8" />
+          <Menu className="h-8 w-8" />
         </motion.div>
       </DrawerTrigger>
       <DrawerContent className="h-[90%]">
-        <div className="h-full w-full p-4  overflow-scroll">
+        <div className="h-full w-full overflow-scroll  p-4">
           <LinkPanel title="O szkole">
             <LinkItem name="Osiągnięcia" href="/osiagniecia" />
             <LinkItem name="Kadra" href="/kadra" />
@@ -71,7 +71,7 @@ export default function MobileNavigation() {
             <LinkItem name="Kierunki" href="/nabor" />
           </LinkPanel>
         </div>
-        <DrawerFooter className="text-lg flex justify-center items-center">
+        <DrawerFooter className="flex items-center justify-center text-lg">
           <Button variant={"ghost"} asChild>
             <Link href={"/"}>Plan Lekcji</Link>
           </Button>
@@ -95,11 +95,11 @@ function LinkPanel({
     <Accordion
       type="single"
       collapsible
-      className="w-full flex flex-col gap-4 "
+      className="flex w-full flex-col gap-4 "
     >
       <AccordionItem value={title}>
-        <AccordionTrigger className="w-full text-2xl font-semibold flex justify-between gap-4 items-center  py-2 [&[data-state=open]>svg]:rotate-180">
-          <span className="truncate w-2/3 text-left">{title}</span>
+        <AccordionTrigger className="flex w-full items-center justify-between gap-4 py-2 text-2xl  font-semibold [&[data-state=open]>svg]:rotate-180">
+          <span className="w-2/3 truncate text-left">{title}</span>
         </AccordionTrigger>
         <AccordionContent className="flex flex-col gap-6 last:pb-4 ">
           {children}
@@ -113,7 +113,7 @@ function LinkPanel({
 function LinkItem({ name, href }: { name: string; href: string }) {
   return (
     <Link
-      className="text-lg font-medium text-slate-600 text-center"
+      className="text-center text-lg font-medium text-slate-600"
       href={href}
     >
       {name}

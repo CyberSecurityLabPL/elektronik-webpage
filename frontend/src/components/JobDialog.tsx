@@ -35,13 +35,13 @@ export default function JobDialog({
           <DialogTitle className="w-11/12">{`${company} - ${jobName}`}</DialogTitle>
           <DialogDescription>{formatDateYear(date)}</DialogDescription>
         </DialogHeader>
-        <div className="flex items-start flex-col">
+        <div className="flex flex-col items-start">
           <div className="p-1">
             <div className="text-sm font-semibold">Zadania</div>
             <ul className="list-disc">
               {tasks.map((task: any) => (
                 <li
-                  className="text-xs font-light my-1 ml-4"
+                  className="my-1 ml-4 text-xs font-light"
                   key={task.id + task.value}
                 >
                   {task.value}
@@ -55,7 +55,7 @@ export default function JobDialog({
             <ul className="list-disc">
               {reqs.map((req: any) => (
                 <li
-                  className="text-xs font-light my-1 ml-4"
+                  className="my-1 ml-4 text-xs font-light"
                   key={req.id + req.value}
                 >
                   {req.value}

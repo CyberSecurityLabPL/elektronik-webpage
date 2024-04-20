@@ -29,7 +29,7 @@ export default function AchieveDialog({
         <DialogHeader>
           <DialogTitle className="w-11/12"></DialogTitle>
           <DialogDescription>
-            <div className=" text-black font-semibold text-lg">{name}</div>
+            <div className=" text-lg font-semibold text-black">{name}</div>
             {date}
           </DialogDescription>
         </DialogHeader>

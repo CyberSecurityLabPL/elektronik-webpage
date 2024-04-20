@@ -11,10 +11,10 @@ export default async function Home() {
   const data = await getLandingPage()
 
   return (
-    <main className="flex justify-center flex-col w-full gap-16">
+    <main className="flex w-full flex-col justify-center gap-16">
       <header className="flex flex-col ">
         <Hero />
-        <div className="w-full h-64 bg-repeat-x bg-wave-transition"></div>
+        <div className="h-64 w-full bg-wave-transition bg-repeat-x"></div>
       </header>
       {/* Main content */}
       <Overview />

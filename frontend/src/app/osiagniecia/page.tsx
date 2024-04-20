@@ -19,9 +19,9 @@ export default function Page() {
   ]
 
   return (
-    <main className="flex items-center flex-col w-full">
+    <main className="flex w-full flex-col items-center">
       <Header title="Osiągnięcia" subtitle="" />
-      <div className="flex justify-center items-center flex-col mt-4">
+      <div className="mt-4 flex flex-col items-center justify-center">
         {data.map((item) => (
           <AchieveDialog
             key={item.name}

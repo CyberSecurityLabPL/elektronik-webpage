@@ -38,7 +38,7 @@ export default function Page() {
   ]
 
   return (
-    <main className="flex items-center flex-col w-full">
+    <main className="flex w-full flex-col items-center">
       <Header
         title="Rada rodziców"
         subtitle="Regulamin Rady Rodziców przy Centrum Kształcenia Zawodowego i Ustawicznego ELEKTRONIK w Zielonej Górze"
@@ -51,7 +51,7 @@ export default function Page() {
           Zobacz regulamin
         </Button>
       </Header>
-      <div className="flex justify-center flex-wrap my-2">
+      <div className="my-2 flex flex-wrap justify-center">
         {data.map((item) => (
           <ParentCard
             key={item.name}

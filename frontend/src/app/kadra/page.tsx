@@ -6,7 +6,7 @@ export default async function Page() {
   const data = await getTeachers()
 
   return (
-    <main className="flex items-center flex-col w-full">
+    <main className="flex w-full flex-col items-center">
       <Header
         title="Kadra nauczycielska"
         subtitle="Poznaj naszą kadrę nauczycielską."
@@ -15,7 +15,7 @@ export default async function Page() {
         {data?.teacher_groups.map((group: any) => (
           <div key={group.title}>
             <h1>{group.title}</h1>
-            <div className="flex justify-center flex-wrap my-2">
+            <div className="my-2 flex flex-wrap justify-center">
               {group.teachers.map((teacher: any) => (
                 <WorkerCard
                   key={teacher.fullname}
