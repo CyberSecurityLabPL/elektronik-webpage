@@ -4,7 +4,7 @@
 This is a webpage project for an Elektronik school in Zielona Góra. The project aims to provide a comprehensive online platform that represents our school and serves as a hub for students, teachers, and parents alike.
 The website aims to be compatible with every viewport independent of it's size so It should work on PC as well as it works on Mobile.
 
-## Advanatges of our site compared to the old one
+## Advantages of our site compared to the old one
 - 🚀 It's modern
 - 🔗 It's compatible
 - 💻 It's easy to manage
