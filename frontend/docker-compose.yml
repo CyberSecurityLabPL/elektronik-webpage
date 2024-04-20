@@ -12,6 +12,8 @@ services:
     environment:
       - NODE_ENV=production
       - OUTPUT=standalone
+    env_file:
+      - .env.docker
     # volumes:
     #   - .:/app
     #   - /app/node_modules
