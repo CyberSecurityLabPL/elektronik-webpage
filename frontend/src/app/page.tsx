@@ -1,16 +1,14 @@
-import Benefits from "@/components/landingpage/Benefits";
-import Faq from "@/components/landingpage/Faq";
-import Hero from "@/components/landingpage/Hero";
-import Map from "@/components/landingpage/Map";
-import News from "@/components/landingpage/News";
-import Overview from "@/components/landingpage/Overview";
-import Sponsors from "@/components/landingpage/Sponsors";
-import { getLandingPage } from "@/lib/api";
-
+import Benefits from "@/components/landingpage/Benefits"
+import Faq from "@/components/landingpage/Faq"
+import Hero from "@/components/landingpage/Hero"
+import Map from "@/components/landingpage/Map"
+import News from "@/components/landingpage/News"
+import Overview from "@/components/landingpage/Overview"
+import Sponsors from "@/components/landingpage/Sponsors"
+import { getLandingPage } from "@/lib/api"
 
 export default async function Home() {
-  const data = await getLandingPage();
-  
+  const data = await getLandingPage()
 
   return (
     <main className="flex justify-center flex-col w-full gap-16">
@@ -26,5 +24,5 @@ export default async function Home() {
       <Faq />
       <Sponsors />
     </main>
-  );
+  )
 }
