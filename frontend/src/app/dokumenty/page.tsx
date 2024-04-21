@@ -92,12 +92,12 @@ function FileGroup({
   children?: ReactNode
 }) {
   return (
-    <div className="flex w-3/4 flex-col justify-center">
-      <div className="flex w-full justify-start text-left text-2xl font-semibold text-slate-500">
+    <div className="flex w-full flex-col justify-center xl:w-3/4">
+      <div className="flex w-full justify-center text-left text-2xl font-semibold text-slate-500 md:justify-start md:px-16 xl:px-0">
         {title}
       </div>
       <div className="flex items-center justify-center">
-        <div className="grid gap-4 p-8 sm:grid-cols-1 xl:grid-cols-2 2xl:grid-cols-3">
+        <div className="grid gap-4 p-8 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           {children}
         </div>
       </div>
