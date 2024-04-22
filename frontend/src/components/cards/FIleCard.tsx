@@ -40,7 +40,7 @@ export default function FileCard({
 
   return (
     <Link passHref href={url}>
-      <Card className="mx-4 my-2 flex aspect-[493/96] w-[20rem] cursor-pointer items-center justify-between">
+      <Card className="flex aspect-[493/96] cursor-pointer items-center justify-between">
         <div className="flex justify-center">
           <CardContent className="mx-2 flex items-center justify-center space-y-0 p-0">
             <FileIcon icon={fileProps.icon} color={fileProps.color} />

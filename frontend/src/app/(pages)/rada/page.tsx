@@ -43,7 +43,7 @@ export default function Page() {
         title="Rada rodziców"
         subtitle="Regulamin Rady Rodziców przy Centrum Kształcenia Zawodowego i Ustawicznego ELEKTRONIK w Zielonej Górze"
       >
-        <div>
+        <div className="text-center px-4">
           Numer konta rady rodziców:
           <span className="font-bold"> 75 1090 1535 0000 0001 4653 3475 </span>
         </div>
@@ -51,7 +51,7 @@ export default function Page() {
           Zobacz regulamin
         </Button>
       </Header>
-      <div className="my-2 flex flex-wrap justify-center">
+      <div className=" flex gap-4 flex-wrap justify-center">
         {data.map((item) => (
           <ParentCard
             key={item.name}

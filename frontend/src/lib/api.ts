@@ -118,3 +118,16 @@ export async function getTeachers() {
     console.error(error)
   }
 }
+
+export async function getPage(page: string) {
+  try {
+    const { data }: AxiosResponse<any> = await api.get(
+      `/pages?filters[slug][$eq]=${page}`
+    )
+
+    if (data.data.length < 1) return {}
+    return flattenStrapiResponse(data.data[0])
+  } catch (error) {
+    console.error(error)
+  }
+}

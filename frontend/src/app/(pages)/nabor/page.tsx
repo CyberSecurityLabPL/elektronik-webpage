@@ -40,14 +40,15 @@ export default function Page() {
 
   return (
     <main className="flex w-full flex-col items-center">
-      <Header
-        title={`Nabór ${year}`}
-        subtitle={`Rozpoczynamy nabór na rok szkolny ${year}! Nasza szkoła to miejsce, gdzie każdy uczeń znajdzie wsparcie, inspirację i możliwości rozwoju. Dołącz do naszej społeczności, gdzie stawiamy na aktywne metody nauczania, rozwój kompetencji społecznych i kreatywność. Niezależnie od zainteresowań - zapraszamy do aplikowania i dołączenia do naszego wspaniałego środowiska edukacyjnego!`}
-      >
-        <div className="mt-8 text-center text-xs font-semibold lg:text-lg">
+      <div className="flex flex-col items-center justify-center gap-4 pb-8">
+        <Header
+          title={`Nabór ${year}`}
+          subtitle={`Rozpoczynamy nabór na rok szkolny ${year}! Nasza szkoła to miejsce, gdzie każdy uczeń znajdzie wsparcie, inspirację i możliwości rozwoju. Dołącz do naszej społeczności, gdzie stawiamy na aktywne metody nauczania, rozwój kompetencji społecznych i kreatywność. Niezależnie od zainteresowań - zapraszamy do aplikowania i dołączenia do naszego wspaniałego środowiska edukacyjnego!`}
+        />
+        <div className="px-4 text-center text-xs font-semibold lg:text-lg">
           Jesteś już zdecydowany wypełnij wniosek o przyjęcie już teraz!
         </div>
-        <Button asChild variant={"outline"} className="m-4">
+        <Button asChild variant={"outline"}>
           <Link
             href={
               "https://nabor.pcss.pl/zielonagora/szkolaponadpodstawowa/start"
@@ -56,16 +57,16 @@ export default function Page() {
             Wypełnij wniosek Online
           </Link>
         </Button>
-      </Header>
-      <div className="flex w-1/2 flex-col items-center">
-        <div className="my-8 flex flex-col justify-between lg:flex-row lg:gap-24">
+      </div>
+      <div className="flex w-full flex-col items-center gap-2 px-2">
+        <div className="flex flex-col justify-between lg:flex-row lg:gap-24">
           <div className="flex items-center text-base font-semibold lg:text-3xl">
             Technikum 5 letnie
           </div>
           <div className="flex items-center">
             <p className="text-xs lg:text-base">
               Jesli potrzebujesz dokumentów znajdziesz je&nbsp;
-              <Link className="text-primary hover:underline" href="/dokumenty">
+              <Link className="text-primary underline" href="/dokumenty">
                 tutaj
               </Link>
             </p>

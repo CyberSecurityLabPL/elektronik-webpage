@@ -24,17 +24,17 @@ export default function WorkerCard({
   duty: string
 }) {
   return (
-    <Card className="m-8 flex aspect-[55/22] w-[38rem] shadow-sm">
-      <div className="relative h-full w-1/3">
+    <Card className=" flex h-64 w-4/5 sm:w-96 md:w-[32rem]  shadow-sm">
+      <div className="relative hidden md:block h-full w-1/3">
         <Image
-          className="rounded-l-md"
+          className="rounded-l-md "
           alt={`${name} img`}
           src={src}
           fill
           objectFit="cover"
         />
       </div>
-      <div className="h-full w-2/3">
+      <div className="h-full w-full md:w-2/3">
         <CardHeader>
           <CardDescription className="text-xs font-bold leading-tight text-slate-400">
             {titles}
@@ -46,13 +46,15 @@ export default function WorkerCard({
             {position}
           </CardDescription>
         </CardHeader>
-        <CardContent className="h-1/3 overflow-hidden">
+        <CardContent className="h-1/3">
           <p className="text-xs font-medium text-slate-500">{description}</p>
         </CardContent>
-        <CardFooter>
-          <p className="text-sm font-medium text-slate-500">{duty}</p>
-        </CardFooter>
+        <CardFooter> 
+            <p className="text-sm font-medium text-slate-500">{duty}</p>
+        </CardFooter> 
       </div>
     </Card>
   )
 }
+
+          

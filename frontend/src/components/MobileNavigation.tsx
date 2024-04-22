@@ -2,12 +2,13 @@
 import React, { ReactNode } from "react"
 import {
   Drawer,
+  DrawerClose,
   DrawerContent,
   DrawerFooter,
   DrawerTrigger,
 } from "@/components/ui/drawer"
 import { Button } from "./ui/button"
-import { ChevronDown, Menu } from "lucide-react"
+import { Menu } from "lucide-react"
 import { motion } from "framer-motion"
 import Link from "next/link"
 import {
@@ -23,7 +24,7 @@ export default function MobileNavigation() {
       <DrawerTrigger asChild>
         <motion.div
           whileHover={{
-            scale: 1.5,
+            scale: 1,
             transition: { duration: 1 },
           }}
           whileTap={{ scale: 0.7 }}
@@ -32,7 +33,7 @@ export default function MobileNavigation() {
         </motion.div>
       </DrawerTrigger>
       <DrawerContent className="h-[90%]">
-        <div className="h-full w-full overflow-scroll  p-4">
+        <div className="h-full w-full overflow-scroll overflow-x-hidden  p-4">
           <LinkPanel title="O szkole">
             <LinkItem name="Osiągnięcia" href="/osiagniecia" />
             <LinkItem name="Kadra" href="/kadra" />
@@ -72,12 +73,16 @@ export default function MobileNavigation() {
           </LinkPanel>
         </div>
         <DrawerFooter className="flex items-center justify-center text-lg">
-          <Button variant={"ghost"} asChild>
-            <Link href={"/"}>Plan Lekcji</Link>
-          </Button>
-          <Button asChild>
-            <Link href={"/"}>E-dziennik</Link>
-          </Button>
+          <DrawerClose asChild>
+            <Button variant={"ghost"} asChild>
+              <Link href={"/"}>Plan Lekcji</Link>
+            </Button>
+          </DrawerClose>
+          <DrawerClose>
+            <Button asChild>
+              <Link href={"/"}>E-dziennik</Link>
+            </Button>
+            </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
@@ -99,7 +104,12 @@ function LinkPanel({
     >
       <AccordionItem value={title}>
         <AccordionTrigger className="flex w-full items-center justify-between gap-4 py-2 text-2xl  font-semibold [&[data-state=open]>svg]:rotate-180">
-          <span className="w-2/3 truncate text-left">{title}</span>
+          <span
+            className="w-
+          2/3 truncate text-left"
+          >
+            {title}
+          </span>
         </AccordionTrigger>
         <AccordionContent className="flex flex-col gap-6 last:pb-4 ">
           {children}
@@ -112,11 +122,13 @@ function LinkPanel({
 //components for main panel
 function LinkItem({ name, href }: { name: string; href: string }) {
   return (
-    <Link
-      className="text-center text-lg font-medium text-slate-600"
-      href={href}
-    >
-      {name}
-    </Link>
+    <DrawerClose asChild>
+      <Link
+        className="text-center text-lg font-medium text-slate-600"
+        href={href}
+      >
+        {name}
+      </Link>
+    </DrawerClose>
   )
 }

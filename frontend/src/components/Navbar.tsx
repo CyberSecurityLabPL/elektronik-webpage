@@ -1,4 +1,5 @@
 "use client"
+<<<<<<< HEAD
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -12,6 +13,15 @@ import Link from "next/link"
 import MobileNavigation from "./MobileNavigation"
 import { Navigation } from "./Navigation"
 import { Button } from "./ui/button"
+=======
+import Image from "next/image"
+import React from "react"
+import { Button } from "./ui/button"
+import Link from "next/link"
+import { revalidateTag } from "next/cache"
+import { Navigation } from "./Navigation"
+import MobileNavigation from "./MobileNavigation"
+>>>>>>> 6d48740f1d3d1c7a22260fa8897198c4cfef016d
 
 export default function Navbar({ data }: { data?: any }) {
   return (
@@ -22,7 +32,6 @@ export default function Navbar({ data }: { data?: any }) {
         </Link>
       </div>
       <div className="absolute left-1/2 top-1/2 z-50 hidden -translate-x-1/2 -translate-y-1/2 items-center justify-center lg:flex">
-        {/* To-do navigation */}
         <Navigation />
       </div>
       <div className="  flex items-center justify-center px-8 ">
@@ -35,17 +44,6 @@ export default function Navbar({ data }: { data?: any }) {
             <Link href={"/"}>E-dziennik</Link>
             {/* <Link href={data.gradebook.link ?? "https://uonetplus.vulcan.net.pl/zielonagora"}>{data.gradebook.title ?? "E-Dziennik"}</Link> */}
           </Button>
-        </div>
-        <div className="hidden px-4 lg:block xl:hidden">
-          <DropdownMenu>
-            <DropdownMenuTrigger>
-              <Menu />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>Plan Lekcji</DropdownMenuLabel>
-              <DropdownMenuItem>E-dziennik</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
         </div>
         <div className="flex items-center justify-center lg:hidden">
           <MobileNavigation />
