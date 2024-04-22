@@ -40,9 +40,9 @@ export default function Sponsors() {
           },
         }}
       >
-        {[...images, ...images, ...images].map((image) => (
+        {[...images, ...images, ...images].map((image, index) => (
           <div
-            key={image.src}
+            key={index+image.src}
             className="relative flex h-[100px] min-w-64 items-center justify-center overflow-hidden rounded-lg "
           >
             <Link href={image.link}>
