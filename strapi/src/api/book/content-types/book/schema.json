@@ -4,7 +4,8 @@
   "info": {
     "singularName": "book",
     "pluralName": "books",
-    "displayName": "Book"
+    "displayName": "Book",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,11 +16,12 @@
       "type": "string"
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
     },
     "title": {
       "type": "text"
@@ -32,6 +34,9 @@
       "relation": "manyToOne",
       "target": "api::book-group.book-group",
       "inversedBy": "books"
+    },
+    "url": {
+      "type": "string"
     }
   }
 }

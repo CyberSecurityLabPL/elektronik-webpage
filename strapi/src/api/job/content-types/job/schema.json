@@ -42,8 +42,7 @@
     "badges": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::badge.badge",
-      "mappedBy": "job"
+      "target": "api::badge.badge"
     },
     "requirements": {
       "type": "component",
