@@ -1,16 +1,27 @@
-import { ReactNode } from "react";
+import { ReactNode } from "react"
 
-
-export default function Header({title, subtitle, children} : {title: string, subtitle?: string, children?: ReactNode}) {
-        return (
-            <header className="flex justify-center items-center flex-col w-full">
-                <div className="text-3xl lg:text-6xl text-center font-extrabold py-2 bg-gradient-to-r from-primary to-primary-foreground inline-block text-transparent bg-clip-text text-wrap lg:w-auto w-screen">{title}</div>
-                {subtitle ?
-                    <div className="flex justify-center items-center m-4 w-4/5">
-                        <div className="flex justify-center text-center items-center lg:text-xl text-xs max-w-[54rem] text-primary-foreground leading-relaxed">{subtitle}</div>
-                    </div>
-                : null}
-                {children}
-            </header>
-        )
+export default function Header({
+  title,
+  subtitle,
+  children,
+}: {
+  title: string
+  subtitle?: string
+  children?: ReactNode
+}) {
+  return (
+    <header className="my-6 flex w-full flex-col items-center justify-center sm:my-8">
+      <h1 className="w-full text-pretty bg-clip-text py-2 text-center text-3xl font-extrabold text-primary sm:text-4xl lg:w-auto lg:text-6xl">
+        {title}
+      </h1>
+      {subtitle ? (
+        <div className="flex items-center justify-center px-2">
+          <div className="text-md flex max-w-[54rem] items-center justify-center text-pretty text-center leading-relaxed text-primary-foreground sm:text-lg lg:text-xl">
+            {subtitle}
+          </div>
+        </div>
+      ) : null}
+      {children}
+    </header>
+  )
 }

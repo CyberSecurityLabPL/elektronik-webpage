@@ -1,46 +1,35 @@
-"use client"
-import Image from 'next/image'
-import React from 'react'
-import { Button } from './ui/button'
-import Link from 'next/link'
-import { revalidateTag } from 'next/cache'
-import { Navigation } from './Navigation'
-import MobileNavigation from './MobileNavigation'
+import Image from "next/image"
+import Link from "next/link"
+import MobileNavigation from "./MobileNavigation"
+import { Navigation } from "./Navigation"
+import { Button } from "./ui/button"
 
-export default  function Navbar({ data }: { data?: any }) {
-    // revalidateTag('navigation')
-    
-
-    return (
-    <div className='h-32 w-full flex justify-between relative '>
-        <div className=' flex justify-center items-center px-8 '>
-            <Link href={'/'} passHref>
-                <Image src={'logo.svg'} width={80} height={60} alt='Logo'  />
-            </Link>
-            
+export default function Navbar({ data }: { data?: any }) {
+  return (
+    <div className="relative flex h-32 w-full justify-between ">
+      <div className=" flex items-center justify-center px-8 ">
+        <Link href={"/"} passHref>
+          <Image src={"/logo.svg"} width={80} height={60} alt="Logo" />
+        </Link>
+      </div>
+      <div className="absolute left-1/2 top-1/2 z-50 hidden -translate-x-1/2 -translate-y-1/2 items-center justify-center lg:flex">
+        <Navigation />
+      </div>
+      <div className="  flex items-center justify-center px-8 ">
+        <div className="hidden flex-col-reverse gap-4 lg:flex  xl:flex-row">
+          <Button variant={"secondary"} asChild>
+            <Link href={"/"}>Plan Lekcji</Link>
+            {/* <Link href={data.timetable.link ?? 'https://zseis.vercel.app/plan?timetableId=o18'}>{data.timetable.title ?? "Plan Lekcji"}</Link> */}
+          </Button>
+          <Button asChild>
+            <Link href={"/"}>E-dziennik</Link>
+            {/* <Link href={data.gradebook.link ?? "https://uonetplus.vulcan.net.pl/zielonagora"}>{data.gradebook.title ?? "E-Dziennik"}</Link> */}
+          </Button>
         </div>
-        <div className='hidden lg:flex justify-center items-center absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 z-50'>
-            {/* To-do navigation */}
-            <Navigation />
-
+        <div className="flex items-center justify-center lg:hidden">
+          <MobileNavigation />
         </div>
-        <div className='  px-8 flex justify-center items-center '>
-            <div className='hidden lg:flex  gap-4'>
-            <Button variant={'ghost'} asChild>
-                <Link href={'/'}>Plan Lekcji</Link>
-                
-                {/* <Link href={data.timetable.link ?? 'https://zseis.vercel.app/plan?timetableId=o18'}>{data.timetable.title ?? "Plan Lekcji"}</Link> */}
-            </Button>
-            <Button asChild>
-                <Link href={'/'}>E-dziennik</Link>
-                {/* <Link href={data.gradebook.link ?? "https://uonetplus.vulcan.net.pl/zielonagora"}>{data.gradebook.title ?? "E-Dziennik"}</Link> */}
-            </Button>
-            </div>
-            <div className='flex lg:hidden justify-center items-center'>
-                <MobileNavigation />
-            </div>
-        </div>
-        
+      </div>
     </div>
-    )
+  )
 }

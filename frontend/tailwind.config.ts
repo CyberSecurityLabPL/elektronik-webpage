@@ -3,11 +3,11 @@ import type { Config } from "tailwindcss"
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -19,25 +19,27 @@ const config = {
     },
     extend: {
       backgroundImage: {
-        'splash-transition': "url('/backgrounds/splash-transition-single.svg')",
-        'footer-squares': "url('/backgrounds/footer-squares.svg')",
-        'hero-squares': "url('/backgrounds/hero-squares.svg')",
-        'wave-transition': "url('/backgrounds/bg-wave-transition.svg')",
-        'overview-bg': "url('/backgrounds/bg-overview.svg')",
-        'benefits-bg': "url('/backgrounds/bg-benefits.svg')",
-        'nav': "url('/cards/zofiki.png')",
-        'yellow-blob': "url('/backgrounds/yellow-blob.svg')",
-        'violet-blob': "url('/backgrounds/violet-blob.svg')"
-        
+        "splash-transition": "url('/backgrounds/splash-transition-single.svg')",
+        "footer-squares": "url('/backgrounds/footer-squares.svg')",
+        "hero-squares": "url('/backgrounds/hero-squares.svg')",
+        "wave-transition": "url('/backgrounds/bg-wave-transition.svg')",
+        "overview-bg": "url('/backgrounds/bg-overview.svg')",
+        "benefits-bg": "url('/backgrounds/bg-benefits.svg')",
+        "nav-1": "url('/cards/nawigacja-szkolna-1.png')",
+        "nav-2": "url('/cards/nawigacja-szkolna-2.png')",
+        "nav-3": "url('/cards/nawigacja-szkolna-3.png')",
+        "yellow-blob": "url('/backgrounds/yellow-blob.svg')",
+        "violet-blob": "url('/backgrounds/violet-blob.svg')",
+        "sponsors-bg": "url('/backgrounds/bg-sponsors.svg')",
       },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background:{
+        background: {
           DEFAULT: "hsl(var(--background))",
-          accent: "hsl(var(--background-accent))"
-        } ,
+          accent: "hsl(var(--background-accent))",
+        },
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -87,9 +89,16 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+
+      screens: {
+        xs: "360px",
+        "2xl": "1440px",
+        "3xl": "1536px",
+        "4xl": "1920px",
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config
 
 export default config

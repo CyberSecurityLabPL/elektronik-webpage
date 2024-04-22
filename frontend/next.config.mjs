@@ -1,6 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "standalone"
-};
+  output: process.env.OUTPUT ? process.env.OUTPUT : undefined,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "api.thefinalpath.net",
+        port: "",
+        pathname: "/uploads/**",
+      },
+    ],
+  },
+}
 
-export default nextConfig;
+export default nextConfig
