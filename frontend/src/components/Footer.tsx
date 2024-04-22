@@ -1,9 +1,9 @@
-"use client"
 import Image from "next/image"
 import { Button } from "./ui/button"
 import React, { ReactNode } from "react"
 import Link from "next/link"
 import { LucideProps, Github, Facebook, Instagram, Coffee } from "lucide-react"
+import { getNavigation } from "@/lib/api"
 
 export default function Footer() {
   return (
@@ -100,52 +100,27 @@ function SocialMedia() {
   )
 }
 
-function MainPanel() {
+async function MainPanel() {
+  const nav = await getNavigation()
+
   return (
     <div className="flex justify-center max-sm:my-8">
       <div className="flex flex-col justify-around gap-6">
         <div className=" flex justify-center max-sm:flex-col max-sm:items-center">
           <div className="flex w-full justify-center max-sm:flex-col max-sm:items-center">
-            <LinkPanel title="O szkole">
-              <LinkItem name="Osiągnięcia" href="/osiagniecia" />
-              <LinkItem name="Kadra" href="/kadra" />
-              <LinkItem name="Galeria" href="/galeria" />
-              <LinkItem name="Aktualności" href="/aktualnosci" />
-            </LinkPanel>
-            <LinkPanel title="Edukacja">
-              <LinkItem name="Praktyki" href="/praktyki" />
-              <LinkItem
-                name="Warsztaty"
-                href="https://zseis.zgora.pl/warsztaty/"
-              />
-              <LinkItem name="Programy Nauczania" href="" />
-            </LinkPanel>
-            <LinkPanel title="Uczeń">
-              <LinkItem name="Ocenianie zachowania" href="" />
-              <LinkItem name="Zastępstwa" href="/zastepstwa" />
-              <LinkItem name="Dokumenty do pobrania" href="/dokumenty" />
-              <LinkItem name="Oferty pracy dla absolwentów" href="/praca" />
-            </LinkPanel>
-            <LinkPanel title="Rodzic">
-              <LinkItem name="Podręczniki" href="/podreczniki" />
-              <LinkItem name="Rada Rodziców" href="/rada" />
-            </LinkPanel>
-            <LinkPanel title="Maturzysta">
-              <LinkItem
-                name="Egzamin maturalny"
-                href="http://www.oke.poznan.pl/index.php?menu_st_id=5&el_id=718&submit_element=1"
-              />
-              <LinkItem name="Egzamin zawodowy" href="" />
-              <LinkItem
-                name="OKE w Poznaniu"
-                href="http://www.oke.poznan.pl/"
-              />
-              <LinkItem name="Komunikaty Dyrektora CKE" href="" />
-            </LinkPanel>
-            <LinkPanel title="Nabór">
-              <LinkItem name="Regulamin" href="" />
-              <LinkItem name="Kierunki" href="/nabor" />
-            </LinkPanel>
+            {nav?.link_groups
+              ? nav?.link_groups.map((panel: any, index: number) => (
+                  <LinkPanel key={panel.name + index} title={panel.name}>
+                    {panel.links.map((link: any, index: number) => (
+                      <LinkItem
+                        key={`l${index}`}
+                        name={link.name ?? "Empty"}
+                        href={link.href ?? ""}
+                      />
+                    ))}
+                  </LinkPanel>
+                ))
+              : null}
           </div>
         </div>
       </div>
@@ -160,16 +135,14 @@ function Copyrights() {
         Made with 🍷 by{" "}
         {["Krzysiek", "Kacper", "Mikołaj", "Wojtek", "Filipek"].map(
           (name, i) => (
-            <>
-              {i !== 0 ? <>, &nbsp;</> : <>&nbsp;</>}
-              <span className="font-bold" key={name}>
-                {name}
-              </span>
-            </>
+            <span key={name}>
+              {i !== 0 ? <>,&nbsp;</> : <>&nbsp;</>}
+              <span className="font-bold">{name}</span>
+            </span>
           )
         )}
       </div>
-      <div className="flex items-center justify-center px-4 text-center text-xs text-slate-400">
+      <div className="flex items-center justify-center px-4 text-center text-xs text-slate-200">
         @Copyright 2001-2024 Zespół Szkół Elektronicznych i Samochodowych
       </div>
     </div>
