@@ -92,7 +92,7 @@ export default function NewsCard({
         )}
       >
         <Image
-          src={getRandomImg()}
+          src={"/cards/car-job.jpg"}
           alt="Miniaturka artykułu"
           fill
           className="object-fill"
@@ -115,9 +115,7 @@ export default function NewsCard({
             isFeatured ? "text-4xl" : ""
           )}
         >
-          {isFeatured
-            ? "Jeabc mishe tego ukrainca jebanego nieroba pierdolonego"
-            : title}
+          {isFeatured ? "calkiem dlugo tytul xdxd spoko fajny tytul" : title}
         </h3>
 
         {/* DESCRIPTION */}
