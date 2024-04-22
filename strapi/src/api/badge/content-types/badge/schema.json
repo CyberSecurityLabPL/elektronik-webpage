@@ -13,12 +13,6 @@
   "attributes": {
     "name": {
       "type": "string"
-    },
-    "job": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::job.job",
-      "inversedBy": "badges"
     }
   }
 }

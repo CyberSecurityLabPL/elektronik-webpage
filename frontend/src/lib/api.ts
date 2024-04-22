@@ -56,7 +56,7 @@ export async function getNews(options?: OptionalObject): Promise<any> {
     const params = options?.params
     const flatteners = options?.flatteners
 
-    const url = params ? `articles/${params}` : `articles`
+    const url = params ? `articles/${params}` : `articles?populate=image`
     const { data }: AxiosResponse<any> = await api.get(url)
 
     return flattenStrapiResponse(data, !!!params, flatteners)
@@ -114,6 +114,19 @@ export async function getTeachers() {
     )
 
     return flattenStrapiResponse(data)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export async function getPage(page: string) {
+  try {
+    const { data }: AxiosResponse<any> = await api.get(
+      `/pages?filters[slug][$eq]=${page}`
+    )
+
+    if (data.data.length < 1) return {}
+    return flattenStrapiResponse(data.data[0])
   } catch (error) {
     console.error(error)
   }

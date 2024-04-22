@@ -76,10 +76,6 @@ export function renderMarkdown(markdown: string, options?: Readonly<Options>) {
   )
 }
 
-export function capitalizeFirstLetter(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1)
-}
-
 /**
  * Formats provided date string to dd/MM/yyyy HH:mm
  * @param date - The date string if null will use current
@@ -94,18 +90,20 @@ export function formatDate(date?: string) {
  * @param date - The date string if null will use current
  * @returns The formatted date
  */
-export function formatDateYear(date?: string) {
-  return format(new Date(date ?? new Date()), "dd/MM/yyyy")
-}
+export const formatDateYear = (date?: string) =>
+  format(new Date(date ?? new Date()), "dd/MM/yyyy")
 
 /**
  * Formats provided date string to eeee dd/MM/yyyy
  * @param date - The date string if null will use current
  * @returns The formatted date with a week name in front
  */
-export function formatDateWeek(date?: string) {
-  //@ts-expect-error locale throws error even though it shouldn't
-  return capitalizeFirstLetter(
-    format(new Date(date ?? new Date()), "eeee dd/MM/yyyy", { locale: pl })
-  )
+export const formatDateWeek = (date?: string) =>
+  // @ts-ignore - locale is not in the types
+  format(new Date(date ?? new Date()), "eeee dd/MM/yyyy", { locale: pl })
+
+export const getRandomImg = () => {
+  const random = Math.floor(Math.random() * 3) + 1
+
+  return `/cards/nawigacja-szkolna-${random}.png`
 }

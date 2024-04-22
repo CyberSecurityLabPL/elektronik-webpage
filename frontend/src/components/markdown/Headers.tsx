@@ -5,7 +5,7 @@ const fontSizes = {
   h1: "text-2xl sm:text-4xl",
   h2: "text-xl sm:text-3xl",
   h3: "text-lg sm:text-2xl",
-  shared: "pt-4 pb-2 font-semibold",
+  shared: "pt-2 pb-2 font-semibold",
 }
 
 export default function H1({ children }: PropsWithChildren<{}>) {

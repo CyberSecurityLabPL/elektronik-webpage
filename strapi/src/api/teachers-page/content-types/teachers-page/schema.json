@@ -1,0 +1,32 @@
+{
+  "kind": "singleType",
+  "collectionName": "teachers_pages",
+  "info": {
+    "singularName": "teachers-page",
+    "pluralName": "teachers-pages",
+    "displayName": "Teachers Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    },
+    "teacher_groups": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::teacher-group.teacher-group"
+    }
+  }
+}

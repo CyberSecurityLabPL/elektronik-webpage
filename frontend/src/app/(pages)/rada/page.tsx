@@ -51,7 +51,7 @@ export default function Page() {
           Zobacz regulamin
         </Button>
       </Header>
-      <div className="my-2 flex flex-wrap justify-center">
+      <div className=" flex gap-4 flex-wrap justify-center">
         {data.map((item) => (
           <ParentCard
             key={item.name}
