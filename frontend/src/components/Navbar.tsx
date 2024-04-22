@@ -19,7 +19,7 @@ export default async function Navbar({ data }: { data?: any }) {
         <Navigation navItems={navItems} />
       </div>
       <div className="  flex items-center justify-center px-8 ">
-        <div className="hidden flex-col-reverse gap-4 lg:flex  xl:flex-row">
+        <div className="h-full hidden flex-col-reverse  gap-2 lg:flex items-bottom xl:items-center xl:flex-row">
           <Button variant={"secondary"} asChild>
             <Link href={"/"}>Plan Lekcji</Link>
             {/* <Link href={data.timetable.link ?? 'https://zseis.vercel.app/plan?timetableId=o18'}>{data.timetable.title ?? "Plan Lekcji"}</Link> */}
