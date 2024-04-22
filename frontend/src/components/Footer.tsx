@@ -61,7 +61,10 @@ function LinkPanel({
 //components for main panel
 function LinkItem({ name, href }: { name: string; href: string }) {
   return (
-    <Link className="text-xs font-medium text-slate-200" href={href}>
+    <Link
+      className="text-xs font-medium text-slate-200 hover:text-white hover:underline"
+      href={href}
+    >
       {name}
     </Link>
   )
@@ -73,7 +76,7 @@ function SocialMedia() {
       <div className="flex justify-center max-xl:w-full xl:h-full xl:flex-col ">
         <LinkIcon
           icon={Facebook}
-          href="https://www.facebook.com/zgelektronik/?locale=pl_PL"
+          href="https://www.facebook.com/zgelektronik/"
         />
         <LinkIcon
           icon={Github}
@@ -149,13 +152,22 @@ function MainPanel() {
     </div>
   )
 }
-const authors = ["Krzysiek", "Kacper", "Mikołaj", "Wojtek", "Filipek"]
 function Copyrights() {
   return (
     <div className="flex flex-col justify-around gap-4">
-      <div className="flex items-center justify-center px-4 text-center text-base font-semibold text-background">
+      <div className="flex items-center justify-center px-4 text-center text-base text-background">
         {/* make names bold without char ,*/}
-        Made with 🍷 by Kacper, Krzysiek, Mikołaj, Wojtek & Filip
+        Made with 🍷 by{" "}
+        {["Krzysiek", "Kacper", "Mikołaj", "Wojtek", "Filipek"].map(
+          (name, i) => (
+            <>
+              {i !== 0 ? <>, &nbsp;</> : <>&nbsp;</>}
+              <span className="font-bold" key={name}>
+                {name}
+              </span>
+            </>
+          )
+        )}
       </div>
       <div className="flex items-center justify-center px-4 text-center text-xs text-slate-400">
         @Copyright 2001-2024 Zespół Szkół Elektronicznych i Samochodowych

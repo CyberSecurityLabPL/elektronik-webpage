@@ -1,29 +1,24 @@
 "use client"
-import Image from "next/image"
-import React from "react"
-import { Button } from "./ui/button"
-import Link from "next/link"
-import { revalidateTag } from "next/cache"
-import { Navigation } from "./Navigation"
-import MobileNavigation from "./MobileNavigation"
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Menu } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import MobileNavigation from "./MobileNavigation"
+import { Navigation } from "./Navigation"
+import { Button } from "./ui/button"
 
 export default function Navbar({ data }: { data?: any }) {
-  // revalidateTag('navigation')
-
   return (
     <div className="relative flex h-32 w-full justify-between ">
       <div className=" flex items-center justify-center px-8 ">
         <Link href={"/"} passHref>
-          <Image src={"logo.svg"} width={80} height={60} alt="Logo" />
+          <Image src={"/logo.svg"} width={80} height={60} alt="Logo" />
         </Link>
       </div>
       <div className="absolute left-1/2 top-1/2 z-50 hidden -translate-x-1/2 -translate-y-1/2 items-center justify-center lg:flex">

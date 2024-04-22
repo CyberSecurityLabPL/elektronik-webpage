@@ -24,7 +24,7 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Navbar data={data} />
-        <div className="relative flex min-h-[calc(100vh-100px)] w-full justify-center">
+        <div className="relative flex min-h-[calc(100vh-128px)] w-full justify-center">
           {children}
         </div>
         <Footer />

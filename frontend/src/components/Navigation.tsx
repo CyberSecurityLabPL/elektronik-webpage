@@ -151,7 +151,7 @@ export function Navigation() {
               <li className="row-span-3">
                 <NavigationMenuLink asChild>
                   <a
-                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-nav bg-cover p-6 text-background no-underline outline-none focus:shadow-md"
+                    className="bg-nav-1 flex h-full w-full select-none flex-col justify-end rounded-md bg-cover p-6 text-background no-underline outline-none focus:shadow-md"
                     href="https://www.instagram.com/zofiki/"
                   >
                     <Accessibility className="h-6 w-6" />
@@ -175,11 +175,51 @@ export function Navigation() {
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        {navItems.map((item) => (
+        {navItems.map((item, index) => (
           <NavigationMenuItem key={item.title}>
             <NavigationMenuTrigger>{item.title}</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                {index === 0 ? (
+                  <li className="row-span-3">
+                    <NavigationMenuLink asChild>
+                      <a
+                        className="bg-nav-2 flex h-full w-full select-none flex-col justify-end rounded-md bg-cover p-6 text-background no-underline outline-none focus:shadow-md"
+                        href="https://www.instagram.com/zofiki/"
+                      >
+                        <Accessibility className="h-6 w-6" />
+                        <div className="mb-2 mt-4 text-lg font-medium">
+                          Galeria
+                        </div>
+                        <p className="text-sm leading-tight text-background">
+                          Beautifully designed woman that you can copy and paste
+                          into your apps. Accessible. Customizable. Open Source.
+                        </p>
+                      </a>
+                    </NavigationMenuLink>
+                  </li>
+                ) : (
+                  index === 1 && (
+                    <li className="row-span-3">
+                      <NavigationMenuLink asChild>
+                        <a
+                          className="bg-nav-3 flex h-full w-full select-none flex-col justify-end rounded-md bg-cover p-6 text-background no-underline outline-none focus:shadow-md"
+                          href="https://www.instagram.com/zofiki/"
+                        >
+                          <Accessibility className="h-6 w-6" />
+                          <div className="mb-2 mt-4 text-lg font-medium">
+                            Galeria
+                          </div>
+                          <p className="text-sm leading-tight text-background">
+                            Beautifully designed woman that you can copy and
+                            paste into your apps. Accessible. Customizable. Open
+                            Source.
+                          </p>
+                        </a>
+                      </NavigationMenuLink>
+                    </li>
+                  )
+                )}
                 {item.content.map((tab) => (
                   <ListItem key={tab.title} title={tab.title} href={tab.href}>
                     {tab.description}
