@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "teacher_groups",
+  "info": {
+    "singularName": "teacher-group",
+    "pluralName": "teacher-groups",
+    "displayName": "Teacher Group",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "teachers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::teacher.teacher"
+    }
+  }
+}

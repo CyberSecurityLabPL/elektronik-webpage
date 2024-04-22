@@ -31,16 +31,16 @@ export default function Sponsors() {
       <m.div
         className="absoulte left-0 flex gap-12"
         animate={{
-          // fix this animation
-          x: ["0%", "-80%"],
+          x: ["0%", "-33.69%"],
           transition: {
             ease: "linear",
-            duration: 48,
+            repeatType: "loop",
+            duration: 28,
             repeat: Infinity,
           },
         }}
       >
-        {[...images, ...images].map((image) => (
+        {[...images, ...images, ...images].map((image) => (
           <div
             key={image.src}
             className="relative flex h-[100px] min-w-64 items-center justify-center overflow-hidden rounded-lg "

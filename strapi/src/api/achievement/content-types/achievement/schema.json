@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "achievements",
+  "info": {
+    "singularName": "achievement",
+    "pluralName": "achievements",
+    "displayName": "Achievement"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}
