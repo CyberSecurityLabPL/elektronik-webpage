@@ -66,7 +66,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                     )}
                     {item.links.map((tab: any) => (
                       <ListItem key={tab.name} title={tab.name} href={tab.href}>
-                        {tab.description}
+                        {tab.description ?? "Brak opisu!"}
                       </ListItem>
                     ))}
                   </ul>
