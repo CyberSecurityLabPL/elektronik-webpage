@@ -10,8 +10,8 @@ export default async function SubstitutionPage() {
   return (
     <main className="flex w-full flex-col items-center gap-4">
       <Header title="Zastępstwa" subtitle={formatDateWeek(data?.date)} />
-      <div className="h-fit min-h-96 w-3/4 rounded-lg border bg-background p-4 shadow-sm">
-        <div className="px-2 py-2 text-xs sm:text-base">
+      <div className="h-fit min-h-96 w-3/4 rounded-lg border bg-background p-3 shadow-sm">
+        <div className="px-2  text-xs sm:text-base">
           {renderMarkdown(data?.content ?? "Couldn't load content!", {
             components: {
               h1: H1,
