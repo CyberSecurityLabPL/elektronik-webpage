@@ -1,27 +1,8 @@
-"use client"
-<<<<<<< HEAD
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Menu } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import MobileNavigation from "./MobileNavigation"
 import { Navigation } from "./Navigation"
 import { Button } from "./ui/button"
-=======
-import Image from "next/image"
-import React from "react"
-import { Button } from "./ui/button"
-import Link from "next/link"
-import { revalidateTag } from "next/cache"
-import { Navigation } from "./Navigation"
-import MobileNavigation from "./MobileNavigation"
->>>>>>> 6d48740f1d3d1c7a22260fa8897198c4cfef016d
 
 export default function Navbar({ data }: { data?: any }) {
   return (
