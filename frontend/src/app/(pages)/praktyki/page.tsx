@@ -21,7 +21,7 @@ const page = async () => {
       <Header
         title={data?.heading ?? "Praktyki Zawodowe"}
         subtitle={
-          data?.description ??
+          data.description ??
           "Tutaj zobaczysz harmonogram praktyk na rok 2023/2024. Sprawdź kiedy twoja klasa ma praktyki"
         }
       />
