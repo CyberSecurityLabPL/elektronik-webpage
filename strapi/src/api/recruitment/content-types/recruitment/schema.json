@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "recruitments",
+  "info": {
+    "singularName": "recruitment",
+    "pluralName": "recruitments",
+    "displayName": "Recruitment",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "profession": {
+      "type": "string"
+    },
+    "spaces": {
+      "type": "integer"
+    },
+    "groups": {
+      "type": "integer"
+    }
+  }
+}

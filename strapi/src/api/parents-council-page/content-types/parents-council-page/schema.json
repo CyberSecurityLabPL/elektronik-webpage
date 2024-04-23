@@ -1,0 +1,35 @@
+{
+  "kind": "singleType",
+  "collectionName": "parents_council_pages",
+  "info": {
+    "singularName": "parents-council-page",
+    "pluralName": "parents-council-pages",
+    "displayName": "Parents Council Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    },
+    "parents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::parent.parent"
+    },
+    "bankAccountNumber": {
+      "type": "string"
+    }
+  }
+}
