@@ -26,7 +26,7 @@ export default async function Page() {
           >
             <JobCard
               name={item.name}
-              src={item.image}
+              src={item.image ?? "/default/job.svg"}
               date={item.date}
               minPay={item.minPay}
               maxPay={item.maxPay}
