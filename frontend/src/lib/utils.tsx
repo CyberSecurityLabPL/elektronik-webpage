@@ -105,5 +105,5 @@ export const formatDateWeek = (date?: string) =>
 export const getRandomImg = () : string => {
   const random = Math.floor(Math.random() * 3) + 1
 
-  return `/cards/nawigacja-szkolna-${random}.png`
+  return `/cards/friends.png`
 }
