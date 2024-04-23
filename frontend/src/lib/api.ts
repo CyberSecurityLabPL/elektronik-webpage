@@ -143,3 +143,27 @@ export async function getPage(page: string) {
     console.error(error)
   }
 }
+
+export async function getParents() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get(
+      "/parents-council-page?populate[parents]=true"
+    )
+
+    return flattenStrapiResponse(data)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export async function getAchievements() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get(
+      "/achievements-page?populate[achievements]=truee"
+    )
+
+    return flattenStrapiResponse(data)
+  } catch (error) {
+    console.error(error)
+  }
+}
