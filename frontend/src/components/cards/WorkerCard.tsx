@@ -24,7 +24,7 @@ export default function WorkerCard({
   duty: string
 }) {
   return (
-    <Card className=" flex h-72 w-4/5 sm:w-96 md:w-[32rem]  shadow-sm">
+    <Card className=" flex h-60 w-4/5 sm:w-96 md:w-[32rem]  shadow-sm">
       <div className="relative hidden md:block h-full w-1/3">
         <Image
           className="rounded-l-md "

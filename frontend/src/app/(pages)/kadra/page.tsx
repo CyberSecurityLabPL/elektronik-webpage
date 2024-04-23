@@ -21,7 +21,7 @@ export default async function Page() {
                   key={teacher.fullname}
                   name={teacher.fullname}
                   titles={teacher.titles}
-                  src={teacher.image.url ?? ""}
+                  src={teacher.image.url ?? "/default/person.svg"}
                   position={teacher.position}
                   description={teacher.description}
                   duty={teacher?.duty ?? "Zawsze"}
