@@ -46,10 +46,11 @@ export function ContactForm() {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    router.push(`mailto:sekretariat@zseis.zgora.pl?subject=${values.title}&body=${values.content}`)
+    router.push(
+      `mailto:sekretariat@zseis.zgora.pl?subject=${values.title}&body=${values.content}`
+    )
     setLoading(true)
   }
-
 
   return (
     <Form {...form}>

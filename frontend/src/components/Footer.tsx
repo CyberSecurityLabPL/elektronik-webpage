@@ -132,14 +132,15 @@ async function MainPanel() {
 function Copyrights() {
   return (
     <div className="flex flex-col justify-around gap-4">
-      <div className="flex items-center justify-center px-4 text-center text-base text-background">
+      <div className="flex flex-wrap items-center justify-center text-center text-base text-background sm:px-4">
         {/* make names bold without char ,*/}
         Made with 🍷 by{" "}
-        {["Krzysiek", "Kacper", "Mikołaj", "Wojtek", "Filipek"].map(
+        {["Krzysiek", "Mikołaj", "Filipek", "Wojtek", "Kacper"].map(
           (name, i) => (
             <span key={name}>
-              {i !== 0 ? <>,&nbsp;</> : <>&nbsp;</>}
-              <span className="font-bold">{name}</span>
+              <>&nbsp;</>
+              <span className="font-bold">{`${name}`}</span>
+              {i !== 4 ? <>,</> : null}
             </span>
           )
         )}

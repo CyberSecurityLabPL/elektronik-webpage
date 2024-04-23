@@ -30,6 +30,8 @@ export default async function Page({
     params: params.article,
   })
 
+  console.log(article)
+
   return (
     <article className="xlg:prose-xl prose prose-cyan flex w-full flex-col items-center gap-4">
       {!article ? (

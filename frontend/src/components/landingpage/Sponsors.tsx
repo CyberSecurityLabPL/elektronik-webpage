@@ -27,7 +27,7 @@ const images = [
 
 export default function Sponsors() {
   return (
-    <div className="z-30 flex h-[50vh] w-full items-center justify-center bg-sponsors-bg bg-cover  ">
+    <div className="z-30 flex h-[50vh] w-full items-start justify-center">
       <m.div
         className="absoulte left-0 flex gap-12"
         animate={{

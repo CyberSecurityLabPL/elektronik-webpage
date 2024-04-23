@@ -10,7 +10,7 @@ const Layout = ({
   return (
     <PageWrapper>
       <Navbar />
-      <div className="relative flex min-h-[calc(100vh-128px)] w-full justify-center">
+      <div className="relative flex min-h-[calc(100vh-128px)] w-full justify-center px-16">
         {children}
       </div>
 
