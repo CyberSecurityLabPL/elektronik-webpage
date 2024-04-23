@@ -13,18 +13,18 @@ services:
       - NODE_ENV=production
       - OUTPUT=standalone
     env_file:
-      - .env.docker
+      - frontend/.env.docker
     depends_on:
       - backend
   backend:
     container_name: strapi
     platform: linux/arm64/v8
     build:
-      context: backend
-      dockerfile: backend/Dockerfile
+      context: strapi
+      dockerfile: Dockerfile
     image: strapi:latest
     restart: unless-stopped
-    env_file: .env
+    env_file: strapi/.env
     environment:
       JWT_SECRET: ${JWT_SECRET}
       ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
