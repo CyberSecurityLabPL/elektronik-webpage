@@ -28,7 +28,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                         <NavigationMenuLink asChild>
                           <a
                             className={`flex h-full w-full select-none flex-col justify-end rounded-md bg-nav-${index+1} bg-cover p-6 text-background no-underline outline-none focus:shadow-md`}
-                            href="https://www.instagram.com/zofiki/"
+                            href="/galeria"
                           >
                             <Accessibility className="h-6 w-6" />
                             <div className="mb-2 mt-4 text-lg font-medium">
@@ -44,7 +44,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                       </li>
                     ) : null}
                     {item.links.map((tab: any) => (
-                      <ListItem key={tab.name} title={tab.name} href={tab.href}>
+                      <ListItem key={tab.name} title={tab.name} href={`/${tab.href}`}>
                         {tab.description ?? "Brak opisu!"}
                       </ListItem>
                     ))}
