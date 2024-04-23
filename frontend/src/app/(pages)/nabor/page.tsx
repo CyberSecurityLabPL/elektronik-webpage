@@ -11,39 +11,17 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import { getRecruitments } from "@/lib/api"
 
-export default function Page() {
-  const year = new Date().getFullYear()
-
-  const data = [
-    {
-      name: "Technik Programista",
-      spaces: 23,
-      teams: 1,
-    },
-    {
-      name: "Technik Mechatronik",
-      spaces: 23,
-      teams: 1,
-    },
-    {
-      name: "Technik Elektryk",
-      spaces: 23,
-      teams: 1,
-    },
-    {
-      name: "Technik Informatyk",
-      spaces: 23,
-      teams: 1,
-    },
-  ]
+export default async function Page() {
+  const data = await getRecruitments()
 
   return (
     <main className="flex w-full flex-col items-center">
       <div className="flex flex-col items-center justify-center gap-4 pb-8">
         <Header
-          title={`Nabór ${year}`}
-          subtitle={`Rozpoczynamy nabór na rok szkolny ${year}! Nasza szkoła to miejsce, gdzie każdy uczeń znajdzie wsparcie, inspirację i możliwości rozwoju. Dołącz do naszej społeczności, gdzie stawiamy na aktywne metody nauczania, rozwój kompetencji społecznych i kreatywność. Niezależnie od zainteresowań - zapraszamy do aplikowania i dołączenia do naszego wspaniałego środowiska edukacyjnego!`}
+          title={data?.heading ?? "Nabór"}
+          subtitle={data?.description ?? "Opis"}
         />
         <div className="px-4 text-center text-xs font-semibold lg:text-lg">
           Jesteś już zdecydowany wypełnij wniosek o przyjęcie już teraz!
@@ -82,16 +60,16 @@ export default function Page() {
               </TableRow>
             </TableHeader>
             <TableBody className="text-xs lg:text-base">
-              {data.map((row) => (
+              {data.recruitments?.map((row: any, index: number) => (
                 <TableRow
                   className="bg-background hover:bg-muted/90"
-                  key={row.name}
+                  key={row.profession + index}
                 >
-                  <TableCell className="font-medium">{row.name}</TableCell>
+                  <TableCell className="font-medium">{row.profession}</TableCell>
                   <TableCell className="text-center">{row.spaces}</TableCell>
-                  <TableCell className="text-center">{row.teams}</TableCell>
+                  <TableCell className="text-center">{row.groups}</TableCell>
                 </TableRow>
-              ))}
+              )) ?? "Brak danych!"}
             </TableBody>
           </Table>
         </div>
