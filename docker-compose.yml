@@ -1,9 +1,27 @@
-version: '3'
+version: "3.8"
+
 services:
-  strapi:
+  frontend:
+    image: "school-website"
+    container_name: "school-website"
+    build:
+      context: frontend
+      dockerfile: frontend/Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - OUTPUT=standalone
+    env_file:
+      - .env.docker
+    depends_on:
+      - backend
+  backend:
     container_name: strapi
     platform: linux/arm64/v8
-    build: .
+    build:
+      context: backend
+      dockerfile: backend/Dockerfile
     image: strapi:latest
     restart: unless-stopped
     env_file: .env
@@ -32,7 +50,6 @@ services:
     platform: linux/arm64/v8
     container_name: db
     restart: always
-    # env_file: .env
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_DATABASE: ${DATABASE_NAME}
