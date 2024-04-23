@@ -1,39 +1,28 @@
 import AchieveCard from "@/components/cards/AchieveCard"
 import AchieveDialog from "@/components/AchieveDialog"
 import Header from "@/components/Header"
+import { getAchievements } from "@/lib/api"
 
-export default function Page() {
-  const data = [
-    {
-      name: "Wygrana w biegach",
-      src: null,
-      date: "10.05.2019r",
-      opis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    },
-    {
-      name: "Złoty puchar w szachach",
-      date: "10.05.2019r",
-      opis: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-    },
-  ]
+export default async function Page() {
+  const data = await getAchievements()
 
   return (
     <main className="flex w-full flex-col items-center">
-      <Header title="Osiągnięcia" subtitle="" />
+      <Header title={data.heading} subtitle={data.description} />
       <div className="mt-4 flex flex-col items-center justify-center">
-        {data.map((item) => (
+        {data?.achievements.map((item:any) => (
           <AchieveDialog
-            key={item.name}
+            key={item.title}
             date={item.date}
-            opis={item.opis}
-            name={item.name}
+            opis={item.description}
+            name={item.title}
           >
             <AchieveCard
               key={item.name}
-              name={item.name}
-              src={item?.src ?? "/default/trophy.svg"}
+              name={item.title}
+              src={item.image?.url ?? "/default/trophy.svg"}
               date={item.date}
-              opis={item.opis}
+              opis={item.description}
             />
           </AchieveDialog>
         ))}

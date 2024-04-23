@@ -52,7 +52,7 @@ export default function NewsCard({
           src={"/cards/car-job.jpg"}
           alt="Miniaturka artykułu"
           fill
-          className="object-fill"
+          className="object-cover"
         />
       </div>
 

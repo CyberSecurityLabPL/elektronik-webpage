@@ -9,13 +9,11 @@ import {
 import Image from "next/image"
 
 export default function ParentCard({
-  titles,
   name,
   src,
   position,
   description,
 }: {
-  titles: string
   name: string
   src: string
   position: string
@@ -34,9 +32,6 @@ export default function ParentCard({
       </div>
       <div className="h-full w-full md:w-2/3">
         <CardHeader>
-          <CardDescription className="text-xs font-bold leading-tight text-slate-400">
-            {titles}
-          </CardDescription>
           <CardTitle className="text-2xl font-bold leading-none text-primary">
             {name}
           </CardTitle>

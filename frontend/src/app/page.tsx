@@ -13,7 +13,7 @@ export default async function Home() {
   return (
     <main className="flex w-full flex-col justify-center gap-16">
       <header className="flex flex-col ">
-        <Hero />
+        <Hero data={data?.blocks[0]}/>
         <div className="h-64 w-full bg-wave-transition bg-repeat-x"></div>
       </header>
       {/* Main content */}

@@ -26,17 +26,17 @@ const page = async () => {
         }
       />
       <div className="flex w-full items-center justify-center">
-        <div className="w-11/12 pt-8 sm:w-1/2">
+        <div className="w-full  pt-8 md:w-3/4 xl:w-1/2">
           <Table className="bg-white pt-8 ">
-            <TableHeader className="">
+            <TableHeader className="text-xs md:text-base ">
               <TableRow className="grid grid-cols-3">
-                <TableHead className="text-bold flex items-center justify-center text-lg">
+                <TableHead className="text-bold flex items-center justify-center ">
                   Klasa
                 </TableHead>
-                <TableHead className="text-bold flex items-center justify-center text-lg">
+                <TableHead className="text-bold flex items-center justify-center ">
                   Specjalizacja
                 </TableHead>
-                <TableHead className="text-bold flex items-center justify-center text-lg">
+                <TableHead className="text-bold flex items-center justify-center ">
                   Termin Praktyk
                 </TableHead>
               </TableRow>
