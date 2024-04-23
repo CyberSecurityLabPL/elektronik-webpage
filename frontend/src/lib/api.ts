@@ -119,6 +119,18 @@ export async function getTeachers() {
   }
 }
 
+export async function getRecruitments() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get(
+      "/recruitments-page?populate=*"
+    )
+
+    return flattenStrapiResponse(data)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 export async function getPage(page: string) {
   try {
     const { data }: AxiosResponse<any> = await api.get(
