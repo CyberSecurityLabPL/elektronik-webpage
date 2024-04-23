@@ -38,9 +38,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                               Galeria
                             </div>
                             <p className="text-sm leading-tight text-background">
-                              Beautifully designed woman that you can copy and
-                              paste into your apps. Accessible. Customizable.
-                              Open Source.
+                              Zobacz naszą galerie szkolną gdzie znajdziesz przeróżne zdjęcia naszej szkoły! :)
                             </p>
                           </a>
                         </NavigationMenuLink>

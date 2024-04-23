@@ -5,13 +5,13 @@ import { Options } from "react-markdown"
 const options: Options = {
     components: {
       h1: ({ children }) => (
-        <MarkdownHeader>{children}</MarkdownHeader>
+        <MarkdownHeader Variant="h1">{children}</MarkdownHeader>
       ),
       h2: ({ children }) => (
-        <MarkdownHeader>{children}</MarkdownHeader>
+        <MarkdownHeader Variant="h2">{children}</MarkdownHeader>
       ),
       h3: ({ children }) => (
-        <MarkdownHeader>{children}</MarkdownHeader>
+        <MarkdownHeader Variant="h3">{children}</MarkdownHeader>
       ),
       hr: () => <Separator className="my-2" />,
       ul: ({ children }) => (

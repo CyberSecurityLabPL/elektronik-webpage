@@ -14,11 +14,14 @@ export default async function Page({ params }: { params: { page: string } }) {
         subtitle={data?.description ?? `Page /${params.page} not found!`}
       />
       <div
-        className={`w-11/12 rounded-sm bg-background p-2 text-xs shadow-sm sm:text-base ${data?.content ? "" : "hidden"}`}
+        className={`w-full rounded-sm bg-background p-2 text-xs shadow-sm sm:text-base ${data?.content ? "" : "hidden"}`}
       >
-        {data?.content
-          ? renderMarkdown(data.content, markdownOptions)
-          : null}
+        <div className="prose p-4">
+          {data?.content
+            ? renderMarkdown(data.content)
+            : null}
+        </div>
+        
       </div>
     </main>
   )
