@@ -8,11 +8,8 @@ export default async function Page() {
 
   return (
     <main className="flex w-full flex-col items-center">
-      <Header
-        title={data.heading}
-        subtitle={data?.description}
-      >
-        <div className="text-center px-4">
+      <Header title={data.heading} subtitle={data?.description}>
+        <div className="px-4 text-center">
           Numer konta rady rodziców:
           <span className="font-bold">{data.bankAccountNumber}</span>
         </div>
@@ -20,7 +17,7 @@ export default async function Page() {
           Zobacz regulamin
         </Button>
       </Header>
-      <div className=" flex gap-4 flex-wrap justify-center">
+      <div className=" flex flex-wrap justify-center gap-4">
         {data?.parents.map((item: any) => (
           <ParentCard
             key={item.fullname}

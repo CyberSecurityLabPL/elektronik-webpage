@@ -5,6 +5,7 @@ import { getNavigation } from "@/lib/api"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
+import Providers from "@/components/Providers"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -23,11 +24,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Navbar data={data} />
-        <div className="relative flex min-h-[calc(100vh-128px)] w-full justify-center">
-          {children}
-        </div>
-        <Footer />
+        <Providers>{children}</Providers>
         <Toaster />
       </body>
     </html>

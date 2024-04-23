@@ -27,7 +27,7 @@ const images = [
 
 export default function Sponsors() {
   return (
-    <div className="flex h-[50vh] w-full items-center justify-center bg-sponsors-bg bg-cover  ">
+    <div className="z-30 flex h-[50vh] w-full items-center justify-center bg-sponsors-bg bg-cover  ">
       <m.div
         className="absoulte left-0 flex gap-12"
         animate={{
@@ -42,7 +42,7 @@ export default function Sponsors() {
       >
         {[...images, ...images, ...images].map((image, index) => (
           <div
-            key={index+image.src}
+            key={index + image.src}
             className="relative flex h-[100px] min-w-64 items-center justify-center overflow-hidden rounded-lg "
           >
             <Link href={image.link}>

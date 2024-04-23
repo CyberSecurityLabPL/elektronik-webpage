@@ -12,7 +12,10 @@ export default async function SubstitutionPage() {
       <Header title="Zastępstwa" subtitle={formatDateWeek(data?.date)} />
       <div className="h-fit min-h-96 w-3/4 rounded-lg border bg-background p-3 shadow-sm">
         <div className="px-2  text-xs sm:text-base">
-          {renderMarkdown(data?.content ?? "Couldn't load content!", markdownOptions)}
+          {renderMarkdown(
+            data?.content ?? "Couldn't load content!",
+            markdownOptions
+          )}
         </div>
       </div>
     </main>

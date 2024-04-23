@@ -17,7 +17,7 @@ export default function Error({
   }, [error])
 
   return (
-    <div className="flex flex-col  items-center">
+    <div className="flex h-screen w-full flex-col items-center  justify-center">
       <Header
         title="Coś poszło nie tak"
         subtitle={"Wystąpiły nie oczekiwane błędy, spróbuj ponownie później"}
@@ -25,7 +25,7 @@ export default function Error({
       <Button
         onClick={
           // Attempt to recover by trying to re-render the segment
-            () => reset()
+          () => reset()
         }
       >
         Try again

@@ -17,11 +17,8 @@ export default async function Page({ params }: { params: { page: string } }) {
         className={`w-full rounded-sm bg-background p-2 text-xs shadow-sm sm:text-base ${data?.content ? "" : "hidden"}`}
       >
         <div className="prose p-4">
-          {data?.content
-            ? renderMarkdown(data.content)
-            : null}
+          {data?.content ? renderMarkdown(data.content) : null}
         </div>
-        
       </div>
     </main>
   )

@@ -20,8 +20,8 @@ export default function ParentCard({
   description: string
 }) {
   return (
-    <Card className=" flex h-64 w-4/5 sm:w-96 md:w-[32rem]  shadow-sm">
-      <div className="relative hidden md:block h-full w-1/3">
+    <Card className=" flex h-64 w-4/5 shadow-sm sm:w-96  md:w-[32rem]">
+      <div className="relative hidden h-full w-1/3 md:block">
         <Image
           className="rounded-l-md "
           alt={`${name} img`}

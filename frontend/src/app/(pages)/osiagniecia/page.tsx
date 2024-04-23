@@ -10,7 +10,7 @@ export default async function Page() {
     <main className="flex w-full flex-col items-center">
       <Header title={data.heading} subtitle={data.description} />
       <div className="mt-4 flex flex-col items-center justify-center">
-        {data?.achievements.map((item:any) => (
+        {data?.achievements.map((item: any) => (
           <AchieveDialog
             key={item.title}
             date={item.date}

@@ -65,7 +65,9 @@ export default async function Page() {
                   className="bg-background hover:bg-muted/90"
                   key={row.profession + index}
                 >
-                  <TableCell className="font-medium">{row.profession}</TableCell>
+                  <TableCell className="font-medium">
+                    {row.profession}
+                  </TableCell>
                   <TableCell className="text-center">{row.spaces}</TableCell>
                   <TableCell className="text-center">{row.groups}</TableCell>
                 </TableRow>

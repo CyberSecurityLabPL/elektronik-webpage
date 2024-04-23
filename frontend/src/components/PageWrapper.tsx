@@ -7,7 +7,7 @@ const PageWrapper = ({ children }: PropsWithChildren<{}>) => (
     // initial="hidden"
     // whileInView="show"
     // viewport={{ once: true, amount: 0.25 }}
-    className="relative flex flex-col items-center z-0 w-full max-w-screen-2xl px-6 sm:px-16"
+    className="relative z-0 flex w-full max-w-screen-2xl flex-col items-center px-6 sm:px-16"
   >
     {children}
   </MotionDiv>

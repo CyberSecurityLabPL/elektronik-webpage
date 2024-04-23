@@ -33,10 +33,11 @@ export default function NewsCard({
       href={link}
       passHref
       className={cn(
-        "relative flex flex-col gap-2 rounded-3xl p-4 transition-colors hover:bg-slate-50 min-w-64 lg:w-full",
+        "relative flex min-w-64 flex-col gap-2 rounded-3xl p-4 transition-colors hover:bg-slate-50 lg:w-full",
         {
           // 12
-          " md:col-span-2 lg:col-span-3 h-full w-full max-w-full  md:flex-row md:gap-12": isFeatured,
+          " h-full w-full max-w-full md:col-span-2 md:flex-row  md:gap-12 lg:col-span-3":
+            isFeatured,
         },
         className
       )}
@@ -45,7 +46,7 @@ export default function NewsCard({
       <div
         className={cn(
           "relative h-[200px] w-full overflow-hidden rounded-3xl",
-          isFeatured ? "h-[250px] md:h-full w-full md:w-3/5" : ""
+          isFeatured ? "h-[250px] w-full md:h-full md:w-3/5" : ""
         )}
       >
         <Image
@@ -57,7 +58,12 @@ export default function NewsCard({
       </div>
 
       {/* CONTENT */}
-      <div className={cn("flex flex-col", isFeatured ? "w-full md:w-2/5 py-4" : "")}>
+      <div
+        className={cn(
+          "flex flex-col",
+          isFeatured ? "w-full py-4 md:w-2/5" : ""
+        )}
+      >
         {/* DATE */}
         <span className="prose-sm self-start font-semibold text-zinc-400">
           {format(new Date(new Date()), "dd MMM yyyy ", {

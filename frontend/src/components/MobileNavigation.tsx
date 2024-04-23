@@ -82,7 +82,7 @@ export default function MobileNavigation() {
             <Button asChild>
               <Link href={"/"}>E-dziennik</Link>
             </Button>
-            </DrawerClose>
+          </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
     </Drawer>

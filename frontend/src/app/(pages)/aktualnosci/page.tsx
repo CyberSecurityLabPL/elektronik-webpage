@@ -21,10 +21,7 @@ async function page() {
         title="Aktualności"
         subtitle="O to co dzieje się w naszej szkole!"
       />
-      <div  className="grid w-full  grid-cols-1  gap-4 md:grid-cols-2 lg:grid-cols-3  ">
-        
-
-        
+      <div className="grid w-full  grid-cols-1  gap-4 md:grid-cols-2 lg:grid-cols-3  ">
         {
           <NewsCard
             key={articles[0].id}
@@ -58,7 +55,7 @@ async function page() {
                 />
               ))
           : "Brak artykułów do wyświetlenia"}
-        </div>
+      </div>
     </div>
   )
 }

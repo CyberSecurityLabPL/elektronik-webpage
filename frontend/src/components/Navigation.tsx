@@ -30,7 +30,9 @@ export function Navigation({ navItems }: { navItems: any }) {
                         <NavigationMenuLink asChild>
                           <a
                             className={`flex h-full w-full select-none flex-col justify-end rounded-md bg-cover p-6 text-background no-underline outline-none focus:shadow-md`}
-                            style={{backgroundImage: `url(${getRandomImg()})`}}
+                            style={{
+                              backgroundImage: `url(${getRandomImg()})`,
+                            }}
                             href="/galeria"
                           >
                             <Accessibility className="h-6 w-6" />
@@ -38,14 +40,19 @@ export function Navigation({ navItems }: { navItems: any }) {
                               Galeria
                             </div>
                             <p className="text-sm leading-tight text-background">
-                              Zobacz naszą galerie szkolną gdzie znajdziesz przeróżne zdjęcia naszej szkoły! :)
+                              Zobacz naszą galerie szkolną gdzie znajdziesz
+                              przeróżne zdjęcia naszej szkoły! :)
                             </p>
                           </a>
                         </NavigationMenuLink>
                       </li>
                     ) : null}
                     {item.links.map((tab: any) => (
-                      <ListItem key={tab.name} title={tab.name} href={tab.isExternal ? tab.href : `/${tab.href}` ?? ""}>
+                      <ListItem
+                        key={tab.name}
+                        title={tab.name}
+                        href={tab.isExternal ? tab.href : `/${tab.href}` ?? ""}
+                      >
                         {tab.description ?? "Brak opisu!"}
                       </ListItem>
                     ))}
