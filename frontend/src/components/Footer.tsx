@@ -115,7 +115,7 @@ async function MainPanel() {
                       <LinkItem
                         key={`l${index}`}
                         name={link.name ?? "Empty"}
-                        href={link.href ?? ""}
+                        href={link.isExternal ? link.href : `/${link.href}` ?? ""}
                       />
                     ))}
                   </LinkPanel>
