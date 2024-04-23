@@ -29,8 +29,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                       <li className="row-span-3">
                         <NavigationMenuLink asChild>
                           <a
-                            className={`flex h-full w-full select-none flex-col justify-end rounded-md bg-cover p-6 text-background no-underline outline-none focus:shadow-md`}
-                            style={{backgroundImage: `url(${img})`}}
+                            className={`flex h-full w-full select-none flex-col justify-end rounded-md bg-nav-${index+1} bg-cover p-6 text-background no-underline outline-none focus:shadow-md`}
                             href="/galeria"
                           >
                             <Accessibility className="h-6 w-6" />
