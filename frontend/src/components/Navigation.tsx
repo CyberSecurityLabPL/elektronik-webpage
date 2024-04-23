@@ -1,7 +1,7 @@
 "use client"
 import * as React from "react"
 import Link from "next/link"
-import { cn } from "@/lib/utils"
+import { cn, getRandomImg } from "@/lib/utils"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,6 +14,8 @@ import {
 import { Accessibility, BugIcon, ChevronDown } from "lucide-react"
 
 export function Navigation({ navItems }: { navItems: any }) {
+  const img = getRandomImg()
+
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -23,7 +25,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                 <NavigationMenuTrigger>{item.name}</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                    {index < 3 ? (
+                    {index < 1 ? (
                       <li className="row-span-3">
                         <NavigationMenuLink asChild>
                           <a
@@ -44,7 +46,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                       </li>
                     ) : null}
                     {item.links.map((tab: any) => (
-                      <ListItem key={tab.name} title={tab.name} href={`/${tab.href}`}>
+                      <ListItem key={tab.name} title={tab.name} href={tab.isExternal ? tab.href : `/${tab.href}` ?? ""}>
                         {tab.description ?? "Brak opisu!"}
                       </ListItem>
                     ))}

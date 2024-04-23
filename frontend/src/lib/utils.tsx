@@ -102,7 +102,7 @@ export const formatDateWeek = (date?: string) =>
   // @ts-ignore - locale is not in the types
   format(new Date(date ?? new Date()), "eeee dd/MM/yyyy", { locale: pl })
 
-export const getRandomImg = () => {
+export const getRandomImg = () : string => {
   const random = Math.floor(Math.random() * 3) + 1
 
   return `/cards/nawigacja-szkolna-${random}.png`

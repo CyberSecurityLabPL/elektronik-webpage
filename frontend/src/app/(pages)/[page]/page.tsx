@@ -1,8 +1,8 @@
 import Header from "@/components/Header"
 import { renderMarkdown } from "@/lib/utils"
-import H1, { H2, H3 } from "@/components/markdown/Headers"
 import { Separator } from "@/components/ui/separator"
 import { getPage } from "@/lib/api"
+import markdownOptions from "@/components/markdown/MarkdownOptions"
 
 export default async function Page({ params }: { params: { page: string } }) {
   const data = await getPage(params.page)
@@ -17,20 +17,7 @@ export default async function Page({ params }: { params: { page: string } }) {
         className={`w-11/12 rounded-sm bg-background p-2 text-xs shadow-sm sm:text-base ${data?.content ? "" : "hidden"}`}
       >
         {data?.content
-          ? renderMarkdown(data.content, {
-              components: {
-                h1: H1,
-                h2: H2,
-                h3: H3,
-                hr: () => <Separator className="my-2" />,
-                ul: (props) => (
-                  <ul className="list-disc py-2 pl-4">{props.children}</ul>
-                ),
-                ol: (props) => (
-                  <ol className="list-decimal py-2 pl-4">{props.children}</ol>
-                ),
-              },
-            })
+          ? renderMarkdown(data.content, markdownOptions)
           : null}
       </div>
     </main>
