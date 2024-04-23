@@ -1,7 +1,7 @@
 "use client"
 import * as React from "react"
 import Link from "next/link"
-import { cn } from "@/lib/utils"
+import { cn, getRandomImg } from "@/lib/utils"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -14,6 +14,8 @@ import {
 import { Accessibility, BugIcon, ChevronDown } from "lucide-react"
 
 export function Navigation({ navItems }: { navItems: any }) {
+  const img = getRandomImg()
+
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -23,12 +25,13 @@ export function Navigation({ navItems }: { navItems: any }) {
                 <NavigationMenuTrigger>{item.name}</NavigationMenuTrigger>
                 <NavigationMenuContent>
                   <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                    {index < 3 ? (
+                    {index < 1 ? (
                       <li className="row-span-3">
                         <NavigationMenuLink asChild>
                           <a
-                            className={`flex h-full w-full select-none flex-col justify-end rounded-md bg-nav-${index+1} bg-cover p-6 text-background no-underline outline-none focus:shadow-md`}
-                            href="https://www.instagram.com/zofiki/"
+                            className={`flex h-full w-full select-none flex-col justify-end rounded-md bg-cover p-6 text-background no-underline outline-none focus:shadow-md`}
+                            style={{backgroundImage: `url(${img})`}}
+                            href="/galeria"
                           >
                             <Accessibility className="h-6 w-6" />
                             <div className="mb-2 mt-4 text-lg font-medium">
