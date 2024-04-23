@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "recruitments_pages",
+  "info": {
+    "singularName": "recruitments-page",
+    "pluralName": "recruitments-pages",
+    "displayName": "Recruitments Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "recruitments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::recruitment.recruitment"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}
