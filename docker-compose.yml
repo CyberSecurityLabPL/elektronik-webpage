@@ -4,9 +4,7 @@ services:
   frontend:
     image: "school-website"
     container_name: "school-website"
-    build:
-      context: frontend
-      dockerfile: frontend/Dockerfile
+    build: frontend
     ports:
       - "3000:3000"
     environment:
@@ -19,9 +17,7 @@ services:
   backend:
     container_name: strapi
     platform: linux/arm64/v8
-    build:
-      context: strapi
-      dockerfile: Dockerfile
+    build: strapi
     image: strapi:latest
     restart: unless-stopped
     env_file: strapi/.env
@@ -36,7 +32,7 @@ services:
       - ./package.json:/opt/package.json
       - ./package-lock.json:/opt/package-lock.json
       - ./.env:/opt/app/.env
-      - ./public:/opt/app/public # don't set it to /uploads (Krystian Wybranowski reference), because it block import functionallity
+      - ./public:/opt/app/public # don't set it to /uploads, because it blocks import functionallity
       # - ./database/data.db:/opt/app/database/data.db
       - ./types/:/opt/app/types
     ports:

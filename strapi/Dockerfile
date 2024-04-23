@@ -5,7 +5,7 @@ WORKDIR /opt/
 COPY ./package.json ./
 ENV PATH /opt/node_modules/.bin:$PATH
 RUN corepack enable
-COPY ./yarn.lock ./
+# COPY ./yarn.lock ./
 WORKDIR /opt/app
 COPY ./ .
 RUN yarn install --network-timeout 100000
