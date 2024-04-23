@@ -8,10 +8,10 @@ export default async function Page() {
 
   return (
     <main className="flex w-full flex-col items-center">
-      <Header title={data.heading} subtitle={data?.description}>
+      <Header title={data?.heading} subtitle={data?.description}>
         <div className="px-4 text-center">
           Numer konta rady rodziców:
-          <span className="font-bold">{data.bankAccountNumber}</span>
+          <span className="font-bold">{data?.bankAccountNumber}</span>
         </div>
         <Button variant={"outline"} className="my-4">
           Zobacz regulamin
