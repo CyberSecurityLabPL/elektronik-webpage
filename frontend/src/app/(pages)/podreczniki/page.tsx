@@ -8,9 +8,9 @@ export default async function Page() {
   return (
     <main className="flex w-full flex-col items-center">
       <Header
-        title={data?.heading ?? "Example title"}
+        title={data.heading ?? "Example title"}
         subtitle={
-          data?.description ??
+          data.description ??
           "Wykaz podręczników dla klas I-V - przedmioty ogólnokształcące na rok szkolny 2023/2024:"
         }
       />
