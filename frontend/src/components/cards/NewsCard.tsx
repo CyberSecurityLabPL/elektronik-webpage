@@ -78,7 +78,7 @@ export default function NewsCard({
             isFeatured ? "text-2xl md:text-4xl" : ""
           )}
         >
-          {isFeatured ? "Calkiem dlugo tytul xdxd spoko fajny tytul" : title}
+          {title}
         </h3>
 
         {/* DESCRIPTION */}
