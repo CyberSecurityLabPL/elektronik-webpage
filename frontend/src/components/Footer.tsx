@@ -167,7 +167,9 @@ function Creators() {
   return (
     <div className=" flex w-64 flex-col  justify-center py-4">
       <div className="flex justify-center items-center">
-        <Image src={'/logoCSL.svg'} width={200} height={100} alt='CSL logo' />
+        <Link href={"https://cslsoft.pl/"} passHref>
+          <Image src={'/logoCSL.svg'} width={200} height={100} alt='CSL logo' />
+        </Link>
       </div>
     </div>
   )
