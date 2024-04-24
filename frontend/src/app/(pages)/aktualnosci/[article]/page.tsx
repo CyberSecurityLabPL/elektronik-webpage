@@ -31,19 +31,20 @@ export default async function Page({
     params: params.article,
   })
 
-  let creator = article.createdBy?.data === null ? (article.updatedBy) : (article.createdBy)
-  if(Object.keys(creator).length<1) creator = defaultCreator;
+  let creator =
+    article.createdBy?.data === null ? article.updatedBy : article.createdBy
+  if (Object.keys(creator).length < 1) creator = defaultCreator
   const name = creator.firstname + " " + creator.lastname
 
   return (
-    <article className="xlg:prose-xl prose prose-cyan flex w-full flex-col items-center gap-4">
+    <article className="prose prose-cyan flex w-full flex-col items-center gap-4 lg:prose-xl">
       {!article ? (
         <FailedToLoad />
       ) : (
         <div className="flex w-full flex-col items-center gap-4 rounded-xl bg-background">
           {/*  */}
           {/* ARTICLE INFO */}
-          <div className="relative aspect-[5/2] w-full rounded-xl bg-slate-600 sm:aspect-[8/2] sm:rounded-3xl">
+          <div className="relative aspect-[5/2] w-full overflow-hidden rounded-xl sm:aspect-[8/2] sm:rounded-3xl">
             <Image
               className="rounded-[inherit] object-cover"
               fill
@@ -63,9 +64,7 @@ export default async function Page({
               </div>
               <div className="flex items-center justify-center gap-2 text-sm sm:text-base">
                 <User className="size-3 text-primary sm:size-4" />
-                <div>
-                  {name}
-                </div>
+                <div>{name}</div>
               </div>
             </div>
             <Separator />
