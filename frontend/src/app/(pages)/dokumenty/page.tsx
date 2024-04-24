@@ -1,84 +1,28 @@
 import Header from "@/components/Header"
 import { ReactNode } from "react"
 import FileCard from "@/components/cards/FIleCard"
+import { getDocuments } from "@/lib/api"
 
-export default function DocumentsPage() {
-  const data = [
-    {
-      id: 0,
-      name: "Dzienniczek_Praktyk.txt",
-      date: "05.04.2024 - 13:23",
-      type: "txt",
-    },
-    {
-      id: 1,
-      name: "Dzienniczek_Praktyk.pdf",
-      date: "05.04.2024 - 13:23",
-      type: "pdf",
-    },
-    {
-      id: 2,
-      name: "Dzienniczek_Praktyk.csv",
-      date: "05.04.2024 - 13:23",
-      type: "csv",
-    },
-    {
-      id: 3,
-      name: "Dzienniczek_Praktyk.docx",
-      date: "05.04.2024 - 13:23",
-      type: "docx",
-    },
-    {
-      id: 4,
-      name: "Dzienniczek_Praktyk.pdf",
-      date: "05.04.2024 - 13:23",
-      type: "pdf",
-    },
-    {
-      id: 5,
-      name: "Dzienniczek_Praktyk.docx",
-      date: "05.04.2024 - 13:23",
-      type: "docx",
-    },
-  ]
+export default async function DocumentsPage() {
+  const data = await getDocuments()
 
   return (
-    <main className="flex w-full flex-col items-center justify-around">
-      <Header title="Dokumenty" />
+    <main className="flex w-full flex-col items-center ">
+      <Header title={data?.heading} />
       <div className="flex w-full flex-col items-center justify-center">
-        <FileGroup title="Ostatnio Dodane">
-          {data.map((item) => (
-            <FileCard
-              key={item.id}
-              name={item.name}
-              date={item.date}
-              fileType={item.type}
-              url=""
-            />
-          ))}
-        </FileGroup>
-        <FileGroup title="Nabór">
-          {data.map((item) => (
-            <FileCard
-              key={item.id}
-              name={item.name}
-              date={item.date}
-              fileType={item.type}
-              url=""
-            />
-          ))}
-        </FileGroup>
-        <FileGroup title="Praktyki">
-          {data.map((item) => (
-            <FileCard
-              key={item.id}
-              name={item.name}
-              date={item.date}
-              fileType={item.type}
-              url=""
-            />
-          ))}
-        </FileGroup>
+      {data.document_groups.map((item: any) => (
+          <FileGroup key={item.id} title={item.title}>
+            {item.documents.map((file: any) => (
+              <FileCard
+                key={file.id}
+                name={file.name}
+                date={file.date}
+                fileType={file.file.data?.attributes.ext}
+                url={file.file.data?.attributes.url ?? ""}
+              />
+            ))}
+          </FileGroup>
+        ))}
       </div>
     </main>
   )
@@ -97,7 +41,7 @@ function FileGroup({
         {title}
       </div>
       <div className="flex items-center justify-center">
-        <div className="grid gap-4 p-8 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid  gap-4 p-8 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           {children}
         </div>
       </div>

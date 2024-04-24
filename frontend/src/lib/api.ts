@@ -57,8 +57,8 @@ export async function getNews(options?: OptionalObject): Promise<any> {
     const flatteners = options?.flatteners
 
     const url = params
-      ? `articles/${params}?populate[image][populate]=true&populate[createdBy][populate]=true&populate[updatedBy][populate]=true`
-      : `articles?sort=createdAt:DESC&populate[image][populate]=true&populate[createdBy][populate]=true&populate[updatedBy][populate]=true`
+      ? `articles/${params}`
+      : `articles`
     const { data }: AxiosResponse<any> = await api.get(url)
 
     return flattenStrapiResponse(data, !!!params, flatteners)
@@ -80,7 +80,7 @@ export async function getSubstitutions() {
 export async function getJobs() {
   try {
     const { data }: AxiosResponse<any> = await api.get(
-      "/jobs-page?populate[jobs][populate][badges][populate]=true&populate[jobs][populate][tasks][populate]=true&populate[jobs][populate][requirements][populate]=true"
+      "/jobs-page"
     )
 
     return flattenStrapiResponse(data)
@@ -112,7 +112,7 @@ export async function getBooks() {
 export async function getTeachers() {
   try {
     const { data }: AxiosResponse<any> = await api.get(
-      "/teachers-page?populate[teacher_groups][populate][teachers][populate][image][populate]=true"
+      "/teachers-page"
     )
 
     return flattenStrapiResponse(data)
@@ -124,7 +124,7 @@ export async function getTeachers() {
 export async function getRecruitments() {
   try {
     const { data }: AxiosResponse<any> = await api.get(
-      "/recruitments-page?populate=*"
+      "/recruitments-page"
     )
 
     return flattenStrapiResponse(data)
@@ -149,7 +149,7 @@ export async function getPage(page: string) {
 export async function getParents() {
   try {
     const { data }: AxiosResponse<any> = await api.get(
-      "/parents-council-page?populate[parents]=true"
+      "/parents-council-page"
     )
 
     return flattenStrapiResponse(data)
@@ -161,9 +161,20 @@ export async function getParents() {
 export async function getAchievements() {
   try {
     const { data }: AxiosResponse<any> = await api.get(
-      "/achievements-page?populate[achievements]=truee"
+      "/achievements-page"
     )
 
+    return flattenStrapiResponse(data)
+  } catch (error) {
+    console.error(error)
+  }
+}
+export async function getDocuments() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get(
+      "/documents-page?populate[document_groups][populate][documents][populate][file][populate]=true"
+    )
+    
     return flattenStrapiResponse(data)
   } catch (error) {
     console.error(error)
