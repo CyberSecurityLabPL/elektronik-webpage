@@ -56,7 +56,7 @@ export async function getNews(options?: OptionalObject): Promise<any> {
     const params = options?.params
     const flatteners = options?.flatteners
 
-    const url = params ? `articles/${params}` : `articles?populate=image`
+    const url = params ? `articles/${params}` : `articles?sort=createdAt:DESC&populate=image`
     const { data }: AxiosResponse<any> = await api.get(url)
 
     return flattenStrapiResponse(data, !!!params, flatteners)

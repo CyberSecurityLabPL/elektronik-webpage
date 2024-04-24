@@ -66,7 +66,7 @@ export default function NewsCard({
       >
         {/* DATE */}
         <span className="prose-sm self-start font-semibold text-zinc-400">
-          {format(new Date(new Date()), "dd MMM yyyy ", {
+          {format(new Date(date), "dd MMM yyyy ", {
             locale: pl,
           })}
         </span>
