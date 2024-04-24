@@ -9,7 +9,7 @@ export default async function Navbar({ data }: { data?: any }) {
   const { link_groups: navItems } = await getNavigation()
 
   return (
-    <div className="relative flex h-32 w-full justify-between ">
+    <div className="relative flex h-32 w-full justify-between">
       <div className=" flex items-center justify-center px-8 ">
         <Link href={"/"} passHref>
           <Image src={"/logo.svg"} width={80} height={60} alt="Logo" />

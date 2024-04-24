@@ -7,6 +7,7 @@ import { CalendarPlus, User } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import markdownOptions from "@/components/markdown/MarkdownOptions"
+import { defaultCreator } from "@/components/landingpage/News"
 
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
@@ -30,7 +31,9 @@ export default async function Page({
     params: params.article,
   })
 
-  console.log(article)
+  let creator = article.createdBy?.data === null ? (article.updatedBy) : (article.createdBy)
+  if(Object.keys(creator).length<1) creator = defaultCreator;
+  const name = creator.firstname + " " + creator.lastname
 
   return (
     <article className="xlg:prose-xl prose prose-cyan flex w-full flex-col items-center gap-4">
@@ -61,9 +64,7 @@ export default async function Page({
               <div className="flex items-center justify-center gap-2 text-sm sm:text-base">
                 <User className="size-3 text-primary sm:size-4" />
                 <div>
-                  {article?.updatedBy ?? (
-                    <span className="">Autor nieznany</span>
-                  )}
+                  {name}
                 </div>
               </div>
             </div>

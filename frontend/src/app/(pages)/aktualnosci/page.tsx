@@ -13,7 +13,9 @@ async function page() {
 
   revalidatePath("/aktualnosci")
 
-  const articles = data.reverse() as any[]
+  const articles = data as any[]
+  console.log(articles);
+  
 
   return (
     <div>
@@ -29,10 +31,9 @@ async function page() {
             author={articles[0].attributes.updatedBy}
             description={articles[0].attributes.description}
             link={`/aktualnosci/${articles[0].id}`}
-            date={formatDate(articles[0].attributes.updatedAt)}
+            date={articles[0].attributes.updatedAt}
             src={
-              "http://api.thefinalpath.net" +
-              articles[0].attributes.image.data.attributes.url
+              articles[0].attributes.image.data?.attributes.url ?? ""
             }
             variant="featured"
           />
@@ -47,10 +48,9 @@ async function page() {
                   author={item.attributes.updatedBy}
                   description={item.attributes.description}
                   link={`/aktualnosci/${item.id}`}
-                  date={formatDate(item.attributes.updatedAt)}
+                  date={item.attributes.updatedAt}
                   src={
-                    "http://api.thefinalpath.net" +
-                    item.attributes.image.data.attributes.url
+                    item.attributes.image.data?.attributes.url ?? ""
                   }
                 />
               ))
