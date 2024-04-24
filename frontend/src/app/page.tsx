@@ -13,22 +13,19 @@ export default async function Home() {
   const data = await getLandingPage()
 
   return (
-    <>
+    <main className="flex w-full flex-col justify-center ">
       <Navbar />
-      <main className="flex w-full flex-col justify-center gap-16">
-        <header className="flex flex-col ">
-          <Hero data={data?.blocks[0]} />
-          <div className="h-64 w-full bg-wave-transition bg-repeat-x"></div>
-        </header>
-        {/* Main content */}
-        <Overview />
-        <Benefits />
-        <News />
-        <Map />
-        <Faq />
-        <Sponsors />
-        <Footer />
-      </main>
-    </>
+      <header className="flex flex-col ">
+        <Hero data={data?.blocks[0]} />
+        <div className="h-64 w-full bg-wave-transition bg-repeat-x"></div>
+      </header>
+      {/* Main content */}
+      <Overview />
+      <Benefits />
+      <News />
+      <Map />
+      <Faq />
+      <Footer />
+    </main>
   )
 }
