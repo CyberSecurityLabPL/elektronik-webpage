@@ -14,8 +14,6 @@ async function page() {
   revalidatePath("/aktualnosci")
 
   const articles = data as any[]
-  console.log(articles);
-  
 
   return (
     <div>
