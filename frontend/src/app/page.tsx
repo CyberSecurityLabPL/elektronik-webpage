@@ -13,7 +13,7 @@ export default async function Home() {
   const data = await getLandingPage()
 
   return (
-    <main className="flex w-full flex-col justify-center gap-16">
+    <main className="flex w-full flex-col justify-center ">
       <Navbar />
       <header className="flex flex-col ">
         <Hero data={data?.blocks[0]} />
@@ -25,7 +25,6 @@ export default async function Home() {
       <News />
       <Map />
       <Faq />
-      <Sponsors />
       <Footer />
     </main>
   )
