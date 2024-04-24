@@ -14,49 +14,52 @@ async function page() {
   revalidatePath("/aktualnosci")
 
   const articles = data as any[]
-  console.log(articles);
-  
+  const featuredArticle = articles[0]
 
   return (
-    <div>
+    <>
       <Header
         title="Aktualności"
         subtitle="O to co dzieje się w naszej szkole!"
       />
-      <div className="grid w-full  grid-cols-1  gap-4 md:grid-cols-2 lg:grid-cols-3  ">
-        {
+      <div className="flex w-full flex-col">
+        <div className="hidden flex-col xs:flex">
+          <h2 className="mt-8 pl-8 text-lg font-bold text-foreground md:mt-4 lg:mt-0">
+            Najnowszy artykuł
+          </h2>
           <NewsCard
-            key={articles[0].id}
-            title={articles[0].attributes.title}
-            author={articles[0].attributes.updatedBy}
-            description={articles[0].attributes.description}
-            link={`/aktualnosci/${articles[0].id}`}
-            date={articles[0].attributes.updatedAt}
-            src={
-              articles[0].attributes.image.data?.attributes.url ?? ""
-            }
+            key={featuredArticle.id}
+            title={featuredArticle.attributes.title}
+            author={featuredArticle.attributes.updatedBy}
+            description={featuredArticle.attributes.description}
+            link={`/aktualnosci/${featuredArticle.id}`}
+            date={featuredArticle.attributes.updatedAt}
+            src={featuredArticle.attributes.image.data?.attributes.url}
             variant="featured"
           />
-        }
-        {articles.length
-          ? articles
-              .slice(1)
-              .map((item: any, index: number) => (
-                <NewsCard
-                  key={item.id}
-                  title={item.attributes.title}
-                  author={item.attributes.updatedBy}
-                  description={item.attributes.description}
-                  link={`/aktualnosci/${item.id}`}
-                  date={item.attributes.updatedAt}
-                  src={
-                    item.attributes.image.data?.attributes.url ?? ""
-                  }
-                />
-              ))
-          : "Brak artykułów do wyświetlenia"}
+        </div>
+        <h2 className="mt-8 pl-8 text-lg font-bold text-foreground">
+          Wszystkie artykuły
+        </h2>
+        <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {articles.length
+            ? articles
+                .slice(1)
+                .map((item: any, index: number) => (
+                  <NewsCard
+                    key={item.id}
+                    title={item.attributes.title}
+                    author={item.attributes.updatedBy}
+                    description={item.attributes.description}
+                    link={`/aktualnosci/${item.id}`}
+                    date={item.attributes.updatedAt}
+                    src={item.attributes.image.data?.attributes.url}
+                  />
+                ))
+            : "Brak artykułów do wyświetlenia"}
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

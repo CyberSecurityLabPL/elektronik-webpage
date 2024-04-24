@@ -107,3 +107,5 @@ export const getRandomImg = (): string => {
 
   return `/cards/friends.png`
 }
+
+export const getImage = (src: string) => `${process.env.BACKEND_URL}${src}`

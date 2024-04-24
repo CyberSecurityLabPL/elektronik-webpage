@@ -9,6 +9,12 @@ const nextConfig = {
         port: "",
         pathname: "/uploads/**",
       },
+      {
+        protocol: "https",
+        hostname: "api.thefinalpath.net",
+        port: "",
+        pathname: "/uploads/**",
+      },
     ],
   },
 }
