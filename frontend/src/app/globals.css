@@ -6,6 +6,7 @@
 
 html,
 body {
+  --scroll-border: 10px 0 0 10px;
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
@@ -38,7 +39,7 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: hsl(var(--primary));
-  border-radius: 10px 0 0 10px;
+  border-radius: var(--scroll-border);
 }
 
 @layer base {
