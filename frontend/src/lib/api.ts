@@ -124,9 +124,7 @@ export async function getSubstitutions() {
 
 export async function getJobs() {
   try {
-    const { data }: AxiosResponse<any> = await api.get(
-      "/jobs-page?populate[jobs][populate][badges][populate]=true&populate[jobs][populate][tasks][populate]=true&populate[jobs][populate][requirements][populate]=true"
-    )
+    const { data }: AxiosResponse<any> = await api.get("/jobs-page")
 
     return flattenStrapiResponse(data)
   } catch (error) {
@@ -156,9 +154,7 @@ export async function getBooks() {
 
 export async function getTeachers() {
   try {
-    const { data }: AxiosResponse<any> = await api.get(
-      "/teachers-page?populate[teacher_groups][populate][teachers][populate][image][populate]=true"
-    )
+    const { data }: AxiosResponse<any> = await api.get("/teachers-page")
 
     return flattenStrapiResponse(data)
   } catch (error) {
@@ -168,9 +164,7 @@ export async function getTeachers() {
 
 export async function getRecruitments() {
   try {
-    const { data }: AxiosResponse<any> = await api.get(
-      "/recruitments-page?populate=*"
-    )
+    const { data }: AxiosResponse<any> = await api.get("/recruitments-page")
 
     return flattenStrapiResponse(data)
   } catch (error) {
@@ -193,9 +187,7 @@ export async function getPage(page: string) {
 
 export async function getParents() {
   try {
-    const { data }: AxiosResponse<any> = await api.get(
-      "/parents-council-page?populate[parents]=true"
-    )
+    const { data }: AxiosResponse<any> = await api.get("/parents-council")
 
     return flattenStrapiResponse(data)
   } catch (error) {
@@ -205,9 +197,7 @@ export async function getParents() {
 
 export async function getAchievements() {
   try {
-    const { data }: AxiosResponse<any> = await api.get(
-      "/achievements-page?populate[achievements]=truee"
-    )
+    const { data }: AxiosResponse<any> = await api.get("/achievements-page")
 
     return flattenStrapiResponse(data)
   } catch (error) {
