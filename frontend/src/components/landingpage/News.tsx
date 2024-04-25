@@ -29,7 +29,6 @@ export default async function News() {
               <NewsCard
                 key={index + news.title}
                 title={news.title}
-                author={name}
                 description={news.description}
                 date={news.createdAt}
                 link={`/aktualnosci/${id}`}

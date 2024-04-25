@@ -49,10 +49,10 @@ export function FileIcon({
           "bg-green-500/25 text-green-600": color === "green",
           "bg-slate-500/25 text-slate-600": color === "slate",
         },
-        " rounded-lg p-1"
+        " rounded-xl p-2 "
       )}
     >
-      <Icon className={`h-8 w-8 rounded-lg`} />
+      <Icon className={`h-2 w-2 rounded-lg`} />
     </div>
   )
 }
