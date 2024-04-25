@@ -32,6 +32,9 @@ const config = {
         "violet-blob": "url('/backgrounds/violet-blob.svg')",
         "sponsors-bg": "url('/backgrounds/bg-sponsors.svg')",
       },
+      gridTemplateColumns: {
+        'gallery': 'repeat(auto-fit, minmax(250px, 1fr))',
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

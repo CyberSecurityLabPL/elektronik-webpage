@@ -107,7 +107,7 @@ async function MainPanel() {
     <div className="flex justify-center ">
       <div className="flex flex-col justify-around gap-6">
         <div className=" flex justify-center max-sm:flex-col max-sm:items-center">
-          <div className="flex w-full justify-center items-start gap-4 max-sm:flex-col max-sm:items-center">
+          <div className="flex w-full items-start justify-center gap-4 max-sm:flex-col max-sm:items-center">
             {nav?.link_groups
               ? nav?.link_groups.map((panel: any, index: number) => (
                   <LinkPanel key={panel.name + index} title={panel.name}>
@@ -132,7 +132,7 @@ async function MainPanel() {
 function Copyrights() {
   return (
     <div className="flex flex-col justify-around gap-4">
-      <div className="flex flex-wrap items-center justify-center text-center text-base text-background sm:px-4 py-2">
+      <div className="flex flex-wrap items-center justify-center py-2 text-center text-base text-background sm:px-4">
         {/* make names bold without char ,*/}
         Made with 🍷 by{" "}
         {["Krzysiek", "Mikołaj", "Filipek", "Wojtek", "Kacper"].map(
@@ -166,9 +166,9 @@ function Counter() {
 function Creators() {
   return (
     <div className=" flex w-64 flex-col  justify-center py-4">
-      <div className="flex justify-center items-center">
+      <div className="flex items-center justify-center">
         <Link href={"https://cslsoft.pl/"} passHref>
-          <Image src={'/logoCSL.svg'} width={200} height={100} alt='CSL logo' />
+          <Image src={"/logoCSL.svg"} width={200} height={100} alt="CSL logo" />
         </Link>
       </div>
     </div>
