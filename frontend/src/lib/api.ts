@@ -84,10 +84,6 @@ export async function getArticles(options?: ArticlesOptions): Promise<any> {
 
     res.data = res.data.slice(isFirstPage ? 1 : 0)
 
-    console.log(isFirstPage)
-
-    console.log("lysy jest dziekciem: ", res)
-
     return res
   } catch (error) {
     console.error(error)

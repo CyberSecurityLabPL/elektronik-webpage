@@ -5,7 +5,6 @@ import { getDocuments } from "@/lib/api"
 
 export default async function DocumentsPage() {
   const data = await getDocuments()
-  console.log(data.document_groups[0].documents[0])
 
   return (
     <main className="flex w-full flex-col items-center ">
