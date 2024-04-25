@@ -5,20 +5,21 @@ import { getDocuments } from "@/lib/api"
 
 export default async function DocumentsPage() {
   const data = await getDocuments()
+  console.log(data.document_groups[0].documents[0])
 
   return (
     <main className="flex w-full flex-col items-center ">
       <Header title={data?.heading} />
       <div className="flex w-full flex-col items-center justify-center">
-      {data.document_groups.map((item: any) => (
-          <FileGroup key={item.id} title={item.title}>
+        {data.document_groups.map((item: any) => (
+          <FileGroup key={item.title} title={item.title}>
             {item.documents.map((file: any) => (
               <FileCard
-                key={file.id}
+                key={file.name}
                 name={file.name}
                 date={file.date}
-                fileType={file.file.data?.attributes.ext}
-                url={file.file.data?.attributes.url ?? ""}
+                fileType={file.file.ext}
+                url={file.file.url}
               />
             ))}
           </FileGroup>
@@ -36,12 +37,12 @@ function FileGroup({
   children?: ReactNode
 }) {
   return (
-    <div className="flex w-full flex-col justify-center xl:w-3/4">
+    <div className="flex w-full flex-col justify-center xl:w-11/12">
       <div className="flex w-full justify-center text-left text-2xl font-semibold text-slate-500 md:justify-start md:px-16 xl:px-0">
         {title}
       </div>
-      <div className="flex items-center justify-center">
-        <div className="grid  gap-4 p-8 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+      <div className="flex w-full items-center justify-center">
+        <div className="grid w-full gap-4 px-4 py-8  sm:grid-cols-1 md:grid-cols-2 lg:w-5/6 xl:grid-cols-3">
           {children}
         </div>
       </div>
