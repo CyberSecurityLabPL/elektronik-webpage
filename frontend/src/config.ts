@@ -1,4 +1,6 @@
-export const config = {
+export const PAGINATION_LIMIT = 1
+
+export const timetableConfig = {
   initialName: "3tc",
   initialId: "o18",
   formattingExceptions: [

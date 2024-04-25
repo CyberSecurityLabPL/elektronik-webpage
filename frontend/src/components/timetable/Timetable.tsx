@@ -11,7 +11,7 @@ import useTimetable from "@/state/timetable-state"
 import { useRouter } from "next/navigation"
 import { useContext } from "react"
 import { SelectContext } from "../Providers"
-import { config } from "@/config"
+import { timetableConfig } from "@/config"
 import Link from "next/link"
 
 export default function Timetable() {
@@ -94,7 +94,7 @@ export default function Timetable() {
           const rows = []
           function formatLesson(n: number, day: number) {
             let lessonString = currentTimetable?.tydzien[day].lekcje[n]?.data
-            config.formattingExceptions.forEach((v) => {
+            timetableConfig.formattingExceptions.forEach((v) => {
               if (lessonString?.replaceAll(v.initialValue, v.valueToReplace))
                 lessonString = lessonString?.replaceAll(
                   v.initialValue,

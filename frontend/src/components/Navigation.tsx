@@ -1,7 +1,4 @@
 "use client"
-import * as React from "react"
-import Link from "next/link"
-import { cn, getRandomImg } from "@/lib/utils"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,11 +8,12 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
-import { Accessibility, BugIcon, ChevronDown, ExternalLink } from "lucide-react"
+import { cn } from "@/lib/utils"
+import { Accessibility, ExternalLink } from "lucide-react"
+import Link from "next/link"
+import * as React from "react"
 
 export function Navigation({ navItems }: { navItems: any }) {
-  const img = getRandomImg()
-
   return (
     <NavigationMenu>
       <NavigationMenuList>
@@ -31,7 +29,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                           <a
                             className={`flex h-full w-full select-none flex-col justify-end rounded-md bg-cover p-6 text-background no-underline outline-none focus:shadow-md`}
                             style={{
-                              backgroundImage: `url(${getRandomImg()})`,
+                              backgroundImage: `url(${""})`,
                             }}
                             href="/galeria"
                           >

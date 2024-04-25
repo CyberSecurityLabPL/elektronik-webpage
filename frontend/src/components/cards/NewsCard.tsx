@@ -1,13 +1,12 @@
-import { cn, getRandomImg } from "@/lib/utils"
+import { cn, getImage } from "@/lib/utils"
 import { format } from "date-fns"
 import { pl } from "date-fns/locale/pl"
-import { LucideIcon } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
 interface NewsCardProps {
   author: string
-  src: string
+  src?: string
   date: string
   description: string
   title: string
@@ -27,16 +26,16 @@ export default function NewsCard({
   variant = "default",
 }: NewsCardProps) {
   const isFeatured = variant === "featured"
+  console.log(date)
 
   return (
     <Link
       href={link}
       passHref
       className={cn(
-        "relative flex min-w-64 flex-col gap-2 rounded-3xl p-4 transition-colors hover:bg-slate-50 lg:w-full",
+        "relative flex w-full min-w-64 items-center gap-4 bg-background p-4 transition-colors hover:bg-slate-50 xs:rounded-3xl md:flex-col md:items-start md:gap-2 lg:w-full",
         {
-          // 12
-          " h-full w-full max-w-full md:col-span-2 md:flex-row  md:gap-12 lg:col-span-3":
+          " h-full w-full max-w-full flex-col shadow-lg shadow-slate-400/25 transition-shadow duration-300 hover:shadow-xl hover:shadow-slate-400/50 md:col-span-2 md:flex-row md:gap-12 lg:col-span-3":
             isFeatured,
         },
         className
@@ -45,12 +44,12 @@ export default function NewsCard({
       {/* IMAGE */}
       <div
         className={cn(
-          "relative h-[200px] w-full overflow-hidden rounded-3xl",
-          isFeatured ? "h-[250px] w-full md:h-full md:w-3/5" : ""
+          "aspect-[21:9] relative h-28 w-2/5 overflow-hidden rounded-3xl md:h-[200px] md:w-full",
+          isFeatured ? "h-[250px] w-full md:h-full md:w-3/5 lg:h-[400px]" : ""
         )}
       >
         <Image
-          src={"/cards/car-job.jpg"}
+          src={src ? getImage(src) : "/cards/kmieciu.svg"}
           alt="Miniaturka artykułu"
           fill
           className="object-cover"
@@ -60,12 +59,12 @@ export default function NewsCard({
       {/* CONTENT */}
       <div
         className={cn(
-          "flex flex-col",
+          "flex w-3/5 flex-col self-start overflow-hidden pt-2 md:w-full",
           isFeatured ? "w-full py-4 md:w-2/5" : ""
         )}
       >
         {/* DATE */}
-        <span className="prose-sm self-start font-semibold text-zinc-400">
+        <span className="prose-sm self-start text-xs font-semibold text-zinc-400 md:text-sm">
           {format(new Date(date), "dd MMM yyyy ", {
             locale: pl,
           })}
@@ -74,15 +73,21 @@ export default function NewsCard({
         {/* TITLE */}
         <h3
           className={cn(
-            "pb-[.5em] pt-[.6em] text-lg font-semibold",
-            isFeatured ? "text-2xl md:text-4xl" : ""
+            "pb-[.5em] pt-[.3em] text-lg font-semibold",
+            isFeatured ? " text-2xl md:text-4xl" : ""
           )}
+          title={title}
         >
           {title}
         </h3>
 
         {/* DESCRIPTION */}
-        <div className={cn("h-20 truncate text-pretty")}>
+        <div
+          className={cn(
+            "text-prettyk h-20 truncate",
+            !isFeatured ? "hidden md:block" : ""
+          )}
+        >
           <p className="text-sm">{description}</p>
         </div>
       </div>

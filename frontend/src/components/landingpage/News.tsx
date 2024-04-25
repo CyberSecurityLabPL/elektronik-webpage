@@ -2,13 +2,13 @@ import React from "react"
 import NewsCard from "../cards/NewsCard"
 import { Button } from "../ui/button"
 import Link from "next/link"
-import { getNews } from "@/lib/api"
+import { getArticles } from "@/lib/api"
 
 export const defaultCreator = { firstname: "Brak", lastname: "Autora!" }
 
 export default async function News() {
   //empty flatteners cause id is needed
-  const { data: CardData } = await getNews({
+  const { data: CardData } = await getArticles({
     flatteners: [],
   })
 
