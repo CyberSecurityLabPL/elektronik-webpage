@@ -9,8 +9,6 @@ export default function ScrollBarProvider({
 }) {
   useEffect(() => {
     const onScroll = () => {
-      console.log("eo")
-
       const elem = document.body
       if (window.scrollY == 0) {
         elem.style.setProperty("--scroll-border", "0 0 0 10px")
@@ -25,7 +23,9 @@ export default function ScrollBarProvider({
 
     window.addEventListener("scroll", onScroll)
 
-    return window.removeEventListener("scroll", onScroll)
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+    }
   }, [])
 
   return <>{children}</>
