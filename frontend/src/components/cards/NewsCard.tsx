@@ -26,6 +26,7 @@ export default function NewsCard({
   variant = "default",
 }: NewsCardProps) {
   const isFeatured = variant === "featured"
+  console.log(date)
 
   return (
     <Link

@@ -33,7 +33,7 @@ const Articles = ({
                 author={item.attributes.updatedBy}
                 description={item.attributes.description}
                 link={`/aktualnosci/${item.id}`}
-                date={item.attributes.updatedAt}
+                date={item.attributes.createdAt ?? item.attributes.updatedAt}
                 src={item.attributes.image.data?.attributes.url}
               />
             ))
@@ -59,6 +59,14 @@ function PaginationComponent({ articlesCount }: { articlesCount: number }) {
   const page = isValid ? parseInt(paramsPage!, 10) : 1
 
   const paginationItems = new Array(PAGES_LIMIT).fill(null).map((_, index) => {
+    const start = page - Math.floor(PAGES_LIMIT / 2)
+    const end = page + Math.floor(PAGES_LIMIT / 2)
+
+    // if (start < 1) {
+    //   start = 1
+    //   end = PAGES_LIMIT
+    // }
+
     if (false) index = index + page
     const pageOffset = index + 1
 
@@ -68,6 +76,8 @@ function PaginationComponent({ articlesCount }: { articlesCount: number }) {
     if (index === PAGES_LIMIT - 1) {
       console.log("LAST ELEMENT: ", index, "PAGE OFFSET: ", pageOffset)
     }
+
+    // NIKLUXN
 
     if (pageOffset <= pagesCount) {
       return (

@@ -17,7 +17,7 @@ async function page({ searchParams }: { searchParams: any }) {
   const articles = data as any[]
   const featuredArticle = await getLatestArticle(["id"])
 
-  console.log()
+  // console.log("------------------------------", articles)
 
   return (
     <>
@@ -35,7 +35,10 @@ async function page({ searchParams }: { searchParams: any }) {
             author={featuredArticle.attributes.updatedBy}
             description={featuredArticle.attributes.description}
             link={`/aktualnosci/${featuredArticle.id}`}
-            date={featuredArticle.attributes.updatedAt}
+            date={
+              featuredArticle.attributes.createdAt ??
+              featuredArticle.attributes.updatedAt
+            }
             src={featuredArticle.attributes.image.data?.attributes.url}
             variant="featured"
           />
