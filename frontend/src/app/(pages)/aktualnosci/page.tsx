@@ -9,13 +9,15 @@ async function page({ searchParams }: { searchParams: any }) {
 
   const { data, meta } = await getArticles({
     flatteners: [],
-    page: searchParams["page"],
+    page: searchParams["page"] ?? 1,
   })
 
   revalidatePath("/aktualnosci")
 
   const articles = data as any[]
   const featuredArticle = await getLatestArticle(["id"])
+
+  console.log(articles)
 
   // console.log("------------------------------", articles)
 

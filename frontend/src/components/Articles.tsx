@@ -8,10 +8,9 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination"
-import NewsCard from "./cards/NewsCard"
-import { getImage } from "@/lib/utils"
-import { useParams, usePathname, useSearchParams } from "next/navigation"
 import { PAGINATION_LIMIT } from "@/config"
+import { usePathname, useSearchParams } from "next/navigation"
+import NewsCard from "./cards/NewsCard"
 
 const Articles = ({
   articles,
@@ -20,8 +19,6 @@ const Articles = ({
   articles: any[]
   articlesCount: number
 }) => {
-  console.log("ARTICLES: ", articles)
-
   return (
     <>
       <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -57,23 +54,24 @@ function PaginationComponent({ articlesCount }: { articlesCount: number }) {
 
   const page = isValid ? parseInt(paramsPage!, 10) : 1
 
+  const paginationOffset = Math.floor(PAGES_LIMIT / 2)
+
+  let start = page - paginationOffset
+  let end = page + paginationOffset
+
+  start = start < 1 ? 1 : start
+
+  end = end > pagesCount ? pagesCount : end
+
+  console.log(start, end)
+
   const paginationItems = new Array(PAGES_LIMIT).fill(null).map((_, index) => {
-    const start = page - Math.floor(PAGES_LIMIT / 2)
-    const end = page + Math.floor(PAGES_LIMIT / 2)
-
-    // if (start < 1) {
-    //   start = 1
-    //   end = PAGES_LIMIT
-    // }
-
-    if (false) index = index + page
-    const pageOffset = index + 1
+    const pageOffset = start + index
 
     const isActive = page === pageOffset
 
     // check if is last element
     if (index === PAGES_LIMIT - 1) {
-      console.log("LAST ELEMENT: ", index, "PAGE OFFSET: ", pageOffset)
     }
 
     // NIKLUXN
@@ -97,7 +95,7 @@ function PaginationComponent({ articlesCount }: { articlesCount: number }) {
   return (
     <Pagination>
       <PaginationContent>
-        {page > 1 && (
+        {start > 1 && (
           <PaginationItem>
             <PaginationPrevious
               href={`${pathname}?page=${page - 1}`}
@@ -105,16 +103,33 @@ function PaginationComponent({ articlesCount }: { articlesCount: number }) {
             />
           </PaginationItem>
         )}
+        {start > 1 && (
+          <>
+            <PaginationItem>
+              <PaginationLink href={`${pathname}?page=${1}`}>
+                {1}
+              </PaginationLink>
+            </PaginationItem>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+          </>
+        )}
         {paginationItems}
-        <PaginationItem>
-          <PaginationEllipsis />
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationLink href={`${pathname}?page=${pagesCount}`}>
-            {pagesCount}
-          </PaginationLink>
-        </PaginationItem>
-        {page < pagesCount && (
+        {end < pagesCount && (
+          <>
+            <PaginationItem>
+              <PaginationEllipsis />
+            </PaginationItem>
+
+            <PaginationItem>
+              <PaginationLink href={`${pathname}?page=${pagesCount}`}>
+                {pagesCount}
+              </PaginationLink>
+            </PaginationItem>
+          </>
+        )}
+        {page !== pagesCount && (
           <PaginationItem>
             <PaginationNext href={`${pathname}?page=${page + 1}`} iconOnly />
           </PaginationItem>
