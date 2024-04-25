@@ -28,7 +28,7 @@ export default function Error({
           () => reset()
         }
       >
-        Try again
+        Spróbuj ponownie
       </Button>
     </div>
   )
