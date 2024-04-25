@@ -101,7 +101,7 @@ const Page = () => {
                     const galleryHeight = Math.ceil(250 * widtHeightRatio);
                     const photoSpans = Math.ceil(galleryHeight / 10) + 1;
                     return (
-                        <LightGallery data={data} item={item} idx={idx} dimensions={dimensions} photoSpans={photoSpans} />
+                        <LightGallery key={idx+item.name} data={data} item={item} idx={idx} dimensions={dimensions} photoSpans={photoSpans} />
                     );
                 })}
             </section>

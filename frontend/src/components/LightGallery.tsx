@@ -10,14 +10,18 @@ import lgZoom from 'lightgallery/plugins/zoom';
 import Image from 'next/image';
 import { ISizeCalculationResult } from 'image-size/dist/types/interface';
 
+interface item {
+    name: string,
+    link: string
+}
 
-const MyLightGallery = ({ data, item, idx, photoSpans, dimensions } : {data: any, item: any, idx: any, photoSpans: any, dimensions: ISizeCalculationResult}) => {
+const MyLightGallery = ({ data, item, idx, photoSpans, dimensions } : {data: any, item: item, idx: number, photoSpans: number, dimensions: ISizeCalculationResult}) => {
 
     const lightboxRef = useRef<LightGallery | null>(null);
 
     return (
         <>
-            <div key={item.name} className="w-[250px] justify-self-center px-3" style={{ gridRow: `span ${photoSpans}` }}>
+            <div className="w-[250px] justify-self-center px-3" style={{ gridRow: `span ${photoSpans}` }}>
                 <div className="rounded-xl overflow-hidden group">
                     <Image
                         src={item.link}
