@@ -8,7 +8,7 @@ async function page({ searchParams }: { searchParams: any }) {
   console.log(searchParams)
 
   const { data, meta } = await getArticles({
-    flatteners: ["id"],
+    flatteners: [],
     page: searchParams["page"],
   })
 
@@ -32,7 +32,6 @@ async function page({ searchParams }: { searchParams: any }) {
           </h2>
           <NewsCard
             title={featuredArticle.attributes.title}
-            author={featuredArticle.attributes.updatedBy}
             description={featuredArticle.attributes.description}
             link={`/aktualnosci/${featuredArticle.id}`}
             date={

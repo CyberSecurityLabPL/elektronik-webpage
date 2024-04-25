@@ -72,8 +72,8 @@ export async function getArticles(options?: ArticlesOptions): Promise<any> {
     )
 
     const url = params
-      ? `articles/${params}?populate[image][populate]=true&populate[createdBy][populate]=true&populate[updatedBy][populate]=true`
-      : `articles?${options.page ? query : ""}&sort=createdAt:DESC&populate[image][populate]=true&populate[createdBy][populate]=true&populate[updatedBy][populate]=true`
+      ? `articles/${params}`
+      : `articles?${options?.page ? query : ""}`
     const { data }: AxiosResponse<any> = await api.get(url)
 
     return flattenStrapiResponse(data, !!!params, flatteners)
@@ -90,9 +90,7 @@ export async function getArticle(
     const params = options?.params
     const flatteners = options?.flatteners
 
-    const { data }: AxiosResponse<any> = await api.get(
-      `articles/${id}?populate[createdBy][populate]=true&populate[updatedBy][populate]=true`
-    )
+    const { data }: AxiosResponse<any> = await api.get(`articles/${id}`)
 
     return flattenStrapiResponse(data, !!!params, flatteners)
   } catch (error) {

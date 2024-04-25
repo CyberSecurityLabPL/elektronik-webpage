@@ -106,13 +106,9 @@ export const getImage = (src: string) =>
   `${process.env.NEXT_PUBLIC_BACKEND_URL}${src}`
 
 interface Author {
-  data: {
-    attributes: {
-      firstname: string
-      lastname: string
-      username?: string
-    }
-  }
+  firstname: string
+  lastname: string
+  username?: string
 }
 
 /**
@@ -126,16 +122,12 @@ export const getAuthor = (data?: {
 }): string => {
   if (!data) return "Autor nieznany"
 
-  console.log("DATA FOR AUTHORS: ", data)
-
-  const createdByExists = !!data.createdBy.data
-  const updatedByExists = !!data.updatedBy.data
+  const createdByExists = !!data.createdBy
+  const updatedByExists = !!data.updatedBy
 
   if (!createdByExists && !updatedByExists) return "Autor nieznany"
 
-  const author = createdByExists
-    ? data.createdBy.data.attributes
-    : data.updatedBy.data.attributes
+  const author = createdByExists ? data.createdBy : data.updatedBy
 
   return `${author.firstname} ${author.lastname}`
 }

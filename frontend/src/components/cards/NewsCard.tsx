@@ -5,7 +5,6 @@ import Image from "next/image"
 import Link from "next/link"
 
 interface NewsCardProps {
-  author: string
   src?: string
   date: string
   description: string
@@ -16,7 +15,6 @@ interface NewsCardProps {
 }
 
 export default function NewsCard({
-  author,
   src,
   date,
   description,
@@ -84,7 +82,7 @@ export default function NewsCard({
         {/* DESCRIPTION */}
         <div
           className={cn(
-            "text-prettyk h-20 truncate",
+            "h-20 truncate text-pretty",
             !isFeatured ? "hidden md:block" : ""
           )}
         >

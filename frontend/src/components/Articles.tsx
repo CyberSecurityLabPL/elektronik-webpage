@@ -30,7 +30,6 @@ const Articles = ({
               <NewsCard
                 key={item.id}
                 title={item.attributes.title}
-                author={item.attributes.updatedBy}
                 description={item.attributes.description}
                 link={`/aktualnosci/${item.id}`}
                 date={item.attributes.createdAt ?? item.attributes.updatedAt}

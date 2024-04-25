@@ -27,11 +27,11 @@ export default async function Page({
 }: {
   params: { article: string }
 }) {
-  const { data: article } = await getArticle(params.article, {
-    flatteners: ["attributes"],
-  })
+  const { data: article } = await getArticle(params.article, {})
 
-  const author = getAuthor(article.attributes)
+  console.log(article)
+
+  const author = getAuthor(article)
 
   return (
     <article className="prose prose-cyan flex w-full flex-col items-center gap-4 lg:prose-xl">
