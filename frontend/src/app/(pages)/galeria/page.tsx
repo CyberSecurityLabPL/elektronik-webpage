@@ -96,8 +96,7 @@ const Page = () => {
             <section className="grid grid-cols-gallery auto-rows-[10px]">
                 {data.map((item, idx) => {
                     const dimensions = sizeOf(`public${item.link}`)
-                    //@ts-expect-error
-                    const widtHeightRatio = (dimensions.height / dimensions.width)
+                    const widtHeightRatio = (dimensions.height! / dimensions.width!)
                     const galleryHeight = Math.ceil(250 * widtHeightRatio);
                     const photoSpans = Math.ceil(galleryHeight / 10) + 1;
                     return (
