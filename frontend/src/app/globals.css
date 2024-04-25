@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("../styles/styles.css");
+
 html,
 body {
   overflow-x: hidden;

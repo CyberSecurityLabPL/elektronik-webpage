@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from "axios"
 import { flattenStrapiResponse } from "./utils"
-import { revalidatePath, revalidateTag } from "next/cache"
+import qs from "qs"
+import { PAGINATION_LIMIT } from "@/config"
 
 /**
  * The API instance for making HTTP requests.
@@ -47,21 +48,63 @@ export async function getLandingPage(): Promise<any> {
 /**
  * Interface for optional object properties.
  */
-interface OptionalObject {
+interface ArticlesOptions {
   params?: string
   flatteners?: string[]
+  page?: number
 }
-export async function getNews(options?: OptionalObject): Promise<any> {
+
+export async function getArticles(options?: ArticlesOptions): Promise<any> {
   try {
     const params = options?.params
     const flatteners = options?.flatteners
 
+    const query = qs.stringify(
+      {
+        pagination: {
+          page: options?.page || 1,
+          pageSize: PAGINATION_LIMIT,
+        },
+      },
+      {
+        encodeValuesOnly: true, // prettify url
+      }
+    )
+
     const url = params
       ? `articles/${params}`
-      : `articles`
+      : `articles?${options?.page ? query : ""}`
     const { data }: AxiosResponse<any> = await api.get(url)
 
     return flattenStrapiResponse(data, !!!params, flatteners)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export async function getArticle(
+  id: string,
+  options: ArticlesOptions
+): Promise<any> {
+  try {
+    const params = options?.params
+    const flatteners = options?.flatteners
+
+    const { data }: AxiosResponse<any> = await api.get(`articles/${id}`)
+
+    return flattenStrapiResponse(data, !!!params, flatteners)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export async function getLatestArticle(flatteners: string[] = ["data"]) {
+  try {
+    const { data }: AxiosResponse<any> = await api.get(
+      "articles?sort=createdAt:DESC&pagination[pageSize]=1&populate[image][populate]=true&populate[createdBy][populate]=true&populate[updatedBy][populate]=true"
+    )
+
+    return flattenStrapiResponse(data.data[0], true, flatteners)
   } catch (error) {
     console.error(error)
   }
@@ -79,9 +122,7 @@ export async function getSubstitutions() {
 
 export async function getJobs() {
   try {
-    const { data }: AxiosResponse<any> = await api.get(
-      "/jobs-page"
-    )
+    const { data }: AxiosResponse<any> = await api.get("/jobs-page")
 
     return flattenStrapiResponse(data)
   } catch (error) {
@@ -111,9 +152,7 @@ export async function getBooks() {
 
 export async function getTeachers() {
   try {
-    const { data }: AxiosResponse<any> = await api.get(
-      "/teachers-page"
-    )
+    const { data }: AxiosResponse<any> = await api.get("/teachers-page")
 
     return flattenStrapiResponse(data)
   } catch (error) {
@@ -123,9 +162,7 @@ export async function getTeachers() {
 
 export async function getRecruitments() {
   try {
-    const { data }: AxiosResponse<any> = await api.get(
-      "/recruitments-page"
-    )
+    const { data }: AxiosResponse<any> = await api.get("/recruitments-page")
 
     return flattenStrapiResponse(data)
   } catch (error) {
@@ -148,9 +185,7 @@ export async function getPage(page: string) {
 
 export async function getParents() {
   try {
-    const { data }: AxiosResponse<any> = await api.get(
-      "/parents-council-page"
-    )
+    const { data }: AxiosResponse<any> = await api.get("/parents-council")
 
     return flattenStrapiResponse(data)
   } catch (error) {
@@ -160,9 +195,7 @@ export async function getParents() {
 
 export async function getAchievements() {
   try {
-    const { data }: AxiosResponse<any> = await api.get(
-      "/achievements-page"
-    )
+    const { data }: AxiosResponse<any> = await api.get("/achievements-page")
 
     return flattenStrapiResponse(data)
   } catch (error) {
@@ -174,7 +207,7 @@ export async function getDocuments() {
     const { data }: AxiosResponse<any> = await api.get(
       "/documents-page?populate[document_groups][populate][documents][populate][file][fields][0]=url&populate[document_groups][populate][documents][populate][file][fields][1]=ext"
     )
-    
+
     return flattenStrapiResponse(data)
   } catch (error) {
     console.error(error)

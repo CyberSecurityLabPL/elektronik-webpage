@@ -4,7 +4,7 @@ import React, { useEffect } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { useContext } from "react"
 import { SelectContext } from "@/components/Providers"
-import { config } from "@/config"
+import { timetableConfig } from "@/config"
 
 const Page = () => {
   const { setTimetableId } = useContext(SelectContext)
@@ -14,7 +14,8 @@ const Page = () => {
     const id = searchParams.get("timetableId")
     const isValid = id?.match(/[n;o;s][1-9]+/)
 
-    if (!isValid || !id) router.push(`?timetableId=${config.initialId}`)
+    if (!isValid || !id)
+      router.push(`?timetableId=${timetableConfig.initialId}`)
     setTimetableId(id!)
   }, [router, searchParams, setTimetableId])
   return <Timetable />

@@ -102,8 +102,32 @@ export const formatDateWeek = (date?: string) =>
   // @ts-ignore - locale is not in the types
   format(new Date(date ?? new Date()), "eeee dd/MM/yyyy", { locale: pl })
 
-export const getRandomImg = (): string => {
-  const random = Math.floor(Math.random() * 3) + 1
+export const getImage = (src: string) =>
+  `${process.env.NEXT_PUBLIC_BACKEND_URL}${src}`
 
-  return `/cards/friends.png`
+interface Author {
+  firstname: string
+  lastname: string
+  username?: string
+}
+
+/**
+ *
+ * @param data data object at level of attributes ( contains createdBy and updatedBy )
+ * @returns returns author full name
+ */
+export const getAuthor = (data?: {
+  createdBy: Author
+  updatedBy: Author
+}): string => {
+  if (!data) return "Autor nieznany"
+
+  const createdByExists = !!data.createdBy
+  const updatedByExists = !!data.updatedBy
+
+  if (!createdByExists && !updatedByExists) return "Autor nieznany"
+
+  const author = createdByExists ? data.createdBy : data.updatedBy
+
+  return `${author.firstname} ${author.lastname}`
 }

@@ -1,8 +1,8 @@
 import MarkdownHeader from "@/components/markdown/Header"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { getNews } from "@/lib/api"
-import { formatDate, renderMarkdown } from "@/lib/utils"
+import { getArticle, getArticles } from "@/lib/api"
+import { formatDate, getAuthor, renderMarkdown } from "@/lib/utils"
 import { CalendarPlus, User } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
@@ -11,7 +11,7 @@ import { defaultCreator } from "@/components/landingpage/News"
 
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {
-  const articles = await getNews({
+  const articles = await getArticles({
     flatteners: ["id"],
   })
 
@@ -27,14 +27,11 @@ export default async function Page({
 }: {
   params: { article: string }
 }) {
-  const article = await getNews({
-    params: params.article,
-  })
+  const { data: article } = await getArticle(params.article, {})
 
-  let creator =
-    article.createdBy?.data === null ? article.updatedBy : article.createdBy
-  if (Object.keys(creator).length < 1) creator = defaultCreator
-  const name = creator.firstname + " " + creator.lastname
+  console.log(article)
+
+  const author = getAuthor(article)
 
   return (
     <article className="prose prose-cyan flex w-full flex-col items-center gap-4 lg:prose-xl">
@@ -64,7 +61,7 @@ export default async function Page({
               </div>
               <div className="flex items-center justify-center gap-2 text-sm sm:text-base">
                 <User className="size-3 text-primary sm:size-4" />
-                <div>{name}</div>
+                <div>{author}</div>
               </div>
             </div>
             <Separator />
