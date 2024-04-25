@@ -20,7 +20,7 @@ export default async function Page() {
             className="my-2 flex w-full flex-col items-center justify-center"
             key={group.title}
           >
-            <div className="flex w-full justify-start text-xl font-semibold lg:text-3xl">
+            <div className="flex w-full justify-center sm:justify-start text-xl font-semibold lg:text-3xl">
               {group.title}
             </div>
             <div className="grid gap-4 xl:grid-cols-2">
