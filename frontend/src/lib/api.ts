@@ -51,7 +51,7 @@ export async function getLandingPage(): Promise<any> {
 interface ArticlesOptions {
   params?: string
   flatteners?: string[]
-  page?: number
+  page?: string
 }
 
 export async function getArticles(options?: ArticlesOptions): Promise<any> {
