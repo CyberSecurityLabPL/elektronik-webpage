@@ -1,4 +1,4 @@
-export const PAGINATION_LIMIT = 1
+export const PAGINATION_LIMIT = 3
 
 export const timetableConfig = {
   initialName: "3tc",
