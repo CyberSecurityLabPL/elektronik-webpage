@@ -46,7 +46,7 @@ export default function WorkerCard({
             {position}
           </CardDescription>
         </CardHeader>
-        <CardContent className="h-1/3">
+        <CardContent className="h-1/4 sm:h-1/3">
           <p className="text-xs font-medium text-slate-500">{description}</p>
         </CardContent>
         <CardFooter>
