@@ -13,6 +13,16 @@ export const api = axios.create({
   },
 })
 
+export const backend = axios.create({
+  
+  baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
+  headers: {
+    Authorization: process.env.API_KEY ? `Bearer ${process.env.API_KEY}` : "",
+  },
+})
+
+process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+
 /**
  * Retrieves the navigation data for a specific page.
  * @param page - The page to retrieve the navigation data for. Used for page revalidation
@@ -193,7 +203,7 @@ export async function getPage(page: string) {
 
 export async function getParents() {
   try {
-    const { data }: AxiosResponse<any> = await api.get("/parents-council")
+    const { data }: AxiosResponse<any> = await api.get("/parents-council-page")
 
     return flattenStrapiResponse(data)
   } catch (error) {
@@ -214,6 +224,18 @@ export async function getDocuments() {
   try {
     const { data }: AxiosResponse<any> = await api.get(
       "/documents-page?populate[document_groups][populate][documents][populate][file][fields][0]=url&populate[document_groups][populate][documents][populate][file][fields][1]=ext"
+    )
+
+    return flattenStrapiResponse(data)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export async function getImages() {
+  try {
+    const { data }: AxiosResponse<any> = await backend.get(
+      "/file-system/docs/gallery?populate=*"
     )
 
     return flattenStrapiResponse(data)

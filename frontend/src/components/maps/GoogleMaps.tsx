@@ -1,4 +1,4 @@
-export default function GoogleMaps({ apiKey }: { apiKey: string }) {
+export default function GoogleMaps() {
   return (
     <div className="flex h-full min-h-16 w-full items-center justify-center p-1">
       <iframe

@@ -8,26 +8,21 @@ import 'lightgallery/css/lg-thumbnail.css';
 import lgThumbnail from 'lightgallery/plugins/thumbnail';
 import lgZoom from 'lightgallery/plugins/zoom';
 import Image from 'next/image';
-import { ISizeCalculationResult } from 'image-size/dist/types/interface';
 
-interface item {
-    name: string,
-    link: string
-}
 
-const MyLightGallery = ({ data, item, idx, photoSpans, dimensions } : {data: any, item: item, idx: number, photoSpans: number, dimensions: ISizeCalculationResult}) => {
+const MyLightGallery = ({ data, item, idx, photoSpans, width, height, url, name } : {data: any, item: any, idx: any, photoSpans: any, width: number, height: number, url: string, name: string}) => {
 
     const lightboxRef = useRef<LightGallery | null>(null);
 
     return (
         <>
-            <div className="w-[250px] justify-self-center px-3" style={{ gridRow: `span ${photoSpans}` }}>
+            <div key={item.name} className="w-[250px] justify-self-center px-3" style={{ gridRow: `span ${photoSpans}` }}>
                 <div className="rounded-xl overflow-hidden group">
                     <Image
-                        src={item.link}
-                        alt={item.name}
-                        width={dimensions.width}
-                        height={dimensions.height}
+                        src={url}
+                        alt={name}
+                        width={width}
+                        height={height}
                         sizes="250px"
                         className="object-cover group-hover:opacity-75"
                         onClick={() => {
@@ -44,9 +39,9 @@ const MyLightGallery = ({ data, item, idx, photoSpans, dimensions } : {data: any
                     speed={500}
                     plugins={[lgThumbnail, lgZoom]}
                     dynamic
-                    dynamicEl={data.map((item: any) => ({
-                        src: item.link,
-                        thumb: item.link,
+                    dynamicEl={data.files.map((item: any) => ({
+                        src: process.env.NEXT_PUBLIC_BACKEND_URL+item.url,
+                        thumb: process.env.NEXT_PUBLIC_BACKEND_URL+item.url,
                     }))}
                 />
             </div>

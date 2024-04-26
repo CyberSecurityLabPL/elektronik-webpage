@@ -6,11 +6,13 @@ import Hero from "@/components/landingpage/Hero"
 import Map from "@/components/landingpage/Map"
 import News from "@/components/landingpage/News"
 import Overview from "@/components/landingpage/Overview"
-import Sponsors from "@/components/landingpage/Sponsors"
 import { getLandingPage } from "@/lib/api"
 
 export default async function Home() {
   const data = await getLandingPage()
+  console.log(data.blocks[0])
+
+  const Content = [Overview, Benefits, News, Map, Faq]
 
   return (
     <main className="flex w-full flex-col justify-center ">
@@ -20,11 +22,10 @@ export default async function Home() {
         <div className="h-64 w-full bg-wave-transition bg-repeat-x"></div>
       </header>
       {/* Main content */}
-      <Overview />
-      <Benefits />
-      <News />
-      <Map />
-      <Faq />
+
+      {Content.map((Component, index) => (
+        <Component key={index} data={data?.blocks[index + 1]} />
+      ))}
       <Footer />
     </main>
   )

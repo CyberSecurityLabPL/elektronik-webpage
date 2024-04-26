@@ -41,7 +41,7 @@ function FileGroup({
         {title}
       </div>
       <div className="flex w-full items-center justify-center">
-        <div className="grid w-full gap-4 px-4 py-8  sm:grid-cols-1 md:grid-cols-2 lg:w-5/6 xl:grid-cols-3">
+        <div className="grid w-full gap-4 gap-x-32 px-4 py-8  sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           {children}
         </div>
       </div>

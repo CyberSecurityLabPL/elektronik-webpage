@@ -42,9 +42,9 @@ export default function FileCard({
   const fileProps = getFileProps(fileType)
 
   return (
-    <Link passHref href={url}>
-      <Card className="flex  cursor-pointer items-center justify-between  rounded-lg border-none p-4 shadow-md">
-        <div className="flex  items-center justify-start gap-2">
+    <Link passHref href={process.env.NEXT_PUBLIC_BACKEND_URL + url}>
+      <Card className="flex min-w-fit cursor-pointer items-center justify-between rounded-lg border-none p-4 shadow-md">
+        <div className="flex items-center justify-start gap-2">
           <CardContent className="flex items-center justify-center p-0">
             <FileIcon icon={fileProps.icon} color={fileProps.color} />
           </CardContent>
