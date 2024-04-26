@@ -39,8 +39,6 @@ export default function FileCard({
   url: string
   fileType: string
 }) {
-  console.log(fileType)
-
   const fileProps = getFileProps(fileType)
 
   return (

@@ -51,7 +51,7 @@ export async function getLandingPage(): Promise<any> {
 interface ArticlesOptions {
   params?: string
   flatteners?: string[]
-  page?: number
+  page?: string
 }
 
 export async function getArticles(options?: ArticlesOptions): Promise<any> {
@@ -59,11 +59,15 @@ export async function getArticles(options?: ArticlesOptions): Promise<any> {
     const params = options?.params
     const flatteners = options?.flatteners
 
+    const page = options?.page ?? "1"
+
+    const isFirstPage = page === "1"
+
     const query = qs.stringify(
       {
         pagination: {
-          page: options?.page || 1,
-          pageSize: PAGINATION_LIMIT,
+          page,
+          pageSize: isFirstPage ? PAGINATION_LIMIT + 1 : PAGINATION_LIMIT,
         },
       },
       {
@@ -76,7 +80,11 @@ export async function getArticles(options?: ArticlesOptions): Promise<any> {
       : `articles?${options?.page ? query : ""}`
     const { data }: AxiosResponse<any> = await api.get(url)
 
-    return flattenStrapiResponse(data, !!!params, flatteners)
+    const res = flattenStrapiResponse(data, !!!params, flatteners)
+
+    res.data = res.data.slice(isFirstPage ? 1 : 0)
+
+    return res
   } catch (error) {
     console.error(error)
   }

@@ -1,23 +1,25 @@
-import Articles from "@/components/Articles"
+import PaginationComponent from "@/components/ArticlesPagination"
 import Header from "@/components/Header"
 import NewsCard from "@/components/cards/NewsCard"
 import { getArticles, getLatestArticle } from "@/lib/api"
 import { revalidatePath } from "next/cache"
 
-async function page({ searchParams }: { searchParams: any }) {
-  console.log(searchParams)
+interface PageParams {
+  searchParams: { page: string | undefined }
+}
+
+async function page({ searchParams }: PageParams) {
+  const page = searchParams["page"] ?? "1"
 
   const { data, meta } = await getArticles({
     flatteners: [],
-    page: searchParams["page"],
+    page,
   })
 
   revalidatePath("/aktualnosci")
 
   const articles = data as any[]
   const featuredArticle = await getLatestArticle(["id"])
-
-  // console.log("------------------------------", articles)
 
   return (
     <>
@@ -45,7 +47,26 @@ async function page({ searchParams }: { searchParams: any }) {
         <h2 className="mb-4 mt-8 text-center text-lg font-bold text-foreground xs:pl-8 xs:text-start">
           Wszystkie artykuły
         </h2>
-        <Articles articles={articles} articlesCount={meta.pagination.total} />
+        <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {articles.length
+            ? articles.map((item: any, index: number) => (
+                <NewsCard
+                  key={item.id}
+                  title={item.attributes.title}
+                  description={item.attributes.description}
+                  link={`/aktualnosci/${item.id}`}
+                  date={item.attributes.createdAt ?? item.attributes.updatedAt}
+                  src={item.attributes.image.data?.attributes.url}
+                />
+              ))
+            : "Brak artykułów do wyświetlenia"}
+        </div>
+        <div className="self-center">
+          <PaginationComponent
+            articlesCount={meta.pagination.total}
+            paramsPage={page}
+          />
+        </div>
       </div>
     </>
   )

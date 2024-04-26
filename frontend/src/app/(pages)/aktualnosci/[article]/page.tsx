@@ -29,8 +29,6 @@ export default async function Page({
 }) {
   const { data: article } = await getArticle(params.article, {})
 
-  console.log(article)
-
   const author = getAuthor(article)
 
   return (

@@ -25,7 +25,7 @@ export default function Hero({ data }: { data: any }) {
           </div>
           {/* lg:aspect-[125/84] */}
           <div className="relative z-30  hidden    h-3/6 w-full  max-w-[35rem] lg:block lg:max-w-[30rem] xl:max-w-[35rem]  min-[1420px]:max-w-[50rem] 2xl:max-w-[40rem] ">
-            <Image alt="dyrektor" src={"/sections/hero.svg"} fill />
+            <Image alt="dyrektor" src={"/sections/kmieciu.svg"} fill />
           </div>
         </div>
         <div className="absolute bottom-0 left-0 z-10 h-48 w-full bg-splash-transition bg-repeat-x"></div>
