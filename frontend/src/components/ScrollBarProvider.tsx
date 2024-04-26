@@ -13,7 +13,9 @@ export default function ScrollBarProvider({
       if (window.scrollY == 0) {
         elem.style.setProperty("--scroll-border", "0 0 0 10px")
       } else if (
-        Math.round(window.scrollY - document.body.scrollHeight + 695) == 0
+        Math.round(
+          window.scrollY - document.body.scrollHeight + window.innerHeight
+        ) == 0
       ) {
         elem.style.setProperty("--scroll-border", "10px 0 0 0")
       } else {
