@@ -1,6 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: process.env.OUTPUT ? process.env.OUTPUT : undefined,
+  experimental: {
+    missingSuspenseWithCSRBailout: true,
+  },
   images: {
     remotePatterns: [
       {
