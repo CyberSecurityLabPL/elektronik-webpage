@@ -13,6 +13,7 @@ import { defaultCreator } from "@/components/landingpage/News"
 export async function generateStaticParams() {
   const articles = await getArticles({
     flatteners: ["id"],
+    getAll: true,
   })
 
   const params = articles.data.map((article: any) => ({
