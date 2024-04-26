@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from "next/navigation"
 import { useContext } from "react"
 import { SelectContext } from "@/components/Providers"
 import { timetableConfig } from "@/config"
-
+import { Suspense } from "react"
 const Page = () => {
   const { setTimetableId } = useContext(SelectContext)
   const router = useRouter()
@@ -18,7 +18,11 @@ const Page = () => {
       router.push(`?timetableId=${timetableConfig.initialId}`)
     setTimetableId(id!)
   }, [router, searchParams, setTimetableId])
-  return <Timetable />
+  return (
+    <Suspense>
+      <Timetable />
+    </Suspense>
+  )
 }
 
 export default Page
