@@ -62,6 +62,7 @@ interface ArticlesOptions {
   params?: string
   flatteners?: string[]
   page?: string
+  getAll?: boolean
 }
 
 export async function getArticles(options?: ArticlesOptions): Promise<any> {
@@ -85,16 +86,22 @@ export async function getArticles(options?: ArticlesOptions): Promise<any> {
       }
     )
 
-    const url = params
-      ? `articles/${params}`
-      : `articles?${options?.page ? query : ""}`
-    const { data }: AxiosResponse<any> = await api.get(url)
+    if (!options?.getAll) {
+      const url = params
+        ? `articles/${params}`
+        : `articles?${options?.page ? query : ""}`
+      const { data }: AxiosResponse<any> = await api.get(url)
 
-    const res = flattenStrapiResponse(data, !!!params, flatteners)
+      const res = flattenStrapiResponse(data, !!!params, flatteners)
 
-    res.data = res.data.slice(isFirstPage ? 1 : 0)
+      res.data = res.data.slice(isFirstPage ? 1 : 0)
 
-    return res
+      return res
+    } else {
+      const url = "articles?fields[0]=id&populate=false&pagination[pageSize]=1"
+      const { data }: AxiosResponse<any> = await api.get(url)
+      return data
+    }
   } catch (error) {
     console.error(error)
   }
