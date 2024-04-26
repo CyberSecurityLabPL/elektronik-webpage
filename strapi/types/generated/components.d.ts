@@ -41,6 +41,7 @@ export interface BlocksFaq extends Schema.Component {
       'api::question.question'
     >;
     linkButton: Attribute.Component<'elements.button-link'>;
+    sectionId: Attribute.String;
   };
 }
 
@@ -52,9 +53,9 @@ export interface BlocksHero extends Schema.Component {
     description: '';
   };
   attributes: {
-    Heading: Attribute.String;
-    Text: Attribute.Text;
-    Link: Attribute.Component<'elements.button-link'>;
+    heading: Attribute.String;
+    text: Attribute.Text;
+    link: Attribute.Component<'elements.button-link'>;
     Image: Attribute.Media;
     sectionId: Attribute.String;
   };
@@ -65,6 +66,7 @@ export interface BlocksMap extends Schema.Component {
   info: {
     displayName: 'Map';
     icon: 'pinMap';
+    description: '';
   };
   attributes: {
     title: Attribute.String;
@@ -72,6 +74,19 @@ export interface BlocksMap extends Schema.Component {
     phoneNumber: Attribute.String;
     email: Attribute.Email;
     location: Attribute.String;
+    sectionId: Attribute.String;
+  };
+}
+
+export interface BlocksNews extends Schema.Component {
+  collectionName: 'components_blocks_news';
+  info: {
+    displayName: 'News';
+    icon: 'layer';
+  };
+  attributes: {
+    sectionId: Attribute.String;
+    heading: Attribute.String;
   };
 }
 
@@ -84,7 +99,7 @@ export interface BlocksOverview extends Schema.Component {
   };
   attributes: {
     sectionId: Attribute.String;
-    Row: Attribute.Component<'elements.overview-row', true>;
+    row: Attribute.Component<'elements.overview-row', true>;
   };
 }
 
@@ -148,7 +163,7 @@ export interface ElementsButtonLink extends Schema.Component {
     title: Attribute.String;
     link: Attribute.String;
     isExternal: Attribute.Boolean & Attribute.DefaultTo<false>;
-    type: Attribute.Enumeration<['PRIMARY', 'SECONDARY', 'OUTLINE']>;
+    type: Attribute.Enumeration<['default', 'secondary', 'outline']>;
   };
 }
 
@@ -273,6 +288,7 @@ declare module '@strapi/types' {
       'blocks.faq': BlocksFaq;
       'blocks.hero': BlocksHero;
       'blocks.map': BlocksMap;
+      'blocks.news': BlocksNews;
       'blocks.overview': BlocksOverview;
       'blocks.pricing': BlocksPricing;
       'blocks.row': BlocksRow;

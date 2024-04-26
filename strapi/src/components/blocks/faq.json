@@ -22,6 +22,9 @@
       "type": "component",
       "repeatable": false,
       "component": "elements.button-link"
+    },
+    "sectionId": {
+      "type": "string"
     }
   }
 }

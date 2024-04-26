@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "documents_pages",
+  "info": {
+    "singularName": "documents-page",
+    "pluralName": "documents-pages",
+    "displayName": "Documents Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "document_groups": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::document-group.document-group"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

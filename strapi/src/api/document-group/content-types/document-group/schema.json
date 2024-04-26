@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "document_groups",
+  "info": {
+    "singularName": "document-group",
+    "pluralName": "document-groups",
+    "displayName": "Document Group"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "documents": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::document.document"
+    }
+  }
+}

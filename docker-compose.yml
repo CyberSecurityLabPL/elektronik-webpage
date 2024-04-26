@@ -6,14 +6,14 @@ services:
     container_name: "school-website"
     build: frontend
     ports:
-      - "3000:3000"
+      - "3001:3001"
     environment:
       - NODE_ENV=production
       - OUTPUT=standalone
     env_file:
       - frontend/.env.docker
-    depends_on:
-      - backend
+        #depends_on:
+        #  - backend # temporary disable
   backend:
     container_name: strapi
     platform: linux/arm64/v8
@@ -27,14 +27,14 @@ services:
       APP_KEYS: ${APP_KEYS}
       NODE_ENV: ${NODE_ENV}
     volumes:
-      - ./config:/opt/app/config
-      - ./src:/opt/app/src
-      - ./package.json:/opt/package.json
-      - ./package-lock.json:/opt/package-lock.json
-      - ./.env:/opt/app/.env
-      - ./public:/opt/app/public # don't set it to /uploads, because it blocks import functionallity
+      - ./strapi/config:/opt/app/config
+      - ./strapi/src:/opt/app/src
+      - ./strapi/package.json:/opt/package.json
+      - ./strapi/package-lock.json:/opt/package-lock.json
+      - ./strapi/.env:/opt/app/.env
+      - ./strapi/public:/opt/app/public # don't set it to /uploads, because it blocks import functionallity
       # - ./database/data.db:/opt/app/database/data.db
-      - ./types/:/opt/app/types
+      - ./strapi/types/:/opt/app/types
     ports:
       - '5000:5000'
     networks:
@@ -45,6 +45,7 @@ services:
     image: mariadb:latest
     platform: linux/arm64/v8
     container_name: db
+    env_file: strapi/.env    
     restart: always
     command: --default-authentication-plugin=mysql_native_password
     environment:
@@ -55,6 +56,7 @@ services:
       MYSQL_PASSWORD: ${DATABASE_PASSWORD}
       # Password for root access
       # MYSQL_ROOT_PASSWORD:
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
       MARIADB_ROOT_PASSWORD: asdASD123!@#
     ports:
       # <Port exposed> : <MySQL Port running inside container>

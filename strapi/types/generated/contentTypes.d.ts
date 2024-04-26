@@ -835,6 +835,11 @@ export interface ApiAchievementsPageAchievementsPage extends Schema.SingleType {
     heading: Attribute.String;
     description: Attribute.Text;
     seo: Attribute.Component<'shared.seo'>;
+    achievements: Attribute.Relation<
+      'api::achievements-page.achievements-page',
+      'oneToMany',
+      'api::achievement.achievement'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -859,6 +864,7 @@ export interface ApiApprenticeshipApprenticeship extends Schema.CollectionType {
     singularName: 'apprenticeship';
     pluralName: 'apprenticeships';
     displayName: 'Apprenticeship';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -866,7 +872,8 @@ export interface ApiApprenticeshipApprenticeship extends Schema.CollectionType {
   attributes: {
     class: Attribute.String;
     specialization: Attribute.String;
-    date: Attribute.Date;
+    dateStart: Attribute.Date;
+    dateEnd: Attribute.Date;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -934,11 +941,21 @@ export interface ApiArticleArticle extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: true;
+    populateCreatorFields: true;
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
     image: Attribute.Media;
     description: Attribute.Text;
+    content: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'Markdown';
+          preset: 'rich';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -946,14 +963,12 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'api::article.article',
       'oneToOne',
       'admin::user'
-    > &
-      Attribute.Private;
+    >;
     updatedBy: Attribute.Relation<
       'api::article.article',
       'oneToOne',
       'admin::user'
-    > &
-      Attribute.Private;
+    >;
   };
 }
 
@@ -1091,6 +1106,110 @@ export interface ApiBooksPageBooksPage extends Schema.SingleType {
   };
 }
 
+export interface ApiDocumentDocument extends Schema.CollectionType {
+  collectionName: 'documents';
+  info: {
+    singularName: 'document';
+    pluralName: 'documents';
+    displayName: 'Document';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    date: Attribute.DateTime;
+    file: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::document.document',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::document.document',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDocumentGroupDocumentGroup extends Schema.CollectionType {
+  collectionName: 'document_groups';
+  info: {
+    singularName: 'document-group';
+    pluralName: 'document-groups';
+    displayName: 'Document Group';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    documents: Attribute.Relation<
+      'api::document-group.document-group',
+      'oneToMany',
+      'api::document.document'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::document-group.document-group',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::document-group.document-group',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiDocumentsPageDocumentsPage extends Schema.SingleType {
+  collectionName: 'documents_pages';
+  info: {
+    singularName: 'documents-page';
+    pluralName: 'documents-pages';
+    displayName: 'Documents Page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    document_groups: Attribute.Relation<
+      'api::documents-page.documents-page',
+      'oneToMany',
+      'api::document-group.document-group'
+    >;
+    seo: Attribute.Component<'shared.seo'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::documents-page.documents-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::documents-page.documents-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiJobJob extends Schema.CollectionType {
   collectionName: 'jobs';
   info: {
@@ -1104,7 +1223,6 @@ export interface ApiJobJob extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String;
-    image: Attribute.String;
     minPay: Attribute.BigInteger;
     maxPay: Attribute.BigInteger;
     location: Attribute.String;
@@ -1113,6 +1231,7 @@ export interface ApiJobJob extends Schema.CollectionType {
     tasks: Attribute.Component<'utility.string-array', true>;
     badges: Attribute.Relation<'api::job.job', 'oneToMany', 'api::badge.badge'>;
     requirements: Attribute.Component<'utility.string-array', true>;
+    image: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1166,6 +1285,7 @@ export interface ApiLandingPageLandingPage extends Schema.SingleType {
     singularName: 'landing-page';
     pluralName: 'landing-pages';
     displayName: 'Landing Page';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1175,7 +1295,14 @@ export interface ApiLandingPageLandingPage extends Schema.SingleType {
     description: Attribute.String;
     slug: Attribute.UID;
     blocks: Attribute.DynamicZone<
-      ['blocks.contact', 'blocks.hero', 'blocks.pricing', 'blocks.row']
+      [
+        'blocks.hero',
+        'blocks.faq',
+        'blocks.map',
+        'blocks.overview',
+        'blocks.benefits',
+        'blocks.news'
+      ]
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1326,6 +1453,79 @@ export interface ApiPagePage extends Schema.CollectionType {
   };
 }
 
+export interface ApiParentParent extends Schema.CollectionType {
+  collectionName: 'parents';
+  info: {
+    singularName: 'parent';
+    pluralName: 'parents';
+    displayName: 'Parent';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    fullname: Attribute.String;
+    image: Attribute.Media;
+    position: Attribute.String;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::parent.parent',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::parent.parent',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiParentsCouncilPageParentsCouncilPage
+  extends Schema.SingleType {
+  collectionName: 'parents_council_pages';
+  info: {
+    singularName: 'parents-council-page';
+    pluralName: 'parents-council-pages';
+    displayName: 'Parents Council Page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    seo: Attribute.Component<'shared.seo'>;
+    parents: Attribute.Relation<
+      'api::parents-council-page.parents-council-page',
+      'oneToMany',
+      'api::parent.parent'
+    >;
+    bankAccountNumber: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::parents-council-page.parents-council-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::parents-council-page.parents-council-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiQuestionQuestion extends Schema.CollectionType {
   collectionName: 'questions';
   info: {
@@ -1349,6 +1549,76 @@ export interface ApiQuestionQuestion extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::question.question',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRecruitmentRecruitment extends Schema.CollectionType {
+  collectionName: 'recruitments';
+  info: {
+    singularName: 'recruitment';
+    pluralName: 'recruitments';
+    displayName: 'Recruitment';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    profession: Attribute.String;
+    spaces: Attribute.Integer;
+    groups: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::recruitment.recruitment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::recruitment.recruitment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRecruitmentsPageRecruitmentsPage extends Schema.SingleType {
+  collectionName: 'recruitments_pages';
+  info: {
+    singularName: 'recruitments-page';
+    pluralName: 'recruitments-pages';
+    displayName: 'Recruitments Page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    recruitments: Attribute.Relation<
+      'api::recruitments-page.recruitments-page',
+      'oneToMany',
+      'api::recruitment.recruitment'
+    >;
+    seo: Attribute.Component<'shared.seo'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::recruitments-page.recruitments-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::recruitments-page.recruitments-page',
       'oneToOne',
       'admin::user'
     > &
@@ -1530,6 +1800,36 @@ export interface ApiTeachersPageTeachersPage extends Schema.SingleType {
   };
 }
 
+export interface ApiTimetableAuthTimetableAuth extends Schema.SingleType {
+  collectionName: 'timetable_auths';
+  info: {
+    singularName: 'timetable-auth';
+    pluralName: 'timetable-auths';
+    displayName: 'Timetable Auth';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    login: Attribute.String & Attribute.Required;
+    password: Attribute.Password & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::timetable-auth.timetable-auth',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::timetable-auth.timetable-auth',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -1557,6 +1857,9 @@ declare module '@strapi/types' {
       'api::book.book': ApiBookBook;
       'api::book-group.book-group': ApiBookGroupBookGroup;
       'api::books-page.books-page': ApiBooksPageBooksPage;
+      'api::document.document': ApiDocumentDocument;
+      'api::document-group.document-group': ApiDocumentGroupDocumentGroup;
+      'api::documents-page.documents-page': ApiDocumentsPageDocumentsPage;
       'api::job.job': ApiJobJob;
       'api::jobs-page.jobs-page': ApiJobsPageJobsPage;
       'api::landing-page.landing-page': ApiLandingPageLandingPage;
@@ -1564,12 +1867,17 @@ declare module '@strapi/types' {
       'api::link-group.link-group': ApiLinkGroupLinkGroup;
       'api::navigation.navigation': ApiNavigationNavigation;
       'api::page.page': ApiPagePage;
+      'api::parent.parent': ApiParentParent;
+      'api::parents-council-page.parents-council-page': ApiParentsCouncilPageParentsCouncilPage;
       'api::question.question': ApiQuestionQuestion;
+      'api::recruitment.recruitment': ApiRecruitmentRecruitment;
+      'api::recruitments-page.recruitments-page': ApiRecruitmentsPageRecruitmentsPage;
       'api::sponsor.sponsor': ApiSponsorSponsor;
       'api::substitutions-page.substitutions-page': ApiSubstitutionsPageSubstitutionsPage;
       'api::teacher.teacher': ApiTeacherTeacher;
       'api::teacher-group.teacher-group': ApiTeacherGroupTeacherGroup;
       'api::teachers-page.teachers-page': ApiTeachersPageTeachersPage;
+      'api::timetable-auth.timetable-auth': ApiTimetableAuthTimetableAuth;
     }
   }
 }

@@ -15,9 +15,6 @@
     "name": {
       "type": "string"
     },
-    "image": {
-      "type": "string"
-    },
     "minPay": {
       "type": "biginteger"
     },
@@ -48,6 +45,13 @@
       "type": "component",
       "repeatable": true,
       "component": "utility.string-array"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

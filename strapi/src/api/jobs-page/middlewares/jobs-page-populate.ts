@@ -7,7 +7,20 @@ import { Strapi } from '@strapi/strapi';
 const populate = {
   populate: {
     jobs: {
-      populate: true
+      populate: {
+      	badges: {
+		        populate: true
+	    },
+    	tasks: {
+	    	populate:true
+	    },
+	    requirements: {
+		    populate:true
+	    },
+        image: {
+            populate: true
+        }
+      }
     },
     seo: {
       populate: true

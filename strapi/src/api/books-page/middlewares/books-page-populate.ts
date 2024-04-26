@@ -9,7 +9,11 @@ const populate = {
     book_groups: {
       populate: {
         books: {
-          populate: true
+          populate: {
+            image: {
+                populate: true
+            }
+          }
         }
       }
     },

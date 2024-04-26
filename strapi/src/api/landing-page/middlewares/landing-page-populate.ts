@@ -1,37 +1,34 @@
-'use strict';
+
 
 /**
  * `landing-page-populate` middleware
  */
 
 const populate = {
-  populate: {
-    blocks: {
-      populate: {
-        Image: {
-          fields: ["name", "alternativeText", "url"]
-        },
-        Link: {
-          populate: true
-        },
-        Card: {
-          populate: {
-            Image: {
-              fields: ["name", "alternativeText", "url"]
+    populate: {
+        blocks: {
+            populate: {
+                Image: {
+                    fields: ["name","alternativeText","url"]
+                },
+                link: {
+                    populate: true
+                },
+                row: {
+                    populate: true
+                },
+                benefitCard: {
+                    populate: true
+                },
+                questions: {
+                    populate: true
+                },
+                linkButton: {
+                    populate: true
+                }
             }
-          }
-        },
-        Plan: {
-          populate: ["services", "Link"]
-        },
-        Contact: {
-          form: {
-            populate: ["input", "button"]
-          }
         }
-      }
-    }
-  }
+    }   
 }
 
 module.exports = (config, { strapi }) => {

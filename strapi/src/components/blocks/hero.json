@@ -7,13 +7,13 @@
   },
   "options": {},
   "attributes": {
-    "Heading": {
+    "heading": {
       "type": "string"
     },
-    "Text": {
+    "text": {
       "type": "text"
     },
-    "Link": {
+    "link": {
       "type": "component",
       "repeatable": false,
       "component": "elements.button-link"

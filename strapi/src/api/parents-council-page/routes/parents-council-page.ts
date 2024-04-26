@@ -4,4 +4,10 @@
 
 import { factories } from '@strapi/strapi';
 
-export default factories.createCoreRouter('api::parents-council-page.parents-council-page');
+export default factories.createCoreRouter('api::parents-council-page.parents-council-page', {
+	config: {
+		find:{
+			middlewares: ['api::parents-council-page.parents-council-page-populate']
+		}
+	}
+});

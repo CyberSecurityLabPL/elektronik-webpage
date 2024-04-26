@@ -4,7 +4,8 @@
   "info": {
     "singularName": "apprenticeship",
     "pluralName": "apprenticeships",
-    "displayName": "Apprenticeship"
+    "displayName": "Apprenticeship",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -17,7 +18,10 @@
     "specialization": {
       "type": "string"
     },
-    "date": {
+    "dateStart": {
+      "type": "date"
+    },
+    "dateEnd": {
       "type": "date"
     }
   }

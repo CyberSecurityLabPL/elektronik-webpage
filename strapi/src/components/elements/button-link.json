@@ -19,9 +19,9 @@
     "type": {
       "type": "enumeration",
       "enum": [
-        "PRIMARY",
-        "SECONDARY",
-        "OUTLINE"
+        "default",
+        "secondary",
+        "outline"
       ]
     }
   }

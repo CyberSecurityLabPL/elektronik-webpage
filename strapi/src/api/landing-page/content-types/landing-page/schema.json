@@ -4,7 +4,8 @@
   "info": {
     "singularName": "landing-page",
     "pluralName": "landing-pages",
-    "displayName": "Landing Page"
+    "displayName": "Landing Page",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -23,10 +24,12 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "blocks.contact",
         "blocks.hero",
-        "blocks.pricing",
-        "blocks.row"
+        "blocks.faq",
+        "blocks.map",
+        "blocks.overview",
+        "blocks.benefits",
+        "blocks.news"
       ]
     }
   }

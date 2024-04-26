@@ -1,0 +1,23 @@
+{
+  "kind": "singleType",
+  "collectionName": "timetable_auths",
+  "info": {
+    "singularName": "timetable-auth",
+    "pluralName": "timetable-auths",
+    "displayName": "Timetable Auth"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "login": {
+      "type": "string",
+      "required": true
+    },
+    "password": {
+      "type": "password",
+      "required": true
+    }
+  }
+}
