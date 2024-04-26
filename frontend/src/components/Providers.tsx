@@ -4,6 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { useSearchParams } from "next/navigation"
 import { createContext, useEffect, useState } from "react"
 import ScrollBarProvider from "./ScrollBarProvider"
+import { Suspense } from "react"
 const queryClient = new QueryClient()
 
 export const SelectContext = createContext({
@@ -47,10 +48,12 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <SelectContext.Provider value={select}>
-        <ScrollBarProvider>{children}</ScrollBarProvider>
-      </SelectContext.Provider>
-    </QueryClientProvider>
+    <Suspense>
+      <QueryClientProvider client={queryClient}>
+        <SelectContext.Provider value={select}>
+          <ScrollBarProvider>{children}</ScrollBarProvider>
+        </SelectContext.Provider>
+      </QueryClientProvider>
+    </Suspense>
   )
 }
