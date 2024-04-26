@@ -17,7 +17,9 @@ export default function Hero({ data }: { data: any }) {
             </p>
             <span className="flex w-full justify-center py-4">
               <Button asChild type={data?.Link.type ?? ""}>
-                <Link href={data?.Link.link ?? "#overview"}>
+                <Link href={"/auth"}>
+                  {" "}
+                  {/*data?.Link.link ?? "#overview"*/}
                   {data?.Link.title ?? "Dowiedz się wiecej"}
                 </Link>
               </Button>
