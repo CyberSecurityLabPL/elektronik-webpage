@@ -193,7 +193,7 @@ export async function getPage(page: string) {
 
 export async function getParents() {
   try {
-    const { data }: AxiosResponse<any> = await api.get("/parents-council")
+    const { data }: AxiosResponse<any> = await api.get("/parents-council-page")
 
     return flattenStrapiResponse(data)
   } catch (error) {
