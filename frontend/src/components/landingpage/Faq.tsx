@@ -17,9 +17,12 @@ import { Button } from "../ui/button"
 import Image from "next/image"
 import Link from "next/link"
 
-export default function Faq() {
+export default function Faq({ data }: { data: any }) {
   return (
-    <div className="flex h-screen w-full items-center justify-center">
+    <div
+      id={data.sectionId}
+      className="flex h-screen w-full items-center justify-center"
+    >
       <Card className="z-50 h-fit w-4/5">
         <CardHeader>
           <CardTitle>FAQ</CardTitle>
@@ -28,44 +31,12 @@ export default function Faq() {
         <CardContent className=" flex gap-2">
           <div className="w-full ">
             <Accordion type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger>Ile trwają przerwy?</AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger>
-                  Czy szkoła przyjmuje uczniów z potrzebami specjalnymi?
-                </AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger>
-                  Czy jest w szkole psycholog ?
-                </AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-4">
-                <AccordionTrigger>
-                  Jak oceniacie atmosferę w szkołach i przyjemność nauki?
-                </AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-5">
-                <AccordionTrigger>
-                  Czy szkoła Elektronik jest tylko dla chłopaków?
-                </AccordionTrigger>
-                <AccordionContent>
-                  Yes. It adheres to the WAI-ARIA design pattern.
-                </AccordionContent>
-              </AccordionItem>
+              {data.questions.map((question: any, index: number) => (
+                <AccordionItem value={`value-${index}`} key={index}>
+                  <AccordionTrigger>{question.question}?</AccordionTrigger>
+                  <AccordionContent>{question.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
             </Accordion>
           </div>
           <div className="relative hidden w-2/5 justify-center lg:flex">
@@ -82,8 +53,8 @@ export default function Faq() {
           <h1 className="text-center font-semibold  ">
             Jeśli masz do nas inne pytania napisz do nas!
           </h1>
-          <Button variant={"outline"} asChild>
-            <Link href={"/kontakt"}>Napisz wiadomość!</Link>
+          <Button variant={data.linkButton.type} asChild>
+            <Link href={data.linkButton.link}>{data.linkButton.title}</Link>
           </Button>
         </CardFooter>
       </Card>
