@@ -4,7 +4,7 @@ import { getBooks } from "@/lib/api"
 
 export default async function Page() {
   const data = await getBooks()
-
+  
   return (
     <main className="flex w-full flex-col items-center">
       <Header
@@ -27,7 +27,7 @@ export default async function Page() {
               {group.books?.map((book: any) => (
                 <BookCard
                   key={book.title}
-                  src={book.image ?? "/cards/matma.jpg"}
+                  src={book.image?.url ? process.env.NEXT_PUBLIC_BACKEND_URL + book.image.url : "/cards/matma.jpg"}
                   subject={book.subject}
                   title={book.title}
                   dist={book.distributor}

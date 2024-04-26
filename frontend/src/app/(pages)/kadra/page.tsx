@@ -14,7 +14,7 @@ export default async function Page() {
       <div>
         {data?.teacher_groups.map((group: any) => (
           <div key={group.title}>
-            <h1 className="my-4 text-2xl font-semibold justify-center sm:justify-start flex">{group.title}</h1>
+            <h1 className="my-4 text-2xl font-semibold justify-center sm:justify-start flex py-5">{group.title}</h1>
             <div className="flex flex-wrap justify-center gap-4">
               {group.teachers.map((teacher: any) => (
                 <WorkerCard
