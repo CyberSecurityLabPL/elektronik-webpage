@@ -10,17 +10,15 @@ export default function Hero({ data }: { data: any }) {
         <div className="z-20 flex w-full items-center justify-around gap-8 pb-24">
           <div className="flex flex-col items-center justify-center">
             <h1 className="inline-block  bg-gradient-to-r from-primary to-primary-foreground bg-clip-text py-4 text-center text-4xl font-extrabold text-transparent lg:text-5xl xl:text-6xl">
-              {data?.Heading ?? "Witaj w Elektroniku"}
+              {data?.heading ?? "Witaj w Elektroniku"}
             </h1>
             <p className="max-w-[32rem] text-center text-base leading-relaxed text-primary-foreground md:text-lg">
-              {data?.Text ?? ""}
+              {data?.text ?? ""}
             </p>
             <span className="flex w-full justify-center py-4">
-              <Button asChild type={data?.Link.type ?? ""}>
-                <Link href={"/auth"}>
-                  {" "}
-                  {/*data?.Link.link ?? "#overview"*/}
-                  {data?.Link.title ?? "Dowiedz się wiecej"}
+              <Button asChild variant={data?.link.type ?? ""}>
+                <Link href={data?.link.link ?? "#overview"}>
+                  {data?.link.title ?? "Dowiedz się wiecej"}
                 </Link>
               </Button>
             </span>
