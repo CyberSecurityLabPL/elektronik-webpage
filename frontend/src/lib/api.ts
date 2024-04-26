@@ -14,14 +14,13 @@ export const api = axios.create({
 })
 
 export const backend = axios.create({
-  
   baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
   headers: {
     Authorization: process.env.API_KEY ? `Bearer ${process.env.API_KEY}` : "",
   },
 })
 
-process.env['NODE_TLS_REJECT_UNAUTHORIZED'] = '0';
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0"
 
 /**
  * Retrieves the navigation data for a specific page.
@@ -98,7 +97,8 @@ export async function getArticles(options?: ArticlesOptions): Promise<any> {
 
       return res
     } else {
-      const url = "articles?fields[0]=id&populate=false&pagination[pageSize]=1"
+      const url =
+        "articles?fields[0]=id&populate=false&pagination[pageSize]=10000"
       const { data }: AxiosResponse<any> = await api.get(url)
       return data
     }
