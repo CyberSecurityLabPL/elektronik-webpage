@@ -10,7 +10,7 @@ const Layout = ({
   return (
     <PageWrapper>
       <Navbar />
-      <div className="page-padding relative flex min-h-[calc(100vh-128px)] w-full flex-col justify-center">
+      <div className="page-padding relative flex min-h-[calc(100vh-128px)] w-full flex-col justify-start">
         {children}
       </div>
 

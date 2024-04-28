@@ -29,7 +29,7 @@ export default async function Page() {
               src={
                 item.image?.url
                   ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${item.image.url}`
-                  : "/default/job.svg"
+                  : "/default/job.jpg"
               }
               date={item.date}
               minPay={item.minPay}

@@ -20,7 +20,7 @@ export default async function Page() {
             <AchieveCard
               key={item.name}
               name={item.title}
-              src={item.image?.url ?? "/default/trophy.svg"}
+              src={item.image?.url ?? "/default/trophy.jpg"}
               date={item.date}
               opis={item.description}
             />

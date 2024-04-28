@@ -2,25 +2,17 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-
-import {
-  Download,
-  File,
-  FileText,
-  FileSpreadsheet,
-  FileAxis3D,
-} from "lucide-react"
+import { Download } from "lucide-react"
 import { Pdf, Docx, Csv, Default } from "../icons"
 import { LucideProps } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { FileIcon } from "../Icon"
 import { IconColors } from "../Icon"
 import Link from "next/link"
-import { formatDate } from "@/lib/utils"
+
 import { format } from "date-fns"
 
 type FileProps = {
@@ -42,17 +34,19 @@ export default function FileCard({
   const fileProps = getFileProps(fileType)
 
   return (
-    <Link passHref href={process.env.NEXT_PUBLIC_BACKEND_URL + url}>
-      <Card className="flex min-w-fit cursor-pointer items-center justify-between rounded-lg border-none p-4 shadow-md">
-        <div className="flex items-center justify-start gap-2">
-          <CardContent className="flex items-center justify-center p-0">
+    <Link
+      passHref
+      href={process.env.NEXT_PUBLIC_BACKEND_URL + url}
+      className=""
+    >
+      <Card className="flex items-center justify-between  p-4">
+        <div className="flex items-center gap-2">
+          <CardContent className="flex items-center p-0">
             <FileIcon icon={fileProps.icon} color={fileProps.color} />
           </CardContent>
-          <CardHeader className="flex  flex-col items-start justify-center space-y-0 p-0">
-            <CardTitle className="w-40 truncate text-wrap text-lg font-normal text-slate-950 md:w-60 ">
-              {name}
-            </CardTitle>
-            <CardDescription className="text-xs font-medium text-slate-400">
+          <CardHeader className="items-start space-y-0 p-0">
+            <CardTitle className=" text-xl">{name}</CardTitle>
+            <CardDescription className="">
               {format(date, "dd.MM.yyyy - HH:mm")}
             </CardDescription>
           </CardHeader>

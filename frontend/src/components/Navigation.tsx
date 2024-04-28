@@ -27,9 +27,9 @@ export function Navigation({ navItems }: { navItems: any }) {
                       <li className="row-span-3">
                         <NavigationMenuLink asChild>
                           <a
-                            className={`flex h-full w-full select-none flex-col justify-end rounded-md bg-cover p-6 text-background no-underline outline-none focus:shadow-md`}
+                            className={`flex h-full w-full select-none flex-col justify-end rounded-md  bg-cover p-6 text-background  no-underline outline-none focus:shadow-md`}
                             style={{
-                              backgroundImage: `url(${""})`,
+                              backgroundImage: `url(${"cards/university.png"})`,
                             }}
                             href="/galeria"
                           >
@@ -88,7 +88,7 @@ const ListItem = React.forwardRef<
           {...props}
         >
           <div>
-            <div className="text-sm font-medium leading-none">{title}</div>
+            <div className="pb-2 text-sm font-medium leading-none">{title}</div>
             <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
               {children}
             </p>

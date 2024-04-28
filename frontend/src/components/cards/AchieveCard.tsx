@@ -23,12 +23,18 @@ export default function AchieveCard({
   opis: string
 }) {
   return (
-    <Card className="m-2 flex  cursor-pointer items-center justify-between rounded-3xl shadow-sm">
+    <Card className="m-4 flex  cursor-pointer items-center justify-between rounded-3xl shadow-sm">
       <div
         className={`flex h-full flex-col rounded-t-xl sm:flex-row sm:rounded-none sm:rounded-l-xl`}
       >
-        <div className="relative h-56  w-full rounded-[inherit] bg-slate-200 sm:w-2/4">
-          <Image alt={name + " image"} src={src} fill objectFit="cover" />
+        <div className="relative h-56  w-full rounded-t-3xl bg-slate-200 sm:w-2/4 sm:rounded-none sm:rounded-l-3xl">
+          <Image
+            alt={name + " image"}
+            src={src}
+            fill
+            objectFit="cover"
+            className="rounded-t-3xl sm:rounded-none  sm:rounded-l-3xl"
+          />
         </div>
         <div className="">
           <CardHeader>

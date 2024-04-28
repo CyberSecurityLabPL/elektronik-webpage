@@ -61,7 +61,7 @@ async function page({ searchParams }: PageParams) {
               ))
             : "Brak artykułów do wyświetlenia"}
         </div>
-        <div className="self-center">
+        <div className="self-center py-4">
           <PaginationComponent
             articlesCount={meta.pagination.total}
             paramsPage={page}

@@ -12,7 +12,13 @@ export default async function Navbar({ data }: { data?: any }) {
     <div className="relative flex h-32 w-full justify-between">
       <div className=" flex items-center justify-center px-8 ">
         <Link href={"/"} passHref>
-          <Image src={"/logo.svg"} width={80} height={60} alt="Logo" />
+          <Image
+            src={"/logo.svg"}
+            width={80}
+            height={60}
+            className="h-auto w-auto"
+            alt="Logo"
+          />
         </Link>
       </div>
       <div className="absolute left-1/2 top-1/2 z-50 hidden -translate-x-1/2 -translate-y-1/2 items-center justify-center lg:flex">

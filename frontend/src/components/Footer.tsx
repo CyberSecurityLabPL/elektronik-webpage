@@ -50,10 +50,10 @@ function LinkPanel({
 }) {
   return (
     <div className="flex w-full flex-col items-center justify-center text-center  sm:mx-4 sm:justify-start sm:text-left ">
-      <div className=" w-full text-nowrap  py-4 text-xl font-semibold text-background">
+      <div className=" w-full text-nowrap  py-2 text-base font-semibold text-background">
         {title}
       </div>
-      <div className="flex w-full flex-col  gap-4 ">{children}</div>
+      <div className="flex w-full flex-col  gap-2 ">{children}</div>
     </div>
   )
 }
@@ -62,7 +62,7 @@ function LinkPanel({
 function LinkItem({ name, href }: { name: string; href: string }) {
   return (
     <Link
-      className="text-xs font-medium text-slate-200 hover:text-white hover:underline"
+      className="text-xs font-medium text-slate-300 hover:text-white hover:underline"
       href={href}
     >
       {name}
@@ -107,7 +107,7 @@ async function MainPanel() {
     <div className="flex justify-center ">
       <div className="flex flex-col justify-around gap-6">
         <div className=" flex justify-center max-sm:flex-col max-sm:items-center">
-          <div className="flex w-full items-start justify-center gap-4 max-sm:flex-col max-sm:items-center">
+          <div className="flex w-full items-start justify-center max-sm:flex-col max-sm:items-center">
             {nav?.link_groups
               ? nav?.link_groups.map((panel: any, index: number) => (
                   <LinkPanel key={panel.name + index} title={panel.name}>
@@ -168,7 +168,13 @@ function Creators() {
     <div className=" flex w-64 flex-col  justify-center py-4">
       <div className="flex items-center justify-center">
         <Link href={"https://cslsoft.pl/"} passHref>
-          <Image src={"/logoCSL.svg"} width={200} height={100} alt="CSL logo" />
+          <Image
+            src={"/logoCSL.svg"}
+            width={200}
+            height={100}
+            className="h-auto w-auto"
+            alt="CSL logo"
+          />
         </Link>
       </div>
     </div>

@@ -5,6 +5,7 @@ const nextConfig = {
     missingSuspenseWithCSRBailout: false,
   },
   images: {
+    domains: ["api.thefinalpath.net"],
     remotePatterns: [
       {
         protocol: "http",

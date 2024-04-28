@@ -42,7 +42,7 @@ export default function WorkerCard({
           <CardTitle className="text-2xl font-bold leading-none text-primary">
             {name}
           </CardTitle>
-          <CardDescription className="text-base font-bold leading-none text-foreground">
+          <CardDescription className="max-h-12 text-base font-bold leading-none text-foreground">
             {position}
           </CardDescription>
         </CardHeader>
