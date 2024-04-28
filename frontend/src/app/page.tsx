@@ -10,7 +10,6 @@ import { getLandingPage } from "@/lib/api"
 
 export default async function Home() {
   const data = await getLandingPage()
-  console.log(data.blocks[0])
 
   const Content = [Overview, Benefits, News, Map, Faq]
 

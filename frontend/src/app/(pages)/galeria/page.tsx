@@ -5,7 +5,6 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 const Page = async () => {
   const data = await getImages()
-  console.log(data)
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
       <Header title="Galeria" subtitle="Lorem ipsum dolor sit amet" />
