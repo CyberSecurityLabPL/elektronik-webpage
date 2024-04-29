@@ -45,11 +45,11 @@ export default function Faq({ data }: { data: any }) {
               alt="faq image"
               width={300}
               height={300}
-              className="absolute"
+              className="absolute h-auto w-auto"
             />
           </div>
         </CardContent>
-        <CardFooter className="flex flex-col items-center justify-center gap-2">
+        <CardFooter className="flex flex-col items-center justify-center gap-2 pt-4">
           <h1 className="text-center font-semibold  ">
             Jeśli masz do nas inne pytania napisz do nas!
           </h1>

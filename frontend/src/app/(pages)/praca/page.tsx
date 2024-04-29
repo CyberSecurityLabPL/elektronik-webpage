@@ -14,7 +14,7 @@ export default async function Page() {
           data?.description ?? "Oferty pracy dla absolwentów naszej szkoły."
         }
       />
-      <div className="mt-4 flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center p-2">
         {data?.jobs.map((item: any) => (
           <JobDialog
             key={item.name}

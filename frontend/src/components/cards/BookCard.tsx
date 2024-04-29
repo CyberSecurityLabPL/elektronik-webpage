@@ -24,39 +24,37 @@ export default function BookCard({
   url: string
 }) {
   return (
-    <Card className="m-4 flex aspect-[55/26] w-fit p-3 shadow-sm">
-      <div className="relative h-full w-20 lg:w-32">
-        <Image alt={`${title} img`} src={src} fill className="object-cover" />
+    <Card className="relative flex  w-fit p-3 shadow-sm">
+      <div className="flex h-full items-center">
+        <div className="relative flex h-48 w-32 items-center justify-center ">
+          <Image
+            alt={`${title} img`}
+            src={src}
+            fill
+            className="flex h-48 items-center rounded-lg object-cover"
+          />
+        </div>
       </div>
+
       <div className="h-full w-52 lg:w-[19rem]">
         <CardHeader className="py-0 lg:pb-2">
           <CardTitle className="text-lg font-semibold text-foreground lg:text-2xl">
             {subject}
           </CardTitle>
         </CardHeader>
-        <CardContent className="py-0 text-xs text-foreground lg:pb-2 lg:text-sm">
-          <p className="font-light">Tytuł: </p>
-          <p className="mb-1 font-medium">{title}</p>
-          <p className="font-light">Wydawnictwo: </p>
-          <p className="font-medium">{dist}</p>
+        <CardContent className="flex flex-col gap-2  text-xs text-foreground  lg:text-sm">
+          <div>
+            <p className="font-light">Tytuł: </p>
+            <p className="mb-1 font-medium">{title}</p>
+          </div>
+          <div>
+            <p className="font-light">Wydawnictwo: </p>
+            <p className="font-medium">{dist ?? "Nieznane"}</p>
+          </div>
         </CardContent>
-        <CardFooter className="my-0 flex w-full items-center justify-center py-1 lg:py-0">
-          <Button
-            className="text-xs max-lg:hidden lg:text-sm"
-            asChild
-            variant={"outline"}
-          >
+        <CardFooter className=" justify-center py-0">
+          <Button className="text-xs  lg:text-sm" asChild variant={"outline"}>
             <Link href={url}>Kup Teraz</Link>
-          </Button>
-          <Button
-            className="p-[6px] text-xs lg:hidden lg:text-sm"
-            size={"sm"}
-            asChild
-            variant={"outline"}
-          >
-            <Link href={url} className="h-fit w-fit">
-              Kup Teraz
-            </Link>
           </Button>
         </CardFooter>
       </div>

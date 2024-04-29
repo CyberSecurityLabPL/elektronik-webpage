@@ -20,7 +20,7 @@ export default function Error({
     <div className="flex h-screen w-full flex-col items-center  justify-center">
       <Header
         title="Coś poszło nie tak"
-        subtitle={"Wystąpiły nie oczekiwane błędy, spróbuj ponownie później"}
+        subtitle={"Wystąpiły nieoczekiwane błędy, spróbuj ponownie później"}
       />
       <Button
         onClick={
