@@ -12,6 +12,7 @@ import { cn } from "@/lib/utils"
 import { Accessibility, ExternalLink } from "lucide-react"
 import Link from "next/link"
 import * as React from "react"
+import { getRandomInt } from "@/lib/utils"
 
 export function Navigation({ navItems }: { navItems: any }) {
   return (
@@ -29,7 +30,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                           <a
                             className={`flex h-full w-full select-none flex-col justify-end rounded-md  bg-cover p-6 text-background  no-underline outline-none focus:shadow-md`}
                             style={{
-                              backgroundImage: `url(${"cards/university.png"})`,
+                              backgroundImage: `url(${getGalleryImage()})`,
                             }}
                             href="/galeria"
                           >
@@ -104,3 +105,17 @@ const ListItem = React.forwardRef<
   )
 })
 ListItem.displayName = "ListItem"
+
+function getGalleryImage(): string {
+  const now = new Date()
+
+  const images = ["/cards/university.png", "/cards/friends.png"]
+
+  if (
+    (now.getMonth() == 4 && now.getDate() == 1) ||
+    (now.getHours() == 21 && now.getMinutes() == 37) ||
+    (now.getHours() == 4 && now.getMinutes() == 20)
+  )
+    return "/cards/misha.png"
+  return images[getRandomInt(0, images.length)]
+}

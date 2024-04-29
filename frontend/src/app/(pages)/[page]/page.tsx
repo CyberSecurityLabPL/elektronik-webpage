@@ -3,6 +3,24 @@ import { renderMarkdown } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 import { getPage } from "@/lib/api"
 import markdownOptions from "@/components/markdown/MarkdownOptions"
+import { Metadata, ResolvingMetadata } from "next"
+
+type Props = {
+  params: { page: string }
+}
+
+export async function generateMetadata(
+  { params }: Props,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { seo } = await getPage(params.page)
+
+  return {
+    title: seo?.metaTitle ?? "Elektronik - Untitled page",
+    description: seo?.metaDescription ?? "Not described page",
+    keywords: seo?.keywords ?? ["page", "strona", "ckziu", "zseis"],
+  }
+}
 
 export default async function Page({ params }: { params: { page: string } }) {
   const data = await getPage(params.page)
@@ -14,7 +32,7 @@ export default async function Page({ params }: { params: { page: string } }) {
         subtitle={data?.description ?? `Page /${params.page} not found!`}
       />
       <div
-        className={`w-full rounded-sm bg-background p-2 text-xs shadow-sm sm:text-base ${data?.content ? "" : "hidden"}`}
+        className={`w-full rounded-sm bg-background p-2 text-xs shadow-sm sm:text-base flex justify-center items-center${data?.content ? "" : "hidden"}`}
       >
         <div className="prose p-4">
           {data?.content ? renderMarkdown(data.content) : null}
