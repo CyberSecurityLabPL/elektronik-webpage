@@ -34,7 +34,7 @@ export default function WorkerCard({
           objectFit="cover"
         />
       </div>
-      <div className="h-full w-full md:w-2/3">
+      <div className="relative h-full w-full md:w-2/3">
         <CardHeader>
           <CardDescription className="text-xs font-bold leading-tight text-slate-400">
             {titles}
@@ -46,11 +46,11 @@ export default function WorkerCard({
             {position}
           </CardDescription>
         </CardHeader>
-        <CardContent className="h-1/4 sm:h-1/3">
+        <CardContent className="sm:min-h-1/5 h-1/4 max-h-fit pb-0">
           <p className="text-xs font-medium text-slate-500">{description}</p>
         </CardContent>
-        <CardFooter>
-          <p className="text-sm font-medium text-slate-500">{duty}</p>
+        <CardFooter className="absolute left-0 top-0 flex h-full items-end">
+          <p className="text-sm font-medium text-slate-500">{`Dyżur: ${duty}`}</p>
         </CardFooter>
       </div>
     </Card>

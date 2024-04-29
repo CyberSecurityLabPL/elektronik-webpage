@@ -12,6 +12,17 @@ import {
 } from "@/components/ui/table"
 import { getApprenticeships } from "@/lib/api"
 import { formatDateYear } from "@/lib/utils"
+import { Metadata, ResolvingMetadata } from "next"
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { seo } = await getApprenticeships()
+
+  return {
+    title: seo.metaTitle,
+    description: seo.metaDescription,
+    keywords: seo.keywords,
+  }
+}
 
 const page = async () => {
   const data = await getApprenticeships()

@@ -23,11 +23,10 @@ export default function ParentCard({
     <Card className=" flex h-64 w-4/5 shadow-sm sm:w-96  md:w-[32rem]">
       <div className="relative hidden h-full w-1/3 md:block">
         <Image
-          className="rounded-l-md "
+          className="rounded-l-md object-cover"
           alt={`${name} img`}
           src={src}
           fill
-          objectFit="cover"
         />
       </div>
       <div className="h-full w-full md:w-2/3">

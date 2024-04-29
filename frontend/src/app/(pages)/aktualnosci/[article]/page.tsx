@@ -8,6 +8,22 @@ import Image from "next/image"
 import Link from "next/link"
 import markdownOptions from "@/components/markdown/MarkdownOptions"
 import { defaultCreator } from "@/components/landingpage/News"
+import { Metadata, ResolvingMetadata } from "next"
+
+type Props = {
+  params: { article: string }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { data: article } = await getArticle(params.article, {})
+  const seo = article.seo
+
+  return {
+    title: seo?.metaTitle ?? "Elektronik - Untitled",
+    description: seo?.metaDescription ?? "Not described article",
+    keywords: seo?.keywords ?? ["article", "news", "artykuł", "ckziu", "zseis"],
+  }
+}
 
 // Return a list of `params` to populate the [slug] dynamic segment
 export async function generateStaticParams() {

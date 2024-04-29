@@ -229,9 +229,7 @@ export async function getAchievements() {
 }
 export async function getDocuments() {
   try {
-    const { data }: AxiosResponse<any> = await api.get(
-      "/documents-page?populate[document_groups][populate][documents][populate][file][fields][0]=url&populate[document_groups][populate][documents][populate][file][fields][1]=ext"
-    )
+    const { data }: AxiosResponse<any> = await api.get("/documents-page")
 
     return flattenStrapiResponse(data)
   } catch (error) {

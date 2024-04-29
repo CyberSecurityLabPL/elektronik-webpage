@@ -2,6 +2,17 @@ import Header from "@/components/Header"
 import JobCard from "@/components/cards/JobCard"
 import JobDialog from "@/components/JobDialog"
 import { getJobs } from "@/lib/api"
+import { Metadata, ResolvingMetadata } from "next"
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { seo } = await getJobs()
+
+  return {
+    title: seo.metaTitle,
+    description: seo.metaDescription,
+    keywords: seo.keywords,
+  }
+}
 
 export default async function Page() {
   const data = await getJobs()
@@ -14,7 +25,7 @@ export default async function Page() {
           data?.description ?? "Oferty pracy dla absolwentów naszej szkoły."
         }
       />
-      <div className="mt-4 flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center p-2">
         {data?.jobs.map((item: any) => (
           <JobDialog
             key={item.name}

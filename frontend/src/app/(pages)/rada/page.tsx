@@ -2,6 +2,17 @@ import Header from "@/components/Header"
 import ParentCard from "@/components/cards/ParentCard"
 import { Button } from "@/components/ui/button"
 import { getParents } from "@/lib/api"
+import { Metadata, ResolvingMetadata } from "next"
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { seo } = await getParents()
+
+  return {
+    title: seo.metaTitle,
+    description: seo.metaDescription,
+    keywords: seo.keywords,
+  }
+}
 
 export default async function Page() {
   const data = await getParents()

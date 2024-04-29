@@ -1,6 +1,17 @@
 import Header from "@/components/Header"
 import WorkerCard from "@/components/cards/WorkerCard"
 import { getTeachers } from "@/lib/api"
+import { Metadata, ResolvingMetadata } from "next"
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { seo } = await getTeachers()
+
+  return {
+    title: seo.metaTitle,
+    description: seo.metaDescription,
+    keywords: seo.keywords,
+  }
+}
 
 export default async function Page() {
   const data = await getTeachers()

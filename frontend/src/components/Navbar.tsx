@@ -38,7 +38,7 @@ export default async function Navbar({ data }: { data?: any }) {
           </Button>
         </div>
         <div className="flex items-center justify-center lg:hidden">
-          <MobileNavigation />
+          <MobileNavigation navItems={navItems} />
         </div>
       </div>
     </div>

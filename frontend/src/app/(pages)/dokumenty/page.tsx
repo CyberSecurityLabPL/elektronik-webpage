@@ -2,6 +2,17 @@ import Header from "@/components/Header"
 import { ReactNode } from "react"
 import FileCard from "@/components/cards/FIleCard"
 import { getDocuments } from "@/lib/api"
+import { Metadata, ResolvedMetadata, ResolvingMetadata } from "next"
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { seo } = await getDocuments()
+
+  return {
+    title: seo?.metaTitle ?? "",
+    description: seo?.metaDescription ?? "",
+    keywords: seo?.keywords ?? "",
+  }
+}
 
 export default async function DocumentsPage() {
   const data = await getDocuments()

@@ -2,32 +2,75 @@ import Image from "next/image"
 import React from "react"
 
 export default function Overview({ data }: { data: any }) {
+  console.log(
+    "src:  " + process.env.NEXT_PUBLIC_BACKEND_URL + data.row[0].image.url
+  )
+
   return (
-    <div id={data.sectionId} className=" flex w-full flex-col">
-      <div className="flex w-full flex-col items-center justify-around p-4 md:flex-row md:gap-6 md:p-8 lg:gap-8">
-        <div className="relative h-[25vh] w-5/6 md:h-[50vh] lg:w-3/5">
-          <Image alt="dyrektor" src={"/sections/overview-2.svg"} fill />
-        </div>
-        <div className="flex w-full flex-col gap-4  py-4 md:gap-6 lg:w-2/5 ">
-          <h1 className="text-left text-3xl font-bold text-primary-foreground md:text-5xl lg:text-right lg:text-[56px] xl:text-6xl">
-            {data.row[0].Title}
+    <div
+      id={data.sectionId}
+      className=" mb-24 flex w-full flex-col gap-24 px-4 xs:px-8 sm:px-16"
+    >
+      <div className="flex w-full flex-col items-center justify-center gap-4 md:flex-row md:gap-12 ">
+        <div className="flex w-full flex-col gap-4 md:gap-3 lg:w-2/5 ">
+          <h1 className="text-center text-3xl font-bold text-primary-foreground xs:text-4xl sm:text-5xl md:text-left xl:text-6xl ">
+            {data.row[0].title}
           </h1>
-          <p className="text-left  text-base lg:text-right lg:text-xl ">
-            {data.row[0].Description}
+          <p className="text-center text-base  md:text-left lg:text-xl ">
+            {data.row[0].description}
           </p>
+        </div>
+        <div className="relative aspect-[125/84] w-full  rounded-3xl md:w-[625px]">
+          <div className="absolute right-0 top-0  z-40 hidden h-full  w-full md:block">
+            <Image
+              src={"/assets/imgMaskFlip.svg"}
+              alt="Image mask"
+              fill
+              priority
+              className=""
+            />
+          </div>
+          <Image
+            src={
+              process.env.NEXT_PUBLIC_BACKEND_URL + data.row[0].image.url ??
+              "/cards/university.png"
+            }
+            alt="Hero Image"
+            fill
+            priority
+            className="-scale-x-100 rounded-3xl"
+          />
         </div>
       </div>
-      <div className="flex w-full flex-col items-center justify-around p-4 md:flex-row md:gap-6 md:p-8 lg:gap-8">
-        <div className="flex w-full flex-col gap-4  py-4 md:gap-6 lg:w-2/5 ">
-          <h1 className="text-left text-3xl font-bold text-primary-foreground md:text-5xl lg:text-[56px]  xl:text-6xl">
-            {data.row[1].Title}
+      <div className="flex w-full flex-col items-center justify-center gap-12 md:flex-row-reverse   lg:gap-16">
+        <div className="flex w-full flex-col gap-4  md:gap-3 lg:w-2/5 ">
+          <h1 className="text-center text-3xl font-bold text-primary-foreground xs:text-4xl sm:text-5xl md:text-right xl:text-6xl">
+            {data.row[1].title}
           </h1>
-          <p className="text-left  text-base  lg:text-xl ">
-            {data.row[1].Description}
+          <p className="text-center text-base  md:text-right lg:text-xl ">
+            {data.row[1].description}
           </p>
         </div>
-        <div className="relative h-[25vh] w-5/6 md:h-[50vh] lg:w-3/5">
-          <Image alt="dyrektor" src={"/sections/overview-2.svg"} fill />
+        <div className="relative aspect-[125/84]  w-full rounded-3xl  md:w-[625px]">
+          <div className="absolute right-0 top-0  z-40 hidden h-full  w-full md:block">
+            <Image
+              src={"/assets/imgMask.svg"}
+              alt="Image mask"
+              fill
+              priority
+              className=""
+            />
+          </div>
+          <Image
+            src={
+              process.env.NEXT_PUBLIC_BACKEND_URL + data.row[1].image.url ??
+              "/cards/university.png"
+            }
+            alt="Hero Image"
+            fill
+            priority
+            className="rounded-3xl"
+          />
         </div>
       </div>
     </div>
