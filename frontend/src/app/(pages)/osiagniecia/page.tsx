@@ -4,9 +4,7 @@ import Header from "@/components/Header"
 import { getAchievements } from "@/lib/api"
 import { Metadata, ResolvingMetadata } from "next"
 
-export async function generateMetadata(
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getAchievements()
 
   return {

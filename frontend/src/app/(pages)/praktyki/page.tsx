@@ -14,9 +14,7 @@ import { getApprenticeships } from "@/lib/api"
 import { formatDateYear } from "@/lib/utils"
 import { Metadata, ResolvingMetadata } from "next"
 
-export async function generateMetadata(
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getApprenticeships()
 
   return {

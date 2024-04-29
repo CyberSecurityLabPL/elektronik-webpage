@@ -4,9 +4,7 @@ import { Button } from "@/components/ui/button"
 import { getParents } from "@/lib/api"
 import { Metadata, ResolvingMetadata } from "next"
 
-export async function generateMetadata(
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getParents()
 
   return {

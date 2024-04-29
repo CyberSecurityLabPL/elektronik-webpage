@@ -14,10 +14,7 @@ type Props = {
   params: { article: string }
 }
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { data: article } = await getArticle(params.article, {})
   const seo = article.seo
 

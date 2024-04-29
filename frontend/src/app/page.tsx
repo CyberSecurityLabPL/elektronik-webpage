@@ -9,9 +9,7 @@ import Overview from "@/components/landingpage/Overview"
 import { getLandingPage } from "@/lib/api"
 import type { Metadata, ResolvingMetadata } from "next"
 
-export async function generateMetadata(
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getLandingPage()
 
   return {
