@@ -45,11 +45,6 @@ export default async function Page() {
                       ? process.env.NEXT_PUBLIC_BACKEND_URL + book.image.url
                       : "/cards/matma.jpg"
                   }
-                  src={
-                    book.image?.url
-                      ? process.env.NEXT_PUBLIC_BACKEND_URL + book.image.url
-                      : "/cards/matma.jpg"
-                  }
                   subject={book.subject}
                   title={book.title}
                   dist={book.distributor}
