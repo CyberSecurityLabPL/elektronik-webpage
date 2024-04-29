@@ -20,50 +20,40 @@ type FileProps = {
   icon: React.FC<LucideProps>
 }
 
-export default function FileCard({
-  name,
-  date,
-  url,
-  fileType,
-}: {
+interface FileCardProps {
   name: string
   date: string
   url: string
   fileType: string
-}) {
+}
+
+export default function FileCard({ name, date, url, fileType }: FileCardProps) {
   const fileProps = getFileProps(fileType)
 
   return (
-    <Link
-      passHref
-      href={process.env.NEXT_PUBLIC_BACKEND_URL + url}
-      className=""
-    >
-      <Card className="flex items-center justify-between  p-4">
-        <div className="flex items-center gap-2">
-          <CardContent className="flex items-center p-0">
-            <FileIcon icon={fileProps.icon} color={fileProps.color} />
-          </CardContent>
-          <CardHeader className="items-start space-y-0 p-0">
-            <CardTitle className=" text-xl">{name}</CardTitle>
-            <CardDescription className="">
-              {format(date, "dd.MM.yyyy - HH:mm")}
-            </CardDescription>
-          </CardHeader>
+    <div className="flex items-center justify-between bg-white p-4 shadow-[0px_4px_15px] shadow-slate-400/25 xs:rounded-2xl">
+      <div className="flex gap-4 ">
+        <div className="flex items-center">
+          <FileIcon icon={fileProps.icon} color={fileProps.color} />
         </div>
-        <CardContent className="flex items-center justify-center p-0">
-          <DownloadIcon />
-        </CardContent>
-      </Card>
-    </Link>
-  )
-}
-
-function DownloadIcon() {
-  return (
-    <Button variant="ghost" size="icon">
-      <Download className="h-5 w-5" />
-    </Button>
+        <div className="flex flex-col">
+          <span className=" text-lg xs:text-xl">{name}</span>
+          <span className="text-sm font-medium text-zinc-400 xs:text-base">
+            {format(new Date(date), "dd.MM.yyyy - HH:mm")}
+          </span>
+        </div>
+      </div>
+      <div className="flex items-center justify-center">
+        <Button variant="ghost" size="icon" asChild>
+          <Link
+            href={process.env.NEXT_PUBLIC_BACKEND_URL + url}
+            target="_blank"
+          >
+            <Download className="h-5 w-5" />
+          </Link>
+        </Button>
+      </div>
+    </div>
   )
 }
 
