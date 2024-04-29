@@ -1,10 +1,23 @@
 import Header from "@/components/Header"
 import BookCard from "@/components/cards/BookCard"
 import { getBooks } from "@/lib/api"
+import { Metadata, ResolvingMetadata } from "next"
+
+export async function generateMetadata(
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { seo } = await getBooks()
+
+  return {
+    title: seo.metaTitle,
+    description: seo.metaDescription,
+    keywords: seo.keywords,
+  }
+}
 
 export default async function Page() {
   const data = await getBooks()
-  
+
   return (
     <main className="flex w-full flex-col items-center">
       <Header
@@ -20,14 +33,18 @@ export default async function Page() {
             className="my-2 flex w-full flex-col items-center justify-center"
             key={group.title}
           >
-            <div className="flex w-full justify-center sm:justify-start text-xl font-semibold lg:text-3xl">
+            <div className="flex w-full justify-center text-xl font-semibold sm:justify-start lg:text-3xl">
               {group.title}
             </div>
             <div className="grid gap-4 xl:grid-cols-2">
               {group.books?.map((book: any) => (
                 <BookCard
                   key={book.title}
-                  src={book.image?.url ? process.env.NEXT_PUBLIC_BACKEND_URL + book.image.url : "/cards/matma.jpg"}
+                  src={
+                    book.image?.url
+                      ? process.env.NEXT_PUBLIC_BACKEND_URL + book.image.url
+                      : "/cards/matma.jpg"
+                  }
                   subject={book.subject}
                   title={book.title}
                   dist={book.distributor}

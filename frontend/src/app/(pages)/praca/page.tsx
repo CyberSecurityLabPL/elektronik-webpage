@@ -2,6 +2,19 @@ import Header from "@/components/Header"
 import JobCard from "@/components/cards/JobCard"
 import JobDialog from "@/components/JobDialog"
 import { getJobs } from "@/lib/api"
+import { Metadata, ResolvingMetadata } from "next"
+
+export async function generateMetadata(
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { seo } = await getJobs()
+
+  return {
+    title: seo.metaTitle,
+    description: seo.metaDescription,
+    keywords: seo.keywords,
+  }
+}
 
 export default async function Page() {
   const data = await getJobs()

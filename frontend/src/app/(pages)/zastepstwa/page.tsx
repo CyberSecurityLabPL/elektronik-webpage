@@ -3,6 +3,19 @@ import { renderMarkdown, formatDateWeek } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 import { getSubstitutions } from "@/lib/api"
 import markdownOptions from "@/components/markdown/MarkdownOptions"
+import { Metadata, ResolvingMetadata } from "next"
+
+export async function generateMetadata(
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { seo } = await getSubstitutions()
+
+  return {
+    title: seo.metaTitle,
+    description: seo.metaDescription,
+    keywords: seo.keywords,
+  }
+}
 
 export default async function SubstitutionPage() {
   const data = await getSubstitutions()

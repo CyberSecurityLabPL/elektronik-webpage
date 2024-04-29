@@ -2,6 +2,19 @@ import AchieveCard from "@/components/cards/AchieveCard"
 import AchieveDialog from "@/components/AchieveDialog"
 import Header from "@/components/Header"
 import { getAchievements } from "@/lib/api"
+import { Metadata, ResolvingMetadata } from "next"
+
+export async function generateMetadata(
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { seo } = await getAchievements()
+
+  return {
+    title: seo.metaTitle,
+    description: seo.metaDescription,
+    keywords: seo.keywords,
+  }
+}
 
 export default async function Page() {
   const data = await getAchievements()

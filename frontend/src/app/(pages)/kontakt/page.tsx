@@ -1,6 +1,5 @@
 import { ContactForm } from "@/components/ContactForm"
 import Header from "@/components/Header"
-
 import ContactCard from "@/components/cards/ContactCard"
 import {
   Card,
@@ -9,8 +8,14 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-
 import React from "react"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Elektronik - Kontakt",
+  description: "Skontaktuj się z nami na naszej stronie kontaktowej!",
+  keywords: ["kontakt", "ckziu", "zseis"],
+}
 
 function page() {
   return (

@@ -3,6 +3,13 @@ import Header from "@/components/Header"
 import NewsCard from "@/components/cards/NewsCard"
 import { getArticles, getLatestArticle } from "@/lib/api"
 import { revalidatePath } from "next/cache"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Elektronik - Aktualności",
+  description: "Zobacz najnowsze wydarzenia w naszej szkole!",
+  keywords: ["aktualnosci", "news", "ckziu", "zseis"],
+}
 
 interface PageParams {
   searchParams: { page: string | undefined }

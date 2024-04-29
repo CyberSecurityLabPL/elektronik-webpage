@@ -2,6 +2,13 @@ import LightGallery from "@/components/LightGallery"
 import Header from "@/components/Header"
 import { getImages } from "@/lib/api"
 import { Skeleton } from "@/components/ui/skeleton"
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Elektronik - Galeria",
+  description: "Zobacz zdjęcia w naszej szkole!",
+  keywords: ["grafika", "zdjecia", "galeria", "ckziu", "zseis"],
+}
 
 const Page = async () => {
   const data = await getImages()
