@@ -7,6 +7,9 @@ import Map from "@/components/landingpage/Map"
 import News from "@/components/landingpage/News"
 import Overview from "@/components/landingpage/Overview"
 import { getLandingPage } from "@/lib/api"
+import { revalidatePath } from "next/cache"
+
+revalidatePath("/")
 
 export default async function Home() {
   const data = await getLandingPage()
