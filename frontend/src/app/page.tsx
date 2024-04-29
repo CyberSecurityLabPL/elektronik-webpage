@@ -7,6 +7,19 @@ import Map from "@/components/landingpage/Map"
 import News from "@/components/landingpage/News"
 import Overview from "@/components/landingpage/Overview"
 import { getLandingPage } from "@/lib/api"
+import type { Metadata, ResolvingMetadata } from "next"
+
+export async function generateMetadata(
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const { seo } = await getLandingPage()
+
+  return {
+    title: seo.metaTitle,
+    description: seo.metaDescription,
+    keywords: seo.keywords,
+  }
+}
 
 export default async function Home() {
   const data = await getLandingPage()
