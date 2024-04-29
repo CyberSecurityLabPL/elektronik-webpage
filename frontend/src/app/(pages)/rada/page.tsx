@@ -10,7 +10,7 @@ export default async function Page() {
     <main className="flex w-full flex-col items-center">
       <Header title={data?.heading} subtitle={data?.description}>
         <div className="px-4 text-center">
-          Numer konta rady rodziców:
+          Numer konta rady rodziców:&nbsp;
           <span className="font-bold">{data?.bankAccountNumber}</span>
         </div>
         <Button variant={"outline"} className="my-4">

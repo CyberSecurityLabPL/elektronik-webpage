@@ -7,7 +7,7 @@ const Page = async () => {
   const data = await getImages()
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
-      <Header title="Galeria" subtitle="Lorem ipsum dolor sit amet" />
+      <Header title="Galeria" subtitle="Zobacz zdjęcia naszej szkoły." />
       <section className="grid auto-rows-[10px] grid-cols-gallery">
         {data.files.map(
           (
