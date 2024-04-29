@@ -18,7 +18,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordionMobile"
 
-export default function MobileNavigation() {
+export default function MobileNavigation({ navItems }: { navItems: any }) {
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -33,44 +33,21 @@ export default function MobileNavigation() {
         </motion.div>
       </DrawerTrigger>
       <DrawerContent className="h-[90%]">
-        <div className="h-full w-full overflow-scroll overflow-x-hidden  p-4">
-          <LinkPanel title="O szkole">
-            <LinkItem name="Osiągnięcia" href="/osiagniecia" />
-            <LinkItem name="Kadra" href="/kadra" />
-            <LinkItem name="Galeria" href="/galeria" />
-            <LinkItem name="Aktualności" href="/aktualnosci" />
-          </LinkPanel>
-          <LinkPanel title="Edukacja">
-            <LinkItem name="Praktyki" href="/praktyki" />
-            <LinkItem
-              name="Warsztaty"
-              href="https://zseis.zgora.pl/warsztaty/"
-            />
-            <LinkItem name="Programy Nauczania" href="" />
-          </LinkPanel>
-          <LinkPanel title="Uczeń">
-            <LinkItem name="Ocenianie zachowania" href="" />
-            <LinkItem name="Zastępstwa" href="/zastepstwa" />
-            <LinkItem name="Dokumenty do pobrania" href="/dokumenty" />
-            <LinkItem name="Oferty pracy dla absolwentów" href="/praca" />
-          </LinkPanel>
-          <LinkPanel title="Rodzic">
-            <LinkItem name="Podręczniki" href="/podreczniki" />
-            <LinkItem name="Rada Rodziców" href="/rada" />
-          </LinkPanel>
-          <LinkPanel title="Maturzysta">
-            <LinkItem
-              name="Egzamin maturalny"
-              href="http://www.oke.poznan.pl/index.php?menu_st_id=5&el_id=718&submit_element=1"
-            />
-            <LinkItem name="Egzamin zawodowy" href="" />
-            <LinkItem name="OKE w Poznaniu" href="http://www.oke.poznan.pl/" />
-            <LinkItem name="Komunikaty Dyrektora CKE" href="" />
-          </LinkPanel>
-          <LinkPanel title="Nabór">
-            <LinkItem name="Regulamin" href="" />
-            <LinkItem name="Kierunki" href="/nabor" />
-          </LinkPanel>
+        <div className="h-full w-full overflow-scroll overflow-x-hidden p-4">
+          {navItems.map((group: any, index: number) => (
+            <LinkPanel key={index + group.name} title={group.name}>
+              {group.name.toLowerCase() == "o szkole" ? (
+                <LinkItem name="Galeria" href="/galeria" />
+              ) : null}
+              {group.links.map((item: any) => (
+                <LinkItem
+                  key={item.name}
+                  name={item.name}
+                  href={item.isExternal ? item.href : `/${item.href}` ?? ""}
+                />
+              ))}
+            </LinkPanel>
+          ))}
         </div>
         <DrawerFooter className="flex items-center justify-center text-lg">
           <DrawerClose asChild>
