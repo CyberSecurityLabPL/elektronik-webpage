@@ -2,8 +2,7 @@ import Header from "@/components/Header"
 import { renderMarkdown } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 import { getPage } from "@/lib/api"
-import markdownOptions from "@/components/markdown/MarkdownOptions"
-import { Metadata, ResolvingMetadata } from "next"
+import { Metadata } from "next"
 
 type Props = {
   params: { page: string }
