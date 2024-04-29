@@ -120,12 +120,12 @@ export const getAuthor = (data?: {
   createdBy: Author
   updatedBy: Author
 }): string => {
-  if (!data) return "Autor nieznany"
+  if (!data) return "Pracownik CKZiU"
 
   const createdByExists = !!data.createdBy
   const updatedByExists = !!data.updatedBy
 
-  if (!createdByExists && !updatedByExists) return "Autor nieznany"
+  if (!createdByExists && !updatedByExists) return "Pracownik CKZiU"
 
   const author = createdByExists ? data.createdBy : data.updatedBy
 
