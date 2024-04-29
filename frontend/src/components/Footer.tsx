@@ -49,7 +49,7 @@ function LinkPanel({
   title: string
 }) {
   return (
-    <div className="flex w-full flex-col items-center justify-center text-center  sm:mx-4 sm:justify-start sm:text-left ">
+    <div className="flex w-full flex-col items-center justify-center text-center sm:mx-4 sm:justify-start sm:text-left ">
       <div className=" w-full text-nowrap  py-2 text-base font-semibold text-background">
         {title}
       </div>
@@ -107,7 +107,7 @@ async function MainPanel() {
     <div className="flex justify-center ">
       <div className="flex flex-col justify-around gap-6">
         <div className=" flex justify-center max-sm:flex-col max-sm:items-center">
-          <div className="flex w-full items-start justify-center max-sm:flex-col max-sm:items-center">
+          <div className="flex w-full items-start justify-center max-sm:flex-col max-sm:items-center max-sm:gap-4">
             {nav?.link_groups
               ? nav?.link_groups.map((panel: any, index: number) => (
                   <LinkPanel key={panel.name + index} title={panel.name}>
