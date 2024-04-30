@@ -39,6 +39,9 @@ export default function MobileNavigation({ navItems }: { navItems: any }) {
               {group.name.toLowerCase() == "o szkole" ? (
                 <LinkItem name="Galeria" href="/galeria" />
               ) : null}
+              {group.name.toLowerCase() == "o szkole" ? (
+                <LinkItem name="Kontakt" href="/kontakt" />
+              ) : null}
               {group.links.map((item: any) => (
                 <LinkItem
                   key={item.name}

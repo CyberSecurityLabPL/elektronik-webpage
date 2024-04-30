@@ -7,6 +7,7 @@
 html,
 body {
   --scroll-border: 10px 0 0 10px;
+  --scroll-color: hsl(var(--primary));
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
@@ -43,7 +44,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--primary));
+  background: var(--scroll-color);
   border-radius: var(--scroll-border);
 }
 

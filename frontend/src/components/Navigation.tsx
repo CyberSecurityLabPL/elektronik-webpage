@@ -107,6 +107,7 @@ const ListItem = React.forwardRef<
 ListItem.displayName = "ListItem"
 
 function getGalleryImage(): string {
+  //easter egg
   const now = new Date()
 
   const images = ["/cards/university.png", "/cards/friends.png"]

@@ -21,7 +21,7 @@ export default function Faq({ data }: { data: any }) {
   return (
     <div
       id={data.sectionId}
-      className="flex h-screen w-full items-center justify-center"
+      className="flex w-full items-center justify-center py-8"
     >
       <Card className="z-50 h-fit w-4/5">
         <CardHeader>
