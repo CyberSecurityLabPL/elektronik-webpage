@@ -2,10 +2,6 @@ import Image from "next/image"
 import React from "react"
 
 export default function Overview({ data }: { data: any }) {
-  console.log(
-    "src:  " + process.env.NEXT_PUBLIC_BACKEND_URL + data.row[0].image.url
-  )
-
   return (
     <div
       id={data.sectionId}
