@@ -141,7 +141,7 @@ export async function getLatestArticle(flatteners: string[] = ["data"]) {
 export async function getSubstitutions() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/substitutions-page")
-
+    revalidate("/zastepstwa")
     return flattenStrapiResponse(data)
   } catch (error) {
     console.error(error)
@@ -151,7 +151,7 @@ export async function getSubstitutions() {
 export async function getJobs() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/jobs-page")
-
+    revalidate("/praca")
     return flattenStrapiResponse(data)
   } catch (error) {
     console.error(error)
@@ -161,7 +161,7 @@ export async function getJobs() {
 export async function getApprenticeships() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/apprenticeships-page")
-
+    revalidate("/praktyki")
     return flattenStrapiResponse(data)
   } catch (error) {
     console.error(error)
@@ -171,6 +171,7 @@ export async function getApprenticeships() {
 export async function getBooks() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/books-page")
+    revalidate("/podreczniki")
 
     return flattenStrapiResponse(data)
   } catch (error) {
@@ -181,6 +182,7 @@ export async function getBooks() {
 export async function getTeachers() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/teachers-page")
+    revalidate("/kadra")
 
     return flattenStrapiResponse(data)
   } catch (error) {
@@ -191,6 +193,7 @@ export async function getTeachers() {
 export async function getRecruitments() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/recruitments-page")
+    revalidate("/nabor")
 
     return flattenStrapiResponse(data)
   } catch (error) {
@@ -214,6 +217,7 @@ export async function getPage(page: string) {
 export async function getParents() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/parents-council-page")
+    revalidate("/rada")
 
     return flattenStrapiResponse(data)
   } catch (error) {
@@ -224,6 +228,7 @@ export async function getParents() {
 export async function getAchievements() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/achievements-page")
+    revalidate("/osiagniecia")
 
     return flattenStrapiResponse(data)
   } catch (error) {
@@ -234,6 +239,7 @@ export async function getDocuments() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/documents-page")
 
+    revalidate("/dokumenty")
     return flattenStrapiResponse(data)
   } catch (error) {
     console.error(error)
@@ -246,6 +252,7 @@ export async function getImages() {
       "/file-system/docs/gallery?populate=*"
     )
 
+    revalidate("/galeria")
     return flattenStrapiResponse(data)
   } catch (error) {
     console.error(error)

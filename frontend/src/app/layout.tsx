@@ -12,6 +12,8 @@ export const metadata: Metadata = {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed est eu turpis porta fringilla. Vivamus tristique, odio et accumsan mollis.",
 }
 
+export const revalidate = 10
+
 export default function RootLayout({
   children,
 }: Readonly<{
