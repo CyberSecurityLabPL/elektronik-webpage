@@ -18,9 +18,9 @@ export default function Footer() {
     <footer className="-mt-64 flex h-fit min-h-96 w-full flex-col items-center justify-end">
       {/* transition-svg */}
       <div className="h-80 w-full bg-footer-squares bg-repeat-x" />
-      <div className="h-52 w-full bg-splash-transition bg-repeat-x" />
+      <div className="bg-splash-transition-dark h-52 w-full bg-repeat-x" />
       {/* footer */}
-      <div className="flex h-fit min-h-32 w-full flex-col justify-between gap-6 overflow-auto bg-[#202124] px-4 pb-4 pt-8 md:px-8">
+      <div className="flex h-fit min-h-32 w-full flex-col justify-between gap-6 overflow-auto bg-[#262727] px-4 pb-4 pt-8 md:px-8">
         <div className="flex w-fit flex-col items-center justify-center self-center">
           <Sitemap />
         </div>

@@ -20,6 +20,8 @@ const config = {
     extend: {
       backgroundImage: {
         "splash-transition": "url('/backgrounds/splash-transition-single.svg')",
+        "splash-transition-dark":
+          "url('/backgrounds/splash-transition-single-dark.svg')",
         "footer-squares": "url('/backgrounds/footer-squares.svg')",
         "hero-squares": "url('/backgrounds/hero-squares.svg')",
         "wave-transition": "url('/backgrounds/bg-wave-transition.svg')",
@@ -33,7 +35,7 @@ const config = {
         "sponsors-bg": "url('/backgrounds/bg-sponsors.svg')",
       },
       gridTemplateColumns: {
-        'gallery': 'repeat(auto-fit, minmax(250px, 1fr))',
+        gallery: "repeat(auto-fit, minmax(250px, 1fr))",
       },
       colors: {
         border: "hsl(var(--border))",
