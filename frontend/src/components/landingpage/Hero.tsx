@@ -23,17 +23,7 @@ export default function Hero({ data }: { data: any }) {
               </Button>
             </span>
           </div>
-          {/* lg:aspect-[125/84] */}
-          <div className="relative z-30 hidden aspect-[125/84]  w-[625px] rounded-3xl  lg:block  ">
-            <div className="absolute right-0  top-0 z-40  h-full w-full">
-              <Image
-                src={"/assets/imgMask.svg"}
-                alt="Image mask"
-                fill
-                priority
-                className=""
-              />
-            </div>
+          <div className="relative z-30 hidden aspect-[125/84] w-[565px] rounded-3xl lg:block 2xl:w-[625px]">
             <Image
               alt="dyrektor"
               src={
@@ -41,7 +31,7 @@ export default function Hero({ data }: { data: any }) {
                 "/sections/kmieciu.svg"
               }
               fill
-              className="rounded-3xl object-cover"
+              className=" hero z-20 rounded-3xl object-cover "
             />
           </div>
         </div>

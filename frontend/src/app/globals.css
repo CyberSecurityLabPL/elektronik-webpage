@@ -10,6 +10,10 @@ body {
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
+.hero {
+  mask-image: url("../../public/assets/HeroMask.svg");
+  mask-size: cover;
+}
 
 @layer components {
   .timetable-cell {
