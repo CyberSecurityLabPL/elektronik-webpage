@@ -3,9 +3,7 @@ import BookCard from "@/components/cards/BookCard"
 import { getBooks } from "@/lib/api"
 import { Metadata, ResolvingMetadata } from "next"
 
-export async function generateMetadata(
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getBooks()
 
   return {
@@ -33,7 +31,7 @@ export default async function Page() {
             className="my-2 flex w-full flex-col items-center justify-center"
             key={group.title}
           >
-            <div className="flex w-full justify-center text-xl font-semibold sm:justify-start lg:text-3xl">
+            <div className="flex w-full justify-center py-2 text-xl font-semibold sm:justify-start lg:text-3xl">
               {group.title}
             </div>
             <div className="grid gap-4 xl:grid-cols-2">

@@ -2,17 +2,13 @@ import Header from "@/components/Header"
 import { renderMarkdown } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 import { getPage } from "@/lib/api"
-import markdownOptions from "@/components/markdown/MarkdownOptions"
-import { Metadata, ResolvingMetadata } from "next"
+import { Metadata } from "next"
 
 type Props = {
   params: { page: string }
 }
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { seo } = await getPage(params.page)
 
   return {
@@ -32,7 +28,7 @@ export default async function Page({ params }: { params: { page: string } }) {
         subtitle={data?.description ?? `Page /${params.page} not found!`}
       />
       <div
-        className={`w-full rounded-sm bg-background p-2 text-xs shadow-sm sm:text-base flex justify-center items-center${data?.content ? "" : "hidden"}`}
+        className={`flex w-full justify-center rounded-sm bg-background p-2 text-xs shadow-sm sm:text-base items-center${data?.content ? "" : "hidden"}`}
       >
         <div className="prose p-4">
           {data?.content ? renderMarkdown(data.content) : null}

@@ -8,10 +8,11 @@ import News from "@/components/landingpage/News"
 import Overview from "@/components/landingpage/Overview"
 import { getLandingPage } from "@/lib/api"
 import type { Metadata, ResolvingMetadata } from "next"
+import { revalidatePath } from "next/cache"
 
-export async function generateMetadata(
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+revalidatePath("/")
+
+export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getLandingPage()
 
   return {

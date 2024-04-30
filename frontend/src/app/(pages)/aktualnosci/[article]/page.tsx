@@ -14,10 +14,7 @@ type Props = {
   params: { article: string }
 }
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { data: article } = await getArticle(params.article, {})
   const seo = article.seo
 
@@ -52,7 +49,7 @@ export default async function Page({
   const author = getAuthor(article)
 
   return (
-    <article className="prose prose-cyan flex w-full flex-col items-center gap-4 lg:prose-xl">
+    <article className="prose prose-blue flex w-full flex-col items-center gap-4 lg:prose-xl">
       {!article ? (
         <FailedToLoad />
       ) : (

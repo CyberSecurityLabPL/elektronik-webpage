@@ -5,9 +5,7 @@ import { getSubstitutions } from "@/lib/api"
 import markdownOptions from "@/components/markdown/MarkdownOptions"
 import { Metadata, ResolvingMetadata } from "next"
 
-export async function generateMetadata(
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getSubstitutions()
 
   return {

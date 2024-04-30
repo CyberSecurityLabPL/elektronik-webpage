@@ -2,17 +2,15 @@ import Header from "@/components/Header"
 import { ReactNode } from "react"
 import FileCard from "@/components/cards/FIleCard"
 import { getDocuments } from "@/lib/api"
-import { Metadata, ResolvingMetadata } from "next"
+import { Metadata, ResolvedMetadata, ResolvingMetadata } from "next"
 
-export async function generateMetadata(
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getDocuments()
 
   return {
-    title: seo.metaTitle,
-    description: seo.metaDescription,
-    keywords: seo.keywords,
+    title: seo?.metaTitle ?? "",
+    description: seo?.metaDescription ?? "",
+    keywords: seo?.keywords ?? "",
   }
 }
 
@@ -49,12 +47,12 @@ function FileGroup({
   children?: ReactNode
 }) {
   return (
-    <div className="flex w-full flex-col justify-center xl:w-11/12">
-      <div className="flex w-full justify-center text-left text-2xl font-semibold text-slate-500 md:justify-start md:px-16 xl:px-0">
+    <div className="mb-16 flex w-full flex-col justify-center">
+      <div className="flex w-full justify-center text-left text-2xl font-semibold text-slate-500 md:justify-start md:px-16">
         {title}
       </div>
-      <div className="flex w-full items-center justify-center">
-        <div className="grid w-full gap-4  px-4 py-8  sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mt-4 flex w-full items-center justify-center">
+        <div className="grid w-full gap-4 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           {children}
         </div>
       </div>
