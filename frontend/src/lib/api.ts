@@ -2,6 +2,9 @@ import axios, { AxiosResponse } from "axios"
 import { flattenStrapiResponse } from "./utils"
 import qs from "qs"
 import { PAGINATION_LIMIT } from "@/config"
+import { cache } from "react"
+import { revalidatePath } from "next/cache"
+import { revalidate } from "./actions"
 
 /**
  * The API instance for making HTTP requests.
@@ -48,7 +51,7 @@ export async function getNavigation(): Promise<any> {
 export async function getLandingPage(): Promise<any> {
   try {
     const { data }: AxiosResponse<any> = await api.get("/landing-page")
-
+    revalidate("/")
     return flattenStrapiResponse(data)
   } catch (error) {
     console.error(error)
