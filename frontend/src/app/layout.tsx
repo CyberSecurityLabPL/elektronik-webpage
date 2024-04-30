@@ -1,6 +1,5 @@
 import Providers from "@/components/Providers"
 import { Toaster } from "@/components/ui/sonner"
-import { getNavigation } from "@/lib/api"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
@@ -13,14 +12,11 @@ export const metadata: Metadata = {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed est eu turpis porta fringilla. Vivamus tristique, odio et accumsan mollis.",
 }
 
-export const revalidate = 60
-
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  const data = await getNavigation()
   return (
     <html lang="en">
       <body className={inter.className}>

@@ -24,14 +24,14 @@ export default function BookCard({
   url: string
 }) {
   return (
-    <Card className="relative flex  w-fit p-3 shadow-sm">
+    <Card className="relative flex w-fit p-3 shadow-sm">
       <div className="flex h-full items-center">
-        <div className="relative flex h-48 w-32 items-center justify-center ">
+        <div className="relative flex aspect-[8/12] w-20 items-center justify-center sm:w-32 ">
           <Image
             alt={`${title} img`}
             src={src}
             fill
-            className="flex h-48 items-center rounded-lg object-cover"
+            className="flex h-32 items-center rounded-lg object-cover sm:h-48"
           />
         </div>
       </div>
