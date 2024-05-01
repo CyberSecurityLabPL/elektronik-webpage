@@ -6,13 +6,14 @@ import Github from "./icons/Github"
 import Facebook from "./icons/Facebook"
 import Instagram from "./icons/Instagram"
 import Image from "next/image"
+import ShootEffect from "./ShootEffect"
 
 export default function Footer() {
   return (
     <footer className="-mt-64 flex h-fit min-h-96 w-full flex-col items-center justify-end">
       {/* transition svg */}
       <div className="h-80 w-full bg-footer-squares bg-repeat-x" />
-      <div className="bg-lines-transition-dark h-52 w-full translate-y-1 bg-bottom bg-repeat-x" />
+      <div className="h-52 w-full translate-y-1 bg-lines-transition-dark bg-bottom bg-repeat-x" />
       {/* footer */}
       <div className="z-[1] flex h-fit min-h-32 w-full flex-col justify-between gap-6 overflow-auto bg-[#262727] px-4 pt-16 md:px-8">
         <div className="flex w-fit flex-col items-center justify-center self-center">
@@ -20,7 +21,19 @@ export default function Footer() {
         </div>
         <div className="flex w-full flex-col items-center pt-16">
           <Link href={"/autorzy"} className="mb-1 text-xs text-[#808080]">
-            Autorzy
+            <ShootEffect
+              amount={4}
+              sparkle
+              sparkleAmount={8}
+              image={[
+                "/assets/react.png",
+                "/assets/next.png",
+                "/assets/tw.png",
+                "/assets/strapi.svg",
+              ]}
+            >
+              Autorzy
+            </ShootEffect>
           </Link>
           <Separator className="bg-[#3D3D3D]" />
           <div className="relative flex w-full items-center justify-between px-5 py-4">

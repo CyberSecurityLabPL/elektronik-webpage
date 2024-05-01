@@ -20,11 +20,17 @@ export default function ScrollBarProvider({
     let color: color = start
 
     const onScroll = () => {
+      const scrollArea = 800 + window.innerHeight
+
       color = getRgbInBetween(
         start,
         end,
         Math.round(
-          (window.scrollY / (document.body.scrollHeight - window.innerHeight)) *
+          (Math.max(
+            window.scrollY - document.body.scrollHeight + scrollArea,
+            0
+          ) /
+            (scrollArea - window.innerHeight)) *
             100
         ) / 100
       )
@@ -66,11 +72,6 @@ export default function ScrollBarProvider({
 }
 
 function getRgbInBetween(start: color, end: color, perc: number): color {
-  if (perc < 0.8) return start
-  perc = (perc - 0.8) / 0.2
-
-  console.log(start.r - (start.r - end.r) * perc == end.r)
-
   return {
     r: start.r - (start.r - end.r) * perc,
     g: start.g - (start.g - end.g) * perc,
