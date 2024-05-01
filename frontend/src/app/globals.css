@@ -6,7 +6,7 @@
 
 html,
 body {
-  --scroll-border: 10px 0 0 10px;
+  --scroll-border: 99px;
   --scroll-color: hsl(var(--primary));
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -39,11 +39,10 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  width: 10px;
   background: hsl(var(--background-accent));
 }
 
