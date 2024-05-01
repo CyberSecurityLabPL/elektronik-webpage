@@ -16,6 +16,10 @@ body {
   mask-size: cover;
 }
 
+.center {
+  @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+}
+
 @layer components {
   .timetable-cell {
     @apply flex h-11 w-[200px] items-center justify-center gap-1 p-0 outline outline-1 outline-secondary;

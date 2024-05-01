@@ -13,7 +13,7 @@ export default async function Navbar({ data }: { data?: any }) {
       <div className=" flex items-center justify-center px-8 ">
         <Link href={"/"} passHref>
           <Image
-            src={"/logo.svg"}
+            src={"/assets/logo/logo.svg"}
             width={80}
             height={60}
             className="h-auto w-auto"
@@ -21,7 +21,7 @@ export default async function Navbar({ data }: { data?: any }) {
           />
         </Link>
       </div>
-      <div className="absolute left-1/2 top-1/2 z-50 hidden -translate-x-1/2 -translate-y-1/2 items-center justify-center lg:flex">
+      <div className="center z-50 hidden  items-center justify-center lg:flex">
         <Navigation navItems={navItems} />
       </div>
       <div className="  flex items-center justify-center px-8 ">
