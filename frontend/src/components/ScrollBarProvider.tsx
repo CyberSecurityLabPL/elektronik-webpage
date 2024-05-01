@@ -15,7 +15,7 @@ export default function ScrollBarProvider({
 }) {
   useEffect(() => {
     const start: color = { r: 53, g: 77, b: 252 }
-    const end: color = { r: 32, g: 33, b: 36 }
+    const end: color = { r: 38, g: 39, b: 39 }
 
     let color: color = start
 
@@ -68,6 +68,8 @@ export default function ScrollBarProvider({
 function getRgbInBetween(start: color, end: color, perc: number): color {
   if (perc < 0.8) return start
   perc = (perc - 0.8) / 0.2
+
+  console.log(start.r - (start.r - end.r) * perc == end.r)
 
   return {
     r: start.r - (start.r - end.r) * perc,

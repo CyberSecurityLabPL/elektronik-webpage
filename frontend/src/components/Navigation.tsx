@@ -113,7 +113,7 @@ function getGalleryImage(): string {
   const images = ["/cards/university.png", "/cards/friends.png"]
 
   if (
-    (now.getMonth() == 4 && now.getDate() == 1) ||
+    (now.getMonth() == 3 && now.getDate() == 1) ||
     (now.getHours() == 21 && now.getMinutes() == 37) ||
     (now.getHours() == 4 && now.getMinutes() == 20)
   )
