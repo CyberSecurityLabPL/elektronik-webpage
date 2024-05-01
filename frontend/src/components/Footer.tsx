@@ -14,7 +14,7 @@ export default function Footer() {
       <div className="h-80 w-full bg-footer-squares bg-repeat-x" />
       <div className="bg-lines-transition-dark h-52 w-full translate-y-1 bg-bottom bg-repeat-x" />
       {/* footer */}
-      <div className="z-[1] flex h-fit min-h-32 w-full flex-col justify-between gap-6 overflow-auto bg-[#262727] px-4 pt-16 md:px-8">
+      <div className="z-[1] flex h-fit min-h-32 w-full flex-col justify-between gap-6 overflow-auto bg-[#262727] px-8 pt-16">
         <div className="flex w-fit flex-col items-center justify-center self-center">
           <Sitemap />
         </div>
@@ -23,7 +23,7 @@ export default function Footer() {
             Autorzy
           </Link>
           <Separator className="bg-[#3D3D3D]" />
-          <div className="relative flex w-full items-center justify-between px-5 py-4">
+          <div className="relative flex w-full items-center justify-between py-4 xs:px-5">
             <Link passHref href={"/"}>
               <Image
                 alt="logo"
@@ -73,30 +73,31 @@ async function Sitemap() {
   const nav = await getNavigation()
 
   return (
-    <div className="grid grid-cols-2 flex-wrap justify-center gap-8 sm:flex sm:justify-start">
+    <ul className="grid grid-cols-2 flex-wrap justify-center gap-8 sm:grid-cols-4 lg:flex lg:gap-16">
       {nav?.link_groups
         ? nav?.link_groups.map((panel: any, index: number) => (
-            <div
+            <li
               key={index}
               className="flex flex-col items-center text-start sm:justify-start sm:text-left"
             >
-              <div className="w-full text-nowrap pb-4 text-sm font-bold text-[#CACACA]">
+              <span className="w-full text-nowrap pb-4 text-sm font-bold text-[#CACACA]">
                 {panel.name}
-              </div>
-              <div className="flex w-full flex-col gap-4 ">
+              </span>
+              <ol className="flex w-full flex-col gap-2 ">
                 {panel.links.map((link: any, index: number) => (
-                  <Link
-                    key={`l${index}`}
-                    className="w-fit text-sm text-[#808080] hover:text-[#CACACA] hover:underline"
-                    href={link.isExternal ? link.href : `/${link.href}` ?? ""}
-                  >
-                    {link.name ?? "Empty"}
-                  </Link>
+                  <li key={`l${index}`}>
+                    <Link
+                      className="w-fit text-sm text-[#808080] hover:text-[#CACACA] hover:underline"
+                      href={link.isExternal ? link.href : `/${link.href}` ?? ""}
+                    >
+                      {link.name ?? "Empty"}
+                    </Link>
+                  </li>
                 ))}
-              </div>
-            </div>
+              </ol>
+            </li>
           ))
         : null}
-    </div>
+    </ul>
   )
 }
