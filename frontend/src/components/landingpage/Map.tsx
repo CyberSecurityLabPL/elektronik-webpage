@@ -54,7 +54,7 @@ export default function Map({ data }: { data: any }) {
       </div>
       <div></div>
 
-      <div className="h-48 w-full rotate-180 bg-splash-transition bg-repeat-x "></div>
+      <div className="bg-lines-transition h-48 w-full rotate-180 bg-repeat-x "></div>
     </div>
   )
 }

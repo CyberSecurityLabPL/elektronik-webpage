@@ -35,7 +35,7 @@ export default function Hero({ data }: { data: any }) {
             />
           </div>
         </div>
-        <div className="absolute bottom-0 left-0 z-10 h-48 w-full bg-splash-transition bg-repeat-x"></div>
+        <div className="bg-lines-transition absolute bottom-0 left-0 z-10 h-48 w-full bg-repeat-x"></div>
       </div>
     </div>
   )

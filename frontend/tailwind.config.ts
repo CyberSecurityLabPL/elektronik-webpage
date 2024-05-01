@@ -13,29 +13,17 @@ const config = {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
     },
     extend: {
       backgroundImage: {
-        "splash-transition": "url('/backgrounds/splash-transition-single.svg')",
-        "splash-transition-dark":
-          "url('/backgrounds/splash-transition-single-dark.svg')",
+        "lines-transition": "url('/backgrounds/lines-transition.svg')",
+        "lines-transition-dark":
+          "url('/backgrounds/lines-transition-dark.svg')",
         "footer-squares": "url('/backgrounds/footer-squares.svg')",
         "hero-squares": "url('/backgrounds/hero-squares.svg')",
         "wave-transition": "url('/backgrounds/bg-wave-transition.svg')",
         "overview-bg": "url('/backgrounds/bg-overview.svg')",
-        "benefits-bg": "url('/backgrounds/bg-benefits.svg')",
-        "nav-1": "url('/cards/nawigacja-szkolna-1.png')",
-        "nav-2": "url('/cards/nawigacja-szkolna-2.png')",
-        "nav-3": "url('/cards/nawigacja-szkolna-3.png')",
-        "yellow-blob": "url('/backgrounds/yellow-blob.svg')",
-        "violet-blob": "url('/backgrounds/violet-blob.svg')",
         "sponsors-bg": "url('/backgrounds/bg-sponsors.svg')",
-      },
-      gridTemplateColumns: {
-        gallery: "repeat(auto-fit, minmax(250px, 1fr))",
       },
       colors: {
         border: "hsl(var(--border))",

@@ -15,7 +15,7 @@ const Page = async () => {
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
       <Header title="Galeria" subtitle="Zobacz zdjęcia naszej szkoły." />
-      <section className="grid w-full auto-rows-[10px] grid-cols-gallery">
+      <section className="grid w-full auto-rows-[10px] grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))]">
         {data.files.map(
           (
             item: {
