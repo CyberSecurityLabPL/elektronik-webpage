@@ -26,18 +26,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 // Return a list of `params` to populate the [slug] dynamic segment
-export async function generateStaticParams() {
-  const articles = await getArticles({
-    flatteners: ["id"],
-    getAll: true,
-  })
+// export async function generateStaticParams() {
+//   const articles = await getArticles({
+//     flatteners: ["id"],
+//     getAll: true,
+//   })
 
-  const params = articles.data.map((article: any) => ({
-    article: article.id + "",
-  }))
+//   const params = articles.data.map((article: any) => ({
+//     article: article.id + "",
+//   }))
 
-  return params
-}
+//   return params
+// }
 
 export default async function Page({
   params,
