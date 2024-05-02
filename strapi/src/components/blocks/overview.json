@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_blocks_overviews",
+  "info": {
+    "displayName": "Overview",
+    "icon": "layout",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sectionId": {
+      "type": "string"
+    },
+    "row": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.overview-row"
+    }
+  }
+}

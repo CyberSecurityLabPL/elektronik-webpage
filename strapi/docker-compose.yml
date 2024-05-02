@@ -2,6 +2,7 @@ version: '3'
 services:
   strapi:
     container_name: strapi
+    platform: linux/arm64/v8
     build: .
     image: strapi:latest
     restart: unless-stopped
@@ -17,16 +18,18 @@ services:
       - ./package.json:/opt/package.json
       - ./package-lock.json:/opt/package-lock.json
       - ./.env:/opt/app/.env
-      - ./public/uploads:/opt/app/public/uploads
+      - ./public:/opt/app/public # don't set it to /uploads (Krystian Wybranowski reference), because it block import functionallity
       # - ./database/data.db:/opt/app/database/data.db
+      - ./types/:/opt/app/types
     ports:
-      - '1337:1337'
+      - '5000:5000'
     networks:
       - strapi
     depends_on:
       - db
   db:
-    image: mysql:5.7
+    image: mariadb:latest
+    platform: linux/arm64/v8
     container_name: db
     restart: always
     # env_file: .env
@@ -54,7 +57,8 @@ services:
 
 volumes:
   strapi-data:
-  my-db:
+  my-db: 
+    driver: local
 
 networks:
   strapi:

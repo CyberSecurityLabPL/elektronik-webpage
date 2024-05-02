@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_blocks_benefits",
+  "info": {
+    "displayName": "Benefits",
+    "icon": "check"
+  },
+  "options": {},
+  "attributes": {
+    "sectionId": {
+      "type": "string"
+    },
+    "benefitCard": {
+      "displayName": "Benefit Card",
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.benefit-card"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_blocks_news",
+  "info": {
+    "displayName": "News",
+    "icon": "layer"
+  },
+  "options": {},
+  "attributes": {
+    "sectionId": {
+      "type": "string"
+    },
+    "heading": {
+      "type": "string"
+    }
+  }
+}

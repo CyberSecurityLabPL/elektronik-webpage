@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "link_groups",
+  "info": {
+    "singularName": "link-group",
+    "pluralName": "link-groups",
+    "displayName": "Link Group",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "links": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::link.link",
+      "mappedBy": "link_group"
+    }
+  }
+}

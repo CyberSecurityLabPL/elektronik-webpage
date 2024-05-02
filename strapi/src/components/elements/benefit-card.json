@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_elements_benefit_cards",
+  "info": {
+    "displayName": "Benefit Card",
+    "icon": "magic",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "text"
+    }
+  }
+}

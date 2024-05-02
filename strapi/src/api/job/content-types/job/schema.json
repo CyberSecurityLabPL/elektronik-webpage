@@ -1,0 +1,57 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jobs",
+  "info": {
+    "singularName": "job",
+    "pluralName": "jobs",
+    "displayName": "Job",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "minPay": {
+      "type": "biginteger"
+    },
+    "maxPay": {
+      "type": "biginteger"
+    },
+    "location": {
+      "type": "string"
+    },
+    "date": {
+      "type": "date"
+    },
+    "company": {
+      "type": "text"
+    },
+    "tasks": {
+      "displayName": "String Array",
+      "type": "component",
+      "repeatable": true,
+      "component": "utility.string-array"
+    },
+    "badges": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::badge.badge"
+    },
+    "requirements": {
+      "type": "component",
+      "repeatable": true,
+      "component": "utility.string-array"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

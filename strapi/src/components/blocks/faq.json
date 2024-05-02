@@ -1,0 +1,30 @@
+{
+  "collectionName": "components_blocks_faqs",
+  "info": {
+    "displayName": "FAQ",
+    "icon": "question",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "questions": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::question.question"
+    },
+    "linkButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.button-link"
+    },
+    "sectionId": {
+      "type": "string"
+    }
+  }
+}

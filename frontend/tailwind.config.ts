@@ -3,26 +3,36 @@ import type { Config } from "tailwindcss"
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
       center: true,
       padding: "2rem",
-      screens: {
-        "2xl": "1400px",
-      },
     },
     extend: {
+      backgroundImage: {
+        "lines-transition": "url('/backgrounds/lines-transition.svg')",
+        "lines-transition-dark":
+          "url('/backgrounds/lines-transition-dark.svg')",
+        "footer-squares": "url('/backgrounds/footer-squares.svg')",
+        "hero-squares": "url('/backgrounds/hero-squares.svg')",
+        "wave-transition": "url('/backgrounds/bg-wave-transition.svg')",
+        "overview-bg": "url('/backgrounds/bg-overview.svg')",
+        "sponsors-bg": "url('/backgrounds/bg-sponsors.svg')",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
+        background: {
+          DEFAULT: "hsl(var(--background))",
+          accent: "hsl(var(--background-accent))",
+        },
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -72,9 +82,16 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+
+      screens: {
+        xs: "360px",
+        "2xl": "1440px",
+        "3xl": "1536px",
+        "4xl": "1920px",
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config
 
 export default config
