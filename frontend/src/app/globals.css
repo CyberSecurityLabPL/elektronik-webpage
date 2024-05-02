@@ -12,7 +12,7 @@ body {
   scroll-behavior: smooth;
 }
 .hero {
-  mask-image: url("../../public/assets/HeroMask.svg");
+  mask-image: url("../../public/assets/heroMask.svg");
   mask-size: cover;
 }
 
