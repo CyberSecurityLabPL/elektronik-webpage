@@ -21,6 +21,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link
+          rel="icon"
+          href="/assets/logo/logo-light.svg"
+          type="image/<generated>"
+          sizes="<generated>"
+        />
+      </head>
       <body className={inter.className}>
         <Providers>{children}</Providers>
         <Toaster />
