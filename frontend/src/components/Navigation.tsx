@@ -51,6 +51,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                         key={tab.name}
                         title={tab.name}
                         href={tab.isExternal ? tab.href : `/${tab.href}` ?? ""}
+                        target={tab.isExternal ? "_blank" : "_self"}
                       >
                         {tab.description ?? ""}
                       </ListItem>
