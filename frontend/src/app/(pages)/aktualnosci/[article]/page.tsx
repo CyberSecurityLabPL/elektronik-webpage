@@ -1,27 +1,31 @@
-import MarkdownHeader from "@/components/markdown/Header"
+import markdownOptions from "@/components/markdown/MarkdownOptions"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { getArticle, getArticles } from "@/lib/api"
-import { formatDate, getAuthor, renderMarkdown } from "@/lib/utils"
+import { getArticle } from "@/lib/api"
+import { formatDate, getAuthor, getImage, renderMarkdown } from "@/lib/utils"
 import { CalendarPlus, User } from "lucide-react"
+import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import markdownOptions from "@/components/markdown/MarkdownOptions"
-import { defaultCreator } from "@/components/landingpage/News"
-import { Metadata, ResolvingMetadata } from "next"
 
 type Props = {
   params: { article: string }
 }
 
+const defaultMetadata: Metadata = {
+  title: "Nie znaleziono artykułu",
+  description: "Nie znaleziono artykułu.",
+  keywords: ["not found"],
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { data: article } = await getArticle(params.article, {})
-  const seo = article.seo
+  const res = await getArticle(params.article, {})
+  const seo = res?.data?.seo ? res.data.seo : defaultMetadata
 
   return {
-    title: seo?.metaTitle ?? "Elektronik - Untitled",
-    description: seo?.metaDescription ?? "Not described article",
-    keywords: seo?.keywords ?? ["article", "news", "artykuł", "ckziu", "zseis"],
+    title: seo.metaTitle,
+    description: seo.metaDescription,
+    keywords: seo.keywords,
   }
 }
 
@@ -44,32 +48,43 @@ export default async function Page({
 }: {
   params: { article: string }
 }) {
-  const { data: article } = await getArticle(params.article, {})
+  const res = await getArticle(params.article, {})
 
-  const author = getAuthor(article)
+  const article = res?.data ? res.data : null
+
+  const author = article ? getAuthor(article) : "Nieznany autor"
+
+  const image = article.image
+  const hasImage = Object.keys(image).length !== 0
+
+  console.log(image)
 
   return (
-    <article className="prose prose-blue flex w-full flex-col items-center gap-4 lg:prose-xl">
+    <article className="flex w-full flex-col items-center self-center">
       {!article ? (
         <FailedToLoad />
       ) : (
-        <div className="flex w-full flex-col items-center gap-4 rounded-xl bg-background">
+        <div className="relative flex w-full flex-col items-center bg-background">
           {/*  */}
           {/* ARTICLE INFO */}
-          <div className="relative aspect-[5/2] w-full overflow-hidden rounded-xl sm:aspect-[8/2] sm:rounded-3xl">
-            <Image
-              className="rounded-[inherit] object-cover"
-              fill
-              alt={"xd"}
-              src={"/images/cardtest.jpg"}
-              quality={100}
-            />
-          </div>
-          <div className="mt-12 flex w-full flex-col items-center gap-4">
-            <h1 className=" flex w-full justify-start py-2 text-left text-xl font-semibold !no-underline sm:text-3xl">
+          {hasImage ? (
+            <div className="relative aspect-[5/2] w-screen sm:aspect-[3/1] ">
+              <Image
+                className="!m-0 object-cover"
+                fill
+                alt={"xd"}
+                src={getImage(image.url)}
+                quality={100}
+              />
+            </div>
+          ) : (
+            <div className="my-8"></div>
+          )}
+          <div className="flex w-full flex-col items-center gap-4 rounded bg-background py-8">
+            <h1 className="flex w-full justify-start px-12 text-left text-xl font-semibold !no-underline sm:text-3xl">
               {article?.title}
             </h1>
-            <div className="flex w-full flex-col items-start gap-2">
+            <div className="flex w-full flex-col items-start gap-2 px-12">
               <div className="flex items-center justify-center gap-2 text-sm sm:text-base">
                 <CalendarPlus className="size-3 text-primary sm:size-4" />
                 <div>{formatDate(article?.updatedAt)}</div>
@@ -79,10 +94,11 @@ export default async function Page({
                 <div>{author}</div>
               </div>
             </div>
+
             <Separator />
 
             {/* ARTICLE CONTENT */}
-            <div className="w-full py-2 text-xs sm:text-base">
+            <div className="prose prose-blue w-full self-start px-12 py-2 text-xs lg:prose-xl sm:text-base">
               {article?.content ? (
                 renderMarkdown(article.content, markdownOptions)
               ) : (
