@@ -55,12 +55,14 @@ export default function MobileNavigation({ navItems }: { navItems: any }) {
         <DrawerFooter className="flex items-center justify-center text-lg">
           <DrawerClose asChild>
             <Button variant={"ghost"} asChild>
-              <Link href={"/"}>Plan Lekcji</Link>
+              <Link href={"/plan"}>Plan Lekcji</Link>
             </Button>
           </DrawerClose>
           <DrawerClose>
             <Button asChild>
-              <Link href={"/"}>E-dziennik</Link>
+              <Link href={"https://uonetplus.vulcan.net.pl/zielonagora"}>
+                E-dziennik
+              </Link>
             </Button>
           </DrawerClose>
         </DrawerFooter>
