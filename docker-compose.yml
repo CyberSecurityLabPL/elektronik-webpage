@@ -6,7 +6,7 @@ services:
     container_name: "school-website"
     build: frontend
     ports:
-      - "3001:3001"
+      - "3000:3000"
     environment:
       - NODE_ENV=production
       - OUTPUT=standalone
@@ -36,7 +36,7 @@ services:
       # - ./database/data.db:/opt/app/database/data.db
       - ./strapi/types/:/opt/app/types
     ports:
-      - '5000:5000'
+      - "5000:5000"
     networks:
       - strapi
     depends_on:
@@ -45,7 +45,7 @@ services:
     image: mariadb:latest
     platform: linux/arm64/v8
     container_name: db
-    env_file: strapi/.env    
+    env_file: strapi/.env
     restart: always
     command: --default-authentication-plugin=mysql_native_password
     environment:
@@ -60,10 +60,10 @@ services:
       MARIADB_ROOT_PASSWORD: asdASD123!@#
     ports:
       # <Port exposed> : <MySQL Port running inside container>
-      - '3306:3306'
+      - "3306:3306"
     expose:
       # Opens port 3306 on the container
-      - '3306'
+      - "3306"
       # Where our data will be persisted
     volumes:
       - my-db:/var/lib/mysql
