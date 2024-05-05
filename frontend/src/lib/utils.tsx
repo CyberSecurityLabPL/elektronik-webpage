@@ -57,7 +57,7 @@ function hasKey(obj: any, key: string) {
 
 export function renderMarkdown(markdown: string, options?: Readonly<Options>) {
   const imagesFolder = "uploads"
-  const newHostname = process.env.NEXT_PUBLIC_CONTENT_URL
+  const newHostname = process.env.NEXT_PUBLIC_BACKEND_URL
   const imageBlockRegex = /\!\[(.*?)\]\((.*?)\/uploads\/(.*?)\)/g
 
   const formattedMarkdown = markdown.replace(
