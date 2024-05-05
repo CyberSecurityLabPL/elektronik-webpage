@@ -6,7 +6,7 @@ services:
     container_name: "school-website"
     build: frontend
     ports:
-      - "3000:3000"
+      - "3001:3001"
     environment:
       - NODE_ENV=production
       - OUTPUT=standalone
