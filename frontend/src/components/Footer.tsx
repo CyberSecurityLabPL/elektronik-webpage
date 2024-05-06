@@ -22,9 +22,9 @@ export default function Footer() {
         <div className="flex w-full flex-col items-center justify-self-stretch pt-16">
           <Link href={"/autorzy"} className="mb-1 text-xs text-[#808080]">
             <ShootEffect
-              amount={0}
+              amount={4}
               sparkle
-              sparkleAmount={1}
+              sparkleAmount={8}
               image={[
                 "/assets/react.png",
                 "/assets/next.png",
