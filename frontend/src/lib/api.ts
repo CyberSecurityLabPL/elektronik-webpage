@@ -258,3 +258,12 @@ export async function getImages() {
     console.error(error)
   }
 }
+export async function getHotAlert() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get("/hot-alert")
+    // revalidate("/")
+    return flattenStrapiResponse(data)
+  } catch (error) {
+    console.error(error)
+  }
+}
