@@ -77,14 +77,21 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        "bar-up": {
+          from: { top: "0" },
+
+          to: { top: "-100px", display: "none" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "bar-up": "bar-up 0.5s ease-out",
       },
 
       screens: {
         xs: "360px",
+        s: "430px",
         "2xl": "1440px",
         "3xl": "1536px",
         "4xl": "1920px",

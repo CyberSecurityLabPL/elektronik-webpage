@@ -4,7 +4,8 @@ import qs from "qs"
 import { PAGINATION_LIMIT } from "@/config"
 import { cache } from "react"
 import { revalidatePath } from "next/cache"
-import { revalidate } from "./actions"
+import { revalidate, revalidateT } from "./actions"
+import next from "next"
 
 /**
  * The API instance for making HTTP requests.
@@ -138,10 +139,28 @@ export async function getLatestArticle(flatteners: string[] = ["data"]) {
   }
 }
 
-export async function getSubstitutions() {
+export async function getSubstitutionsPage() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/substitutions-page")
     revalidate("/zastepstwa")
+    return flattenStrapiResponse(data)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export async function getSubstitutions(page: number) {
+  try {
+    const data: any = (await fetch(`${process.env.API_URL}/substitutions?pagination[page]=${page}&pagination[pageSize]=1&sort[1]=createdAt:desc`,
+      {
+        next: {
+          tags: ["substitutions"],
+        }
+      }
+    )).json()
+
+    revalidateT("substitutions")
+    
     return flattenStrapiResponse(data)
   } catch (error) {
     console.error(error)
@@ -253,6 +272,15 @@ export async function getImages() {
     )
 
     revalidate("/galeria")
+    return flattenStrapiResponse(data)
+  } catch (error) {
+    console.error(error)
+  }
+}
+export async function getHotAlert() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get("/hot-alert")
+    // revalidate("/")
     return flattenStrapiResponse(data)
   } catch (error) {
     console.error(error)

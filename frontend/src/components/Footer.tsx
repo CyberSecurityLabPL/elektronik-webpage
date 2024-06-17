@@ -13,13 +13,13 @@ export default function Footer() {
     <footer className="-mt-64 flex h-fit min-h-96 w-full flex-col items-center justify-end">
       {/* transition svg */}
       <div className="h-80 w-full bg-footer-squares bg-repeat-x" />
-      <div className="h-52 w-full translate-y-1 bg-lines-transition-dark bg-bottom bg-repeat-x" />
+      <div className="h-60 w-full translate-y-1 bg-lines-transition-dark bg-cover bg-bottom bg-repeat-x" />
       {/* footer */}
       <div className="z-[1] flex h-fit min-h-32 w-full flex-col justify-between gap-6 overflow-auto bg-[#262727] px-8 pt-16">
         <div className="flex w-fit flex-col items-center justify-center self-center">
           <Sitemap />
         </div>
-        <div className="flex w-full flex-col items-center pt-16">
+        <div className="flex w-full flex-col items-center justify-self-stretch pt-16">
           <Link href={"/autorzy"} className="mb-1 text-xs text-[#808080]">
             <ShootEffect
               amount={4}
@@ -36,16 +36,8 @@ export default function Footer() {
             </ShootEffect>
           </Link>
           <Separator className="bg-[#3D3D3D]" />
-          <div className="relative flex w-full items-center justify-between py-4 xs:px-5">
-            <Link passHref href={"/"}>
-              <Image
-                alt="logo"
-                src={"/assets/logo/logo-dark.svg"}
-                width={48}
-                height={48}
-              />
-            </Link>
-            <div className="center absolute flex w-fit justify-center gap-6 py-6">
+          <div className="relative grid w-full grid-cols-2 items-center justify-between gap-y-4  py-4 pb-6 s:grid-cols-3 sm:px-5">
+            <div className=" col-span-2 flex w-full justify-center gap-6 py-6 s:order-2 s:col-span-1">
               <Link
                 href={
                   "https://github.com/CyberSecurityLabPL/elektronik-webpage"
@@ -67,7 +59,24 @@ export default function Footer() {
                 <Facebook />
               </Link>
             </div>
-            <Link passHref href={"https://cslsoft.pl/pl_pl/"} target="_blank">
+            <Link
+              passHref
+              href={"/"}
+              className="justify-self-center s:order-1 s:justify-self-start"
+            >
+              <Image
+                alt="logo"
+                src={"/assets/logo/logo-dark.svg"}
+                width={48}
+                height={48}
+              />
+            </Link>
+            <Link
+              passHref
+              href={"https://cslsoft.pl/pl_pl/"}
+              target="_blank"
+              className="justify-self-center s:order-3 s:justify-self-end"
+            >
               <Image
                 alt="logo"
                 width={96}

@@ -33,7 +33,7 @@ export default async function Page() {
           <ParentCard
             key={item.fullname}
             name={item.fullname}
-            src={item.image?.url ?? "/default/person.jpg"}
+            src={item.image?.url ?? "/default/avatarFemale.svg"}
             position={item.position}
             description={item.description}
           />

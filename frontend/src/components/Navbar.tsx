@@ -10,13 +10,13 @@ export default async function Navbar({ data }: { data?: any }) {
 
   return (
     <div className="relative flex h-32 w-full justify-between">
-      <div className=" flex items-center justify-center px-8 ">
+      <div className=" p flex items-center justify-center px-8 ">
         <Link href={"/"} passHref>
           <Image
             src={"/assets/logo/logo.svg"}
             width={80}
             height={60}
-            className="h-auto w-auto"
+            className="h-16 w-auto md:h-20"
             alt="Logo"
           />
         </Link>
