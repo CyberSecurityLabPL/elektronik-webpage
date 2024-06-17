@@ -78,8 +78,7 @@ const config = {
           to: { height: "0" },
         },
         "bar-up": {
-          from: { top: "0" },
-
+          from: { top: "0", display: "flex" },
           to: { top: "-100px", display: "none" },
         },
       },
