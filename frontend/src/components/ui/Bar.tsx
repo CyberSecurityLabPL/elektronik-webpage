@@ -5,7 +5,7 @@ interface alertProps {
   Alert: string | null
 }
 export default function Bar({ alert }: { alert: alertProps }) {
-  const [dataState, setDataState] = useState(alert.Alert ? "open" : "closed")
+  const [dataState, setDataState] = useState(alert?.Alert ? "open" : "closed")
 
   return (
     <div
@@ -14,7 +14,7 @@ export default function Bar({ alert }: { alert: alertProps }) {
     >
       <p className="flex w-full justify-center gap-2  overflow-hidden truncate whitespace-nowrap  px-4 ">
         <span className="font-semibold">Alert: </span>
-        {alert.Alert}
+        {alert?.Alert ?? ""}
       </p>
       <span className="flex justify-end  px-4">
         <X onClick={() => setDataState("closed")} className="cursor-pointer" />
