@@ -50,9 +50,9 @@ export default function SubstitutionsDisplay({page, initial} : {page: any, initi
                     substitutions: "Brak Zastępstw!",
                     createdAt: null
                 })
-                return
+            } else {
+                setData(res[0].attributes)
             }
-            setData(res[0].attributes)
         }).finally(() => {
             setNextLoading(false)
             setPrevLoading(false)
@@ -132,7 +132,9 @@ function DatePicker({curData, getExact} : {curData: any, getExact: any}){
         <PopoverContent className="w-auto p-0" align="start">
             <Calendar
                 mode="single"
-                onSelect={(d: any) => {
+                onSelect={(d: Date | undefined) => {
+                    console.log(d);
+
                     const date : Date = d!
                     setOpen(false)
                     getExact(date)
