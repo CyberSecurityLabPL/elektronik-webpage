@@ -7,6 +7,7 @@ import { revalidatePath } from "next/cache"
 import { revalidate, revalidateT } from "./actions"
 import next from "next"
 import { format } from "date-fns"
+import { pl } from "date-fns/locale/pl"
 
 /**
  * The API instance for making HTTP requests.
@@ -171,7 +172,7 @@ export async function getSubstitutions(page: number) {
 export async function getExactSubstitutions(date: Date) {
   try {
     revalidateT("substitutions-ex")
-    const data: any = (await fetch(`${process.env.API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[date][$eqi]=${format(date, "yyyy-MM-dd")}`,
+    const data: any = (await fetch(`${process.env.API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[date][$eqi]=${format(date, "yyyy-MM-dd", { locale: pl })}`,
       {
         cache: "no-cache",
         next: {
