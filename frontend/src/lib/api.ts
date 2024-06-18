@@ -172,9 +172,9 @@ export async function getSubstitutions(page: number) {
 export async function getExactSubstitutions(date: Date) {
   try {
     revalidateT("substitutions-ex")
-    console.log(date.toISOString(), format(date, "yyyy-MM-dd", { locale: pl }));
+    const finalDate = new Date(date.getDate() + 1).toISOString().split("T")[0]
     
-    const data: any = (await fetch(`${process.env.API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[date][$eqi]=${format(date, "yyyy-MM-dd", { locale: pl })}`,
+    const data: any = (await fetch(`${process.env.API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[date][$eqi]=${finalDate}`,
       {
         cache: "no-cache",
         next: {
