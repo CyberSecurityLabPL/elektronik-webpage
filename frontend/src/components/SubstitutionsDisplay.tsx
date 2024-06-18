@@ -6,7 +6,7 @@ import { formatDateWeek } from "@/lib/utils"
 import { Button } from "./ui/button";
 import { Dispatch, SetStateAction, useState } from "react";
 import { getExactSubstitution, getMoreSubstitutions } from "@/app/(pages)/zastepstwa/subsServer";
-import { Loader2 } from "lucide-react";
+import { CalendarDays, Loader2 } from "lucide-react";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { Calendar } from "./ui/calendar";
 
@@ -123,8 +123,9 @@ function DatePicker({curData, getExact} : {curData: any, getExact: any}){
         <Popover open={open} onOpenChange={()=>setOpen(!open)}>
         <PopoverTrigger asChild>
             <div className="flex items-center justify-center px-2">
-                <div className="hover:text-primary hover:cursor-pointer text-md flex max-w-[54rem] items-center justify-center text-pretty text-center leading-relaxed text-primary-foreground sm:text-lg lg:text-xl">
+                <div className="hover:stroke-primary stroke-primary-foreground hover:text-primary hover:cursor-pointer text-md gap-2 flex max-w-[54rem] items-center justify-center text-pretty text-center leading-relaxed text-primary-foreground sm:text-lg lg:text-xl">
                     {formatDateWeek(curData?.date ?? curData?.createdAt)}
+                    <Button className="sm:px-2 px-3 py-2 hover:stroke-primary" variant={"secondary"}><CalendarDays className="flex justify-center items-center size-5 sm:size-6 stroke-inherit" /></Button>
                 </div>
             </div>
         </PopoverTrigger>
