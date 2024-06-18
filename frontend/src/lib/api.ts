@@ -7,6 +7,7 @@ import { revalidatePath } from "next/cache"
 import { revalidate, revalidateT } from "./actions"
 import next from "next"
 import { format } from "date-fns"
+import { pl } from "date-fns/locale/pl"
 
 /**
  * The API instance for making HTTP requests.
@@ -170,30 +171,22 @@ export async function getSubstitutions(page: number) {
 
 export async function getExactSubstitutions(date: Date) {
   try {
+    revalidateT("substitutions-ex")
+    const final = new Date()
+    final.setDate(date.getDate() + 1)
+    const finalDate = final.toISOString().split("T")[0]
+    console.log("dziala tylko na prodzie lol", finalDate);
     
-    const result: any = (await fetch(`${process.env.API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[date][$eq]=${format(date, "yyyy-MM-dd")}`,
+    const data: any = (await fetch(`${process.env.API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[date][$eqi]=${finalDate}`,
       {
+        cache: "no-cache",
         next: {
-          tags: ["substitutions"],
+          tags: ["substitutions-ex"],
         }
       }
     )).json()
-    revalidateT("substitutions")
-    let data = await flattenStrapiResponse(result)
 
-    if (data.data.length==0){
-      const result2: any = (await fetch(`${process.env.API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[createdAt][$contains]=${date}`,
-        {
-          next: {
-            tags: ["substitutions"],
-          }
-        }
-      )).json()
-      revalidateT("substitutions")
-      data = await flattenStrapiResponse(result2)
-    }
-
-    return await data.data
+    return await flattenStrapiResponse(data)
   } catch (error) {
     console.error(error)
   }
