@@ -11,7 +11,7 @@ export default function Header({
 }) {
   return (
     <header className="my-6 flex w-full flex-col items-center justify-center sm:my-8">
-      <h1 className="w-full text-pretty bg-clip-text py-2 text-center text-3xl font-extrabold text-primary sm:text-4xl lg:w-auto lg:text-6xl">
+      <h1 className="w-full text-pretty bg-clip-text py-4 text-center text-3xl font-extrabold text-primary sm:text-4xl lg:w-auto lg:text-6xl">
         {title}
       </h1>
       {subtitle ? (

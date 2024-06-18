@@ -14,14 +14,12 @@ export default function WorkerCard({
   src,
   position,
   description,
-  duty,
 }: {
   titles: string
   name: string
   src: string
   position: string
   description: string
-  duty: string
 }) {
   return (
     <Card className=" flex h-60 w-4/5 shadow-sm sm:w-96  md:w-[32rem]">
@@ -29,7 +27,11 @@ export default function WorkerCard({
         <Image
           className="rounded-l-md "
           alt={`${name} img`}
-          src={src}
+          src={
+            src === "/default/avatarMale.svg"
+              ? "/default/avatarMale.svg"
+              : process.env.NEXT_PUBLIC_BACKEND_URL + src
+          }
           fill
           objectFit="cover"
         />
@@ -49,9 +51,6 @@ export default function WorkerCard({
         <CardContent className="sm:min-h-1/5 h-1/4 max-h-fit pb-0">
           <p className="text-xs font-medium text-slate-500">{description}</p>
         </CardContent>
-        <CardFooter className="absolute left-0 top-0 flex h-full items-end">
-          <p className="text-sm font-medium text-slate-500">{`Dyżur: ${duty}`}</p>
-        </CardFooter>
       </div>
     </Card>
   )

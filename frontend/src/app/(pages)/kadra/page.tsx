@@ -34,10 +34,9 @@ export default async function Page() {
                   key={teacher.fullname}
                   name={teacher.fullname}
                   titles={teacher.titles}
-                  src={teacher.image?.url ?? "/default/avatarMale.svg"}
+                  src={teacher.image.url ?? "/default/avatarMale.svg"}
                   position={teacher.position}
                   description={teacher.description}
-                  duty={teacher?.duty ?? "Zawsze"}
                 />
               ))}
             </div>
