@@ -170,31 +170,17 @@ export async function getSubstitutions(page: number) {
 
 export async function getExactSubstitutions(date: Date) {
   try {
-    revalidateT("substitutions-ex1")
-    const result: any = (await fetch(`${process.env.API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[date][$eq]=${format(date, "yyyy-MM-dd")}`,
+    revalidateT("substitutions-ex")
+    const data: any = (await fetch(`${process.env.API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[date][$eqi]=${format(date, "yyyy-MM-dd")}`,
       {
+        cache: "no-cache",
         next: {
-          tags: ["substitutions-ex1"],
+          tags: ["substitutions-ex"],
         }
       }
     )).json()
-    
-    let data = await flattenStrapiResponse(result)
 
-    if (data.data.length==0){
-      revalidateT("substitutions-ex2")
-      const result2: any = (await fetch(`${process.env.API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[createdAt][$contains]=${date}`,
-        {
-          next: {
-            tags: ["substitutions-ex2"],
-          }
-        }
-      )).json()
-      
-      data = await flattenStrapiResponse(result2)
-    }
-
-    return await data.data
+    return await flattenStrapiResponse(data)
   } catch (error) {
     console.error(error)
   }

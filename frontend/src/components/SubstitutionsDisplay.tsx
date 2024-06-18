@@ -43,15 +43,14 @@ export default function SubstitutionsDisplay({page, initial} : {page: any, initi
     function getExact(date: Date){
         setExact(true)
         getExactSubstitution(date).then((res: any) => {
-            console.log(res);
-            if (res.length==0){
+            if (res.data.length==0){
                 setData({
                     date: date,
                     substitutions: "Brak Zastępstw!",
                     createdAt: null
                 })
             } else {
-                setData(res[0].attributes)
+                setData(res.data[0].attributes)
             }
         }).finally(() => {
             setNextLoading(false)
@@ -133,8 +132,6 @@ function DatePicker({curData, getExact} : {curData: any, getExact: any}){
             <Calendar
                 mode="single"
                 onSelect={(d: Date | undefined) => {
-                    console.log(d);
-
                     const date : Date = d!
                     setOpen(false)
                     getExact(date)
