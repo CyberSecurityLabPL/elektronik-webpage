@@ -93,23 +93,23 @@ export default function SubstitutionsDisplay({page, initial} : {page: any, initi
                 {
                     exact ? 
                     <>
-                        <Button onClick={()=>{reset()}} variant={"outline"}>{"Go back"}</Button>
+                        <Button onClick={()=>{reset()}} variant={"outline"}>{"Wróć"}</Button>
                     </>
                     : 
                     <>
                         {prevLoading ? <Button disabled>
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            {"Please wait"}
+                            {"Proszę Czekać"}
                             </Button>
                             : 
-                            <Button className={`${curPage<meta ? "" : "invisible"}`} onClick={() => {change(false)}} variant={"outline"}>{"< Previous"}</Button>
+                            <Button className={`${curPage<meta ? "" : "invisible"}`} onClick={() => {change(false)}} variant={"outline"}>{"< Poprzednie"}</Button>
                         }
                         {nextLoading ? <Button disabled>
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                            {"Please wait"}
+                            {"Proszę Czekać"}
                             </Button>
                             : 
-                            <Button className={`${curPage>1 ? "" : "invisible"}`} onClick={() => {change(true)}} variant={"outline"}>{"Next >"}</Button>
+                            <Button className={`${curPage>1 ? "" : "invisible"}`} onClick={() => {change(true)}} variant={"outline"}>{"Następne >"}</Button>
                         }
                     </>
                 }
