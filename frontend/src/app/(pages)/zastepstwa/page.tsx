@@ -1,6 +1,6 @@
 import { getSubstitutions, getSubstitutionsPage } from "@/lib/api"
 
-import { Metadata, ResolvingMetadata } from "next"
+import { Metadata } from "next"
 import SubstitutionsDisplay from "@/components/SubstitutionsDisplay"
 
 export async function generateMetadata(): Promise<Metadata> {

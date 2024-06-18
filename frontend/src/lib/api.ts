@@ -6,6 +6,7 @@ import { cache } from "react"
 import { revalidatePath } from "next/cache"
 import { revalidate, revalidateT } from "./actions"
 import next from "next"
+import { format } from "date-fns"
 
 /**
  * The API instance for making HTTP requests.
@@ -162,6 +163,37 @@ export async function getSubstitutions(page: number) {
     revalidateT("substitutions")
     
     return flattenStrapiResponse(data)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export async function getExactSubstitutions(date: Date) {
+  try {
+    
+    const result: any = (await fetch(`${process.env.API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[date][$eq]=${format(date, "yyyy-MM-dd")}`,
+      {
+        next: {
+          tags: ["substitutions"],
+        }
+      }
+    )).json()
+    revalidateT("substitutions")
+    let data = await flattenStrapiResponse(result)
+
+    if (data.data.length==0){
+      const result2: any = (await fetch(`${process.env.API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[createdAt][$contains]=${date}`,
+        {
+          next: {
+            tags: ["substitutions"],
+          }
+        }
+      )).json()
+      revalidateT("substitutions")
+      data = await flattenStrapiResponse(result2)
+    }
+
+    return await data.data
   } catch (error) {
     console.error(error)
   }
