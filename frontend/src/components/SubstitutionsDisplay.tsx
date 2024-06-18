@@ -21,7 +21,6 @@ export default function SubstitutionsDisplay({page, initial} : {page: any, initi
     const [data, setData] = useState(sub);
 
     const [exact, setExact] = useState(false)
-    const [selectedDate, setSelectedDate] = useState(new Date())
 
     function change(backwards: boolean){
         const page = backwards ? curPage-1 : curPage+1
@@ -35,7 +34,6 @@ export default function SubstitutionsDisplay({page, initial} : {page: any, initi
         }
         getMoreSubstitutions(page).then((res: any) => {
             setData(res.data[0].attributes)
-            setSelectedDate(new Date(res.data[0].attributes?.date ?? res.data[0].attributes?.createdAt))
         }).finally(() => {
             setNextLoading(false)
             setPrevLoading(false)
@@ -68,7 +66,6 @@ export default function SubstitutionsDisplay({page, initial} : {page: any, initi
         getMoreSubstitutions(page).then((res: any) => {
             console.log(res);
             setData(res.data[0].attributes)
-            setSelectedDate(new Date(res.data[0].attributes?.date ?? res.data[0].attributes?.createdAt))
         }).finally(() => {
             setNextLoading(false)
             setPrevLoading(false)
@@ -78,7 +75,7 @@ export default function SubstitutionsDisplay({page, initial} : {page: any, initi
     return (
         <>
             <Header title={page?.heading ?? "Zastępstwa"}>
-                <DatePicker curData={data} selectedDate={selectedDate} setSelectedDate={setSelectedDate} getExact={getExact} />
+                <DatePicker curData={data} getExact={getExact} />
             </Header>
             <div className="h-fit min-h-96 w-3/4 rounded-lg border bg-background p-3 shadow-sm">
                 <div className="px-2 text-xs sm:text-base">
@@ -102,14 +99,14 @@ export default function SubstitutionsDisplay({page, initial} : {page: any, initi
                             {"Proszę Czekać"}
                             </Button>
                             : 
-                            <Button className={`${curPage<meta ? "" : "invisible"}`} onClick={() => {change(false)}} variant={"outline"}>{"< Poprzednie"}</Button>
+                            <Button disabled={!(curPage<meta)} onClick={() => {change(false)}} variant={"outline"}>{"< Poprzednie"}</Button>
                         }
                         {nextLoading ? <Button disabled>
                             <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                             {"Proszę Czekać"}
                             </Button>
                             : 
-                            <Button className={`${curPage>1 ? "" : "invisible"}`} onClick={() => {change(true)}} variant={"outline"}>{"Następne >"}</Button>
+                            <Button disabled={!(curPage>1)} onClick={() => {change(true)}} variant={"outline"}>{"Następne >"}</Button>
                         }
                     </>
                 }
@@ -119,7 +116,7 @@ export default function SubstitutionsDisplay({page, initial} : {page: any, initi
     )
 }
 
-function DatePicker({curData, selectedDate, setSelectedDate, getExact} : {curData: any, selectedDate: Date, setSelectedDate: Dispatch<SetStateAction<Date>>, getExact: any}){
+function DatePicker({curData, getExact} : {curData: any, getExact: any}){
     const [open, setOpen] = useState(false)
 
     return (
@@ -134,10 +131,8 @@ function DatePicker({curData, selectedDate, setSelectedDate, getExact} : {curDat
         <PopoverContent className="w-auto p-0" align="start">
             <Calendar
                 mode="single"
-                selected={selectedDate}
                 onSelect={(d: any) => {
-                    const date : Date = d ? d : new Date()
-                    setSelectedDate(date)
+                    const date : Date = d!
                     setOpen(false)
                     getExact(date)
                 }}
