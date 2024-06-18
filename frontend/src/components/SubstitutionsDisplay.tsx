@@ -46,11 +46,14 @@ export default function SubstitutionsDisplay({page, initial} : {page: any, initi
         setExact(true)
         getExactSubstitution(date).then((res: any) => {
             console.log(res);
-            if (res.length==0) setData({
-                date: date,
-                substitutions: "Brak Zastępstw!",
-                createdAt: null
-            })
+            if (res.length==0){
+                setData({
+                    date: date,
+                    substitutions: "Brak Zastępstw!",
+                    createdAt: null
+                })
+                return
+            }
             setData(res[0].attributes)
         }).finally(() => {
             setNextLoading(false)
