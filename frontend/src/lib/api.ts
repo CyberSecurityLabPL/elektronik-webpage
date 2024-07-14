@@ -295,6 +295,7 @@ export async function getImages() {
     const { data }: AxiosResponse<any> = await backend.get(
       "/file-system/docs/gallery?populate=*"
     )
+    
 
     revalidate("/galeria")
     return flattenStrapiResponse(data)
@@ -302,6 +303,9 @@ export async function getImages() {
     console.error(error)
   }
 }
+
+
+
 export async function getHotAlert() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/hot-alert")
