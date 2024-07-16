@@ -8,6 +8,8 @@ import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 
+export const revalidate = 10
+
 type Props = {
   params: { article: string }
 }
@@ -20,6 +22,9 @@ const defaultMetadata: Metadata = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const res = await getArticle(params.article, {})
+
+  if (!res) return defaultMetadata
+
   const seo = res?.data?.seo ? res.data.seo : defaultMetadata
 
   return {
