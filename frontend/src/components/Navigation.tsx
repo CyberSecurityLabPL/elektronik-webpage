@@ -113,11 +113,11 @@ function getGalleryImage(): string {
 
   const images = ["/cards/university.png", "/cards/friends.png"]
 
-  if (
-    (now.getMonth() == 3 && now.getDate() == 1) ||
-    (now.getHours() == 21 && now.getMinutes() == 37) ||
-    (now.getHours() == 4 && now.getMinutes() == 20)
-  )
-    return "/cards/misha.png"
+  // if (
+  //   (now.getMonth() == 3 && now.getDate() == 1) ||
+  //   (now.getHours() == 21 && now.getMinutes() == 37) ||
+  //   (now.getHours() == 4 && now.getMinutes() == 20)
+  // )
+  //   return "/cards/misha.png"
   return images[getRandomInt(0, images.length)]
 }

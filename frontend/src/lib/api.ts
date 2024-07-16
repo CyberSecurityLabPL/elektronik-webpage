@@ -4,7 +4,10 @@ import qs from "qs"
 import { PAGINATION_LIMIT } from "@/config"
 import { cache } from "react"
 import { revalidatePath } from "next/cache"
-import { revalidate } from "./actions"
+import { revalidate, revalidateT } from "./actions"
+import next from "next"
+import { format } from "date-fns"
+import { pl } from "date-fns/locale/pl"
 
 /**
  * The API instance for making HTTP requests.
@@ -138,11 +141,52 @@ export async function getLatestArticle(flatteners: string[] = ["data"]) {
   }
 }
 
-export async function getSubstitutions() {
+export async function getSubstitutionsPage() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/substitutions-page")
     revalidate("/zastepstwa")
     return flattenStrapiResponse(data)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export async function getSubstitutions(page: number) {
+  try {
+    const data: any = (await fetch(`${process.env.API_URL}/substitutions?pagination[page]=${page}&pagination[pageSize]=1&sort[1]=createdAt:desc`,
+      {
+        next: {
+          tags: ["substitutions"],
+        }
+      }
+    )).json()
+
+    revalidateT("substitutions")
+    
+    return flattenStrapiResponse(data)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export async function getExactSubstitutions(date: Date) {
+  try {
+    revalidateT("substitutions-ex")
+    const final = new Date()
+    final.setDate(date.getDate() + 1)
+    const finalDate = final.toISOString().split("T")[0]
+    console.log("dziala tylko na prodzie lol", finalDate);
+    
+    const data: any = (await fetch(`${process.env.API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[date][$eqi]=${finalDate}`,
+      {
+        cache: "no-cache",
+        next: {
+          tags: ["substitutions-ex"],
+        }
+      }
+    )).json()
+
+    return await flattenStrapiResponse(data)
   } catch (error) {
     console.error(error)
   }
@@ -251,8 +295,21 @@ export async function getImages() {
     const { data }: AxiosResponse<any> = await backend.get(
       "/file-system/docs/gallery?populate=*"
     )
+    
 
     revalidate("/galeria")
+    return flattenStrapiResponse(data)
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+
+
+export async function getHotAlert() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get("/hot-alert")
+    // revalidate("/")
     return flattenStrapiResponse(data)
   } catch (error) {
     console.error(error)

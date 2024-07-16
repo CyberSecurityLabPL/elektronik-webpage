@@ -24,7 +24,7 @@ export default function Footer() {
             <ShootEffect
               amount={0}
               sparkle
-              sparkleAmount={1}
+              sparkleAmount={2}
               image={[
                 "/assets/react.png",
                 "/assets/next.png",
@@ -36,8 +36,8 @@ export default function Footer() {
             </ShootEffect>
           </Link>
           <Separator className="bg-[#3D3D3D]" />
-          <div className="s:grid-cols-3 relative grid w-full grid-cols-2 items-center justify-between  gap-y-4 py-4 sm:px-5">
-            <div className=" s:order-2 s:col-span-1 col-span-2 flex w-full justify-center gap-6 py-6">
+          <div className="relative grid w-full grid-cols-2 items-center justify-between gap-y-4  py-4 pb-6 s:grid-cols-3 sm:px-5">
+            <div className=" col-span-2 flex w-full justify-center gap-6 py-6 s:order-2 s:col-span-1">
               <Link
                 href={
                   "https://github.com/CyberSecurityLabPL/elektronik-webpage"
@@ -62,7 +62,7 @@ export default function Footer() {
             <Link
               passHref
               href={"/"}
-              className="s:order-1 s:justify-self-start justify-self-center"
+              className="justify-self-center s:order-1 s:justify-self-start"
             >
               <Image
                 alt="logo"
@@ -75,7 +75,7 @@ export default function Footer() {
               passHref
               href={"https://cslsoft.pl/pl_pl/"}
               target="_blank"
-              className="s:order-3 s:justify-self-end justify-self-center"
+              className="justify-self-center s:order-3 s:justify-self-end"
             >
               <Image
                 alt="logo"

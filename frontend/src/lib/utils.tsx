@@ -100,7 +100,7 @@ export const formatDateYear = (date?: string) =>
  */
 export const formatDateWeek = (date?: string) =>
   // @ts-ignore - locale is not in the types
-  format(new Date(date ?? new Date()), "eeee dd/MM/yyyy", { locale: pl })
+  capitalizeFirstLetter(format(new Date(date ?? new Date()), "eeee dd/MM/yyyy", { locale: pl }))
 
 export const getImage = (src: string) =>
   `${process.env.NEXT_PUBLIC_BACKEND_URL}${src}`
@@ -136,4 +136,8 @@ export function getRandomInt(min: number, max: number) {
   const minCeiled = Math.ceil(min)
   const maxFloored = Math.floor(max)
   return Math.floor(Math.random() * (maxFloored - minCeiled) + minCeiled) // The maximum is exclusive and the minimum is inclusive
+}
+
+export function capitalizeFirstLetter(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }

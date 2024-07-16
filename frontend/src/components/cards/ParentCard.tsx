@@ -25,7 +25,11 @@ export default function ParentCard({
         <Image
           className="rounded-l-md object-cover"
           alt={`${name} img`}
-          src={src}
+          src={
+            src === "/default/avatarFemale.svg"
+              ? "/default/avatarFemale.svg"
+              : process.env.NEXT_PUBLIC_BACKEND_URL + src
+          }
           fill
         />
       </div>

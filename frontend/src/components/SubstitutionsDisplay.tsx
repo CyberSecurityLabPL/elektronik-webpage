@@ -1,0 +1,144 @@
+"use client"
+import markdownOptions from "@/components/markdown/MarkdownOptions"
+import { renderMarkdown } from "@/lib/utils"
+import Header from "./Header";
+import { formatDateWeek } from "@/lib/utils"
+import { Button } from "./ui/button";
+import { useState } from "react";
+import { getExactSubstitution, getMoreSubstitutions } from "@/app/(pages)/zastepstwa/subsServer";
+import { CalendarDays, Loader2 } from "lucide-react";
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
+import { Calendar } from "./ui/calendar";
+
+export default function SubstitutionsDisplay({page, initial} : {page: any, initial: any}) {
+    const sub = initial.data[0].attributes
+    const meta = initial.meta.pagination.pageCount
+
+    const [prevLoading, setPrevLoading] = useState(false)
+    const [nextLoading, setNextLoading] = useState(false)
+
+    const [curPage, setCurPage] = useState(1);
+    const [data, setData] = useState(sub);
+
+    const [exact, setExact] = useState(false)
+
+    function change(backwards: boolean){
+        const page = backwards ? curPage-1 : curPage+1
+        setCurPage(page)
+        if(backwards){
+            setNextLoading(true)
+            setPrevLoading(false)
+        } else {
+            setPrevLoading(true)
+            setNextLoading(false)
+        }
+        getMoreSubstitutions(page).then((res: any) => {
+            setData(res.data[0].attributes)
+        }).finally(() => {
+            setNextLoading(false)
+            setPrevLoading(false)
+        })
+    }
+
+    function getExact(date: Date){
+        setExact(true)
+        getExactSubstitution(date).then((res: any) => {
+            if (res.data.length==0){
+                setData({
+                    date: date,
+                    substitutions: "Brak Zastępstw!",
+                    createdAt: null
+                })
+            } else {
+                setData(res.data[0].attributes)
+            }
+        }).finally(() => {
+            setNextLoading(false)
+            setPrevLoading(false)
+        })
+    }
+
+    function reset(){
+        const page = 1
+        setCurPage(page)
+        setExact(false)
+        getMoreSubstitutions(page).then((res: any) => {
+            console.log(res);
+            setData(res.data[0].attributes)
+        }).finally(() => {
+            setNextLoading(false)
+            setPrevLoading(false)
+        })
+    }
+
+    return (
+        <>
+            <Header title={page?.heading ?? "Zastępstwa"}>
+                <DatePicker curData={data} getExact={getExact} />
+            </Header>
+            <div className="h-fit min-h-96 w-3/4 rounded-lg border bg-background p-3 shadow-sm">
+                <div className="px-2 text-xs sm:text-base">
+                    {renderMarkdown(
+                        data?.substitutions ?? "Couldn't load content!",
+                        markdownOptions
+                    )}
+                </div>
+                
+            </div>
+            <div className={`${exact ? "flex justify-center items-center" : "grid grid-cols-2"} gap-x-4`}>
+                {
+                    exact ? 
+                    <>
+                        <Button onClick={()=>{reset()}} variant={"outline"}>{"Wróć"}</Button>
+                    </>
+                    : 
+                    <>
+                        {prevLoading ? <Button disabled>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            {"Proszę Czekać"}
+                            </Button>
+                            : 
+                            <Button disabled={!(curPage<meta)} onClick={() => {change(false)}} variant={"outline"}>{"< Poprzednie"}</Button>
+                        }
+                        {nextLoading ? <Button disabled>
+                            <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                            {"Proszę Czekać"}
+                            </Button>
+                            : 
+                            <Button disabled={!(curPage>1)} onClick={() => {change(true)}} variant={"outline"}>{"Następne >"}</Button>
+                        }
+                    </>
+                }
+                
+            </div>
+        </>
+    )
+}
+
+function DatePicker({curData, getExact} : {curData: any, getExact: any}){
+    const [open, setOpen] = useState(false)
+
+    return (
+        <Popover open={open} onOpenChange={()=>setOpen(!open)}>
+        <PopoverTrigger asChild>
+            <div className="flex items-center justify-center px-2">
+                <div className="hover:stroke-primary stroke-primary-foreground hover:text-primary hover:cursor-pointer text-md gap-2 flex max-w-[54rem] items-center justify-center text-pretty text-center leading-relaxed text-primary-foreground sm:text-lg lg:text-xl">
+                    {formatDateWeek(curData?.date ?? curData?.createdAt)}
+                    <Button className="sm:px-2 px-3 py-2 hover:stroke-primary" variant={"secondary"}><CalendarDays className="flex justify-center items-center size-5 sm:size-6 stroke-inherit" /></Button>
+                </div>
+            </div>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-0" align="start">
+            <Calendar
+                mode="single"
+                onSelect={(d: Date | undefined) => {
+                    const date : Date = d!
+                    setOpen(false)
+                    getExact(date)
+                }}
+                initialFocus
+            />
+        </PopoverContent>
+        </Popover>
+    )
+}
