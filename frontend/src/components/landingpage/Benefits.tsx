@@ -7,9 +7,9 @@ export default function Benefits({ data }: { data: any }) {
   return (
     <div
       id={data.sectionId}
-      className="flex h-fit flex-col items-center justify-center"
+      className="flex h-fit flex-col items-center justify-center py-8"
     >
-      <h1 className="px-2 py-8 text-center text-4xl font-semibold text-slate-800">
+      <h1 className="px-2 py-8 pb-14 text-center text-4xl font-semibold text-slate-800">
         Dlaczego warto wybrać Elektrona?
       </h1>
       <Separator className="w-3/4 " />

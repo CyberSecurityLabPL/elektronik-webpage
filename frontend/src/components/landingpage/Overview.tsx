@@ -1,6 +1,7 @@
+"use client"
 import Image from "next/image"
 import React from "react"
-
+import { motion } from "framer-motion"
 export default function Overview({ data }: { data: any }) {
   return (
     <div
@@ -16,14 +17,19 @@ export default function Overview({ data }: { data: any }) {
             {data.row[0].description}
           </p>
         </div>
-        <div className="relative aspect-[125/84] w-full  rounded-3xl md:w-[625px]">
+        <motion.div
+          initial={{ opacity: 0, y: 200 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.5 }}
+          viewport={{ once: true }}
+          className="relative aspect-[125/84] w-full  rounded-3xl md:w-[625px]"
+        >
           <div className="absolute right-0 top-0  z-40 hidden h-full  w-full md:block">
             <Image
               src={"/assets/imgMaskFlip.svg"}
               alt="Image mask"
               fill
               priority
-              className=""
             />
           </div>
           <Image
@@ -36,7 +42,7 @@ export default function Overview({ data }: { data: any }) {
             priority
             className="-scale-x-100 rounded-3xl"
           />
-        </div>
+        </motion.div>
       </div>
       <div className="flex w-full flex-col items-center justify-center gap-12 md:flex-row-reverse   lg:gap-16">
         <div className="flex w-full flex-col gap-4  md:gap-3 lg:w-2/5 ">
@@ -47,7 +53,13 @@ export default function Overview({ data }: { data: any }) {
             {data.row[1].description}
           </p>
         </div>
-        <div className="relative aspect-[125/84]  w-full rounded-3xl  md:w-[625px]">
+        <motion.div
+          initial={{ opacity: 0, y: 200 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.5 }}
+          viewport={{ once: true }}
+          className="relative aspect-[125/84]  w-full rounded-3xl  md:w-[625px]"
+        >
           <div className="absolute right-0 top-0  z-40 hidden h-full  w-full md:block">
             <Image
               src={"/assets/imgMask.svg"}
@@ -67,7 +79,7 @@ export default function Overview({ data }: { data: any }) {
             priority
             className="rounded-3xl"
           />
-        </div>
+        </motion.div>
       </div>
     </div>
   )

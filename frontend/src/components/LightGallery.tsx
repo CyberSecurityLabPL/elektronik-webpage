@@ -44,7 +44,7 @@ const MyLightGallery = ({
             width={width}
             height={height}
             sizes="250px"
-            className="object-cover group-hover:opacity-75"
+            className="object-cover  group-hover:opacity-75"
             onClick={() => {
               lightboxRef.current?.openGallery(idx)
             }}

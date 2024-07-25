@@ -12,7 +12,7 @@ export default function Footer() {
   return (
     <footer className="-mt-64 flex h-fit min-h-96 w-full flex-col items-center justify-end">
       {/* transition svg */}
-      <div className="h-80 w-full bg-footer-squares bg-repeat-x" />
+      <div className="h-80 w-full bg-footer-squares bg-cover bg-repeat-x" />
       <div className="h-60 w-full translate-y-1 bg-lines-transition-dark bg-cover bg-bottom bg-repeat-x" />
       {/* footer */}
       <div className="z-[1] flex h-fit min-h-32 w-full flex-col justify-between gap-6 overflow-auto bg-[#262727] px-8 pt-16">
@@ -110,7 +110,7 @@ async function Sitemap() {
                   <li key={`l${index}`}>
                     <Link
                       className="w-fit text-sm text-[#808080] hover:text-[#CACACA] hover:underline"
-                      href={link.isExternal ? link.href : `/${link.href}` ?? ""}
+                      href={link.isExternal ? link.href : `/${link.href}`}
                     >
                       {link.name ?? "Empty"}
                     </Link>

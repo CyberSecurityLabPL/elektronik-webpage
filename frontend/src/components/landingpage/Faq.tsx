@@ -1,3 +1,4 @@
+"use client"
 import React from "react"
 import {
   Card,
@@ -16,10 +17,15 @@ import {
 import { Button } from "../ui/button"
 import Image from "next/image"
 import Link from "next/link"
+import { motion } from "framer-motion"
 
 export default function Faq({ data }: { data: any }) {
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 200 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.5 }}
+      viewport={{ once: true }}
       id={data.sectionId}
       className="flex w-full items-center justify-center py-8"
     >
@@ -58,6 +64,6 @@ export default function Faq({ data }: { data: any }) {
           </Button>
         </CardFooter>
       </Card>
-    </div>
+    </motion.div>
   )
 }

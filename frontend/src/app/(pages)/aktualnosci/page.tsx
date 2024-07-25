@@ -36,7 +36,7 @@ async function page({ searchParams }: PageParams) {
       />
       <div className="mb-64 flex w-full flex-col">
         <div className="hidden flex-col xs:flex">
-          <h2 className="mt-8 pl-8 text-lg font-bold text-foreground md:mt-4 lg:mt-0">
+          <h2 className="mt-8 pb-4 pl-8 text-lg font-bold text-foreground md:mt-4 lg:mt-0">
             Najnowszy artykuł
           </h2>
           <NewsCard

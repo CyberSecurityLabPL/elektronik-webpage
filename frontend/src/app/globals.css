@@ -11,6 +11,10 @@ body {
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
+.lg-outer .lg-thumb-item.active {
+  border-color: green !important;
+  display: none;
+}
 .hero {
   mask-image: url("../../public/assets/heroMask.svg");
   mask-size: cover;

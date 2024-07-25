@@ -1,9 +1,10 @@
+import AlertBar from "@/components/AlertBar"
 import Providers from "@/components/Providers"
 import { Toaster } from "@/components/ui/sonner"
+import { getHotAlert } from "@/lib/api"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import AlertBar from "@/components/AlertBar"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -15,11 +16,12 @@ export const metadata: Metadata = {
 
 export const revalidate = 10
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
+  const data = await getHotAlert()
   return (
     <html lang="en">
       <head>
@@ -31,7 +33,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
-        <AlertBar />
+        <AlertBar data={data} />
         <Providers>{children}</Providers>
         <Toaster />
       </body>

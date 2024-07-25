@@ -153,16 +153,19 @@ export async function getSubstitutionsPage() {
 
 export async function getSubstitutions(page: number) {
   try {
-    const data: any = (await fetch(`${process.env.API_URL}/substitutions?pagination[page]=${page}&pagination[pageSize]=1&sort[1]=createdAt:desc`,
-      {
-        next: {
-          tags: ["substitutions"],
+    const data: any = (
+      await fetch(
+        `${process.env.API_URL}/substitutions?pagination[page]=${page}&pagination[pageSize]=1&sort[1]=createdAt:desc`,
+        {
+          next: {
+            tags: ["substitutions"],
+          },
         }
-      }
-    )).json()
+      )
+    ).json()
 
     revalidateT("substitutions")
-    
+
     return flattenStrapiResponse(data)
   } catch (error) {
     console.error(error)
@@ -175,16 +178,19 @@ export async function getExactSubstitutions(date: Date) {
     const final = new Date()
     final.setDate(date.getDate() + 1)
     const finalDate = final.toISOString().split("T")[0]
-    console.log("dziala tylko na prodzie lol", finalDate);
-    
-    const data: any = (await fetch(`${process.env.API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[date][$eqi]=${finalDate}`,
-      {
-        cache: "no-cache",
-        next: {
-          tags: ["substitutions-ex"],
+    console.log("dziala tylko na prodzie lol", finalDate)
+
+    const data: any = (
+      await fetch(
+        `${process.env.API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[date][$eqi]=${finalDate}`,
+        {
+          cache: "no-cache",
+          next: {
+            tags: ["substitutions-ex"],
+          },
         }
-      }
-    )).json()
+      )
+    ).json()
 
     return await flattenStrapiResponse(data)
   } catch (error) {
@@ -295,7 +301,6 @@ export async function getImages() {
     const { data }: AxiosResponse<any> = await backend.get(
       "/file-system/docs/gallery?populate=*"
     )
-    
 
     revalidate("/galeria")
     return flattenStrapiResponse(data)
@@ -303,8 +308,6 @@ export async function getImages() {
     console.error(error)
   }
 }
-
-
 
 export async function getHotAlert() {
   try {
