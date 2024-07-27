@@ -99,8 +99,10 @@ export const formatDateYear = (date?: string) =>
  * @returns The formatted date with a week name in front
  */
 export const formatDateWeek = (date?: string) =>
-  // @ts-ignore - locale is not in the types
-  capitalizeFirstLetter(format(new Date(date ?? new Date()), "eeee dd/MM/yyyy", { locale: pl }))
+  capitalizeFirstLetter(
+    // @ts-ignore - locale is not in the types
+    format(new Date(date ?? new Date()), "eeee dd/MM/yyyy", { locale: pl })
+  )
 
 export const getImage = (src: string) =>
   `${process.env.NEXT_PUBLIC_BACKEND_URL}${src}`
@@ -139,5 +141,46 @@ export function getRandomInt(min: number, max: number) {
 }
 
 export function capitalizeFirstLetter(str: string) {
-  return str.charAt(0).toUpperCase() + str.slice(1);
+  return str.charAt(0).toUpperCase() + str.slice(1)
+}
+
+export function validateTimetableSearchParams(searchParams?: {
+  [key: string]: string | string[] | undefined
+}) {
+  if (!searchParams) return false
+
+  if (searchParams["id"]) {
+    return searchParams["id"].toString().match(/^[sno]\d+$/) ? true : false
+  } else {
+    return false
+  }
+}
+
+export function uppercaseLastCharacters(
+  inputString: string,
+  numCharacters: number
+) {
+  // Check if the input is valid
+  if (
+    typeof inputString !== "string" ||
+    !Number.isInteger(numCharacters) ||
+    numCharacters < 0
+  ) {
+    return "Invalid input"
+  }
+
+  // Get the length of the input string
+  const inputLength = inputString.length
+
+  // If numCharacters is greater than or equal to the length of the string, uppercase the entire string
+  if (numCharacters >= inputLength) {
+    return inputString.toUpperCase()
+  }
+
+  // Split the string into two parts: the part to be uppercased and the rest
+  const uppercasedPart = inputString.slice(inputLength - numCharacters)
+  const restOfString = inputString.slice(0, inputLength - numCharacters)
+
+  // Uppercase the specified part and combine it with the rest of the string
+  return restOfString + uppercasedPart.toUpperCase()
 }
