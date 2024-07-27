@@ -1,28 +1,90 @@
-"use client"
+import Footer from "@/components/timetable/Footer"
+import Headbar from "@/components/timetable/Headbar"
 import Timetable from "@/components/timetable/Timetable"
-import React, { useEffect } from "react"
-import { useRouter, useSearchParams } from "next/navigation"
-import { useContext } from "react"
-import { SelectContext } from "@/components/Providers"
+import { buttonVariants } from "@/components/ui/button"
 import { timetableConfig } from "@/config"
-import { Suspense } from "react"
-const Page = () => {
-  const { setTimetableId } = useContext(SelectContext)
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  useEffect(() => {
-    const id = searchParams.get("timetableId")
-    const isValid = id?.match(/[n;o;s][1-9]+/)
+import { validateTimetableSearchParams } from "@/lib/utils"
+import Link from "next/link"
 
-    if (!isValid || !id)
-      router.push(`?timetableId=${timetableConfig.initialId}`)
-    setTimetableId(id!)
-  }, [router, searchParams, setTimetableId])
-  return (
-    <Suspense>
-      <Timetable />
-    </Suspense>
-  )
+const initialId = timetableConfig.initialId ?? "o18"
+
+const page = async ({
+  searchParams,
+}: {
+  searchParams?: { [key: string]: string | string[] | undefined }
+}) => {
+  let idToPass = initialId
+
+  const areParamsValid = validateTimetableSearchParams(searchParams)
+
+  if (areParamsValid) {
+    idToPass = searchParams!["id"] as string
+  }
+
+  try {
+    const timetableInfoRes = await fetch(`${process.env.TIMETABLE_URL!}/info`)
+
+    const timetableInfoData = await timetableInfoRes.json()
+
+    const isIdValid = timetableInfoData.some(
+      (item: { id: string }) => item.id === idToPass
+    )
+
+    if (!isIdValid) idToPass = initialId
+
+    const targetRes = await fetch(
+      `${process.env.TIMETABLE_URL!}/timetables/${idToPass}`
+    )
+
+    const targetData = await targetRes.json()
+
+    const name = targetData.name
+
+    return (
+      <div className="flex h-full flex-col">
+        <Headbar name={name} />
+        <div className="relative grid flex-grow place-items-center">
+          <Timetable data={targetData} />
+          <div className="absolute bottom-0 right-0 p-1">
+            Wolisz stary wygląd planu?{" "}
+            <Link
+              href={
+                process.env.VULCAN_TIMETABLE_URL ??
+                "https://zseis.zgora.pl/plan"
+              }
+              className="text-primary-foreground underline"
+            >
+              Kliknij tutaj
+            </Link>
+          </div>
+        </div>
+        <Footer timetableItems={timetableInfoData} />
+      </div>
+    )
+  } catch (error) {
+    return (
+      <div className="grid h-screen w-screen place-items-center">
+        <div className="flex flex-col gap-4">
+          <span>
+            Nie udało się pobrać planu zajęć. Spróbuj skorzystać ze{" "}
+            <Link
+              href={
+                process.env.VULCAN_TIMETABLE_URL ??
+                "https://zseis.zgora.pl/plan"
+              }
+              className="text-primary-foreground underline"
+            >
+              starego planu
+            </Link>
+            .
+          </span>
+          <Link href={"/"} className={buttonVariants({ variant: "secondary" })}>
+            Powrót na strone główną.
+          </Link>
+        </div>
+      </div>
+    )
+  }
 }
 
-export default Page
+export default page

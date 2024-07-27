@@ -37,6 +37,15 @@ body {
   grid-template-rows: 10 1fr;
 }
 
+div[cmdk-list]::-webkit-scrollbar-track {
+  background: none;
+}
+
+div[cmdk-list]::-webkit-scrollbar-thumb {
+  background: #f1f5f9;
+  border-radius: 10px;
+}
+
 ::-webkit-scrollbar {
   width: 7px;
 }
