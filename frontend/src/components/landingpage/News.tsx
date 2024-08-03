@@ -14,9 +14,15 @@ export default async function News() {
 
   return (
     <div className="z-10 flex w-full flex-col flex-wrap items-center justify-center gap-8 py-4">
-      <h1 className="pt-8 text-center text-4xl font-semibold text-slate-800">
-        Aktualności
-      </h1>
+      <div className="flex flex-col items-center justify-center">
+        <h2 className="text-lg font-medium text-primary-foreground">
+          Aktualności
+        </h2>
+        <h1 className="px-2 py-4 text-center font-sans text-4xl  font-bold text-slate-800">
+          Ostatnie wydarzenia w Elektronie
+        </h1>
+      </div>
+
       <div className=" flex w-full grid-cols-1 flex-col items-center justify-center gap-4 px-4 md:grid md:grid-cols-2 md:gap-8 md:px-8 lg:grid-cols-3 xl:w-fit">
         {CardData.slice(0, 3).map(
           ({ attributes: news, id }: any, index: number) => {
@@ -33,9 +39,11 @@ export default async function News() {
           }
         )}
       </div>
-      <Button asChild className="w-fit">
-        <Link href="/aktualnosci">Zobacz więcej</Link>
-      </Button>
+      <div className="growAnim">
+        <Button asChild className=" w-fit ">
+          <Link href="/aktualnosci">Zobacz więcej</Link>
+        </Button>
+      </div>
     </div>
   )
 }

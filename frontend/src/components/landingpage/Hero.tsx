@@ -46,7 +46,7 @@ export default function Hero({ data }: { data: any }) {
               }}
               transition={{
                 duration: 1.2,
-                delay: 0.4,
+                delay: 0.2,
               }}
             >
               {data?.heading ?? "Witaj w Elektroniku"}
@@ -63,7 +63,7 @@ export default function Hero({ data }: { data: any }) {
               }}
               transition={{
                 duration: 1.2,
-                delay: 0.8,
+                delay: 0.4,
               }}
             >
               {data?.text ?? ""}
@@ -89,7 +89,7 @@ export default function Hero({ data }: { data: any }) {
               x: 0,
             }}
             transition={{
-              duration: 1.2,
+              duration: 0.8,
             }}
           >
             <Image

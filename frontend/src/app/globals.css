@@ -10,6 +10,7 @@ body {
   --scroll-color: hsl(var(--primary));
   overflow-x: hidden;
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
 }
 .lg-outer .lg-thumb-item.active {
   border-color: green !important;
@@ -18,6 +19,15 @@ body {
 .hero {
   mask-image: url("../../public/assets/heroMask.svg");
   mask-size: cover;
+}
+.growAnim {
+  transition: transform 0.2s;
+}
+.growAnim:hover {
+  transform: scale(1.1);
+}
+.growAnim:active {
+  transform: scale(0.9);
 }
 @layer components {
   .timetable-cell {

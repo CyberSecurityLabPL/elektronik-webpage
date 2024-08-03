@@ -1,5 +1,6 @@
+"use client"
 import { ReactNode } from "react"
-
+import { motion as m } from "framer-motion"
 export default function Header({
   title,
   subtitle,
@@ -10,7 +11,20 @@ export default function Header({
   children?: ReactNode
 }) {
   return (
-    <header className="my-6 flex w-full flex-col items-center justify-center sm:my-8">
+    <m.header
+      initial={{
+        opacity: 0,
+        y: 100,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+      }}
+      transition={{
+        duration: 0.7,
+      }}
+      className="my-6 flex w-full flex-col items-center justify-center sm:my-8"
+    >
       <h1 className="w-full text-pretty bg-clip-text py-4 text-center text-3xl font-extrabold text-primary sm:text-4xl lg:w-auto lg:text-6xl">
         {title}
       </h1>
@@ -22,6 +36,6 @@ export default function Header({
         </div>
       ) : null}
       {children}
-    </header>
+    </m.header>
   )
 }

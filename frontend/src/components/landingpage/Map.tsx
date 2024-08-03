@@ -10,7 +10,7 @@ export default function Map({ data }: { data: any }) {
   return (
     <div id={data.sectionId}>
       <div className="h-64 w-full rotate-180 bg-wave-transition bg-repeat-x "></div>
-      <div className="relative flex h-screen w-full flex-col items-center justify-center gap-4 bg-primary px-6 py-4 md:px-10">
+      <div className="relative flex h-fit w-full flex-col items-center justify-center gap-4 bg-primary px-6 py-16  md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 200 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -18,7 +18,7 @@ export default function Map({ data }: { data: any }) {
           viewport={{ once: true }}
           className="flex h-2/3 w-full flex-col-reverse items-start justify-center gap-8 lg:flex-row xl:items-center"
         >
-          <Card className="h-full w-full lg:w-3/5">
+          <Card className="h-[40rem] w-full lg:w-3/5">
             <GoogleMaps />
           </Card>
           {/* </motion.div> */}

@@ -59,9 +59,11 @@ export default function Faq({ data }: { data: any }) {
           <h1 className="text-center font-semibold  ">
             Jeśli masz do nas inne pytania napisz do nas!
           </h1>
-          <Button variant={data.linkButton.type} asChild>
-            <Link href={data.linkButton.link}>{data.linkButton.title}</Link>
-          </Button>
+          <div className="growAnim">
+            <Button variant={data.linkButton.type} asChild>
+              <Link href={data.linkButton.link}>{data.linkButton.title}</Link>
+            </Button>
+          </div>
         </CardFooter>
       </Card>
     </motion.div>
