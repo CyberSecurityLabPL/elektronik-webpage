@@ -18,7 +18,7 @@
     "@strapi/plugin-cloud": "4.23.0",
     "@strapi/plugin-i18n": "4.23.0",
     "@strapi/plugin-seo": "^1.9.8",
-    "@strapi/plugin-users-permissions": "4.23.0",
+    "@strapi/plugin-users-permissions": "4.24.2",
     "@strapi/strapi": "4.23.0",
     "mysql": "2.18.1",
     "react": "^18.0.0",

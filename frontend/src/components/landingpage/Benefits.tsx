@@ -1,40 +1,95 @@
-import { Calendar, Navigation, Paintbrush, Smile } from "lucide-react"
-import IconComponent from "../Icon"
-import { Separator } from "../ui/separator"
+"use client"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "../ui/card"
+import Image from "next/image"
+import { getImage } from "@/lib/utils"
+import { motion as m } from "framer-motion"
 
 export default function Benefits({ data }: { data: any }) {
-  const cardIcons = [Navigation, Paintbrush, Smile, Calendar]
   return (
     <div
       id={data.sectionId}
-      className="flex h-fit flex-col items-center justify-center py-8"
+      className="flex h-fit flex-col items-center justify-center px-16 py-16"
     >
-      <h1 className="px-2 py-8 pb-14 text-center text-4xl font-semibold text-slate-800">
+      <m.h2
+        initial={{
+          opacity: 0,
+          y: 50,
+        }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.6,
+        }}
+        viewport={{ once: true }}
+        className="text-lg font-medium text-primary-foreground"
+      >
+        Plusy naszej szkoly
+      </m.h2>
+      <m.h1
+        initial={{
+          opacity: 0,
+          y: 50,
+        }}
+        whileInView={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.6,
+          delay: 0.2,
+        }}
+        viewport={{ once: true }}
+        className="px-2 py-4 pb-14 text-center font-sans text-4xl  font-bold text-slate-800"
+      >
         Dlaczego warto wybrać Elektrona?
-      </h1>
-      <Separator className="w-3/4 " />
-      <div className="flex h-full flex-col items-start justify-center gap-4 p-8 py-12 lg:flex-row">
+      </m.h1>
+      <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-3 lg:grid-rows-2 xl:w-5/6 3xl:px-24 ">
         {data.benefitCard.map((card: any, index: number) => (
-          <div
-            key={card.title}
-            className="flex flex-col items-center justify-center gap-4"
+          <Card
+            key={index}
+            className={`rounded-2xl p-6 shadow-[0_10px_25px_-10px_rgba(53,77,252,0.3)] ${
+              index == 1 || index == 2 ? "md:col-span-2" : ""
+            }`}
           >
-            <div className="flex flex-col items-center justify-center  px-8 text-center lg:px-2">
-              <IconComponent
-                icon={cardIcons[index]}
-                color="blue"
-                IsCircle={true}
+            <CardContent className="relative h-52 rounded-lg">
+              <Image
+                src={
+                  card.image.url
+                    ? getImage(card.image.url)
+                    : "/cards/benefit_1.jpg"
+                }
+                alt="sda"
+                sizes="100vw"
+                fill
+                className="rounded-2xl"
+                style={{
+                  objectFit: "cover",
+                }}
               />
-              <h1 className="flex h-24 items-center justify-center text-xl font-semibold sm:text-2xl md:text-3xl lg:text-2xl xl:text-3xl">
+            </CardContent>
+            <CardHeader className="p-0 pt-6">
+              <CardTitle className="text-primary-foreground ">
                 {card.title}
-              </h1>
-              <p className=" md:px-6 lg:px-0">{card.content}</p>
-            </div>
-            <Separator className="block w-3/4 lg:hidden" />
-          </div>
+              </CardTitle>
+              <CardDescription
+                className={` text-slate-700 ${
+                  index == 1 || index == 2 ? "w-11/12" : ""
+                }`}
+              >
+                {card.content}
+              </CardDescription>
+            </CardHeader>
+          </Card>
         ))}
       </div>
-      <Separator className="hidden w-3/4 lg:block " />
     </div>
   )
 }
