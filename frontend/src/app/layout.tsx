@@ -5,6 +5,7 @@ import { getHotAlert } from "@/lib/api"
 import type { Metadata } from "next"
 import { Inter, Poppins } from "next/font/google"
 import "./globals.css"
+import { cn } from "@/lib/utils"
 
 const inter = Inter({ subsets: ["latin"] })
 const poppins = Poppins({
@@ -36,7 +37,7 @@ export default async function RootLayout({
           sizes="<generated>"
         />
       </head>
-      <body className={poppins.className}>
+      <body className={cn(poppins.className, "*:antialiased")}>
         <AlertBar data={data} />
         <Providers>{children}</Providers>
         <Toaster />
