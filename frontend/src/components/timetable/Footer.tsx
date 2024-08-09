@@ -84,9 +84,12 @@ function Select({
       <PopoverContent className="min-w-[1000px] overflow-hidden rounded-xl p-0">
         <Command>
           <CommandInput placeholder={name} />
-          <div className=" grid w-full grid-cols-3 p-4">
+          <div className=" grid w-full grid-cols-1 p-4 md:grid-cols-3">
             {data.map((group) => (
-              <CommandList key={group.heading} className=" overflow-y-auto">
+              <CommandList
+                key={group.heading}
+                className=" hidden overflow-y-auto md:block"
+              >
                 <CommandEmpty>Nic nie znaleziono.</CommandEmpty>
                 <CommandGroup heading={group.heading} className="scroll-m-4">
                   {group.items.map((info) => (
@@ -111,6 +114,36 @@ function Select({
                 </CommandGroup>
               </CommandList>
             ))}
+            <CommandList className="block overflow-y-auto md:hidden">
+              <CommandEmpty>Nic nie znaleziono.</CommandEmpty>
+              {data.map((group) => (
+                <CommandGroup
+                  heading={group.heading}
+                  className="scroll-m-4"
+                  key={group.heading}
+                >
+                  {group.items.map((info) => (
+                    <Link key={info.name} href={`?id=${info.id}`} passHref>
+                      <CommandItem
+                        value={info.name}
+                        onSelect={(currentValue) => {
+                          setValue(currentValue === value ? "" : currentValue)
+                          setOpen(false)
+                        }}
+                        className={cn(
+                          "cursor-pointer rounded-lg px-2 transition-colors",
+                          {
+                            "bg-primary text-white": value === info.name,
+                          }
+                        )}
+                      >
+                        {info.name}
+                      </CommandItem>
+                    </Link>
+                  ))}
+                </CommandGroup>
+              ))}
+            </CommandList>
           </div>
         </Command>
       </PopoverContent>

@@ -4,7 +4,7 @@ import React from "react"
 const Headbar = ({ name: timetableName }: { name: string }) => {
   return (
     <div className="flex h-24 w-full items-center justify-center bg-primary">
-      <h1 className="text-3xl text-secondary">
+      <h1 className="text-xl text-secondary md:text-3xl">
         {timetableName?.endsWith(" i")
           ? uppercaseLastCharacters(timetableName, 1)
           : timetableName?.endsWith(" ii")

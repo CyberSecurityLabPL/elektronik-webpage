@@ -45,7 +45,7 @@ const page = async ({
         <Headbar name={name} />
         <div className="relative grid flex-grow place-items-center">
           <Timetable data={targetData} />
-          <div className="absolute bottom-0 right-0 p-1">
+          <div className="absolute bottom-0 right-0 p-1 text-xs md:text-base">
             Wolisz stary wygląd planu?{" "}
             <Link
               href={
