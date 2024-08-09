@@ -17,6 +17,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordionMobile"
+import { cn } from "@/lib/utils"
+import { Separator } from "./ui/separator"
 
 export default function MobileNavigation({ navItems }: { navItems: any }) {
   return (
@@ -34,27 +36,39 @@ export default function MobileNavigation({ navItems }: { navItems: any }) {
       </DrawerTrigger>
       <DrawerContent className="h-[90%]">
         <div className="h-full w-full overflow-scroll overflow-x-hidden p-4">
-          {navItems.map((group: any, index: number) => (
-            <LinkPanel key={index + group.name} title={group.name}>
-              {group.name.toLowerCase() == "o szkole" ? (
-                <LinkItem name="Galeria" href="/galeria" />
-              ) : null}
-              {group.name.toLowerCase() == "o szkole" ? (
-                <LinkItem name="Kontakt" href="/kontakt" />
-              ) : null}
-              {group.links.map((item: any) => (
-                <LinkItem
-                  key={item.name}
-                  name={item.name}
-                  href={item.isExternal ? item.href : `/${item.href}` ?? ""}
-                />
-              ))}
-            </LinkPanel>
+          {navItems?.map((group: any, index: number) => (
+            <>
+              <LinkPanel key={index + group.name} title={group.name}>
+                {group.name.toLowerCase() == "o szkole" ? (
+                  <>
+                    <LinkItem name="Galeria" href="/galeria" />
+                    <Separator />
+                  </>
+                ) : null}
+                {group.name.toLowerCase() == "o szkole" ? (
+                  <>
+                    <LinkItem name="Kontakt" href="/kontakt" />
+                    <Separator />
+                  </>
+                ) : null}
+                {group.links?.map((item: any) => (
+                  <>
+                    <LinkItem
+                      key={item.name}
+                      name={item.name}
+                      href={item.isExternal ? item.href : `/${item.href}` ?? ""}
+                    />
+                    <Separator />
+                  </>
+                ))}
+              </LinkPanel>
+              <Separator />
+            </>
           ))}
         </div>
         <DrawerFooter className="flex items-center justify-center text-lg">
           <DrawerClose asChild>
-            <Button variant={"ghost"} asChild>
+            <Button variant={"secondary"} asChild>
               <Link href={"/plan"}>Plan Lekcji</Link>
             </Button>
           </DrawerClose>
@@ -74,9 +88,11 @@ export default function MobileNavigation({ navItems }: { navItems: any }) {
 function LinkPanel({
   title,
   children,
+  className,
 }: {
   children?: ReactNode
   title: string
+  className?: string
 }) {
   return (
     <Accordion
@@ -85,15 +101,15 @@ function LinkPanel({
       className="flex w-full flex-col gap-4 "
     >
       <AccordionItem value={title}>
-        <AccordionTrigger className="flex w-full items-center justify-between gap-4 py-2 text-2xl  font-semibold [&[data-state=open]>svg]:rotate-180">
-          <span
-            className="w-
-          2/3 truncate text-left"
-          >
-            {title}
-          </span>
+        <AccordionTrigger
+          className={cn(
+            "flex w-full items-center justify-between py-2 text-2xl  font-semibold [&[data-state=open]>svg]:rotate-180",
+            className
+          )}
+        >
+          <span className="w-2/3 truncate text-left">{title}</span>
         </AccordionTrigger>
-        <AccordionContent className="flex flex-col gap-6 last:pb-4 ">
+        <AccordionContent className="flex flex-col gap-2 pl-4 last:pb-4 ">
           {children}
         </AccordionContent>
       </AccordionItem>
@@ -106,7 +122,7 @@ function LinkItem({ name, href }: { name: string; href: string }) {
   return (
     <DrawerClose asChild>
       <Link
-        className="text-center text-lg font-medium text-slate-600"
+        className="text-left text-lg font-medium text-slate-600 md:text-center"
         href={href}
       >
         {name}

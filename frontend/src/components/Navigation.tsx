@@ -21,9 +21,11 @@ export function Navigation({ navItems }: { navItems: any }) {
         {navItems
           ? navItems.map((item: any, index: number) => (
               <NavigationMenuItem key={item.name}>
-                <NavigationMenuTrigger>{item.name}</NavigationMenuTrigger>
+                <NavigationMenuTrigger className="bg-transparent text-lg hover:bg-transparent group-[[data-smaller=true]]:text-base">
+                  {item.name}
+                </NavigationMenuTrigger>
                 <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[800px] ">
                     {index < 1 ? (
                       <li className="row-span-3">
                         <NavigationMenuLink asChild>
@@ -63,7 +65,12 @@ export function Navigation({ navItems }: { navItems: any }) {
           : null}
         <NavigationMenuItem>
           <Link href="/kontakt" legacyBehavior passHref>
-            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            <NavigationMenuLink
+              className={cn(
+                navigationMenuTriggerStyle(),
+                "text-lg group-[[data-smaller=true]]:bg-transparent group-[[data-smaller=true]]:text-base"
+              )}
+            >
               Kontakt
             </NavigationMenuLink>
           </Link>
@@ -76,17 +83,18 @@ export function Navigation({ navItems }: { navItems: any }) {
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
   React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-  const isExternal = props.href?.startsWith("http")
+>(({ className, title, children, href, ...props }, ref) => {
+  const isExternal = href!.startsWith("http")
   return (
     <li>
       <NavigationMenuLink asChild>
-        <a
+        <Link
           ref={ref}
           className={cn(
-            "flex select-none items-center gap-1 space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            "flex select-none items-center justify-between gap-1 space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground ",
             className
           )}
+          href={href!}
           {...props}
         >
           <div>
@@ -100,7 +108,7 @@ const ListItem = React.forwardRef<
               <ExternalLink className="h-6 w-6 text-muted-foreground" />
             )}
           </div>
-        </a>
+        </Link>
       </NavigationMenuLink>
     </li>
   )
