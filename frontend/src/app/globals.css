@@ -8,7 +8,7 @@ html,
 body {
   --scroll-border: 99px;
   --scroll-color: hsl(var(--primary));
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
 }

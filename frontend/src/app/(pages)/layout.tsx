@@ -1,15 +1,19 @@
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
 import PageWrapper from "@/components/PageWrapper"
+import { getNavigation } from "@/lib/api"
 
-const Layout = ({
+const Layout = async ({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) => {
+  const { link_groups: navItems } = await getNavigation()
+  console.log(navItems)
+
   return (
     <PageWrapper>
-      <Navbar />
+      <Navbar navItems={navItems} />
       <div className="page-padding relative flex min-h-[calc(100vh-128px)] w-full flex-col justify-start">
         {children}
       </div>
