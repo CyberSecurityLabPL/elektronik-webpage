@@ -20,57 +20,6 @@ import {
 import { cn } from "@/lib/utils"
 
 export default function MobileNavigation({ navItems }: { navItems: any }) {
-  // const scrollableRef = useRef<HTMLDivElement | null>(null)
-  // const [startY, setStartY] = useState<number>(0)
-  // const [isPulling, setIsPulling] = useState<boolean>(false)
-
-  // const maxPullDistance = 100
-
-  // const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
-  //   setStartY(e.touches[0].clientY)
-  // }
-
-  // const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
-  //   const currentY = e.touches[0].clientY
-  //   let diffY = currentY - startY
-
-  //   const scrollable = scrollableRef.current
-  //   if (scrollable) {
-  //     // Sprawdzamy, czy użytkownik przewija w dół i jest na końcu zawartości
-  //     if (
-  //       scrollable.scrollHeight - scrollable.scrollTop <=
-  //         scrollable.clientHeight &&
-  //       diffY < 0
-  //     ) {
-  //       // Ograniczamy odległość "pull"
-  //       diffY = Math.max(diffY, -maxPullDistance)
-  //       scrollable.style.transform = `translateY(${diffY}px)`
-  //       setIsPulling(true)
-  //     }
-  //   }
-  // }
-
-  // const handleTouchEnd = () => {
-  //   if (isPulling) {
-  //     const scrollable = scrollableRef.current
-  //     if (scrollable) {
-  //       scrollable.style.transition = "transform 0.3s ease-out"
-  //       scrollable.style.transform = "translateY(0px)"
-  //       setIsPulling(false)
-
-  //       const handleTransitionEnd = () => {
-  //         if (scrollable) {
-  //           scrollable.style.transition = "none"
-  //         }
-  //       }
-
-  //       scrollable.addEventListener("transitionend", handleTransitionEnd, {
-  //         once: true,
-  //       })
-  //     }
-  //   }
-  // }
-
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -85,38 +34,30 @@ export default function MobileNavigation({ navItems }: { navItems: any }) {
         </motion.div>
       </DrawerTrigger>
       <DrawerContent className="drawer-content z-[101] h-[85%] bg-slate-100">
-        {/* <div className=""> */}
-        <div
-          className="scroll-overflow flex h-full w-full flex-col items-center gap-2 overflow-x-hidden overflow-y-scroll rounded-3xl p-4"
-          // ref={scrollableRef}
-          // onTouchStart={handleTouchStart}
-          // onTouchMove={handleTouchMove}
-          // onTouchEnd={handleTouchEnd}
-        >
+        <div className="scroll-overflow flex h-full w-full flex-col items-center gap-2 overflow-x-hidden overflow-y-scroll rounded-3xl p-4">
           {navItems?.map((group: any, index: number) => (
-            <>
-              <LinkPanel key={index + group.name} title={group.name}>
-                {group.name.toLowerCase() == "o szkole" ? (
-                  <>
-                    <LinkItem name="Galeria" href="/galeria" />
-                  </>
-                ) : null}
-                {group.name.toLowerCase() == "o szkole" ? (
-                  <>
-                    <LinkItem name="Kontakt" href="/kontakt" />
-                  </>
-                ) : null}
-                {group.links?.map((item: any) => (
-                  <>
-                    <LinkItem
-                      key={item.name}
-                      name={item.name}
-                      href={item.isExternal ? item.href : `/${item.href}` ?? ""}
-                    />
-                  </>
-                ))}
-              </LinkPanel>
-            </>
+            <LinkPanel
+              key={index + group.name + "asdasasdasd" + index}
+              title={group.name}
+            >
+              {group.name.toLowerCase() == "o szkole" ? (
+                <>
+                  <LinkItem key={"item-1"} name="Galeria" href="/galeria" />
+                </>
+              ) : null}
+              {group.name.toLowerCase() == "o szkole" ? (
+                <>
+                  <LinkItem key={"item-1"} name="Kontakt" href="/kontakt" />
+                </>
+              ) : null}
+              {group.links?.map((item: any) => (
+                <LinkItem
+                  key={item.name + "asdas"}
+                  name={item.name}
+                  href={item.isExternal ? item.href : `/${item.href}` ?? ""}
+                />
+              ))}
+            </LinkPanel>
           ))}
         </div>
         {/* </div> */}
@@ -155,16 +96,19 @@ function LinkPanel({
   title,
   children,
   className,
+  key,
 }: {
   children?: ReactNode
   title: string
   className?: string
+  key?: string
 }) {
   return (
     <Accordion
       type="single"
       collapsible
       className="flex w-full flex-col gap-4 rounded-3xl bg-white px-4 py-2 active:bg-white/60"
+      key={key}
     >
       <AccordionItem value={title}>
         <AccordionTrigger

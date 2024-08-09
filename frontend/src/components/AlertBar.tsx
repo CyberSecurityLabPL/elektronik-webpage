@@ -43,7 +43,7 @@ export default function AlertBar({ data }: { data: any }) {
     } else {
       openAlert()
     }
-  }, [isOpen])
+  }, [isOpen, updatedAt])
 
   return (
     <div

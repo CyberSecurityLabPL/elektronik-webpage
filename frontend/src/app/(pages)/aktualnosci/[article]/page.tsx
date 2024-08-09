@@ -1,7 +1,7 @@
 import markdownOptions from "@/components/markdown/MarkdownOptions"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { getArticle } from "@/lib/api"
+import { getArticle, getArticles } from "@/lib/api"
 import { formatDate, getAuthor, getImage, renderMarkdown } from "@/lib/utils"
 import { CalendarPlus, User } from "lucide-react"
 import { Metadata } from "next"

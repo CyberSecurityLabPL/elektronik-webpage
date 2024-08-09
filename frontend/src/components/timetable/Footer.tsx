@@ -118,12 +118,16 @@ function Select({
               <CommandEmpty>Nic nie znaleziono.</CommandEmpty>
               {data.map((group) => (
                 <CommandGroup
-                  heading={group.heading}
+                  heading={group.heading + "asd"}
                   className="scroll-m-4"
                   key={group.heading}
                 >
                   {group.items.map((info) => (
-                    <Link key={info.name} href={`?id=${info.id}`} passHref>
+                    <Link
+                      key={info.name + "asd"}
+                      href={`?id=${info.id}`}
+                      passHref
+                    >
                       <CommandItem
                         value={info.name}
                         onSelect={(currentValue) => {
