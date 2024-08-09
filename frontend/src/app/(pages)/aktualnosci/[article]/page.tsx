@@ -62,8 +62,6 @@ export default async function Page({
   const image = article.image
   const hasImage = Object.keys(image).length !== 0
 
-  console.log(image)
-
   return (
     <article className="flex w-full flex-col items-center self-center">
       {!article ? (

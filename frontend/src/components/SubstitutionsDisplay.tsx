@@ -81,7 +81,6 @@ export default function SubstitutionsDisplay({
     setExact(false)
     getMoreSubstitutions(page)
       .then((res: any) => {
-        console.log(res)
         setData(res.data[0].attributes)
       })
       .finally(() => {

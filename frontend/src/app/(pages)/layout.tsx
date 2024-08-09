@@ -9,7 +9,6 @@ const Layout = async ({
   children: React.ReactNode
 }>) => {
   const { link_groups: navItems } = await getNavigation()
-  console.log(navItems)
 
   return (
     <PageWrapper>

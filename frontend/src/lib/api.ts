@@ -178,7 +178,6 @@ export async function getExactSubstitutions(date: Date) {
     const final = new Date()
     final.setDate(date.getDate() + 1)
     const finalDate = final.toISOString().split("T")[0]
-    console.log("dziala tylko na prodzie lol", finalDate)
 
     const data: any = (
       await fetch(
