@@ -18,8 +18,8 @@ export default async function News() {
         <h2 className="text-lg font-medium text-primary-foreground">
           Aktualności
         </h2>
-        <h1 className="px-2 py-4 text-center font-sans text-4xl  font-bold text-slate-800">
-          Ostatnie wydarzenia w Elektronie
+        <h1 className="px-2 py-4 text-center font-sans text-4xl font-bold text-slate-800">
+          Ostatnie wydarzenia w Elektroniku
         </h1>
       </div>
 

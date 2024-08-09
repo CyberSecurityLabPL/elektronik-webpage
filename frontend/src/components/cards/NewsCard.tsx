@@ -31,12 +31,13 @@ export default function NewsCard({
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.95 }}
       transition={{ duration: 0.3 }}
+      className="h-full w-full overflow-hidden rounded-3xl border"
     >
       <Link
         href={link}
         passHref
         className={cn(
-          "relative flex w-full min-w-64 items-center gap-4 bg-background p-4 transition-colors hover:bg-slate-50 xs:rounded-3xl md:flex-col md:items-start md:gap-2 lg:w-full",
+          "relative flex w-full min-w-64 flex-col items-center gap-4 bg-background transition-colors hover:bg-slate-50 xs:rounded-3xl md:items-start md:gap-2",
           {
             " h-full w-full max-w-full flex-col shadow-lg shadow-slate-400/25 transition-shadow duration-300 hover:shadow-xl hover:shadow-slate-400/50 md:col-span-2 md:flex-row md:gap-12 lg:col-span-3":
               isFeatured,
@@ -47,8 +48,8 @@ export default function NewsCard({
         {/* IMAGE */}
         <div
           className={cn(
-            "aspect-[21:9] relative h-28 w-2/5 overflow-hidden rounded-3xl md:h-[200px] md:w-full",
-            isFeatured ? "h-[250px] w-full md:h-full md:w-3/5 lg:h-[400px]" : ""
+            "aspect-[21:9] relative h-48 w-full overflow-hidden md:h-[200px] md:w-full",
+            isFeatured ? "h-[250px] w-full  md:w-3/5 lg:h-[400px]" : ""
           )}
         >
           <Image
@@ -62,7 +63,7 @@ export default function NewsCard({
         {/* CONTENT */}
         <div
           className={cn(
-            "flex w-3/5 flex-col self-start overflow-hidden pt-2 md:w-full",
+            "flex flex-col self-start overflow-hidden p-4 ",
             isFeatured ? "w-full py-4 md:w-2/5" : ""
           )}
         >

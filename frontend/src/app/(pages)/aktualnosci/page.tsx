@@ -34,7 +34,7 @@ async function page({ searchParams }: PageParams) {
         title="Aktualności"
         subtitle="O to co dzieje się w naszej szkole!"
       />
-      <div className="mb-64 flex w-full flex-col">
+      <div className="mx-auto mb-64 flex w-full max-w-7xl flex-col">
         <div className="hidden flex-col xs:flex">
           <h2 className="mt-8 pb-4 pl-8 text-lg font-bold text-foreground md:mt-4 lg:mt-0">
             Najnowszy artykuł
