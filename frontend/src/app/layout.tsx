@@ -3,10 +3,14 @@ import Providers from "@/components/Providers"
 import { Toaster } from "@/components/ui/sonner"
 import { getHotAlert } from "@/lib/api"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Poppins } from "next/font/google"
 import "./globals.css"
 
 const inter = Inter({ subsets: ["latin"] })
+const poppins = Poppins({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+})
 
 export const metadata: Metadata = {
   title: "Elektronik",
@@ -32,7 +36,7 @@ export default async function RootLayout({
           sizes="<generated>"
         />
       </head>
-      <body className={inter.className}>
+      <body className={poppins.className}>
         <AlertBar data={data} />
         <Providers>{children}</Providers>
         <Toaster />
