@@ -31,11 +31,11 @@ export default async function Home() {
     <>
       <Navbar navItems={navItems} />
       <main className="flex w-full flex-col justify-center overflow-x-hidden">
-        <header className="flex flex-col ">
+        <div className="flex flex-col ">
           {/* <Hero data={data?.blocks[0]} /> */}
           <Hero2 />
           <div className="h-64 w-full bg-wave-transition bg-repeat-x"></div>
-        </header>
+        </div>
         {/* Main content */}
 
         {Content.map((Component, index) => (
