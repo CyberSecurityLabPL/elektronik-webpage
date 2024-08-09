@@ -38,11 +38,11 @@ export default function Navbar({ navItems }: { navItems?: any }) {
           />
         </Link>
       </div>
-      <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center justify-center lg:flex ">
+      <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center justify-center xl:flex ">
         <Navigation navItems={navItems} />
       </div>
-      <div className="  flex items-center justify-center px-8 ">
-        <div className="items-bottom hidden h-full  flex-col-reverse gap-2 lg:flex xl:flex-row xl:items-center">
+      <div className="flex items-center justify-center px-8 ">
+        <div className="items-bottom hidden h-full flex-col-reverse gap-2 xl:flex xl:flex-row xl:items-center">
           <Button variant={"secondary"} asChild>
             <Link href={"/plan"}>Plan Lekcji</Link>
             {/* <Link href={data.timetable.link ?? 'https://zseis.vercel.app/plan?timetableId=o18'}>{data.timetable.title ?? "Plan Lekcji"}</Link> */}
@@ -54,7 +54,7 @@ export default function Navbar({ navItems }: { navItems?: any }) {
             {/* <Link href={data.gradebook.link ?? "https://uonetplus.vulcan.net.pl/zielonagora"}>{data.gradebook.title ?? "E-Dziennik"}</Link> */}
           </Button>
         </div>
-        <div className="flex items-center justify-center lg:hidden">
+        <div className="flex items-center justify-center xl:hidden">
           <MobileNavigation navItems={navItems} />
         </div>
       </div>

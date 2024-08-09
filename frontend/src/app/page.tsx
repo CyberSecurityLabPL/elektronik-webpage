@@ -1,9 +1,9 @@
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
+import PageWrapper from "@/components/PageWrapper"
 import Benefits from "@/components/landingpage/Benefits"
 import Faq from "@/components/landingpage/Faq"
 import Hero from "@/components/landingpage/Hero"
-import Hero2 from "@/components/landingpage/Hero2"
 import Map from "@/components/landingpage/Map"
 import News from "@/components/landingpage/News"
 import Overview from "@/components/landingpage/Overview"
@@ -28,12 +28,13 @@ export default async function Home() {
   const Content = [Overview, Benefits, News, Map, Faq]
 
   return (
-    <>
+    <PageWrapper>
       <Navbar navItems={navItems} />
       <main className="flex w-full flex-col justify-center overflow-x-hidden">
         <div className="flex flex-col ">
           {/* <Hero data={data?.blocks[0]} /> */}
-          <Hero2 />
+          <Hero data={data?.blocks[0]} />
+          <div className="h-64 w-full bg-lines-transition bg-bottom bg-repeat-x"></div>
           <div className="h-64 w-full bg-wave-transition bg-repeat-x"></div>
         </div>
         {/* Main content */}
@@ -43,6 +44,6 @@ export default async function Home() {
         ))}
         <Footer />
       </main>
-    </>
+    </PageWrapper>
   )
 }

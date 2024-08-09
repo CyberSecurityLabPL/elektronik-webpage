@@ -12,23 +12,38 @@ body {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
 }
+
 .lg-outer .lg-thumb-item.active {
   border-color: green !important;
   display: none;
 }
+
 .hero {
   mask-image: url("../../public/assets/heroMask.svg");
   mask-size: cover;
 }
+
 .growAnim {
   transition: transform 0.2s;
 }
+
 .growAnim:hover {
   transform: scale(1.1);
 }
+
 .growAnim:active {
   transform: scale(0.9);
 }
+
+.drawer-content ::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #cbd5e1;
+}
+
+.scroll-overflow {
+  -webkit-overflow-scrolling: touch;
+}
+
 @layer components {
   .timetable-cell {
     @apply flex h-11 w-[200px] items-center justify-center gap-1 p-0 outline outline-1 outline-secondary;

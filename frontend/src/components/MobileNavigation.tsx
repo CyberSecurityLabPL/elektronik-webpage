@@ -1,5 +1,5 @@
 "use client"
-import React, { ReactNode } from "react"
+import React, { ReactNode, TouchEvent, useRef, useState } from "react"
 import {
   Drawer,
   DrawerClose,
@@ -18,9 +18,59 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordionMobile"
 import { cn } from "@/lib/utils"
-import { Separator } from "./ui/separator"
 
 export default function MobileNavigation({ navItems }: { navItems: any }) {
+  // const scrollableRef = useRef<HTMLDivElement | null>(null)
+  // const [startY, setStartY] = useState<number>(0)
+  // const [isPulling, setIsPulling] = useState<boolean>(false)
+
+  // const maxPullDistance = 100
+
+  // const handleTouchStart = (e: TouchEvent<HTMLDivElement>) => {
+  //   setStartY(e.touches[0].clientY)
+  // }
+
+  // const handleTouchMove = (e: TouchEvent<HTMLDivElement>) => {
+  //   const currentY = e.touches[0].clientY
+  //   let diffY = currentY - startY
+
+  //   const scrollable = scrollableRef.current
+  //   if (scrollable) {
+  //     // Sprawdzamy, czy użytkownik przewija w dół i jest na końcu zawartości
+  //     if (
+  //       scrollable.scrollHeight - scrollable.scrollTop <=
+  //         scrollable.clientHeight &&
+  //       diffY < 0
+  //     ) {
+  //       // Ograniczamy odległość "pull"
+  //       diffY = Math.max(diffY, -maxPullDistance)
+  //       scrollable.style.transform = `translateY(${diffY}px)`
+  //       setIsPulling(true)
+  //     }
+  //   }
+  // }
+
+  // const handleTouchEnd = () => {
+  //   if (isPulling) {
+  //     const scrollable = scrollableRef.current
+  //     if (scrollable) {
+  //       scrollable.style.transition = "transform 0.3s ease-out"
+  //       scrollable.style.transform = "translateY(0px)"
+  //       setIsPulling(false)
+
+  //       const handleTransitionEnd = () => {
+  //         if (scrollable) {
+  //           scrollable.style.transition = "none"
+  //         }
+  //       }
+
+  //       scrollable.addEventListener("transitionend", handleTransitionEnd, {
+  //         once: true,
+  //       })
+  //     }
+  //   }
+  // }
+
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -34,21 +84,26 @@ export default function MobileNavigation({ navItems }: { navItems: any }) {
           <Menu className="h-8 w-8" />
         </motion.div>
       </DrawerTrigger>
-      <DrawerContent className="h-[90%]">
-        <div className="h-full w-full overflow-scroll overflow-x-hidden p-4">
+      <DrawerContent className="drawer-content z-[101] h-[85%] bg-slate-100">
+        {/* <div className=""> */}
+        <div
+          className="scroll-overflow flex h-full w-full flex-col items-center gap-2 overflow-x-hidden overflow-y-scroll rounded-3xl p-4"
+          // ref={scrollableRef}
+          // onTouchStart={handleTouchStart}
+          // onTouchMove={handleTouchMove}
+          // onTouchEnd={handleTouchEnd}
+        >
           {navItems?.map((group: any, index: number) => (
             <>
               <LinkPanel key={index + group.name} title={group.name}>
                 {group.name.toLowerCase() == "o szkole" ? (
                   <>
                     <LinkItem name="Galeria" href="/galeria" />
-                    <Separator />
                   </>
                 ) : null}
                 {group.name.toLowerCase() == "o szkole" ? (
                   <>
                     <LinkItem name="Kontakt" href="/kontakt" />
-                    <Separator />
                   </>
                 ) : null}
                 {group.links?.map((item: any) => (
@@ -58,23 +113,34 @@ export default function MobileNavigation({ navItems }: { navItems: any }) {
                       name={item.name}
                       href={item.isExternal ? item.href : `/${item.href}` ?? ""}
                     />
-                    <Separator />
                   </>
                 ))}
               </LinkPanel>
-              <Separator />
             </>
           ))}
         </div>
-        <DrawerFooter className="flex items-center justify-center text-lg">
+        {/* </div> */}
+        <DrawerFooter className="flex items-center justify-center gap-2 text-lg shadow-[0_-12px_40px] shadow-slate-100">
           <DrawerClose asChild>
-            <Button variant={"secondary"} asChild>
-              <Link href={"/plan"}>Plan Lekcji</Link>
+            <Button
+              variant={"secondary"}
+              asChild
+              className="w-full rounded-xl bg-white text-2xl  font-semibold text-foreground"
+            >
+              <Link href={"/plan"} className="py-6">
+                Plan Lekcji
+              </Link>
             </Button>
           </DrawerClose>
-          <DrawerClose>
-            <Button asChild>
-              <Link href={"https://uonetplus.vulcan.net.pl/zielonagora"}>
+          <DrawerClose asChild>
+            <Button
+              asChild
+              className="w-full rounded-xl text-2xl font-semibold"
+            >
+              <Link
+                href={"https://uonetplus.vulcan.net.pl/zielonagora"}
+                className="py-6"
+              >
                 E-dziennik
               </Link>
             </Button>
@@ -98,7 +164,7 @@ function LinkPanel({
     <Accordion
       type="single"
       collapsible
-      className="flex w-full flex-col gap-4 "
+      className="flex w-full flex-col gap-4 rounded-3xl bg-white px-4 py-2 active:bg-white/60"
     >
       <AccordionItem value={title}>
         <AccordionTrigger
@@ -109,7 +175,7 @@ function LinkPanel({
         >
           <span className="w-2/3 truncate text-left">{title}</span>
         </AccordionTrigger>
-        <AccordionContent className="flex flex-col gap-2 pl-4 last:pb-4 ">
+        <AccordionContent className="flex flex-col gap-2 pb-2 pt-4">
           {children}
         </AccordionContent>
       </AccordionItem>
@@ -122,7 +188,7 @@ function LinkItem({ name, href }: { name: string; href: string }) {
   return (
     <DrawerClose asChild>
       <Link
-        className="text-left text-lg font-medium text-slate-600 md:text-center"
+        className="rounded-3xl bg-accent/50 px-4 py-2 text-left text-lg font-medium text-slate-600 active:bg-slate-100 md:text-center"
         href={href}
       >
         {name}
