@@ -29,7 +29,7 @@ function page() {
 
       <div className="flex w-full  flex-col  items-center justify-center gap-6 ">
         <ContactCard />
-        <Card className="w-[300px] sm:w-2/4 ">
+        <Card className="w-[300px] sm:w-2/4">
           <CardHeader>
             <CardTitle>Wyślij wiadomość</CardTitle>
             <CardDescription>

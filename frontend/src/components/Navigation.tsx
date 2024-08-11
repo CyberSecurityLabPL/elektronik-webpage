@@ -1,4 +1,3 @@
-"use client"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,21 +10,29 @@ import {
 import { cn } from "@/lib/utils"
 import { Accessibility, ExternalLink } from "lucide-react"
 import Link from "next/link"
-import * as React from "react"
+import { useState, forwardRef, Dispatch, SetStateAction } from "react"
 import { getRandomInt } from "@/lib/utils"
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
+import { Button } from "./ui/button"
 
-export function Navigation({ navItems }: { navItems: any }) {
+export function Navigation({
+  navItems,
+  setIsExpanded,
+}: {
+  navItems: any
+  setIsExpanded: Dispatch<SetStateAction<boolean>>
+}) {
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
+    <NavigationMenu className="">
+      <NavigationMenuList className="">
         {navItems
-          ? navItems.map((item: any, index: number) => (
+          ? navItems.slice(0, 4).map((item: any, index: number) => (
               <NavigationMenuItem key={item.name}>
-                <NavigationMenuTrigger className="bg-transparent text-lg hover:bg-transparent group-[[data-smaller=true]]:text-base">
+                <NavigationMenuTrigger className="rounded-xl bg-transparent text-lg hover:bg-transparent group-[[data-smaller=true]]:text-base">
                   {item.name}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent>
-                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[800px] ">
+                <NavigationMenuContent className="overflow-hidden ">
+                  <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[800px]">
                     {index < 1 ? (
                       <li className="row-span-3">
                         <NavigationMenuLink asChild>
@@ -55,7 +62,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                         href={tab.isExternal ? tab.href : `/${tab.href}` ?? ""}
                         target={tab.isExternal ? "_blank" : "_self"}
                       >
-                        {tab.description ?? ""}
+                        {tab?.description}
                       </ListItem>
                     ))}
                   </ul>
@@ -63,24 +70,37 @@ export function Navigation({ navItems }: { navItems: any }) {
               </NavigationMenuItem>
             ))
           : null}
-        <NavigationMenuItem>
-          <Link href="/kontakt" legacyBehavior passHref>
-            <NavigationMenuLink
-              className={cn(
-                navigationMenuTriggerStyle(),
-                "text-lg group-[[data-smaller=true]]:bg-transparent group-[[data-smaller=true]]:text-base"
-              )}
-            >
-              Kontakt
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
+        {navItems.length > 5 ? (
+          <>
+            <NavigationMenuItem>
+              <Link href="/kontakt" legacyBehavior passHref>
+                <NavigationMenuLink
+                  className={cn(
+                    navigationMenuTriggerStyle(),
+                    "rounded-xl text-lg group-[[data-smaller=true]]:bg-transparent group-[[data-smaller=true]]:text-base"
+                  )}
+                >
+                  Kontakt
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Button
+                variant={"ghost"}
+                onClick={() => setIsExpanded((prev) => !prev)}
+                className="text-lg"
+              >
+                Więcej
+              </Button>
+            </NavigationMenuItem>
+          </>
+        ) : null}
       </NavigationMenuList>
     </NavigationMenu>
   )
 }
 
-const ListItem = React.forwardRef<
+const ListItem = forwardRef<
   React.ElementRef<"a">,
   React.ComponentPropsWithoutRef<"a">
 >(({ className, title, children, href, ...props }, ref) => {

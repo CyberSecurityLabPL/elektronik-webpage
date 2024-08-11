@@ -38,7 +38,7 @@ export default async function RootLayout({
         />
       </head>
       <body className={cn(poppins.className, "*:antialiased")}>
-        <AlertBar data={data} />
+        {data && <AlertBar data={data} />}
         <Providers>{children}</Providers>
         <Toaster />
       </body>
