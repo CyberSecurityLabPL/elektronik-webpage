@@ -23,7 +23,7 @@ export default async function News() {
         </h1>
       </div>
 
-      <div className=" flex w-full grid-cols-1 flex-col items-center justify-center gap-4 px-4 md:grid md:grid-cols-2 md:gap-8 md:px-8 lg:grid-cols-3 xl:w-fit">
+      <div className="flex w-full grid-cols-1 flex-col items-center justify-center gap-4 px-4 md:grid md:grid-cols-2 md:gap-8 md:px-8 lg:grid-cols-3 xl:w-fit">
         {CardData.slice(0, 3).map(
           ({ attributes: news, id }: any, index: number) => {
             return (

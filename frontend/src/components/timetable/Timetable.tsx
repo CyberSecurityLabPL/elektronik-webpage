@@ -13,7 +13,7 @@ export default async function Timetable({ data }: { data: any }) {
   const lessons: any = Object.values(data.lessons)
 
   return (
-    <main className="relative flex w-full flex-grow max-[1200px]:overflow-x-scroll">
+    <main className="relative flex w-full flex-grow max-[1200px]:overflow-x-scroll min-[1200px]:items-center">
       <Table className="overflow-hidden rounded-xl shadow-xl">
         <TableHeader>
           <TableRow className="timetable-row h-11">

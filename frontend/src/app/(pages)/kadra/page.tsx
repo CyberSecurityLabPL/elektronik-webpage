@@ -1,5 +1,6 @@
 import Header from "@/components/Header"
 import WorkerCard from "@/components/cards/WorkerCard"
+import { Button } from "@/components/ui/button"
 import { getTeachers } from "@/lib/api"
 import { Metadata, ResolvingMetadata } from "next"
 
@@ -25,10 +26,10 @@ export default async function Page() {
       <div>
         {data?.teacher_groups.map((group: any) => (
           <div key={group.title}>
-            <h1 className="my-4 flex justify-center py-5 text-2xl font-semibold sm:justify-start">
+            <h1 className="mb-4 mt-12 flex justify-center text-center text-2xl font-semibold sm:justify-start">
               {group.title}
             </h1>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex max-w-4xl flex-wrap justify-center gap-4">
               {group.teachers.map((teacher: any) => (
                 <WorkerCard
                   key={teacher.fullname}
