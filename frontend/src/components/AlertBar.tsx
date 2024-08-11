@@ -1,11 +1,11 @@
 "use client"
 import { X } from "lucide-react"
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 
 export default function AlertBar({ data }: { data: any }) {
   const [isOpen, setIsOpen] = useState(false)
 
-  const updatedAt = new Date(data.updatedAt)
+  const updatedAt = useMemo(() => new Date(data?.updatedAt), [data?.updatedAt])
 
   const openAlert = () => {
     setIsOpen(true)
