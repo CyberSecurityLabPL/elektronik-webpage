@@ -44,6 +44,14 @@ body {
   -webkit-overflow-scrolling: touch;
 }
 
+.prose td {
+  @apply min-w-9;
+}
+
+.prose td:has(a) {
+  @apply align-middle;
+}
+
 @layer components {
   .timetable-cell {
     @apply flex h-11 w-[200px] items-center justify-center gap-1 p-0 outline outline-1 outline-secondary;
