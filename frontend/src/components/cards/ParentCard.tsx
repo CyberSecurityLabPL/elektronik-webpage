@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { getImage } from "@/lib/utils"
 import Image from "next/image"
 
 export default function ParentCard({
@@ -20,20 +21,16 @@ export default function ParentCard({
   description: string
 }) {
   return (
-    <Card className=" flex h-64 w-4/5 shadow-sm sm:w-96  md:w-[32rem]">
-      <div className="relative hidden h-full w-1/3 md:block">
+    <Card className=" flex h-64 shadow-sm sm:w-[32rem]">
+      <div className="relative hidden h-full w-1/3 sm:block">
         <Image
           className="rounded-l-md object-cover"
           alt={`${name} img`}
-          src={
-            src === "/default/avatarFemale.svg"
-              ? "/default/avatarFemale.svg"
-              : process.env.NEXT_PUBLIC_BACKEND_URL + src
-          }
+          src={src.startsWith("/default/") ? src : getImage(src)}
           fill
         />
       </div>
-      <div className="h-full w-full md:w-2/3">
+      <div className="h-full w-full sm:w-2/3">
         <CardHeader>
           <CardTitle className="text-2xl font-bold leading-none text-primary">
             {name}

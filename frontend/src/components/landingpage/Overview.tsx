@@ -2,6 +2,7 @@
 import Image from "next/image"
 import React from "react"
 import { motion } from "framer-motion"
+import { getImage } from "@/lib/utils"
 export default function Overview({ data }: { data: any }) {
   return (
     <div
@@ -33,10 +34,7 @@ export default function Overview({ data }: { data: any }) {
             />
           </div>
           <Image
-            src={
-              process.env.NEXT_PUBLIC_BACKEND_URL + data.row[0].image.url ??
-              "/cards/university.png"
-            }
+            src={getImage(data.row[0].image?.url)}
             alt="Hero Image"
             fill
             priority
@@ -44,7 +42,7 @@ export default function Overview({ data }: { data: any }) {
           />
         </motion.div>
       </div>
-      <div className="flex w-full flex-col items-center justify-center gap-12 md:flex-row-reverse   lg:gap-16">
+      <div className="flex w-full flex-col items-center justify-center gap-12 md:flex-row-reverse lg:gap-16">
         <div className="flex w-full flex-col gap-4  md:gap-3 lg:w-2/5 ">
           <h1 className="text-center text-3xl font-bold text-primary-foreground xs:text-4xl sm:text-5xl md:text-right xl:text-6xl">
             {data.row[1].title}
@@ -70,10 +68,7 @@ export default function Overview({ data }: { data: any }) {
             />
           </div>
           <Image
-            src={
-              process.env.NEXT_PUBLIC_BACKEND_URL + data.row[1].image.url ??
-              "/cards/university.png"
-            }
+            src={getImage(data.row[1].image?.url)}
             alt="Hero Image"
             fill
             priority

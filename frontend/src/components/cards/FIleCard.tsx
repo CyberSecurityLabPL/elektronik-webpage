@@ -45,10 +45,7 @@ export default function FileCard({ name, date, url, fileType }: FileCardProps) {
       </div>
       <div className="flex items-center justify-center">
         <Button variant="ghost" size="icon" asChild>
-          <Link
-            href={process.env.NEXT_PUBLIC_BACKEND_URL + url}
-            target="_blank"
-          >
+          <Link href={process.env.NEXT_PUBLIC_STRAPI_URL + url} target="_blank">
             <Download className="h-5 w-5" />
           </Link>
         </Button>

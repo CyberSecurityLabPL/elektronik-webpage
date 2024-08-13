@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from "axios"
+import axios, { Axios, AxiosError, AxiosResponse } from "axios"
 import { flattenStrapiResponse } from "./utils"
 import qs from "qs"
 import { PAGINATION_LIMIT } from "@/config"
@@ -13,16 +13,20 @@ import { pl } from "date-fns/locale/pl"
  * The API instance for making HTTP requests.
  */
 export const api = axios.create({
-  baseURL: process.env.API_URL,
+  baseURL: process.env.STRAPI_API_URL,
   headers: {
-    Authorization: process.env.API_KEY ? `Bearer ${process.env.API_KEY}` : "",
+    Authorization: process.env.STRAPI_API_KEY
+      ? `Bearer ${process.env.STRAPI_API_KEY}`
+      : "",
   },
 })
 
 export const backend = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
+  baseURL: process.env.NEXT_PUBLIC_STRAPI_URL,
   headers: {
-    Authorization: process.env.API_KEY ? `Bearer ${process.env.API_KEY}` : "",
+    Authorization: process.env.STRAPI_API_KEY
+      ? `Bearer ${process.env.STRAPI_API_KEY}`
+      : "",
   },
 })
 
@@ -37,7 +41,7 @@ export async function getNavigation(): Promise<any> {
   try {
     // const { data }: AxiosResponse<any> = await api.get("/navigation");
 
-    const res = await fetch(`${process.env.API_URL}/navigation`, {
+    const res = await fetch(`${process.env.STRAPI_API_URL}/navigation`, {
       next: {
         tags: ["navigation"],
       },
@@ -46,8 +50,8 @@ export async function getNavigation(): Promise<any> {
     const data = await res.json()
 
     return flattenStrapiResponse(data)
-  } catch (error) {
-    console.error(error)
+  } catch (error: any) {
+    handleError(error)
   }
 }
 
@@ -56,8 +60,8 @@ export async function getLandingPage(): Promise<any> {
     const { data }: AxiosResponse<any> = await api.get("/landing-page")
     revalidate("/")
     return flattenStrapiResponse(data)
-  } catch (error) {
-    console.error(error)
+  } catch (error: any) {
+    handleError(error)
   }
 }
 /**
@@ -108,8 +112,8 @@ export async function getArticles(options?: ArticlesOptions): Promise<any> {
       const { data }: AxiosResponse<any> = await api.get(url)
       return data
     }
-  } catch (error) {
-    console.error(error)
+  } catch (error: any) {
+    handleError(error)
   }
 }
 
@@ -124,8 +128,8 @@ export async function getArticle(
     const { data }: AxiosResponse<any> = await api.get(`articles/${id}`)
 
     return flattenStrapiResponse(data, !!!params, flatteners)
-  } catch (error) {
-    console.error(error)
+  } catch (error: any) {
+    handleError(error)
   }
 }
 
@@ -136,8 +140,8 @@ export async function getLatestArticle(flatteners: string[] = ["data"]) {
     )
 
     return flattenStrapiResponse(data.data[0], true, flatteners)
-  } catch (error) {
-    console.error(error)
+  } catch (error: any) {
+    handleError(error)
   }
 }
 
@@ -146,8 +150,8 @@ export async function getSubstitutionsPage() {
     const { data }: AxiosResponse<any> = await api.get("/substitutions-page")
     revalidate("/zastepstwa")
     return flattenStrapiResponse(data)
-  } catch (error) {
-    console.error(error)
+  } catch (error: any) {
+    handleError(error)
   }
 }
 
@@ -155,7 +159,7 @@ export async function getSubstitutions(page: number) {
   try {
     const data: any = (
       await fetch(
-        `${process.env.API_URL}/substitutions?pagination[page]=${page}&pagination[pageSize]=1&sort[1]=createdAt:desc`,
+        `${process.env.STRAPI_API_URL}/substitutions?pagination[page]=${page}&pagination[pageSize]=1&sort[1]=createdAt:desc`,
         {
           next: {
             tags: ["substitutions"],
@@ -167,8 +171,8 @@ export async function getSubstitutions(page: number) {
     revalidateT("substitutions")
 
     return flattenStrapiResponse(data)
-  } catch (error) {
-    console.error(error)
+  } catch (error: any) {
+    handleError(error)
   }
 }
 
@@ -181,7 +185,7 @@ export async function getExactSubstitutions(date: Date) {
 
     const data: any = (
       await fetch(
-        `${process.env.API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[date][$eqi]=${finalDate}`,
+        `${process.env.STRAPI_API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[date][$eqi]=${finalDate}`,
         {
           cache: "no-cache",
           next: {
@@ -192,8 +196,8 @@ export async function getExactSubstitutions(date: Date) {
     ).json()
 
     return await flattenStrapiResponse(data)
-  } catch (error) {
-    console.error(error)
+  } catch (error: any) {
+    handleError(error)
   }
 }
 
@@ -202,8 +206,8 @@ export async function getJobs() {
     const { data }: AxiosResponse<any> = await api.get("/jobs-page")
     revalidate("/praca")
     return flattenStrapiResponse(data)
-  } catch (error) {
-    console.error(error)
+  } catch (error: any) {
+    handleError(error)
   }
 }
 
@@ -212,8 +216,8 @@ export async function getApprenticeships() {
     const { data }: AxiosResponse<any> = await api.get("/apprenticeships-page")
     revalidate("/praktyki")
     return flattenStrapiResponse(data)
-  } catch (error) {
-    console.error(error)
+  } catch (error: any) {
+    handleError(error)
   }
 }
 
@@ -223,8 +227,8 @@ export async function getBooks() {
     revalidate("/podreczniki")
 
     return flattenStrapiResponse(data)
-  } catch (error) {
-    console.error(error)
+  } catch (error: any) {
+    handleError(error)
   }
 }
 
@@ -234,8 +238,8 @@ export async function getTeachers() {
     revalidate("/kadra")
 
     return flattenStrapiResponse(data)
-  } catch (error) {
-    console.error(error)
+  } catch (error: any) {
+    handleError(error)
   }
 }
 
@@ -245,8 +249,8 @@ export async function getRecruitments() {
     revalidate("/nabor")
 
     return flattenStrapiResponse(data)
-  } catch (error) {
-    console.error(error)
+  } catch (error: any) {
+    handleError(error)
   }
 }
 
@@ -258,8 +262,8 @@ export async function getPage(page: string) {
 
     if (data.data.length < 1) return {}
     return flattenStrapiResponse(data.data[0])
-  } catch (error) {
-    console.error(error)
+  } catch (error: any) {
+    handleError(error)
   }
 }
 
@@ -269,8 +273,8 @@ export async function getParents() {
     revalidate("/rada")
 
     return flattenStrapiResponse(data)
-  } catch (error) {
-    console.error(error)
+  } catch (error: any) {
+    handleError(error)
   }
 }
 
@@ -280,8 +284,8 @@ export async function getAchievements() {
     revalidate("/osiagniecia")
 
     return flattenStrapiResponse(data)
-  } catch (error) {
-    console.error(error)
+  } catch (error: any) {
+    handleError(error)
   }
 }
 export async function getDocuments() {
@@ -290,7 +294,7 @@ export async function getDocuments() {
 
     revalidate("/dokumenty")
     return flattenStrapiResponse(data)
-  } catch (error) {
+  } catch (error: any) {
     console.error(error)
   }
 }
@@ -303,8 +307,8 @@ export async function getImages() {
 
     revalidate("/galeria")
     return flattenStrapiResponse(data)
-  } catch (error) {
-    console.error(error)
+  } catch (error: any) {
+    handleError(error)
   }
 }
 
@@ -313,7 +317,11 @@ export async function getHotAlert() {
     const { data }: AxiosResponse<any> = await api.get("/hot-alert")
     // revalidate("/")
     return flattenStrapiResponse(data)
-  } catch (error) {
-    console.error(error)
+  } catch (error: any) {
+    handleError(error)
   }
+}
+
+function handleError(error: AxiosError) {
+  console.error(error.message)
 }

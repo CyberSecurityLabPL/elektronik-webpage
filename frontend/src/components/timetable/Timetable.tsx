@@ -8,12 +8,13 @@ import {
 } from "@/components/ui/planTable"
 import { cn } from "@/lib/utils"
 import Link from "next/link"
+console.log(process.env.OUTPUT)
 
 export default async function Timetable({ data }: { data: any }) {
   const lessons: any = Object.values(data.lessons)
 
   return (
-    <main className="relative flex w-full flex-grow max-[1200px]:overflow-x-scroll min-[1200px]:items-center">
+    <main className="relative flex w-full flex-grow max-[1200px]:overflow-x-scroll min-[1200px]:justify-center">
       <Table className="overflow-hidden rounded-xl shadow-xl">
         <TableHeader>
           <TableRow className="timetable-row h-11">

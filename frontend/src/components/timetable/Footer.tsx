@@ -118,7 +118,7 @@ function Select({
               <CommandEmpty>Nic nie znaleziono.</CommandEmpty>
               {data.map((group) => (
                 <CommandGroup
-                  heading={group.heading + "asd"}
+                  heading={group.heading}
                   className="scroll-m-4"
                   key={group.heading}
                 >

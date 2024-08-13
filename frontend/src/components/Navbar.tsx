@@ -21,7 +21,6 @@ export default function Navbar({ navItems }: { navItems?: any }) {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
       const entry = entries[0]
 
-      // Zmiana stylu navbaru w zależności od widoczności sentinela
       setIsSmaller(!entry.isIntersecting)
     }
     const observer = new IntersectionObserver(handleIntersection, {
@@ -37,7 +36,6 @@ export default function Navbar({ navItems }: { navItems?: any }) {
       observer.disconnect()
     }
   }, [])
-
   return (
     <>
       <div
@@ -54,7 +52,8 @@ export default function Navbar({ navItems }: { navItems?: any }) {
             <Image
               src={"/assets/logo/logo.svg"}
               width={80}
-              height={60}
+              height={80}
+              priority
               className="h-16 w-auto group-[[data-smaller=true]]:h-12 md:h-20"
               alt="Logo"
             />

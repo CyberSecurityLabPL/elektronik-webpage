@@ -6,6 +6,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { getImage } from "@/lib/utils"
 import Image from "next/image"
 
 export default function WorkerCard({
@@ -25,15 +26,10 @@ export default function WorkerCard({
     <Card className="flex h-60 w-full shadow-sm">
       <div className="relative hidden h-full w-1/3 md:block">
         <Image
-          className="rounded-l-md "
+          className="rounded-l-md object-cover"
           alt={`${name} img`}
-          src={
-            src === "/default/avatarMale.svg"
-              ? "/default/avatarMale.svg"
-              : process.env.NEXT_PUBLIC_BACKEND_URL + src
-          }
+          src={src.startsWith("/default/") ? src : getImage(src)}
           fill
-          objectFit="cover"
         />
       </div>
       <div className="relative h-full w-full md:w-2/3">

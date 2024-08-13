@@ -53,7 +53,7 @@ export default function NewsCard({
           )}
         >
           <Image
-            src={src ? getImage(src) : "/default/article.svg"}
+            src={getImage(src, "/default/article.svg")}
             alt="Miniaturka artykułu"
             fill
             className="object-cover"

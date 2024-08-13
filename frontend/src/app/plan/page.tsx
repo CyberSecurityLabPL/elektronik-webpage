@@ -6,7 +6,7 @@ import { timetableConfig } from "@/config"
 import { validateTimetableSearchParams } from "@/lib/utils"
 import Link from "next/link"
 
-const initialId = timetableConfig.initialId ?? "o18"
+const initialId = timetableConfig.initialId
 
 const page = async ({
   searchParams,
@@ -22,7 +22,9 @@ const page = async ({
   }
 
   try {
-    const timetableInfoRes = await fetch(`${process.env.TIMETABLE_URL!}/info`)
+    const timetableInfoRes = await fetch(
+      `${process.env.TIMETABLE_API_URL!}/info`
+    )
 
     const timetableInfoData = await timetableInfoRes.json()
 
@@ -33,7 +35,7 @@ const page = async ({
     if (!isIdValid) idToPass = initialId
 
     const targetRes = await fetch(
-      `${process.env.TIMETABLE_URL!}/timetables/${idToPass}`
+      `${process.env.TIMETABLE_API_URL!}/timetables/${idToPass}`
     )
 
     const targetData = await targetRes.json()

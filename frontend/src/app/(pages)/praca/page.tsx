@@ -3,6 +3,7 @@ import JobCard from "@/components/cards/JobCard"
 import JobDialog from "@/components/JobDialog"
 import { getJobs } from "@/lib/api"
 import { Metadata, ResolvingMetadata } from "next"
+import { getImage } from "@/lib/utils"
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getJobs()
@@ -37,11 +38,7 @@ export default async function Page() {
           >
             <JobCard
               name={item.name}
-              src={
-                item.image?.url
-                  ? `${process.env.NEXT_PUBLIC_BACKEND_URL}${item.image.url}`
-                  : "/default/job.jpg"
-              }
+              src={getImage(item.image?.url, "/default/job.webp")}
               date={item.date}
               minPay={item.minPay}
               maxPay={item.maxPay}

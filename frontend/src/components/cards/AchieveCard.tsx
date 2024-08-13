@@ -27,13 +27,12 @@ export default function AchieveCard({
       <div
         className={`flex h-full flex-col rounded-t-xl sm:flex-row sm:rounded-none sm:rounded-l-xl`}
       >
-        <div className="relative h-56  w-full rounded-t-3xl bg-slate-200 sm:w-2/4 sm:rounded-none sm:rounded-l-3xl">
+        <div className="relative h-56 w-full rounded-t-3xl bg-slate-200 sm:w-2/4 sm:rounded-none sm:rounded-l-3xl">
           <Image
             alt={name + " image"}
             src={src}
             fill
-            objectFit="cover"
-            className="rounded-t-3xl sm:rounded-none  sm:rounded-l-3xl"
+            className="rounded-t-3xl object-cover  sm:rounded-none sm:rounded-l-3xl"
           />
         </div>
         <div className="">

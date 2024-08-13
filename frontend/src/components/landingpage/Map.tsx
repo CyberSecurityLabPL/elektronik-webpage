@@ -8,7 +8,7 @@ import { motion } from "framer-motion"
 
 export default function Map({ data }: { data: any }) {
   return (
-    <div id={data.sectionId}>
+    <div id={data.sectionId} className="w-full">
       <div className="h-64 w-full rotate-180 bg-wave-transition bg-repeat-x "></div>
       <div className="relative flex h-fit w-full flex-col items-center justify-center gap-4 bg-primary px-6 py-16  md:px-10">
         <motion.div
@@ -70,7 +70,7 @@ export default function Map({ data }: { data: any }) {
           viewport={{ once: true }}
           className="flex w-full -translate-y-0.5 justify-center"
         >
-          <Card className="mx-4 flex w-fit flex-col items-center gap-2 p-2 px-4  md:absolute md:bottom-[13%] md:translate-y-[15%] md:flex-row  md:justify-between lg:h-16 lg:gap-12">
+          <Card className="mx-4 flex w-fit flex-col items-center gap-2 p-2 px-4 md:absolute md:bottom-[13%] md:translate-y-[15%] md:flex-row  md:justify-between lg:h-16 lg:gap-12">
             <div className="flex w-full items-center justify-start gap-2  border-b-2 py-2 md:border-none">
               <IconComponent icon={Phone} color="blue" IsCircle={true} />
               <div className="flex flex-col ">
@@ -81,7 +81,7 @@ export default function Map({ data }: { data: any }) {
               </div>
             </div>
             <Separator orientation="vertical" className="hidden md:block" />
-            <div className="flex w-full items-center justify-start gap-2  border-b-2 py-2 md:border-none">
+            <div className="flex w-full items-center justify-start gap-2 border-b-2 py-2 md:border-none">
               <IconComponent icon={Mail} color="blue" IsCircle={true} />
               <div className="flex flex-col ">
                 <span className="text-slate-400">E-mail</span>
@@ -89,7 +89,7 @@ export default function Map({ data }: { data: any }) {
               </div>
             </div>
             <Separator orientation="vertical" className="hidden md:block" />
-            <div className="flex w-full items-center justify-start gap-2  py-2">
+            <div className="flex w-full items-center justify-start gap-2 py-2">
               <IconComponent icon={MapPin} color="blue" IsCircle={true} />
               <div className="flex flex-col">
                 <span className="text-slate-400">Adres</span>
@@ -103,7 +103,7 @@ export default function Map({ data }: { data: any }) {
       </div>
       <div></div>
 
-      <div className="h-48 w-full rotate-180 bg-lines-transition bg-repeat-x "></div>
+      <div className="h-48 w-full rotate-180 bg-lines-transition bg-repeat-x"></div>
     </div>
   )
 }

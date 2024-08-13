@@ -14,7 +14,7 @@ export default function Benefits({ data }: { data: any }) {
   return (
     <div
       id={data.sectionId}
-      className="flex h-fit flex-col items-center justify-center px-16 py-16"
+      className="flex h-fit max-w-7xl flex-col items-center justify-center px-8 py-16"
     >
       <m.h2
         initial={{
@@ -51,7 +51,7 @@ export default function Benefits({ data }: { data: any }) {
       >
         Dlaczego warto wybrać Elektrona?
       </m.h1>
-      <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-3 lg:grid-rows-2 xl:w-5/6 3xl:px-24 ">
+      <div className="grid w-full grid-cols-1 gap-8 md:grid-cols-3 lg:grid-rows-2 ">
         {data.benefitCard.map((card: any, index: number) => (
           <Card
             key={index}
@@ -61,29 +61,18 @@ export default function Benefits({ data }: { data: any }) {
           >
             <CardContent className="relative h-52 rounded-lg">
               <Image
-                src={
-                  card.image.url
-                    ? getImage(card.image.url)
-                    : "/cards/benefit_1.jpg"
-                }
-                alt="sda"
-                sizes="100vw"
+                src={getImage(card.image.url)}
+                alt="Dlaczego warto wybrać naszą szkołe?"
                 fill
-                className="rounded-2xl"
-                style={{
-                  objectFit: "cover",
-                }}
+                quality={80}
+                className="rounded-2xl object-cover"
               />
             </CardContent>
             <CardHeader className="p-0 pt-6">
               <CardTitle className="text-primary-foreground ">
                 {card.title}
               </CardTitle>
-              <CardDescription
-                className={` text-slate-700 ${
-                  index == 1 || index == 2 ? "w-11/12" : ""
-                }`}
-              >
+              <CardDescription className={` text-slate-700`}>
                 {card.content}
               </CardDescription>
             </CardHeader>

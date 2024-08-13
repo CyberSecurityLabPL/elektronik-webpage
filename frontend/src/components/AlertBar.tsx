@@ -45,6 +45,8 @@ export default function AlertBar({ data }: { data: any }) {
     }
   }, [isOpen, updatedAt])
 
+  if (!data.alert) return null
+
   return (
     <div
       data-isopen={isOpen}

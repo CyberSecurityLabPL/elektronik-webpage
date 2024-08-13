@@ -1,6 +1,6 @@
 import { ContactForm } from "@/components/ContactForm"
 import Header from "@/components/Header"
-import ContactCard from "@/components/cards/ContactCard"
+import IconComponent from "@/components/Icon"
 import {
   Card,
   CardContent,
@@ -8,13 +8,24 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import React from "react"
+import { LucideProps, Mail, MapPin, Phone } from "lucide-react"
 import type { Metadata } from "next"
+import React from "react"
 
 export const metadata: Metadata = {
   title: "Elektronik - Kontakt",
   description: "Skontaktuj się z nami na naszej stronie kontaktowej!",
-  keywords: ["kontakt", "ckziu", "zseis"],
+  keywords: [
+    "kontakt",
+    "elektronik",
+    "ckziu",
+    "zseis",
+    "informacje",
+    "adres",
+    "lokalizacja",
+    "telefon",
+    "email",
+  ],
 }
 
 function page() {
@@ -27,19 +38,51 @@ function page() {
         }
       />
 
-      <div className="flex w-full  flex-col  items-center justify-center gap-6 ">
-        <ContactCard />
-        <Card className="w-[300px] sm:w-2/4">
+      <div className="relative flex w-full max-w-4xl flex-col items-center justify-center gap-6">
+        <Card className="w-full">
           <CardHeader>
             <CardTitle>Wyślij wiadomość</CardTitle>
             <CardDescription>
               Napisz do nas a my postaramy się odpisać jak najszybciej
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            <ContactForm />
+          <CardContent className="grid w-full grid-cols-1 gap-8 md:grid-cols-2">
+            <div className="">
+              <InfoLabel icon={Phone} title="Telefon" text="+48 684 525 100" />
+              <InfoLabel
+                icon={Mail}
+                title="E-mail"
+                text="sekretariat@zseis.zgora.pl"
+              />
+              <InfoLabel
+                icon={MapPin}
+                title="Adres"
+                text="ul. Staszica 2 65-175 Zielona Góra"
+              />
+            </div>
+            <ContactForm className=" space-y-4 md:-order-1" />
           </CardContent>
         </Card>
+      </div>
+    </div>
+  )
+}
+
+function InfoLabel({
+  icon,
+  title,
+  text,
+}: {
+  icon: React.FC<LucideProps>
+  title: string
+  text: string
+}) {
+  return (
+    <div className="flex w-full items-center justify-start gap-4 py-2">
+      <IconComponent icon={icon} color="blue" IsCircle={true} />
+      <div className="flex flex-col ">
+        <span className="font-semibold">{title}</span>
+        <span className="text-sm font-medium text-slate-500">{text}</span>
       </div>
     </div>
   )

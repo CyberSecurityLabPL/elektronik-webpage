@@ -21,17 +21,7 @@ export default function Footer() {
         </div>
         <div className="flex w-full flex-col items-center justify-self-stretch pt-16">
           <Link href={"/autorzy"} className="mb-1 text-xs text-[#808080]">
-            <ShootEffect
-              amount={0}
-              sparkle
-              sparkleAmount={2}
-              image={[
-                "/assets/react.png",
-                "/assets/next.png",
-                "/assets/tw.png",
-                "/assets/strapi.svg",
-              ]}
-            >
+            <ShootEffect amount={0} sparkle sparkleAmount={2} image={[]}>
               Autorzy
             </ShootEffect>
           </Link>

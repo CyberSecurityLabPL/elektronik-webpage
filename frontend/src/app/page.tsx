@@ -30,8 +30,8 @@ export default async function Home() {
   return (
     <PageWrapper>
       <Navbar navItems={navItems} />
-      <main className="flex w-full flex-col justify-center overflow-x-hidden">
-        <div className="flex flex-col ">
+      <main className="flex w-full flex-col items-center justify-center overflow-x-hidden">
+        <div className="flex w-full flex-col">
           {/* <Hero data={data?.blocks[0]} /> */}
           <Hero data={data?.blocks[0]} />
           <div className="h-64 w-full bg-lines-transition bg-bottom bg-repeat-x"></div>

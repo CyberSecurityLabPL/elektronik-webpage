@@ -1,13 +1,11 @@
 import AlertBar from "@/components/AlertBar"
 import Providers from "@/components/Providers"
-import { Toaster } from "@/components/ui/sonner"
 import { getHotAlert } from "@/lib/api"
-import type { Metadata } from "next"
-import { Inter, Poppins } from "next/font/google"
-import "./globals.css"
 import { cn } from "@/lib/utils"
+import type { Metadata } from "next"
+import { Poppins } from "next/font/google"
+import "./globals.css"
 
-const inter = Inter({ subsets: ["latin"] })
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
@@ -40,7 +38,6 @@ export default async function RootLayout({
       <body className={cn(poppins.className, "*:antialiased")}>
         {data && <AlertBar data={data} />}
         <Providers>{children}</Providers>
-        <Toaster />
       </body>
     </html>
   )

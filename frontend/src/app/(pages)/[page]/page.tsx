@@ -3,6 +3,7 @@ import { renderMarkdown } from "@/lib/utils"
 import { Separator } from "@/components/ui/separator"
 import { getPage } from "@/lib/api"
 import { Metadata } from "next"
+import { notFound } from "next/navigation"
 
 type Props = {
   params: { page: string }
@@ -12,14 +13,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { seo } = await getPage(params.page)
 
   return {
-    title: seo?.metaTitle ?? "Elektronik - Untitled page",
-    description: seo?.metaDescription ?? "Not described page",
-    keywords: seo?.keywords ?? ["page", "strona", "ckziu", "zseis"],
+    title: seo?.metaTitle ?? "Elektronik - Nie znaleziono strony",
+    description: seo?.metaDescription,
+    keywords: seo?.keywords,
   }
 }
 
 export default async function Page({ params }: { params: { page: string } }) {
   const data = await getPage(params.page)
+
+  if (!data.content) {
+    notFound()
+  }
 
   return (
     <main className="flex w-full flex-col items-center">

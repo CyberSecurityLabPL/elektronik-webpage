@@ -57,7 +57,7 @@ function hasKey(obj: any, key: string) {
 
 export function renderMarkdown(markdown: string, options?: Readonly<Options>) {
   const imagesFolder = "uploads"
-  const newHostname = process.env.NEXT_PUBLIC_BACKEND_URL
+  const newHostname = process.env.NEXT_PUBLIC_STRAPI_URL
   const imageBlockRegex = /\!\[(.*?)\]\((.*?)\/uploads\/(.*?)\)/g
 
   const formattedMarkdown = markdown.replace(
@@ -104,8 +104,10 @@ export const formatDateWeek = (date?: string) =>
     format(new Date(date ?? new Date()), "eeee dd/MM/yyyy", { locale: pl })
   )
 
-export const getImage = (src: string) =>
-  `${process.env.NEXT_PUBLIC_BACKEND_URL}${src}`
+export const getImage = (src: string | undefined, notFoundSrc?: string) =>
+  src
+    ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${src}`
+    : notFoundSrc ?? "/default/not-found.svg"
 
 interface Author {
   firstname: string

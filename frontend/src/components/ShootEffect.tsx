@@ -193,7 +193,7 @@ function createCap(e: any, src: string, i?: number) {
 
 function createSparkle(e: any, x: number, maxTime: number) {
   const elem = document.createElement("img")
-  elem.src = "/assets/sparkles.png"
+  elem.src = "/assets/sparkles.webp"
   elem.className = "fixed pointer-events-none size-12 z-40"
   const sparkle = {
     elem: document.body.appendChild(elem),

@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("../styles/styles.css");
-
 html,
 body {
   --scroll-border: 99px;
@@ -40,8 +38,17 @@ body {
   background-color: #cbd5e1;
 }
 
+div ::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #cbd5e1;
+}
+
 .scroll-overflow {
   -webkit-overflow-scrolling: touch;
+}
+
+.page-padding {
+  @apply px-0 xs:px-2 md:px-8 lg:px-16;
 }
 
 .prose td {

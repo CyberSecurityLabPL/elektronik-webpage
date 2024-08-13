@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Suspense } from "react"
 import { Button, buttonVariants } from "../ui/button"
 import Link from "next/link"
 import { cn } from "@/lib/utils"
@@ -66,13 +66,27 @@ const Hero2 = ({ data }: { data: any }) => {
         />
       </div>
       <div className="mt-20 grid  w-full max-w-7xl grid-flow-dense grid-cols-2 grid-rows-1 gap-8  s:grid-rows-2 lg:grid-rows-1 lg:[grid-template-columns:_1fr_3fr_1fr]">
-        <Photo src="/assets/elektronik1.png" className="hidden s:block" />
+        <Suspense
+          fallback={
+            <div className="flex h-full w-full items-center justify-center">
+              Loading...
+            </div>
+          }
+        >
+          <Photo
+            src="/assets/hero-image-second.jpg"
+            className="hidden s:block"
+          />
 
-        <Photo
-          src="/assets/elektronik2.png"
-          className="-order-1 col-span-2 lg:col-span-1 lg:h-[400px]"
-        />
-        <Photo src="/assets/elektronik3.png" className="hidden s:block" />
+          <Photo
+            src="/assets/main.webp"
+            className="-order-1 col-span-2 lg:col-span-1 lg:h-[400px]"
+          />
+          <Photo
+            src="/assets/hero-image-third.jpg"
+            className="hidden s:block"
+          />
+        </Suspense>
       </div>
     </div>
   )
@@ -82,7 +96,7 @@ function Photo({ src, className }: { src: string; className?: string }) {
   return (
     <div
       className={cn(
-        "relative h-[400px] rounded-3xl border-4 border-primary bg-primary/10 p-2",
+        "relative h-[200px] rounded-3xl border-4 border-primary bg-primary/10 p-2 xs:h-[400px]",
         className
       )}
     >

@@ -1,6 +1,7 @@
 import Header from "@/components/Header"
 import BookCard from "@/components/cards/BookCard"
 import { getBooks } from "@/lib/api"
+import { getImage } from "@/lib/utils"
 import { Metadata, ResolvingMetadata } from "next"
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -38,15 +39,11 @@ export default async function Page() {
               {group.books?.map((book: any) => (
                 <BookCard
                   key={book.title}
-                  src={
-                    book.image?.url
-                      ? process.env.NEXT_PUBLIC_BACKEND_URL + book.image.url
-                      : "/cards/matma.jpg"
-                  }
+                  src={getImage(book.image.url)}
                   subject={book.subject}
                   title={book.title}
                   dist={book.distributor}
-                  url={book.url ?? ""}
+                  url={book.url ?? "#"}
                 />
               )) ?? "Brak książek!"}
             </div>

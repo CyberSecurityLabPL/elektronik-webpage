@@ -8,6 +8,7 @@ import "lightgallery/css/lg-thumbnail.css"
 import lgThumbnail from "lightgallery/plugins/thumbnail"
 import lgZoom from "lightgallery/plugins/zoom"
 import Image from "next/image"
+import { getImage } from "@/lib/utils"
 
 const MyLightGallery = ({
   data,
@@ -60,8 +61,8 @@ const MyLightGallery = ({
           plugins={[lgThumbnail, lgZoom]}
           dynamic
           dynamicEl={data.files.map((item: any) => ({
-            src: process.env.NEXT_PUBLIC_BACKEND_URL + item.url,
-            thumb: process.env.NEXT_PUBLIC_BACKEND_URL + item.url,
+            src: getImage(item.url),
+            thumb: getImage(item.url),
           }))}
         />
       </div>
