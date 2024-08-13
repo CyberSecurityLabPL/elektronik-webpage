@@ -12,15 +12,13 @@ services:
       - OUTPUT=standalone
     env_file:
       - frontend/.env.docker
-        #depends_on:
-        #  - backend # temporary disable
-  backend:
+  strapi:
     container_name: strapi
     platform: linux/arm64/v8
-    build: strapi
+    build: ./strapi/.
     image: strapi:latest
     restart: unless-stopped
-    env_file: strapi/.env
+    env_file: ./strapi/.env
     environment:
       JWT_SECRET: ${JWT_SECRET}
       ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
@@ -32,11 +30,11 @@ services:
       - ./strapi/package.json:/opt/package.json
       - ./strapi/package-lock.json:/opt/package-lock.json
       - ./strapi/.env:/opt/app/.env
-      - ./strapi/public:/opt/app/public # don't set it to /uploads, because it blocks import functionallity
+      - ./strapi/public:/opt/app/public # don't set it to /uploads (Krystian Wybranowski reference), because it block import functionallity
       # - ./database/data.db:/opt/app/database/data.db
       - ./strapi/types/:/opt/app/types
     ports:
-      - "5000:5000"
+      - '5000:5000'
     networks:
       - strapi
     depends_on:
@@ -45,8 +43,8 @@ services:
     image: mariadb:latest
     platform: linux/arm64/v8
     container_name: db
-    env_file: strapi/.env
     restart: always
+    # env_file: .env
     command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_DATABASE: ${DATABASE_NAME}
@@ -57,13 +55,12 @@ services:
       # Password for root access
       # MYSQL_ROOT_PASSWORD:
       MYSQL_ALLOW_EMPTY_PASSWORD: true
-      MARIADB_ROOT_PASSWORD: asdASD123!@#
     ports:
       # <Port exposed> : <MySQL Port running inside container>
-      - "3306:3306"
+      - '3306:3306'
     expose:
       # Opens port 3306 on the container
-      - "3306"
+      - '3306'
       # Where our data will be persisted
     volumes:
       - my-db:/var/lib/mysql
@@ -72,9 +69,11 @@ services:
 
 volumes:
   strapi-data:
-  my-db:
+  my-db: 
+    driver: local
 
 networks:
   strapi:
     name: Strapi
     driver: bridge
+
