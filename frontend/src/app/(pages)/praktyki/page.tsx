@@ -13,6 +13,8 @@ import {
 import { getApprenticeships } from "@/lib/api"
 import { formatDateYear } from "@/lib/utils"
 import { Metadata, ResolvingMetadata } from "next"
+import { MotionDiv } from "@/lib/motion"
+import PageEnterAnimation from "@/components/PageEnterAnimation"
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getApprenticeships()
@@ -36,7 +38,7 @@ const page = async () => {
           "Tutaj zobaczysz harmonogram praktyk na rok 2023/2024. Sprawdź kiedy twoja klasa ma praktyki"
         }
       />
-      <div className="flex w-full items-center justify-center">
+      <PageEnterAnimation className="flex w-full items-center justify-center">
         <div className="w-full  pt-8 md:w-3/4 xl:w-1/2">
           <Table className="bg-white pt-8 ">
             <TableHeader className="text-xs md:text-base ">
@@ -72,7 +74,7 @@ const page = async () => {
             </TableBody>
           </Table>
         </div>
-      </div>
+      </PageEnterAnimation>
     </div>
   )
 }

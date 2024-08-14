@@ -3,6 +3,7 @@ import { ReactNode } from "react"
 import FileCard from "@/components/cards/FIleCard"
 import { getDocuments } from "@/lib/api"
 import { Metadata, ResolvedMetadata, ResolvingMetadata } from "next"
+import PageEnterAnimation from "@/components/PageEnterAnimation"
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getDocuments()
@@ -18,9 +19,9 @@ export default async function DocumentsPage() {
   const data = await getDocuments()
 
   return (
-    <main className="flex w-full flex-col items-center ">
+    <main className="flex w-full flex-col items-center">
       <Header title={data?.heading} />
-      <div className="flex w-full flex-col items-center justify-center">
+      <PageEnterAnimation className="flex w-full flex-col items-center justify-center">
         {data.document_groups.map((item: any) => (
           <FileGroup key={item.title} title={item.title}>
             {item.documents.map((file: any) => (
@@ -34,7 +35,7 @@ export default async function DocumentsPage() {
             ))}
           </FileGroup>
         ))}
-      </div>
+      </PageEnterAnimation>
     </main>
   )
 }

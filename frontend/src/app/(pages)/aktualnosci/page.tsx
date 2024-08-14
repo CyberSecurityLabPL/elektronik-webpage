@@ -4,6 +4,8 @@ import NewsCard from "@/components/cards/NewsCard"
 import { getArticles, getLatestArticle } from "@/lib/api"
 import { revalidatePath } from "next/cache"
 import type { Metadata } from "next"
+import { MotionDiv } from "@/lib/motion"
+import PageEnterAnimation from "@/components/PageEnterAnimation"
 
 export const metadata: Metadata = {
   title: "Elektronik - Aktualności",
@@ -34,7 +36,7 @@ async function page({ searchParams }: PageParams) {
         title="Aktualności"
         subtitle="O to co dzieje się w naszej szkole!"
       />
-      <div className="mx-auto mb-64 flex w-full max-w-7xl flex-col">
+      <PageEnterAnimation className="mx-auto mb-64 flex w-full max-w-7xl flex-col">
         <div className="hidden flex-col xs:flex">
           <h2 className="mt-8 pb-4 pl-8 text-lg font-bold text-foreground md:mt-4 lg:mt-0">
             Najnowszy artykuł
@@ -74,7 +76,7 @@ async function page({ searchParams }: PageParams) {
             paramsPage={page}
           />
         </div>
-      </div>
+      </PageEnterAnimation>
     </>
   )
 }

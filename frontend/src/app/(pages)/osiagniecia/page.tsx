@@ -3,6 +3,8 @@ import AchieveDialog from "@/components/AchieveDialog"
 import Header from "@/components/Header"
 import { getAchievements } from "@/lib/api"
 import { Metadata, ResolvingMetadata } from "next"
+import { MotionDiv } from "@/lib/motion"
+import PageEnterAnimation from "@/components/PageEnterAnimation"
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getAchievements()
@@ -20,7 +22,7 @@ export default async function Page() {
   return (
     <main className="flex w-full flex-col items-center">
       <Header title={data.heading} subtitle={data.description} />
-      <div className="mt-4 flex flex-col items-center justify-center">
+      <PageEnterAnimation className="mt-4 flex flex-col items-center justify-center">
         {data?.achievements.map((item: any) => (
           <AchieveDialog
             key={item.title}
@@ -37,7 +39,7 @@ export default async function Page() {
             />
           </AchieveDialog>
         ))}
-      </div>
+      </PageEnterAnimation>
     </main>
   )
 }

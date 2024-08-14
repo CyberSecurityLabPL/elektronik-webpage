@@ -1,6 +1,7 @@
 import { ContactForm } from "@/components/ContactForm"
 import Header from "@/components/Header"
 import IconComponent from "@/components/Icon"
+import PageEnterAnimation from "@/components/PageEnterAnimation"
 import {
   Card,
   CardContent,
@@ -38,7 +39,7 @@ function page() {
         }
       />
 
-      <div className="relative flex w-full max-w-4xl flex-col items-center justify-center gap-6">
+      <PageEnterAnimation className="relative flex w-full max-w-4xl flex-col items-center justify-center gap-6">
         <Card className="w-full">
           <CardHeader>
             <CardTitle>Wyślij wiadomość</CardTitle>
@@ -63,7 +64,7 @@ function page() {
             <ContactForm className=" space-y-4 md:-order-1" />
           </CardContent>
         </Card>
-      </div>
+      </PageEnterAnimation>
     </div>
   )
 }

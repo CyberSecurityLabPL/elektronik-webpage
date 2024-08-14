@@ -1,4 +1,5 @@
 import Header from "@/components/Header"
+import PageEnterAnimation from "@/components/PageEnterAnimation"
 import BookCard from "@/components/cards/BookCard"
 import { getBooks } from "@/lib/api"
 import { getImage } from "@/lib/utils"
@@ -26,7 +27,7 @@ export default async function Page() {
           "Wykaz podręczników dla klas I-V - przedmioty ogólnokształcące na rok szkolny 2023/2024:"
         }
       />
-      <div className="flex flex-col items-center">
+      <PageEnterAnimation className="flex flex-col items-center">
         {data?.book_groups.map((group: any) => (
           <div
             className="my-2 flex w-full flex-col items-center justify-center"
@@ -49,7 +50,7 @@ export default async function Page() {
             </div>
           </div>
         )) ?? "Brak danych"}
-      </div>
+      </PageEnterAnimation>
     </main>
   )
 }

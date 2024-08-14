@@ -1,4 +1,5 @@
 import Header from "@/components/Header"
+import PageEnterAnimation from "@/components/PageEnterAnimation"
 import ParentCard from "@/components/cards/ParentCard"
 import { Button } from "@/components/ui/button"
 import { getParents } from "@/lib/api"
@@ -19,7 +20,8 @@ export default async function Page() {
 
   return (
     <main className="flex w-full flex-col items-center">
-      <Header title={data?.heading} subtitle={data?.description}>
+      <Header title={data?.heading} subtitle={data?.description}></Header>
+      <PageEnterAnimation className="flex flex-col items-center">
         <div className="px-4 text-center">
           Numer konta rady rodziców:&nbsp;
           <span className="font-bold">{data?.bankAccountNumber}</span>
@@ -27,18 +29,18 @@ export default async function Page() {
         <Button variant={"outline"} className="my-4">
           Zobacz regulamin
         </Button>
-      </Header>
-      <div className=" flex flex-wrap justify-center gap-4">
-        {data?.parents.map((item: any) => (
-          <ParentCard
-            key={item.fullname}
-            name={item.fullname}
-            src={item.image.url ?? "/default/avatarFemale.svg"}
-            position={item.position}
-            description={item.description}
-          />
-        ))}
-      </div>
+        <div className=" flex flex-wrap justify-center gap-4">
+          {data?.parents.map((item: any) => (
+            <ParentCard
+              key={item.fullname}
+              name={item.fullname}
+              src={item.image.url ?? "/default/avatarFemale.svg"}
+              position={item.position}
+              description={item.description}
+            />
+          ))}
+        </div>
+      </PageEnterAnimation>
     </main>
   )
 }

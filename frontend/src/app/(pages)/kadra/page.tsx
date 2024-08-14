@@ -1,7 +1,9 @@
 import Header from "@/components/Header"
+import PageEnterAnimation from "@/components/PageEnterAnimation"
 import WorkerCard from "@/components/cards/WorkerCard"
 import { Button } from "@/components/ui/button"
 import { getTeachers } from "@/lib/api"
+import { MotionDiv } from "@/lib/motion"
 import { Metadata, ResolvingMetadata } from "next"
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -23,7 +25,7 @@ export default async function Page() {
         title="Kadra nauczycielska"
         subtitle="Poznaj naszą kadrę nauczycielską."
       />
-      <div>
+      <PageEnterAnimation>
         {data?.teacher_groups.map((group: any) => (
           <div key={group.title}>
             <h1 className="mb-4 mt-12 flex justify-center text-center text-2xl font-semibold sm:justify-start">
@@ -43,7 +45,7 @@ export default async function Page() {
             </div>
           </div>
         )) ?? "Brak danych"}
-      </div>
+      </PageEnterAnimation>
     </main>
   )
 }

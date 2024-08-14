@@ -4,6 +4,7 @@ import { useState } from "react"
 import LightGallery from "@/components/LightGallery"
 import { Button } from "./ui/button"
 import { getImage } from "@/lib/utils"
+import { MotionDiv } from "@/lib/motion"
 
 export default function Gallery({ initialData }: { initialData: any }) {
   const pageSize = 9
@@ -15,7 +16,12 @@ export default function Gallery({ initialData }: { initialData: any }) {
   }
 
   return (
-    <div className="flex w-full flex-col items-center justify-center gap-4">
+    <MotionDiv
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ delay: 0.5, duration: 0.25, ease: "circOut" }}
+      className="flex w-full flex-col items-center justify-center gap-4"
+    >
       <section className="grid w-full auto-rows-[10px] grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))]">
         {initialData.files.slice(0, pageSize + offset).map(
           (
@@ -52,6 +58,6 @@ export default function Gallery({ initialData }: { initialData: any }) {
           Wczytaj Więcej
         </Button>
       )}
-    </div>
+    </MotionDiv>
   )
 }

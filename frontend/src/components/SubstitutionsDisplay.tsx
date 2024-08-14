@@ -12,6 +12,8 @@ import {
 import { CalendarDays, Loader2 } from "lucide-react"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { Calendar } from "./ui/calendar"
+import { MotionDiv } from "@/lib/motion"
+import PageEnterAnimation from "./PageEnterAnimation"
 
 export default function SubstitutionsDisplay({
   page,
@@ -94,65 +96,67 @@ export default function SubstitutionsDisplay({
       <Header title={page?.heading ?? "Zastępstwa"}>
         <DatePicker curData={data} getExact={getExact} />
       </Header>
-      <div className="h-fit min-h-96 w-3/4 rounded-lg border bg-background p-3 shadow-sm">
-        <div className="px-2 text-xs sm:text-base">
-          {renderMarkdown(
-            data?.substitutions ?? "Couldn't load content!",
-            markdownOptions
+      <PageEnterAnimation className="flex w-full max-w-7xl flex-col items-center justify-center gap-4">
+        <div className="h-fit min-h-96 w-full rounded-lg border bg-background p-4 shadow-sm">
+          <div className="px-2 text-xs sm:text-base">
+            {renderMarkdown(
+              data?.substitutions ?? "Couldn't load content!",
+              markdownOptions
+            )}
+          </div>
+        </div>
+        <div
+          className={`${exact ? "flex items-center justify-center" : "grid grid-cols-2"} gap-x-4`}
+        >
+          {exact ? (
+            <>
+              <Button
+                onClick={() => {
+                  reset()
+                }}
+                variant={"outline"}
+              >
+                {"Wróć"}
+              </Button>
+            </>
+          ) : (
+            <>
+              {prevLoading ? (
+                <Button disabled>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  {"Proszę Czekać"}
+                </Button>
+              ) : (
+                <Button
+                  disabled={!(curPage < meta)}
+                  onClick={() => {
+                    change(false)
+                  }}
+                  variant={"outline"}
+                >
+                  {"< Poprzednie"}
+                </Button>
+              )}
+              {nextLoading ? (
+                <Button disabled>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  {"Proszę Czekać"}
+                </Button>
+              ) : (
+                <Button
+                  disabled={!(curPage > 1)}
+                  onClick={() => {
+                    change(true)
+                  }}
+                  variant={"outline"}
+                >
+                  {"Następne >"}
+                </Button>
+              )}
+            </>
           )}
         </div>
-      </div>
-      <div
-        className={`${exact ? "flex items-center justify-center" : "grid grid-cols-2"} gap-x-4`}
-      >
-        {exact ? (
-          <>
-            <Button
-              onClick={() => {
-                reset()
-              }}
-              variant={"outline"}
-            >
-              {"Wróć"}
-            </Button>
-          </>
-        ) : (
-          <>
-            {prevLoading ? (
-              <Button disabled>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                {"Proszę Czekać"}
-              </Button>
-            ) : (
-              <Button
-                disabled={!(curPage < meta)}
-                onClick={() => {
-                  change(false)
-                }}
-                variant={"outline"}
-              >
-                {"< Poprzednie"}
-              </Button>
-            )}
-            {nextLoading ? (
-              <Button disabled>
-                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                {"Proszę Czekać"}
-              </Button>
-            ) : (
-              <Button
-                disabled={!(curPage > 1)}
-                onClick={() => {
-                  change(true)
-                }}
-                variant={"outline"}
-              >
-                {"Następne >"}
-              </Button>
-            )}
-          </>
-        )}
-      </div>
+      </PageEnterAnimation>
     </>
   )
 }

@@ -14,14 +14,15 @@ export default function Header({
     <m.header
       initial={{
         opacity: 0,
-        y: 100,
+        y: -100,
       }}
       animate={{
         opacity: 1,
         y: 0,
       }}
       transition={{
-        duration: 0.7,
+        duration: 0.25,
+        ease: "circOut",
       }}
       className="my-6 flex w-full flex-col items-center justify-center sm:my-8"
     >
@@ -29,11 +30,16 @@ export default function Header({
         {title}
       </h1>
       {subtitle ? (
-        <div className="flex items-center justify-center px-2">
+        <m.div
+          className="flex items-center justify-center px-2"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.25, duration: 0.25, ease: "circOut" }}
+        >
           <div className="text-md flex max-w-[54rem] items-center justify-center text-pretty text-center leading-relaxed text-primary-foreground sm:text-lg lg:text-xl">
             {subtitle}
           </div>
-        </div>
+        </m.div>
       ) : null}
       {children}
     </m.header>

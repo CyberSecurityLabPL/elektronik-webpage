@@ -4,6 +4,8 @@ import { Separator } from "@/components/ui/separator"
 import { getPage } from "@/lib/api"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
+import { MotionDiv } from "@/lib/motion"
+import PageEnterAnimation from "@/components/PageEnterAnimation"
 
 type Props = {
   params: { page: string }
@@ -32,13 +34,13 @@ export default async function Page({ params }: { params: { page: string } }) {
         title={data?.heading ?? "Error 404"}
         subtitle={data?.description ?? `Page /${params.page} not found!`}
       />
-      <div
+      <PageEnterAnimation
         className={`flex w-full justify-center rounded-sm bg-background p-2 text-xs shadow-sm sm:text-base items-center${data?.content ? "" : "hidden"}`}
       >
         <div className="prose w-full p-4">
           {data?.content ? renderMarkdown(data.content) : null}
         </div>
-      </div>
+      </PageEnterAnimation>
     </main>
   )
 }

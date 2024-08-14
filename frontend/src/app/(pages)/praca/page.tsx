@@ -4,6 +4,7 @@ import JobDialog from "@/components/JobDialog"
 import { getJobs } from "@/lib/api"
 import { Metadata, ResolvingMetadata } from "next"
 import { getImage } from "@/lib/utils"
+import PageEnterAnimation from "@/components/PageEnterAnimation"
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getJobs()
@@ -26,7 +27,7 @@ export default async function Page() {
           data?.description ?? "Oferty pracy dla absolwentów naszej szkoły."
         }
       />
-      <div className="flex flex-col items-center justify-center p-2">
+      <PageEnterAnimation className="flex flex-col items-center justify-center p-2">
         {data?.jobs.map((item: any) => (
           <JobDialog
             key={item.name}
@@ -38,7 +39,7 @@ export default async function Page() {
           >
             <JobCard
               name={item.name}
-              src={getImage(item.image?.url, "/default/job.webp")}
+              src={getImage(item.image?.url)}
               date={item.date}
               minPay={item.minPay}
               maxPay={item.maxPay}
@@ -46,8 +47,8 @@ export default async function Page() {
               badges={item.badges}
             />
           </JobDialog>
-        )) ?? "Couldn't get Jobs"}
-      </div>
+        )) ?? "Nie znaleziono ofert pracy."}
+      </PageEnterAnimation>
     </main>
   )
 }
