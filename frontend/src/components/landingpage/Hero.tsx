@@ -1,9 +1,9 @@
-import React, { Suspense } from "react"
-import { Button, buttonVariants } from "../ui/button"
-import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { Lightbulb } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
+import { Suspense } from "react"
+import { buttonVariants } from "../ui/button"
 
 const Hero2 = ({ data }: { data: any }) => {
   return (

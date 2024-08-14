@@ -1,11 +1,9 @@
 import Header from "@/components/Header"
-import { renderMarkdown } from "@/lib/utils"
-import { Separator } from "@/components/ui/separator"
+import PageEnterAnimation from "@/components/PageEnterAnimation"
 import { getPage } from "@/lib/api"
+import { renderMarkdown } from "@/lib/utils"
 import { Metadata } from "next"
 import { notFound } from "next/navigation"
-import { MotionDiv } from "@/lib/motion"
-import PageEnterAnimation from "@/components/PageEnterAnimation"
 
 type Props = {
   params: { page: string }

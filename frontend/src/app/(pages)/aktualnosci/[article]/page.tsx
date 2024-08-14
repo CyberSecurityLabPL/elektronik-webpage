@@ -1,7 +1,7 @@
 import markdownOptions from "@/components/markdown/MarkdownOptions"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { getArticle, getArticles } from "@/lib/api"
+import { getArticle } from "@/lib/api"
 import { formatDate, getAuthor, getImage, renderMarkdown } from "@/lib/utils"
 import { CalendarPlus, User } from "lucide-react"
 import { Metadata } from "next"
@@ -59,8 +59,8 @@ export default async function Page({
 
   const author = article ? getAuthor(article) : "Nieznany autor"
 
-  const image = article.image
-  const hasImage = Object.keys(image).length !== 0
+  const image = article?.image
+  const hasImage = image && Object.keys(image).length !== 0
 
   return (
     <article className="flex w-full flex-col items-center self-center">

@@ -1,20 +1,16 @@
-import React from "react"
 import Header from "@/components/Header"
+import PageEnterAnimation from "@/components/PageEnterAnimation"
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
 import { getApprenticeships } from "@/lib/api"
 import { formatDateYear } from "@/lib/utils"
-import { Metadata, ResolvingMetadata } from "next"
-import { MotionDiv } from "@/lib/motion"
-import PageEnterAnimation from "@/components/PageEnterAnimation"
+import { Metadata } from "next"
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getApprenticeships()

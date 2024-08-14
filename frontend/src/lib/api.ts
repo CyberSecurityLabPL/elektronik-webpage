@@ -1,13 +1,8 @@
-import axios, { Axios, AxiosError, AxiosResponse } from "axios"
-import { flattenStrapiResponse } from "./utils"
-import qs from "qs"
 import { PAGINATION_LIMIT } from "@/config"
-import { cache } from "react"
-import { revalidatePath } from "next/cache"
+import axios, { AxiosError, AxiosResponse } from "axios"
+import qs from "qs"
 import { revalidate, revalidateT } from "./actions"
-import next from "next"
-import { format } from "date-fns"
-import { pl } from "date-fns/locale/pl"
+import { flattenStrapiResponse } from "./utils"
 
 /**
  * The API instance for making HTTP requests.

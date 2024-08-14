@@ -1,5 +1,7 @@
 "use client"
+import { cn } from "@/lib/utils"
 import { ChevronsUpDown } from "lucide-react"
+import Link from "next/link"
 import { useState } from "react"
 import { Button } from "../ui/button"
 import {
@@ -11,9 +13,6 @@ import {
   CommandList,
 } from "../ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
-import { ScrollArea } from "../ui/scroll-area"
-import { cn } from "@/lib/utils"
-import Link from "next/link"
 
 type TimetableItem = {
   id: string

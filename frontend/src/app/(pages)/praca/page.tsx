@@ -1,10 +1,10 @@
-import Header from "@/components/Header"
 import JobCard from "@/components/cards/JobCard"
+import Header from "@/components/Header"
 import JobDialog from "@/components/JobDialog"
-import { getJobs } from "@/lib/api"
-import { Metadata, ResolvingMetadata } from "next"
-import { getImage } from "@/lib/utils"
 import PageEnterAnimation from "@/components/PageEnterAnimation"
+import { getJobs } from "@/lib/api"
+import { getImage } from "@/lib/utils"
+import { Metadata } from "next"
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getJobs()

@@ -6,11 +6,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { Badge } from "../ui/badge"
-import IconComponent from "../Icon"
+import { formatDateYear } from "@/lib/utils"
 import { MapPin } from "lucide-react"
 import Image from "next/image"
-import { formatDate, formatDateYear } from "@/lib/utils"
+import { Badge } from "../ui/badge"
 
 function numberWithSpaces(x: number) {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")

@@ -3,7 +3,7 @@ import PageEnterAnimation from "@/components/PageEnterAnimation"
 import BookCard from "@/components/cards/BookCard"
 import { getBooks } from "@/lib/api"
 import { getImage } from "@/lib/utils"
-import { Metadata, ResolvingMetadata } from "next"
+import { Metadata } from "next"
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getBooks()

@@ -1,9 +1,9 @@
-import Header from "@/components/Header"
-import { ReactNode } from "react"
 import FileCard from "@/components/cards/FIleCard"
-import { getDocuments } from "@/lib/api"
-import { Metadata, ResolvedMetadata, ResolvingMetadata } from "next"
+import Header from "@/components/Header"
 import PageEnterAnimation from "@/components/PageEnterAnimation"
+import { getDocuments } from "@/lib/api"
+import { Metadata } from "next"
+import { ReactNode } from "react"
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getDocuments()

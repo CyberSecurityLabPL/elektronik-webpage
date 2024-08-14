@@ -1,10 +1,8 @@
 import Header from "@/components/Header"
 import PageEnterAnimation from "@/components/PageEnterAnimation"
 import WorkerCard from "@/components/cards/WorkerCard"
-import { Button } from "@/components/ui/button"
 import { getTeachers } from "@/lib/api"
-import { MotionDiv } from "@/lib/motion"
-import { Metadata, ResolvingMetadata } from "next"
+import { Metadata } from "next"
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getTeachers()

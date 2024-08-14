@@ -1,15 +1,13 @@
-import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Separator } from "./ui/separator"
 import { ReactNode } from "react"
+import { Separator } from "./ui/separator"
 
 export default function AchieveDialog({
   date,

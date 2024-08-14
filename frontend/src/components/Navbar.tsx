@@ -1,15 +1,15 @@
 "use client"
 
+import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
+import { ChevronDown, ExternalLink } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import { useEffect, useRef, useState } from "react"
 import MobileNavigation from "./MobileNavigation"
 import { Navigation } from "./Navigation"
-import { Button, buttonVariants } from "./ui/button"
-import { useEffect, useRef, useState } from "react"
-import { cn } from "@/lib/utils"
+import { Button } from "./ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
-import { ChevronDown, ExternalLink } from "lucide-react"
 
 export default function Navbar({ navItems }: { navItems?: any }) {
   const [isExpanded, setIsExpanded] = useState(false)
@@ -104,7 +104,9 @@ export default function Navbar({ navItems }: { navItems?: any }) {
                         <Link
                           key={tab.name}
                           className="flex gap-4 rounded-xl bg-slate-50 p-2 text-lg font-medium text-slate-800 hover:bg-slate-100 hover:text-slate-900"
-                          href={tab.href ?? "#"}
+                          href={
+                            tab.isExternal ? tab.href : `/${tab.href}` ?? ""
+                          }
                           target={tab.isExternal ? "_blank" : "_self"}
                         >
                           {tab.name}

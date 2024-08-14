@@ -1,17 +1,8 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import { Download } from "lucide-react"
-import { Pdf, Docx, Csv, Default } from "../icons"
-import { LucideProps } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { FileIcon } from "../Icon"
-import { IconColors } from "../Icon"
+import { Download, LucideProps } from "lucide-react"
 import Link from "next/link"
+import { FileIcon, IconColors } from "../Icon"
+import { Csv, Default, Docx, Pdf } from "../icons"
 
 import { format } from "date-fns"
 

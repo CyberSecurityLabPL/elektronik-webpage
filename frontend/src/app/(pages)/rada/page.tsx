@@ -3,7 +3,7 @@ import PageEnterAnimation from "@/components/PageEnterAnimation"
 import ParentCard from "@/components/cards/ParentCard"
 import { Button } from "@/components/ui/button"
 import { getParents } from "@/lib/api"
-import { Metadata, ResolvingMetadata } from "next"
+import { Metadata } from "next"
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getParents()

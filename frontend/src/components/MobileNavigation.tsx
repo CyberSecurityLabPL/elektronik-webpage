@@ -1,5 +1,10 @@
 "use client"
-import React, { ReactNode, TouchEvent, useRef, useState } from "react"
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordionMobile"
 import {
   Drawer,
   DrawerClose,
@@ -7,17 +12,12 @@ import {
   DrawerFooter,
   DrawerTrigger,
 } from "@/components/ui/drawer"
-import { Button } from "./ui/button"
-import { Menu } from "lucide-react"
-import { motion } from "framer-motion"
-import Link from "next/link"
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordionMobile"
 import { cn } from "@/lib/utils"
+import { motion } from "framer-motion"
+import { Menu } from "lucide-react"
+import Link from "next/link"
+import { ReactNode } from "react"
+import { Button } from "./ui/button"
 
 export default function MobileNavigation({ navItems }: { navItems: any }) {
   return (

@@ -1,19 +1,17 @@
 "use client"
-import markdownOptions from "@/components/markdown/MarkdownOptions"
-import { renderMarkdown } from "@/lib/utils"
-import Header from "./Header"
-import { formatDateWeek } from "@/lib/utils"
-import { Button } from "./ui/button"
-import React, { useState } from "react"
 import {
   getExactSubstitution,
   getMoreSubstitutions,
 } from "@/app/(pages)/zastepstwa/subsServer"
+import markdownOptions from "@/components/markdown/MarkdownOptions"
+import { formatDateWeek, renderMarkdown } from "@/lib/utils"
 import { CalendarDays, Loader2 } from "lucide-react"
-import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
-import { Calendar } from "./ui/calendar"
-import { MotionDiv } from "@/lib/motion"
+import { useState } from "react"
+import Header from "./Header"
 import PageEnterAnimation from "./PageEnterAnimation"
+import { Button } from "./ui/button"
+import { Calendar } from "./ui/calendar"
+import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 
 export default function SubstitutionsDisplay({
   page,

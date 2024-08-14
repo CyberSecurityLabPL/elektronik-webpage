@@ -1,11 +1,10 @@
 import PaginationComponent from "@/components/ArticlesPagination"
 import Header from "@/components/Header"
+import PageEnterAnimation from "@/components/PageEnterAnimation"
 import NewsCard from "@/components/cards/NewsCard"
 import { getArticles, getLatestArticle } from "@/lib/api"
-import { revalidatePath } from "next/cache"
 import type { Metadata } from "next"
-import { MotionDiv } from "@/lib/motion"
-import PageEnterAnimation from "@/components/PageEnterAnimation"
+import { revalidatePath } from "next/cache"
 
 export const metadata: Metadata = {
   title: "Elektronik - Aktualności",

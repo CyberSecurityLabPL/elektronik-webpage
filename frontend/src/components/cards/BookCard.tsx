@@ -1,14 +1,13 @@
 import {
   Card,
   CardContent,
-  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
 import Image from "next/image"
-import { Button } from "../ui/button"
 import Link from "next/link"
+import { Button } from "../ui/button"
 
 export default function BookCard({
   subject,
@@ -36,7 +35,7 @@ export default function BookCard({
         </div>
       </div>
 
-      <div className="flex flex-col justify-between h-full w-52 lg:w-[19rem]">
+      <div className="flex h-full w-52 flex-col justify-between lg:w-[19rem]">
         <CardHeader className="py-0 lg:pb-2">
           <CardTitle className="text-lg font-semibold text-foreground lg:text-2xl">
             {subject}
@@ -53,7 +52,11 @@ export default function BookCard({
           </div>
         </CardContent>
         <CardFooter className=" justify-center py-0">
-          <Button className="text-xs lg:text-sm px-3 py-0 sm:px-4 sm:py-2" asChild variant={"outline"}>
+          <Button
+            className="px-3 py-0 text-xs sm:px-4 sm:py-2 lg:text-sm"
+            asChild
+            variant={"outline"}
+          >
             <Link href={url}>Kup Teraz</Link>
           </Button>
         </CardFooter>
