@@ -24,21 +24,21 @@ const Hero2 = ({ data }: { data: any }) => {
         <p className="text-center text-base text-primary-foreground xs:text-lg xl:text-xl ">
           {data?.text ?? "Zapraszamy do zapoznania się z naszą ofertą."}
         </p>
-
         {/* BUTTON */}
-
         <div className="mt-20 flex flex-col gap-8 sm:flex-row">
           <Link
-            href={"/articles"}
+            href={data.linkPrimary.link}
             className={cn(
               buttonVariants({ size: "lg" }),
               "w-full max-w-xs border-[3px] border-primary py-6 text-lg"
             )}
+            target={data.linkPrimary.isExternal ? "_blank" : "_self"}
           >
-            Sprawdź aktualności
+            {data.linkPrimary.title}
           </Link>
           <Link
-            href={"#overview"}
+            href={data.linkSecondary.link}
+            target={data.linkSecondary.isExternal ? "_blank" : "_self"}
             className={cn(
               buttonVariants({ variant: "outline", size: "lg" }),
               "w-full max-w-xs py-6 text-lg"
@@ -47,9 +47,7 @@ const Hero2 = ({ data }: { data: any }) => {
             Dowiedz się więcej <Lightbulb className="ml-2 h-5 w-5" />
           </Link>
         </div>
-
         {/* ARROWS */}
-
         <Image
           src="/assets/left-arrow.svg"
           alt=""
