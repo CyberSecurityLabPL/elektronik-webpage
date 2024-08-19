@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import { Poppins } from "next/font/google"
 import "./globals.css"
+import { REVALIDATE } from "@/config"
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed est eu turpis porta fringilla. Vivamus tristique, odio et accumsan mollis.",
 }
 
-export const revalidate = 10
+export const revalidate = REVALIDATE
 
 export default async function RootLayout({
   children,

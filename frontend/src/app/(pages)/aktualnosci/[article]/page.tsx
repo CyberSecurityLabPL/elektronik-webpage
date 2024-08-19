@@ -1,6 +1,7 @@
 import markdownOptions from "@/components/markdown/MarkdownOptions"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
+import { REVALIDATE } from "@/config"
 import { getArticle } from "@/lib/api"
 import { formatDate, getAuthor, getImage, renderMarkdown } from "@/lib/utils"
 import { CalendarPlus, User } from "lucide-react"
@@ -8,7 +9,7 @@ import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 
-export const revalidate = 10
+export const revalidate = REVALIDATE
 
 type Props = {
   params: { article: string }

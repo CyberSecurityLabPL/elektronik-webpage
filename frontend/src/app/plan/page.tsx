@@ -2,11 +2,13 @@ import Footer from "@/components/timetable/Footer"
 import Headbar from "@/components/timetable/Headbar"
 import Timetable from "@/components/timetable/Timetable"
 import { buttonVariants } from "@/components/ui/button"
-import { timetableConfig } from "@/config"
+import { REVALIDATE, timetableConfig } from "@/config"
 import { validateTimetableSearchParams } from "@/lib/utils"
 import Link from "next/link"
 
 const initialId = timetableConfig.initialId
+
+export const revalidate = REVALIDATE
 
 const page = async ({
   searchParams,

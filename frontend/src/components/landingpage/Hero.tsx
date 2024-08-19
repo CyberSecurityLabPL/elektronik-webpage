@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Suspense } from "react"
 import { buttonVariants } from "../ui/button"
+import { HeroImages } from "./HeroImages"
 
 const Hero2 = ({ data }: { data: any }) => {
   return (
@@ -63,7 +64,7 @@ const Hero2 = ({ data }: { data: any }) => {
           height={200}
         />
       </div>
-      <div className="mt-20 grid  w-full max-w-7xl grid-flow-dense grid-cols-2 grid-rows-1 gap-8  s:grid-rows-2 lg:grid-rows-1 lg:[grid-template-columns:_1fr_3fr_1fr]">
+      <div className="mt-20 w-full ">
         <Suspense
           fallback={
             <div className="flex h-full w-full items-center justify-center">
@@ -71,19 +72,7 @@ const Hero2 = ({ data }: { data: any }) => {
             </div>
           }
         >
-          <Photo
-            src="/assets/hero-image-second.jpg"
-            className="hidden s:block"
-          />
-
-          <Photo
-            src="/assets/main.webp"
-            className="-order-1 col-span-2 lg:col-span-1 lg:h-[400px]"
-          />
-          <Photo
-            src="/assets/hero-image-third.jpg"
-            className="hidden s:block"
-          />
+          <HeroImages />
         </Suspense>
       </div>
     </div>

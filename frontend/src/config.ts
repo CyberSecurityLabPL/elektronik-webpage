@@ -1,5 +1,7 @@
 export const PAGINATION_LIMIT = 6
 
+export const REVALIDATE = 10
+
 export const timetableConfig = {
   initialId: "o18",
   formattingExceptions: [
