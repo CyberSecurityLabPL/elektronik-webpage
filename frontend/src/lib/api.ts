@@ -11,7 +11,7 @@ export const api = axios.create({
   baseURL: process.env.STRAPI_API_URL,
   headers: {
     Authorization: process.env.STRAPI_API_KEY
-      ? `Bearer ${process.env.STRAPI_API_KEY}`
+      ? `${process.env.STRAPI_API_KEY}`
       : "",
   },
 })
@@ -150,11 +150,11 @@ export async function getSubstitutionsPage() {
   }
 }
 
-export async function getSubstitutions(page: number) {
+export async function getSubstitutions(date: number) {
   try {
     const data: any = (
       await fetch(
-        `${process.env.STRAPI_API_URL}/substitutions?pagination[page]=${page}&pagination[pageSize]=1&sort[1]=createdAt:desc`,
+        `${process.env.STRAPI_API_URL}/substitutions?pagination[page]=${date}&pagination[pageSize]=1&sort[1]=createdAt:desc`,
         {
           next: {
             tags: ["substitutions"],
@@ -174,10 +174,10 @@ export async function getSubstitutions(page: number) {
 export async function getExactSubstitutions(date: Date) {
   try {
     revalidateT("substitutions-ex")
-    const final = new Date()
+    const final = date
     final.setDate(date.getDate() + 1)
-    const finalDate = final.toISOString().split("T")[0]
-
+    const finalDate = final.toISOString().slice(0, 10);
+    
     const data: any = (
       await fetch(
         `${process.env.STRAPI_API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[date][$eqi]=${finalDate}`,
