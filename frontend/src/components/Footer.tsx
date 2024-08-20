@@ -96,7 +96,10 @@ async function Sitemap() {
                 {panel.name}
               </span>
               <ol className="flex w-full flex-col gap-2 ">
-                {panel.links.map((link: any, index: number) => (
+                {(index === 0
+                  ? [...panel.links, { name: "Galeria", href: "/galeria", isExternal: false }]
+                  : panel.links
+                ).map((link: any, index: number) => (
                   <li key={`l${index}`}>
                     <Link
                       className="w-fit text-sm text-[#808080] hover:text-[#CACACA] hover:underline"

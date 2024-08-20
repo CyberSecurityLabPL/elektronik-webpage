@@ -34,9 +34,9 @@ export function Navigation({
                   <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[800px]">
                     {index < 1 ? (
                       <li className="row-span-3">
-                        <NavigationMenuLink className="">
+                        <NavigationMenuLink asChild >
                           <a
-                            className={`relative flex select-none flex-col justify-end rounded-md bg-cover object-cover text-background no-underline outline-none focus:shadow-md`}
+                            className={`relative flex select-none flex-col justify-end rounded-md bg-cover object-cover text-background no-underline outline-none focus:shadow-md `}
                             href="/galeria"
                           >
                             <Image
@@ -46,14 +46,15 @@ export function Navigation({
                               height={100}
                               className="rounded-md object-cover"
                             />
-                          </a>
-                          <div className="bg-white p-2 text-lg font-medium text-foreground">
+
+                          <div className="bg-white p-2 text-lg font-medium text-foreground ">
                             Galeria
                           </div>
-                          <p className="bg-white p-2 text-sm leading-tight text-foreground">
+                          <p className="bg-white p-2 text-sm leading-tight text-foreground ">
                             Zobacz naszą galerie szkolną gdzie znajdziesz
                             przeróżne zdjęcia naszej szkoły! :)
                           </p>
+                          </a>
                         </NavigationMenuLink>
                       </li>
                     ) : null}
@@ -61,7 +62,7 @@ export function Navigation({
                       <ListItem
                         key={tab.name}
                         title={tab.name}
-                        href={tab.isExternal ? tab.href : `/${tab.href}` ?? ""}
+                        href={tab.isExternal ? tab.href : `/${tab.href}`}
                         target={tab.isExternal ? "_blank" : "_self"}
                       >
                         {tab?.description}

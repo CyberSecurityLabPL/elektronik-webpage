@@ -10,10 +10,15 @@ body {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
 }
-
-.lg-outer .lg-thumb-item.active {
-  border-color: green !important;
-  display: none;
+.card-description {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.lg-outer .lg-thumb-item.active, .lg-outer .lg-thumb-item:hover {
+  border-color: rgb(49, 49, 241) !important;
+  
 }
 
 .hero {
@@ -57,6 +62,9 @@ div ::-webkit-scrollbar-thumb {
 
 .prose td:has(a) {
   @apply align-middle;
+}
+.prose > p {
+  @apply break-all;
 }
 
 @layer components {

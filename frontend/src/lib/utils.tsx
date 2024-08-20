@@ -93,6 +93,9 @@ export function formatDate(date?: string) {
 export const formatDateYear = (date?: string) =>
   format(new Date(date ?? new Date()), "dd/MM/yyyy")
 
+
+export const formatDateMonth = (date?: string) =>
+  format(new Date(date ?? new Date()), "dd/MM")
 /**
  * Formats provided date string to eeee dd/MM/yyyy
  * @param date - The date string if null will use current

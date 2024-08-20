@@ -35,18 +35,22 @@ export default function JobCard({
   }>
 }) {
   return (
-    <Card className="flex w-fit cursor-pointer flex-col gap-4 rounded-xl p-4 md:flex-row md:p-0 lg:w-[56rem]">
-      <CardContent className="relative hidden w-80 rounded-l-lg md:block ">
+    <Card className="flex w-5/6 cursor-pointer flex-col justify-between gap-4 rounded-xl p-4 md:flex-row md:p-0 lg:w-[56rem]">
+      <div className="flex gap-4">
+
+      
+      <CardContent className="relative hidden flex-shrink-0 w-48 rounded-l-lg md:block lg:w-80 ">
         <Image
-          className="rounded-l-lg object-cover"
+          className="rounded-l-lg object-cover w-80"
           alt={name + " image"}
           src={src}
           fill
+
         />
       </CardContent>
-      <CardHeader className="flex flex-col gap-8 px-0 pb-4 pt-0 md:py-4 ">
+      <CardHeader className="flex w-full flex-col gap-8 px-0 pb-4 pt-0 md:py-4 ">
         <div>
-          <CardTitle className="break-all text-slate-800">{name}</CardTitle>
+          <CardTitle className="break-all  text-slate-800">{name}</CardTitle>
           <CardDescription className="text-base font-bold text-primary">{`${numberWithSpaces(minPay)} PLN - ${numberWithSpaces(maxPay)} PLN`}</CardDescription>
         </div>
 
@@ -55,6 +59,7 @@ export default function JobCard({
           <span>{location}</span>
         </div>
       </CardHeader>
+      </div>
       <CardFooter className="flex flex-col items-end justify-between gap-1 p-0 md:p-4">
         <div className="flex gap-2">
           <Badge className=" bg-primary/25 text-primary hover:bg-primary/20">

@@ -9,7 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table"
 import { getApprenticeships } from "@/lib/api"
-import { formatDateYear } from "@/lib/utils"
+import { formatDateMonth, formatDateYear } from "@/lib/utils"
 import { Metadata } from "next"
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -63,7 +63,7 @@ const page = async () => {
                     {row.specialization}
                   </TableCell>
                   <TableCell className="flex items-center justify-center text-center">
-                    {formatDateYear(row.date)}
+                    {formatDateMonth(row.dateStart)+" - "+formatDateYear(row.dateEnd)}
                   </TableCell>
                 </TableRow>
               )) ?? "Brak danych"}

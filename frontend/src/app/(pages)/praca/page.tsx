@@ -27,7 +27,7 @@ export default async function Page() {
           data?.description ?? "Oferty pracy dla absolwentów naszej szkoły."
         }
       />
-      <PageEnterAnimation className="flex flex-col items-center justify-center p-2">
+      <PageEnterAnimation className="flex flex-col items-center justify-center p-2 gap-4">
         {data?.jobs.map((item: any) => (
           <JobDialog
             key={item.name}

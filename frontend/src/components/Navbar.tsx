@@ -105,7 +105,7 @@ export default function Navbar({ navItems }: { navItems?: any }) {
                           key={tab.name}
                           className="flex gap-4 rounded-xl bg-slate-50 p-2 text-lg font-medium text-slate-800 hover:bg-slate-100 hover:text-slate-900"
                           href={
-                            tab.isExternal ? tab.href : `/${tab.href}` ?? ""
+                            tab.isExternal ? tab.href : `/${tab.href}`
                           }
                           target={tab.isExternal ? "_blank" : "_self"}
                         >

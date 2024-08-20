@@ -76,7 +76,7 @@ export default async function Page({
               <Image
                 className="!m-0 object-cover"
                 fill
-                alt={"xd"}
+                alt={"Image cover"}
                 src={getImage(image.url)}
                 quality={100}
               />
@@ -102,7 +102,7 @@ export default async function Page({
             <Separator />
 
             {/* ARTICLE CONTENT */}
-            <div className="prose prose-blue w-full self-start px-12 py-2 text-xs lg:prose-xl sm:text-base">
+            <div className="prose prose-blue w-full self-start px-12 py-2 text-xs lg:prose-xl sm:text-base ">
               {article?.content ? (
                 renderMarkdown(article.content, markdownOptions)
               ) : (

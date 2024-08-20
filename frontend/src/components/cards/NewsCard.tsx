@@ -88,11 +88,11 @@ export default function NewsCard({
           {/* DESCRIPTION */}
           <div
             className={cn(
-              "h-20 truncate text-pretty",
-              !isFeatured ? "hidden md:block" : ""
+              "h-20 truncate text-pretty break-all ",
+              !isFeatured ? "hidden md:block " : " pr-8"
             )}
           >
-            <p className="text-sm">{description}</p>
+            <p className="text-sm min-w-0 block card-description ">{description}</p>
           </div>
         </div>
       </Link>
