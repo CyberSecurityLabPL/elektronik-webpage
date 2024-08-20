@@ -1,5 +1,5 @@
 "use client"
-import { ReactNode, useRef } from "react"
+import { HTMLAttributes, ReactNode, useRef } from "react"
 import {
   motion,
   useInView,
@@ -28,17 +28,22 @@ export function InView({
   variants = defaultVariants,
   transition,
   viewOptions,
-}: InViewProps) {
+  ...props
+}: InViewProps & HTMLAttributes<HTMLDivElement>) {
   const ref = useRef(null)
   const isInView = useInView(ref, viewOptions)
 
+  console.log(isInView)
+
   return (
     <motion.div
+      id={props.id}
       ref={ref}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={variants}
       transition={transition}
+      className={props.className}
     >
       {children}
     </motion.div>
