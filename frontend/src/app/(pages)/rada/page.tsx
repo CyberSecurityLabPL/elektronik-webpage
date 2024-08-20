@@ -1,9 +1,11 @@
 import Header from "@/components/Header"
 import PageEnterAnimation from "@/components/PageEnterAnimation"
 import ParentCard from "@/components/cards/ParentCard"
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { getParents } from "@/lib/api"
+import { cn } from "@/lib/utils"
 import { Metadata } from "next"
+import Link from "next/link"
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getParents()
@@ -26,9 +28,12 @@ export default async function Page() {
           Numer konta rady rodziców:&nbsp;
           <span className="font-bold">{data?.bankAccountNumber}</span>
         </div>
-        <Button variant={"outline"} className="my-4">
+        <Link
+          className={cn(buttonVariants({ variant: "outline" }), "my-4")}
+          href={"/dokumenty"}
+        >
           Zobacz regulamin
-        </Button>
+        </Link>
         <div className=" flex flex-wrap justify-center gap-4">
           {data?.parents.map((item: any) => (
             <ParentCard

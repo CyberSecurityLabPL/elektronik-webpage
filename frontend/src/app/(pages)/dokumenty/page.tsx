@@ -1,6 +1,7 @@
 import FileCard from "@/components/cards/FIleCard"
 import Header from "@/components/Header"
 import PageEnterAnimation from "@/components/PageEnterAnimation"
+import { REVALIDATE } from "@/config"
 import { getDocuments } from "@/lib/api"
 import { Metadata } from "next"
 import { ReactNode } from "react"
@@ -15,8 +16,12 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
+export const revalidate = REVALIDATE
+
 export default async function DocumentsPage() {
   const data = await getDocuments()
+
+  console.log(data)
 
   return (
     <main className="flex w-full flex-col items-center">

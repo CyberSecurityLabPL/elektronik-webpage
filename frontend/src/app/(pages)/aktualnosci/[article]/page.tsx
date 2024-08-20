@@ -1,4 +1,5 @@
 import markdownOptions from "@/components/markdown/MarkdownOptions"
+import PageEnterAnimation from "@/components/PageEnterAnimation"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { REVALIDATE } from "@/config"
@@ -60,49 +61,49 @@ export default async function Page({
 
   const author = article ? getAuthor(article) : "Nieznany autor"
 
+  if (!article) return <FailedToLoad />
+
   const image = article?.image
   const hasImage = image && Object.keys(image).length !== 0
 
   return (
-    <article className="flex w-full flex-col items-center self-center">
-      {!article ? (
-        <FailedToLoad />
-      ) : (
-        <div className="relative flex w-full flex-col items-center bg-background">
-          {/*  */}
+    <PageEnterAnimation>
+      <article className="relative mx-auto mt-8 flex w-full max-w-screen-2xl flex-col items-center overflow-hidden 2xl:rounded-3xl">
+        {hasImage ? (
+          <div className="relative aspect-[5/2] w-full sm:aspect-[3/1] ">
+            <Image
+              className="!m-0 object-cover"
+              fill
+              alt={"xd"}
+              src={getImage(image.url)}
+              quality={100}
+            />
+          </div>
+        ) : (
+          <div className="my-8"></div>
+        )}
+        <div className="relative flex w-full flex-col items-center gap-4 rounded bg-background py-8">
           {/* ARTICLE INFO */}
-          {hasImage ? (
-            <div className="relative aspect-[5/2] w-screen sm:aspect-[3/1] ">
-              <Image
-                className="!m-0 object-cover"
-                fill
-                alt={"xd"}
-                src={getImage(image.url)}
-                quality={100}
-              />
+          <h1 className="flex w-full justify-start px-12 text-left text-xl font-semibold !no-underline sm:text-3xl">
+            {article?.title}
+          </h1>
+          <div className="flex w-full flex-col items-start gap-2 px-12">
+            <div className="flex items-center justify-center gap-2 text-sm sm:text-base">
+              <CalendarPlus className="size-3 text-primary sm:size-4" />
+              <div>{formatDate(article?.updatedAt)}</div>
             </div>
-          ) : (
-            <div className="my-8"></div>
-          )}
-          <div className="flex w-full flex-col items-center gap-4 rounded bg-background py-8">
-            <h1 className="flex w-full justify-start px-12 text-left text-xl font-semibold !no-underline sm:text-3xl">
-              {article?.title}
-            </h1>
-            <div className="flex w-full flex-col items-start gap-2 px-12">
-              <div className="flex items-center justify-center gap-2 text-sm sm:text-base">
-                <CalendarPlus className="size-3 text-primary sm:size-4" />
-                <div>{formatDate(article?.updatedAt)}</div>
-              </div>
-              <div className="flex items-center justify-center gap-2 text-sm sm:text-base">
-                <User className="size-3 text-primary sm:size-4" />
-                <div>{author}</div>
-              </div>
+            <div className="flex items-center justify-center gap-2 text-sm sm:text-base">
+              <User className="size-3 text-primary sm:size-4" />
+              <div>{author}</div>
             </div>
+          </div>
 
-            <Separator />
+          <Separator />
 
-            {/* ARTICLE CONTENT */}
-            <div className="prose prose-blue w-full self-start px-12 py-2 text-xs lg:prose-xl sm:text-base">
+          {/* ARTICLE CONTENT */}
+          <div className="relative w-full px-12 py-2">
+            <div className="prose prose-sm prose-blue self-start overflow-x-auto text-xs sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl prose-p:!text-pretty sm:text-base">
+              asdasdasdasdasdasasdasdasdasdasdasasdasdasdasdasdasasdasdasdasdasdasasdasdasdasdasdasasdasdasdasdasdasasdasdasdasdasdasasdasdasdasdasdasasdasdasdasdasdas
               {article?.content ? (
                 renderMarkdown(article.content, markdownOptions)
               ) : (
@@ -111,8 +112,8 @@ export default async function Page({
             </div>
           </div>
         </div>
-      )}
-    </article>
+      </article>
+    </PageEnterAnimation>
   )
 }
 
