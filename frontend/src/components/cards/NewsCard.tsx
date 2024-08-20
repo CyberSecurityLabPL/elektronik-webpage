@@ -37,7 +37,7 @@ export default function NewsCard({
         href={link}
         passHref
         className={cn(
-          "relative flex w-full min-w-64 flex-col items-center gap-4 bg-background transition-colors hover:bg-slate-50 xs:rounded-3xl md:items-start md:gap-2",
+          "relative flex h-full w-full min-w-64 flex-col items-center gap-4 bg-background transition-colors hover:bg-slate-50 xs:rounded-3xl md:items-start md:gap-2",
           {
             " h-full w-full max-w-full flex-col shadow-lg shadow-slate-400/25 transition-shadow duration-300 hover:shadow-xl hover:shadow-slate-400/50 md:col-span-2 md:flex-row md:gap-12 lg:col-span-3":
               isFeatured,
