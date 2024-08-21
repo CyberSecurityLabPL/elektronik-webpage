@@ -89,7 +89,7 @@ export default function Faq({ data }: { data: any }) {
         </CardContent>
         <CardFooter className="flex flex-col items-center justify-center gap-2 pt-4">
           <h1 className="text-center font-semibold  ">
-            Jeśli masz do nas inne pytania napisz do nas!
+            Jeśli masz do nas inne pytania, napisz do nas!
           </h1>
           <div className="growAnim">
             <Button variant={data.linkButton.type} asChild>
