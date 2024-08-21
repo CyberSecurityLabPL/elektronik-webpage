@@ -29,6 +29,8 @@
     "clsx": "^2.1.0",
     "cmdk": "^1.0.0",
     "date-fns": "^3.6.0",
+    "embla-carousel-autoplay": "^8.2.0",
+    "embla-carousel-react": "^8.2.0",
     "framer-motion": "^11.3.9",
     "image-size": "^1.1.1",
     "lightgallery": "^2.7.2",
