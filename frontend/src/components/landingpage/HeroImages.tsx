@@ -1,14 +1,17 @@
+"use client"
 import {
   Carousel,
   CarouselContent,
-  CarouselNavigation,
+  // CarouselNavigation,
   CarouselItem,
-  CarouselIndicator,
+  CarouselIndicators,
 } from "@/components/motion/Carousel"
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { buttonVariants } from "../ui/button"
-
+import useEmblaCarousel from 'embla-carousel-react'
+import Autoplay from "embla-carousel-autoplay"
+import { useRef } from "react"
 const images = [
   "/assets/landing-page/1.jpg",
   "/assets/landing-page/2.jpg",
@@ -20,9 +23,20 @@ const images = [
 ]
 
 export function HeroImages() {
+  const plugin = useRef(
+    Autoplay({ delay: 2500 })
+  )
+  
   return (
-    <div className="relative mx-auto w-full max-w-screen-3xl px-4">
-      <Carousel>
+    <div className="relative mx-auto w-full max-w-screen-3xl px-4 z-50">
+      <Carousel 
+        opts={{
+          loop:true,
+          align: "center",
+          dragFree: true
+        }}
+        plugins={[plugin.current]}
+       >
         <CarouselContent className="-ml-4">
           {images.map((image, index) => (
             <CarouselItem
@@ -42,15 +56,9 @@ export function HeroImages() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselNavigation
-          className="absolute -bottom-24 left-auto top-auto w-full justify-center gap-2 "
-          classNameButton={cn(
-            buttonVariants({ variant: "outline", size: "icon" }),
-            "*:stroke-primary [&:hover_*]:stroke-white "
-          )}
-          alwaysShow
-        />
-        <CarouselIndicator className="-bottom-6" />
+        
+        <CarouselIndicators  /> 
+
       </Carousel>
     </div>
   )
