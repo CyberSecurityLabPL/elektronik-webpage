@@ -44,25 +44,7 @@ export default function Map({ data }: { data: any }) {
             </div>
           </div>
         </InView>
-        <InView
-          variants={{
-            hidden: {
-              opacity: 0,
-              y: 30,
-              scale: 0.95,
-              filter: "blur(4px)",
-            },
-            visible: {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              filter: "blur(0px)",
-            },
-          }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          viewOptions={{ margin: "0px 0px -350px 0px", once: true }}
-          className="flex w-full -translate-y-0.5 justify-center"
-        >
+        <div className="flex w-full -translate-y-0.5 justify-center">
           <Card className="mx-4 flex w-fit flex-col items-center gap-2 p-2 px-4 md:absolute md:bottom-[13%] md:translate-y-[15%] md:flex-row  md:justify-between lg:h-16 lg:gap-12">
             <div className="flex w-full items-center justify-start gap-2  border-b-2 py-2 md:border-none">
               <IconComponent icon={Phone} color="blue" IsCircle={true} />
@@ -92,7 +74,7 @@ export default function Map({ data }: { data: any }) {
               </div>
             </div>
           </Card>
-        </InView>
+        </div>
       </div>
       <div className="h-48 w-full rotate-180 bg-lines-transition bg-repeat-x"></div>
     </div>
