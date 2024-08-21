@@ -68,7 +68,7 @@ export default function MobileNavigation({ navItems }: { navItems: any }) {
               asChild
               className="w-full rounded-xl bg-white text-2xl  font-semibold text-foreground"
             >
-              <Link href={"/plan"} className="py-6">
+              <Link href={"/plan"} className="py-6" prefetch={false}>
                 Plan Lekcji
               </Link>
             </Button>

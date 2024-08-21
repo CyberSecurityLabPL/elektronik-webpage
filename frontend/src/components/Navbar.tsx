@@ -65,7 +65,7 @@ export default function Navbar({ navItems }: { navItems?: any }) {
         <div className="flex items-center justify-center px-8 ">
           <div className="items-bottom hidden h-full flex-col-reverse gap-2 xl:flex xl:flex-row xl:items-center">
             <Button variant={"secondary"} asChild>
-              <Link href={"/plan"}>Plan Lekcji</Link>
+              <Link href={"/plan"} prefetch={false}>Plan Lekcji</Link>
               {/* <Link href={data.timetable.link ?? 'https://zseis.vercel.app/plan?timetableId=o18'}>{data.timetable.title ?? "Plan Lekcji"}</Link> */}
             </Button>
             <Button asChild>
