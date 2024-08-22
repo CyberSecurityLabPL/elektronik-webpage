@@ -11,11 +11,12 @@ import { Navigation } from "./Navigation"
 import { Button } from "./ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 
-export default function Navbar({ navItems }: { navItems?: any }) {
+export default function Navbar({ navItems, additionalLinks }: { navItems?: any, additionalLinks: any }) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [isSmaller, setIsSmaller] = useState(false)
 
   const sentinelRef = useRef(null)
+  
 
   useEffect(() => {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
@@ -64,16 +65,13 @@ export default function Navbar({ navItems }: { navItems?: any }) {
         </div>
         <div className="flex items-center justify-center px-8 ">
           <div className="items-bottom hidden h-full flex-col-reverse gap-2 xl:flex xl:flex-row xl:items-center">
-            <Button variant={"secondary"} asChild>
-              <Link href={"/plan"} prefetch={false}>Plan Lekcji</Link>
-              {/* <Link href={data.timetable.link ?? 'https://zseis.vercel.app/plan?timetableId=o18'}>{data.timetable.title ?? "Plan Lekcji"}</Link> */}
-            </Button>
-            <Button asChild>
-              <Link href={"https://uonetplus.vulcan.net.pl/zielonagora"}>
-                E-dziennik
-              </Link>
-              {/* <Link href={data.gradebook.link ?? "https://uonetplus.vulcan.net.pl/zielonagora"}>{data.gradebook.title ?? "E-Dziennik"}</Link> */}
-            </Button>
+            {additionalLinks.map((el: any) => 
+              <Button variant={el.attributes.link.type} key={"lb"+el.id} asChild>
+                <Link href={el.attributes.link.isExternal ? el.attributes.link.link : `/${el.attributes.link.link}`}>
+                  {el.attributes.link.title}
+                </Link>
+              </Button>
+            )}
           </div>
           <div className="flex items-center justify-center xl:hidden">
             <MobileNavigation navItems={navItems} />
