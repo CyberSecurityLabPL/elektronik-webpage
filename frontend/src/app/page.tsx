@@ -7,7 +7,7 @@ import Hero from "@/components/landingpage/Hero"
 import Map from "@/components/landingpage/Map"
 import News from "@/components/landingpage/News"
 import Overview from "@/components/landingpage/Overview"
-import { getLandingPage, getNavigation } from "@/lib/api"
+import { getAdditionalLinks, getLandingPage, getNavigation } from "@/lib/api"
 import type { Metadata } from "next"
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -22,13 +22,14 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const data = await getLandingPage()
+  const additionalLinks = await getAdditionalLinks()
   const { link_groups: navItems } = await getNavigation()
 
   const Content = [Overview, Benefits, News, Map, Faq]
 
   return (
     <PageWrapper>
-      <Navbar navItems={navItems} />
+      <Navbar navItems={navItems} additionalLinks={additionalLinks} />
       <main className="flex w-full flex-col items-center justify-center overflow-x-hidden">
         <div className="flex w-full flex-col">
           {/* <Hero data={data?.blocks[0]} /> */}
