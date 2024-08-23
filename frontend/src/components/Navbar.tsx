@@ -11,12 +11,17 @@ import { Navigation } from "./Navigation"
 import { Button } from "./ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 
-export default function Navbar({ navItems, additionalLinks }: { navItems?: any, additionalLinks: any }) {
+export default function Navbar({
+  navItems,
+  additionalLinks,
+}: {
+  navItems?: any
+  additionalLinks?: any
+}) {
   const [isExpanded, setIsExpanded] = useState(false)
   const [isSmaller, setIsSmaller] = useState(false)
 
   const sentinelRef = useRef(null)
-  
 
   useEffect(() => {
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
@@ -65,13 +70,23 @@ export default function Navbar({ navItems, additionalLinks }: { navItems?: any, 
         </div>
         <div className="flex items-center justify-center px-8 ">
           <div className="items-bottom hidden h-full flex-col-reverse gap-2 xl:flex xl:flex-row xl:items-center">
-            {additionalLinks.map((el: any) => 
-              <Button variant={el.attributes.link.type} key={"lb"+el.id} asChild>
-                <Link href={el.attributes.link.isExternal ? el.attributes.link.link : `/${el.attributes.link.link}`}>
+            {additionalLinks.map((el: any) => (
+              <Button
+                variant={el.attributes.link.type}
+                key={"lb" + el.id}
+                asChild
+              >
+                <Link
+                  href={
+                    el.attributes.link.isExternal
+                      ? el.attributes.link.link
+                      : `/${el.attributes.link.link}`
+                  }
+                >
                   {el.attributes.link.title}
                 </Link>
               </Button>
-            )}
+            ))}
           </div>
           <div className="flex items-center justify-center xl:hidden">
             <MobileNavigation navItems={navItems} />
@@ -102,9 +117,7 @@ export default function Navbar({ navItems, additionalLinks }: { navItems?: any, 
                         <Link
                           key={tab.name}
                           className="flex gap-4 rounded-xl bg-slate-50 p-2 text-lg font-medium text-slate-800 hover:bg-slate-100 hover:text-slate-900"
-                          href={
-                            tab.isExternal ? tab.href : `/${tab.href}`
-                          }
+                          href={tab.isExternal ? tab.href : `/${tab.href}`}
                           target={tab.isExternal ? "_blank" : "_self"}
                         >
                           {tab.name}
