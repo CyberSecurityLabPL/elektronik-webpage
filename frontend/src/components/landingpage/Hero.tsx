@@ -6,7 +6,7 @@ import { Suspense } from "react"
 import { buttonVariants } from "../ui/button"
 import { HeroImages } from "./HeroImages"
 
-const Hero2 = ({ data }: { data: any }) => {
+const Hero = ({ data }: { data: any }) => {
   return (
     <div className="relative mb-20 flex w-full flex-col items-center px-4 py-20">
       {/* BUBBLES BACKGROUND */}
@@ -97,27 +97,4 @@ function Photo({ src, className }: { src: string; className?: string }) {
   )
 }
 
-export default Hero2
-
-// const heading = {
-//   initial: {
-//     y: -400,
-//   },
-//   animate: {
-//     y: 0,
-//     transition: {
-//       delayChildren: 0.4,
-//       staggerChildren: 0.04,
-//       staggerDirection: -1,
-//     },
-//   },
-// }
-// const letter = {
-//   initial: {
-//     y: -400,
-//   },
-//   animate: {
-//     y: 0,
-//     transition: { duration: 1, ease: [0.6, 0.01, -0.05, 0.9] },
-//   },
-// }
+export default Hero

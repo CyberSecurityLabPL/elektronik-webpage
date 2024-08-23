@@ -24,12 +24,6 @@ function Row({
   reverse?: boolean
   viewOptions?: UseInViewOptions
 }) {
-  const mergedViewOptions = {
-    margin: reverse ? "0px 0px -350px 0px" : "0px 0px 350px 0px",
-    once: true,
-    ...viewOptions,
-  }
-
   return (
     <InView
       variants={{
@@ -43,7 +37,6 @@ function Row({
         },
       }}
       transition={{ duration: 0.3, ease: "easeInOut", delay: 0.2 }}
-      viewOptions={mergedViewOptions}
       className={cn(
         "flex w-full flex-col items-center justify-center gap-12  md:flex-row-reverse lg:gap-16",
         reverse ? "flex-col-reverse" : ""

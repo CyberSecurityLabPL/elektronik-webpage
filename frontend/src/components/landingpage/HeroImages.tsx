@@ -9,7 +9,7 @@ import {
 import { cn } from "@/lib/utils"
 import Image from "next/image"
 import { buttonVariants } from "../ui/button"
-import useEmblaCarousel from 'embla-carousel-react'
+import useEmblaCarousel from "embla-carousel-react"
 import Autoplay from "embla-carousel-autoplay"
 import { useRef } from "react"
 const images = [
@@ -23,42 +23,39 @@ const images = [
 ]
 
 export function HeroImages() {
-  const plugin = useRef(
-    Autoplay({ delay: 2500 })
-  )
-  
+  const plugin = useRef(Autoplay({ delay: 2500 }))
+
   return (
-    <div className="relative mx-auto w-full max-w-screen-3xl px-4 z-50">
-      <Carousel 
+    <div className="relative z-50 mx-auto w-full max-w-screen-3xl px-4">
+      <Carousel
         opts={{
-          loop:true,
+          loop: true,
           align: "center",
-          dragFree: true
+          dragFree: true,
         }}
         plugins={[plugin.current]}
-       >
+      >
         <CarouselContent className="-ml-4">
           {images.map((image, index) => (
             <CarouselItem
               className="basis-full pl-4 sm:basis-2/3 md:basis-1/3 xl:basis-1/4"
               key={"landing-page-image-" + index}
             >
-              <div className="pointer-events-none flex aspect-square items-center justify-center  rounded-3xl border border-zinc-200 bg-slate-300 object-cover p-4 shadow-lg shadow-slate-200">
+              <div className="flex aspect-square items-center justify-center  rounded-3xl border border-zinc-200 bg-slate-300 object-cover p-4 shadow-lg shadow-slate-200">
                 <Image
                   src={image}
                   alt="Zdjęcie szkoły"
                   layout="responsive"
                   width={500}
                   height={500}
-                  className="aspect-square rounded-2xl"
+                  className="aspect-square select-none rounded-2xl"
                 />
               </div>
             </CarouselItem>
           ))}
         </CarouselContent>
-        
-        <CarouselIndicators  /> 
 
+        <CarouselIndicators />
       </Carousel>
     </div>
   )

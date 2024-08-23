@@ -69,7 +69,7 @@ export default function NewsCard({
         >
           {/* DATE */}
           <span className="prose-sm self-start text-xs font-semibold text-zinc-400 md:text-sm">
-            {format(new Date(date), "dd MMM yyyy ", {
+            {format(new Date(date), "dd MMM yyyy", {
               locale: pl,
             })}
           </span>
@@ -92,7 +92,9 @@ export default function NewsCard({
               !isFeatured ? "hidden md:block " : " pr-8"
             )}
           >
-            <p className="text-sm min-w-0 block card-description ">{description}</p>
+            <p className="card-description block min-w-0 text-sm ">
+              {description}
+            </p>
           </div>
         </div>
       </Link>
