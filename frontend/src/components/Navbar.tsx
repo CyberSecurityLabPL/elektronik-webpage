@@ -8,7 +8,7 @@ import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
 import MobileNavigation from "./MobileNavigation"
 import { Navigation } from "./Navigation"
-import { Button } from "./ui/button"
+import { Button, buttonVariants } from "./ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 
 export default function Navbar({
@@ -70,7 +70,7 @@ export default function Navbar({
         </div>
         <div className="flex items-center justify-center px-8 ">
           <div className="items-bottom hidden h-full flex-col-reverse gap-2 xl:flex xl:flex-row xl:items-center">
-            {additionalLinks.map((el: any) => (
+            {/* {additionalLinks?.map((el: any) => (
               <Button
                 variant={el.attributes.link.type}
                 key={"lb" + el.id}
@@ -86,7 +86,24 @@ export default function Navbar({
                   {el.attributes.link.title}
                 </Link>
               </Button>
-            ))}
+            ))} */}
+
+            <Link
+              href={additionalLinks?.timetable.link}
+              className={buttonVariants({
+                variant: additionalLinks?.timetable.type,
+              })}
+            >
+              {additionalLinks?.timetable.title}
+            </Link>
+            <Link
+              href={additionalLinks?.gradebook.link}
+              className={buttonVariants({
+                variant: additionalLinks?.gradebook.type,
+              })}
+            >
+              {additionalLinks?.gradebook.title}
+            </Link>
           </div>
           <div className="flex items-center justify-center xl:hidden">
             <MobileNavigation navItems={navItems} />

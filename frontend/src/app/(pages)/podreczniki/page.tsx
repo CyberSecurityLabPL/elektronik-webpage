@@ -28,28 +28,32 @@ export default async function Page() {
         }
       />
       <PageEnterAnimation className="flex flex-col items-center">
-        {data?.book_groups.map((group: any) => (
-          <div
-            className="my-2 flex w-full flex-col items-center justify-center"
-            key={group.title}
-          >
-            <div className="flex w-full text-center justify-center p-2 text-xl font-semibold sm:justify-start lg:text-3xl">
-              {group.title}
+        {data?.book_groups ? (
+          data?.book_groups.map((group: any) => (
+            <div
+              className="my-2 flex w-full flex-col items-center justify-center"
+              key={group.title}
+            >
+              <div className="flex w-full justify-center p-2 text-center text-xl font-semibold sm:justify-start lg:text-3xl">
+                {group.title}
+              </div>
+              <div className="grid gap-4 xl:grid-cols-2">
+                {group.books?.map((book: any) => (
+                  <BookCard
+                    key={book.title}
+                    src={getImage(book.image.url)}
+                    subject={book.subject}
+                    title={book.title}
+                    dist={book.distributor}
+                    url={book.url ?? "#"}
+                  />
+                )) ?? <div>Nie znaleziono żadnych podręczników</div>}
+              </div>
             </div>
-            <div className="grid gap-4 xl:grid-cols-2">
-              {group.books?.map((book: any) => (
-                <BookCard
-                  key={book.title}
-                  src={getImage(book.image.url)}
-                  subject={book.subject}
-                  title={book.title}
-                  dist={book.distributor}
-                  url={book.url ?? "#"}
-                />
-              )) ?? "Brak książek!"}
-            </div>
-          </div>
-        )) ?? "Brak danych"}
+          ))
+        ) : (
+          <div>Nie znaleziono żadnych podręczników</div>
+        )}
       </PageEnterAnimation>
     </main>
   )
