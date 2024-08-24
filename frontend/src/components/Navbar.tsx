@@ -93,6 +93,7 @@ export default function Navbar({
               className={buttonVariants({
                 variant: additionalLinks?.timetable.type,
               })}
+              prefetch={false}
             >
               {additionalLinks?.timetable.title}
             </Link>
