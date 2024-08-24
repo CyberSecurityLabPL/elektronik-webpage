@@ -2,14 +2,10 @@
 import {
   Carousel,
   CarouselContent,
-  // CarouselNavigation,
   CarouselItem,
   CarouselIndicators,
 } from "@/components/motion/Carousel"
-import { cn } from "@/lib/utils"
 import Image from "next/image"
-import { buttonVariants } from "../ui/button"
-import useEmblaCarousel from "embla-carousel-react"
 import Autoplay from "embla-carousel-autoplay"
 import { useRef } from "react"
 const images = [
@@ -26,7 +22,7 @@ export function HeroImages() {
   const plugin = useRef(Autoplay({ delay: 2500 }))
 
   return (
-    <div className="relative z-50 mx-auto w-full max-w-screen-3xl px-4">
+    <div className="relative z-50  h-96 w-full">
       <Carousel
         opts={{
           loop: true,
@@ -38,17 +34,16 @@ export function HeroImages() {
         <CarouselContent className="-ml-4">
           {images.map((image, index) => (
             <CarouselItem
-              className="basis-full pl-4 sm:basis-2/3 md:basis-1/3 xl:basis-1/4"
+              className="  basis-full pl-4 sm:basis-2/3 md:basis-1/3 xl:basis-1/4 2xl:basis-1/5"
               key={"landing-page-image-" + index}
             >
-              <div className="flex aspect-square items-center justify-center  rounded-3xl border border-zinc-200 bg-slate-300 object-cover p-4 shadow-lg shadow-slate-200">
+              <div className="flex aspect-square items-center justify-center  rounded-3xl border border-zinc-200 bg-slate-300  p-4 shadow-lg shadow-slate-200">
                 <Image
                   src={image}
                   alt="Zdjęcie szkoły"
-                  layout="responsive"
                   width={500}
                   height={500}
-                  className="aspect-square select-none rounded-2xl"
+                  className="aspect-square select-none rounded-2xl object-cover"
                 />
               </div>
             </CarouselItem>

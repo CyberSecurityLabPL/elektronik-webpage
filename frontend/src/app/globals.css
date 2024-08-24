@@ -150,3 +150,31 @@ div[cmdk-list]::-webkit-scrollbar-thumb {
     @apply bg-background text-foreground;
   }
 }
+
+@keyframes leftTransition {
+  from {
+    fill: transparent;
+  }
+  to {
+    fill: #354375;
+  }
+}
+
+.fill-left {
+  animation: leftTransition 2s ease forwards;
+  animation-delay: 3s; /* Smooth fill transition */
+}
+
+@keyframes rightTransition {
+  from {
+    fill: transparent;
+  }
+  to {
+    fill: #354dfc;
+  }
+}
+
+.fill-right {
+  animation: rightTransition 2s ease forwards;
+  animation-delay: 3s; /* Smooth fill transition */
+}
