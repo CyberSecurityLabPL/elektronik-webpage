@@ -28,6 +28,8 @@ const page = async ({
       `${process.env.TIMETABLE_API_URL!}/info`
     )
 
+    console.log("api:", timetableInfoRes)
+
     const timetableInfoData = await timetableInfoRes.json()
 
     const isIdValid = timetableInfoData.some(
