@@ -31,10 +31,10 @@ export function HeroImages() {
         }}
         plugins={[plugin.current]}
       >
-        <CarouselContent className="-ml-4">
+        <CarouselContent className="-ml-4 ">
           {images.map((image, index) => (
             <CarouselItem
-              className="  basis-full pl-4 sm:basis-2/3 md:basis-1/3 xl:basis-1/4 2xl:basis-1/5"
+              className="basis-full  pb-4  pl-4 sm:basis-2/3 md:basis-1/3 xl:basis-1/4 2xl:basis-1/5"
               key={"landing-page-image-" + index}
             >
               <div className="flex aspect-square items-center justify-center  rounded-3xl border border-zinc-200 bg-slate-300  p-4 shadow-lg shadow-slate-200">

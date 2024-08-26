@@ -51,15 +51,27 @@ const Hero = ({ data }: { data: any }) => {
         </div>
         {/* ARROWS */}
         <m.div
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
+          initial={{ pathLength: 0, rotate: 10 }}
+          animate={{ pathLength: 1, rotate: 20 }}
+          transition={{
+            delay: 2.5,
+            repeat: Infinity,
+            repeatType: "reverse",
+            duration: 2.5,
+          }}
           className="absolute -left-[250px] top-0 hidden md:block"
         >
           <LeftArrow />
         </m.div>
         <m.div
-          initial={{ pathLength: 0 }}
-          animate={{ pathLength: 1 }}
+          initial={{ pathLength: 0, rotate: 0 }}
+          animate={{ pathLength: 1, rotate: -10 }}
+          transition={{
+            delay: 2.5,
+            repeat: Infinity,
+            repeatType: "reverse",
+            duration: 3,
+          }}
           className="-inset-1rotate-12 absolute -right-[200px] top-[20px] hidden md:block"
         >
           <RightArrow />
@@ -80,23 +92,6 @@ const Hero = ({ data }: { data: any }) => {
   )
 }
 
-function Photo({ src, className }: { src: string; className?: string }) {
-  return (
-    <div
-      className={cn(
-        "relative h-[200px] rounded-3xl border-4 border-primary bg-primary/10 p-2 xs:h-[400px]",
-        className
-      )}
-    >
-      <div
-        className={
-          "h-full w-full rounded-2xl bg-cover bg-center bg-no-repeat  outline-[20px] outline-primary  "
-        }
-        style={{ backgroundImage: `url('${src}')` }}
-      />
-    </div>
-  )
-}
 function LeftArrow() {
   return (
     <svg
