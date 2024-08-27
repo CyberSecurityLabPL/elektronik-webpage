@@ -28,7 +28,7 @@ const page = async ({
       `${process.env.TIMETABLE_API_URL!}/info`
     )
 
-    console.log("api:", timetableInfoRes)
+    // console.log("api:", timetableInfoRes)
 
     const timetableInfoData = await timetableInfoRes.json()
 
@@ -44,8 +44,13 @@ const page = async ({
 
     const targetData = await targetRes.json()
 
-    const name = targetData.name
-
+    
+    let name = targetData.name
+    const group = name.slice(0, 3); 
+    const regexPattern = /^\d[A-Z][a-z]$/;
+    if (regexPattern.test(group)) {
+      name = name.split(" ").map((word: string, index: number) => index === 1 ? word.slice(1) : word).join(" ");
+    }
     return (
       <div className="flex h-full flex-col">
         <Headbar name={name} />

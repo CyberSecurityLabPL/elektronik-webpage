@@ -67,6 +67,21 @@ function Select({
   data: { heading: string; items: { id: string; name: string }[] }[]
   name: string
 }) {
+  const modifiedItems = data[0].items.map((item) => {
+    let nameParts = item.name.split(" ")
+    if (nameParts[1]) {
+      nameParts[1] = nameParts[1].slice(1)
+    }
+    return {
+      ...item,
+      name: nameParts.join(" "),
+    }
+  })
+  const newData = [
+    { heading: "Oddziały", items: modifiedItems },
+    ...data.slice(1),
+  ]
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -84,7 +99,7 @@ function Select({
         <Command>
           <CommandInput placeholder={name} />
           <div className=" grid w-full grid-cols-1 p-4 md:grid-cols-3">
-            {data.map((group) => (
+            {newData.map((group) => (
               <CommandList
                 key={group.heading}
                 className=" hidden overflow-y-auto md:block"
@@ -92,6 +107,7 @@ function Select({
                 <CommandEmpty>Nic nie znaleziono.</CommandEmpty>
                 <CommandGroup heading={group.heading} className="scroll-m-4">
                   {group.items.map((info) => (
+                    // console.log(info.name),
                     <Link key={info.name} href={`?id=${info.id}`} passHref>
                       <CommandItem
                         value={info.name}
