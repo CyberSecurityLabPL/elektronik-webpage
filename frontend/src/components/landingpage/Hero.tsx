@@ -7,6 +7,7 @@ import { Suspense } from "react"
 import { buttonVariants } from "../ui/button"
 import { HeroImages } from "./HeroImages"
 import { motion as m } from "framer-motion"
+import { TextEffect } from "../motion/TextEffect"
 const Hero = ({ data }: { data: any }) => {
   return (
     <div className="relative mb-20 flex w-full flex-col items-center  py-20">
@@ -20,9 +21,15 @@ const Hero = ({ data }: { data: any }) => {
       />
 
       <div className="relative flex w-full max-w-xl flex-col items-center gap-8 px-2 2xl:max-w-2xl">
-        <h1 className="text-center text-4xl font-bold text-primary xs:text-5xl xl:text-6xl">
+        <TextEffect
+          per="word"
+          preset="slide"
+          as="h1"
+          className="text-center text-4xl font-bold text-primary xs:text-5xl xl:text-6xl"
+        >
           {data?.heading ?? "Witaj w Elektroniku"}
-        </h1>
+        </TextEffect>
+
         <p className="text-center text-base text-primary-foreground xs:text-lg xl:text-xl ">
           {data?.text ?? "Zapraszamy do zapoznania się z naszą ofertą."}
         </p>

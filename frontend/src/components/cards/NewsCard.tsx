@@ -31,7 +31,10 @@ export default function NewsCard({
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.95 }}
       transition={{ duration: 0.3 }}
-      className="h-full w-full max-w-2xl overflow-hidden rounded-3xl border"
+      className={cn(
+        "h-full w-full  overflow-hidden rounded-3xl border",
+        isFeatured ? "" : "max-w-2xl"
+      )}
     >
       <Link
         href={link}
