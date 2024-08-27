@@ -15,7 +15,7 @@ import { CalendarPlus, User, PencilLine, LucideIcon } from "lucide-react"
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-
+import { openGraphImage } from "@/lib/shared-metadata"
 export const revalidate = REVALIDATE
 
 type Props = {
@@ -36,33 +36,40 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: res?.data?.title,
     description: res?.data?.content.slice(0, 300),
     keywords: ["artykuł", "news", "ckziu", "post", "elektronik"],
+    openGraph: {
+      ...openGraphImage,
+      images: [
+        {
+          url: `${process.env.NEXT_DOMAIN}/default/thumbnail.svg`,
+          width: 640,
+          height: 360,
+        },
+      ],
+    },
   }
-
-  console.log(res.data.seo)
 
   if (res?.data?.seo)
     return {
       title: res.data.seo.metaTitle,
       description: res.data.seo.metaDescription,
       keywords: res.data.seo.keywords,
+      openGraph: {
+        ...openGraphImage,
+        images: [
+          {
+            url: getImage(
+              res?.data?.seo?.metaImage?.formats?.thumbnail?.url,
+              `${process.env.NEXT_DOMAIN}/default/thumbnail.svg`
+            ),
+            width: 640,
+            height: 360,
+          },
+        ],
+      },
     }
 
   return defaultMetadata
 }
-
-// Return a list of `params` to populate the [slug] dynamic segment
-// export async function generateStaticParams() {
-//   const articles = await getArticles({
-//     flatteners: ["id"],
-//     getAll: true,
-//   })
-
-//   const params = articles.data.map((article: any) => ({
-//     article: article.id + "",
-//   }))
-
-//   return params
-// }
 
 export default async function Page({
   params,
