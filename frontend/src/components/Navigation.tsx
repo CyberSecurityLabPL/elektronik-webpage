@@ -100,7 +100,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                 <NavigationMenuLink
                   className={cn(
                     navigationMenuTriggerStyle(),
-                    "rounded-xl text-lg group-[[data-smaller=true]]:bg-transparent group-[[data-smaller=true]]:text-base"
+                    "rounded-xl text-lg group-[[data-smaller=true]]:bg-transparent group-[[data-smaller=true]]:text-base group-[[data-smaller=true]]:hover:bg-accent/50"
                   )}
                 >
                   Kontakt
@@ -112,7 +112,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                 <PopoverTrigger asChild>
                   <Button
                     variant={"ghost"}
-                    className="text-lg"
+                    className="text-lg hover:bg-accent/50"
                     onClick={() => handlePopoverOpenChange(!isOpen)}
                   >
                     Więcej
