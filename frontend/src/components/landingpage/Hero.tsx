@@ -92,7 +92,7 @@ const Hero = ({ data }: { data: any }) => {
             </div>
           }
         >
-          <HeroImages />
+          <HeroImages images={data.images} />
         </Suspense>
       </div>
     </div>

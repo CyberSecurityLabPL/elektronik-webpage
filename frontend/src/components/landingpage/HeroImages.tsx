@@ -8,17 +8,14 @@ import {
 import Image from "next/image"
 import Autoplay from "embla-carousel-autoplay"
 import { useRef } from "react"
-const images = [
-  "/assets/landing-page/1.jpg",
-  "/assets/landing-page/2.jpg",
-  "/assets/landing-page/3.jpg",
-  "/assets/landing-page/4.jpg",
-  "/assets/landing-page/5.jpg",
-  "/assets/landing-page/6.jpg",
-  "/assets/landing-page/7.jpg",
-]
+import { getImage } from "@/lib/utils"
 
-export function HeroImages() {
+type imagesProp = {
+  name: string
+  alternativeText: string | null
+  url: string
+}
+export function HeroImages({ images }: { images: imagesProp[] }) {
   const plugin = useRef(Autoplay({ delay: 2500 }))
 
   return (
@@ -39,7 +36,7 @@ export function HeroImages() {
             >
               <div className="flex aspect-square items-center justify-center  rounded-3xl border border-zinc-200 bg-slate-300  p-4 shadow-lg shadow-slate-200">
                 <Image
-                  src={image}
+                  src={getImage(image.url)}
                   alt="Zdjęcie szkoły"
                   width={500}
                   height={500}

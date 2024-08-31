@@ -44,18 +44,32 @@ const page = async ({
 
     const targetData = await targetRes.json()
 
-    
     let name = targetData.name
-    const group = name.slice(0, 3); 
-    const regexPattern = /^\d[A-Z][a-z]$/;
+    const group = name.slice(0, 3)
+    const regexPattern = /^\d[A-Z][a-z]$/
     if (regexPattern.test(group)) {
-      name = name.split(" ").map((word: string, index: number) => index === 1 ? word.slice(1) : word).join(" ");
+      name = name
+        .split(" ")
+        .map((word: string, index: number) =>
+          index === 1 ? word.slice(1) : word
+        )
+        .join(" ")
     }
+    const timetableValidDateRes = await fetch(
+      `${process.env.TIMETABLE_API_URL!}/dates`
+    )
+    const timetableValidDate = await timetableValidDateRes.json()
     return (
       <div className="flex h-full flex-col">
         <Headbar name={name} />
         <div className="relative grid flex-grow place-items-center">
           <Timetable data={targetData} />
+          <div className="absolute bottom-0 left-0 p-1 text-xs md:text-base">
+            Plan obowiązuje od:{" "}
+            <span className="font-medium text-primary">
+              {timetableValidDate.date}
+            </span>
+          </div>
           <div className="absolute bottom-0 right-0 p-1 text-xs md:text-base">
             Wolisz stary wygląd planu?{" "}
             <Link
