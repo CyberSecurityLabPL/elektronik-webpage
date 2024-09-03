@@ -42,19 +42,30 @@ export default function MobileNavigation({ navItems }: { navItems: any }) {
             >
               {group.name.toLowerCase() == "o szkole" ? (
                 <>
-                  <LinkItem key={"item-1"} name="Galeria" href="/galeria" />
+                  <LinkItem
+                    key={"item-1"}
+                    name="Galeria"
+                    href="/galeria"
+                    isFeatured={false}
+                  />
                 </>
               ) : null}
               {group.name.toLowerCase() == "o szkole" ? (
                 <>
-                  <LinkItem key={"item-1"} name="Kontakt" href="/kontakt" />
+                  <LinkItem
+                    key={"item-1"}
+                    name="Kontakt"
+                    href="/kontakt"
+                    isFeatured={false}
+                  />
                 </>
               ) : null}
               {group.links?.map((item: any) => (
                 <LinkItem
                   key={item.name + "asdas"}
                   name={item.name}
-                  href={item.isExternal ? item.href : `/${item.href}` ?? ""}
+                  href={item.isExternal ? item.href : `/${item.href}`}
+                  isFeatured={item.isFeatured}
                 />
               ))}
             </LinkPanel>
@@ -128,14 +139,29 @@ function LinkPanel({
 }
 
 //components for main panel
-function LinkItem({ name, href }: { name: string; href: string }) {
+function LinkItem({
+  name,
+  href,
+  isFeatured,
+}: {
+  name: string
+  href: string
+  isFeatured: boolean
+}) {
   return (
     <DrawerClose asChild>
       <Link
-        className="rounded-3xl bg-accent/50 px-4 py-2 text-left text-lg font-medium text-slate-600 active:bg-slate-100 md:text-center"
+        className=" flex items-center justify-between gap-2 rounded-3xl bg-accent/50 px-4 py-2 text-left text-lg font-medium text-slate-600 active:bg-slate-100 md:text-center"
         href={href}
       >
         {name}
+        {isFeatured ? (
+          <div className="rounded-3xl border border-primary/90 bg-primary/80 px-2 text-[10px] text-white">
+            Nowe
+          </div>
+        ) : (
+          ""
+        )}
       </Link>
     </DrawerClose>
   )

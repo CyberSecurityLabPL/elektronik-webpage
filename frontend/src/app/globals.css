@@ -20,12 +20,11 @@ body {
 .lg-outer .lg-thumb-item:hover {
   border-color: rgb(49, 49, 241) !important;
 }
+/* url("../../public/assets/heroMask.svg"); */
 
-.hero {
-  mask-image: url("../../public/assets/heroMask.svg");
-  mask-size: cover;
+.shadow-mask {
+  filter: drop-shadow(0 25px 25px rgba(0, 0, 0, 0.25));
 }
-
 .growAnim {
   transition: transform 0.2s;
 }
@@ -177,4 +176,14 @@ div[cmdk-list]::-webkit-scrollbar-thumb {
 .fill-right {
   animation: rightTransition 2s ease forwards;
   animation-delay: 3s; /* Smooth fill transition */
+}
+@media (min-width: 768px) {
+  .mask {
+    mask-image: url("../../public/assets/heroMask.svg");
+    mask-size: cover;
+  }
+  .mask2 {
+    mask-image: url("../../public/assets/heroMask2.svg");
+    mask-size: cover;
+  }
 }

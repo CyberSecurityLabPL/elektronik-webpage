@@ -19,7 +19,7 @@ export function HeroImages({ images }: { images: imagesProp[] }) {
   const plugin = useRef(Autoplay({ delay: 2500 }))
 
   return (
-    <div className="relative z-50  h-96 w-full">
+    <div className="relative z-50 h-96 max-h-96 w-full p-4 sm:p-0">
       <Carousel
         opts={{
           loop: true,
@@ -31,16 +31,16 @@ export function HeroImages({ images }: { images: imagesProp[] }) {
         <CarouselContent className="-ml-4 ">
           {images.map((image, index) => (
             <CarouselItem
-              className="basis-full  pb-4  pl-4 sm:basis-2/3 md:basis-1/3 xl:basis-1/4 2xl:basis-1/5"
+              className=" basis-full pb-4  pl-4  sm:basis-2/3 md:basis-1/3  xl:basis-1/4 2xl:basis-1/5"
               key={"landing-page-image-" + index}
             >
-              <div className="flex aspect-square items-center justify-center  rounded-3xl border border-zinc-200 bg-slate-300  p-4 shadow-lg shadow-slate-200">
+              <div className=" flex aspect-square  items-center justify-center  rounded-3xl border border-zinc-200 bg-slate-300  p-4 shadow-lg shadow-slate-200">
                 <Image
                   src={getImage(image.url)}
                   alt="Zdjęcie szkoły"
                   width={500}
                   height={500}
-                  className="aspect-square select-none rounded-2xl object-cover"
+                  className="aspect-square   select-none rounded-2xl object-cover"
                 />
               </div>
             </CarouselItem>

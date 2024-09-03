@@ -64,13 +64,13 @@ const page = async ({
         <Headbar name={name} />
         <div className="relative grid flex-grow place-items-center">
           <Timetable data={targetData} />
-          <div className="absolute bottom-0 left-0 p-1 text-xs md:text-base">
+          <div className="absolute bottom-0 left-0 w-1/3 p-1 text-xs sm:w-auto md:text-base">
             Plan obowiązuje od:{" "}
             <span className="font-medium text-primary">
               {timetableValidDate.date}
             </span>
           </div>
-          <div className="absolute bottom-0 right-0 p-1 text-xs md:text-base">
+          <div className="absolute bottom-0 right-0 w-1/3 p-1 text-right text-xs sm:w-auto sm:text-center md:text-base">
             Wolisz stary wygląd planu?{" "}
             <Link
               href={
