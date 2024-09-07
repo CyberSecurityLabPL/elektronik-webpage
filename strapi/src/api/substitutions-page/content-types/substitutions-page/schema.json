@@ -4,7 +4,8 @@
   "info": {
     "singularName": "substitutions-page",
     "pluralName": "substitutions-pages",
-    "displayName": "Substitutions Page"
+    "displayName": "Substitutions Page",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -13,15 +14,6 @@
   "attributes": {
     "heading": {
       "type": "string"
-    },
-    "description": {
-      "type": "text"
-    },
-    "date": {
-      "type": "date"
-    },
-    "content": {
-      "type": "richtext"
     },
     "seo": {
       "type": "component",

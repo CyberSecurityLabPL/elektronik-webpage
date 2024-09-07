@@ -14,6 +14,13 @@ const populate = {
     },
     updatedBy: {
       populate: true
+    },
+    seo: {
+        populate: {
+            metaImage: {
+                populate: true
+            }
+        }
     }
   }
 }

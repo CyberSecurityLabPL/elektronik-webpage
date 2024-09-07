@@ -9,7 +9,11 @@ const populate = {
     teacher_groups: {
 	    populate: {
 	    	teachers: {
-			populate: true
+			    populate:{
+                    image: {
+                        populate: true
+                    }
+                }    
 		},
 		image: {
 			populate: true

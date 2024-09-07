@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "additional_links",
+  "info": {
+    "singularName": "additional-link",
+    "pluralName": "additional-links",
+    "displayName": "additional-link"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "link": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.button-link"
+    }
+  }
+}

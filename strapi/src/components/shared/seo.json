@@ -2,7 +2,8 @@
   "collectionName": "components_shared_seos",
   "info": {
     "displayName": "seo",
-    "icon": "search"
+    "icon": "search",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -15,7 +16,7 @@
       "type": "string",
       "required": true,
       "maxLength": 160,
-      "minLength": 50
+      "minLength": 30
     },
     "metaImage": {
       "type": "media",

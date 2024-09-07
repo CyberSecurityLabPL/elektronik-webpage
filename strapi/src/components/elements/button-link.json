@@ -22,7 +22,8 @@
         "default",
         "secondary",
         "outline"
-      ]
+      ],
+      "default": "default"
     }
   }
 }

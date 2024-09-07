@@ -30,6 +30,10 @@
     "isExternal": {
       "type": "boolean",
       "default": false
+    },
+    "isFeatured": {
+      "type": "boolean",
+      "default": false
     }
   }
 }
