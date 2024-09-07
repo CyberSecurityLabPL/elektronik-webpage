@@ -1,13 +1,26 @@
-FROM node:18
+# Use a more specific base image
+FROM node:18-alpine
+
+# Set NODE_ENV
 ARG NODE_ENV=development
 ENV NODE_ENV=${NODE_ENV}
-WORKDIR /opt/
-COPY ./package.json ./
-ENV PATH /opt/node_modules/.bin:$PATH
-RUN corepack enable
-# COPY ./yarn.lock ./
+
+# Set working directory
 WORKDIR /opt/app
-COPY ./ .
-RUN yarn install --network-timeout 100000
+
+# Copy package.json and package-lock.json (if available)
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci --only=production
+
+# Copy app source
+COPY . .
+
+RUN ln -s opt/app/node_modules/@ckeditor /opt/app/src/plugins 
+
+# Expose the port your app runs on
 EXPOSE ${PORT}
+
+# Start the app
 CMD ["npm", "run", "develop"]
