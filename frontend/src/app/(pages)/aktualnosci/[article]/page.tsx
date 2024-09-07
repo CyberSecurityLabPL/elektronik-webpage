@@ -16,6 +16,8 @@ import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
 import { openGraphImage } from "@/lib/shared-metadata"
+// import thumbnail from "/default/thumbnail.svg"
+
 export const revalidate = REVALIDATE
 
 type Props = {
@@ -33,6 +35,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!res) return notFoundMetadata
 
   const defaultMetadata: Metadata = {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL!),
     title: res?.data?.title,
     description: res?.data?.content.slice(0, 300),
     keywords: ["artykuł", "news", "ckziu", "post", "elektronik"],
@@ -40,7 +43,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       ...openGraphImage,
       images: [
         {
-          url: `${process.env.NEXT_DOMAIN}/default/thumbnail.svg`,
+          url: `/default/thumbnail.svg`,
           width: 640,
           height: 360,
         },
@@ -57,10 +60,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         ...openGraphImage,
         images: [
           {
-            url: getImage(
-              res?.data?.seo?.metaImage?.formats?.thumbnail?.url,
-              `${process.env.NEXT_DOMAIN}/default/thumbnail.svg`
-            ),
+            url:
+              res?.data?.seo?.metaImage?.formats?.thumbnail?.url ??
+              `${process.env.NEXT_PUBLIC_BASE_URL!}/default/thumbnail.svg`,
             width: 640,
             height: 360,
           },
