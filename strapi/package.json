@@ -9,9 +9,7 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-  "workspaces": [
-    "./src/plugins/strapi-plugin-ckeditor"
-  ],
+
   "dependencies": {
     "@ckeditor/strapi-plugin-ckeditor": "^0.0.11",
     "@strapi/plugin-seo": "^1.9.8",

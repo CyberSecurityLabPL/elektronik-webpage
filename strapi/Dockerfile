@@ -12,12 +12,14 @@ WORKDIR /opt/app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm ci --only=production
+RUN npm ci
 
 # Copy app source
 COPY . .
 
-RUN ln -s opt/app/node_modules/@ckeditor /opt/app/src/plugins 
+# Create symlink for CKEditor
+# RUN mkdir -p /opt/app/src/plugins/strapi-plugin-ckeditor && \
+#     ln -s /opt/app/node_modules/@ckeditor/strapi-plugin-ckeditor /opt/app/src/plugins/strapi-plugin-ckeditor
 
 # Expose the port your app runs on
 EXPOSE ${PORT}
