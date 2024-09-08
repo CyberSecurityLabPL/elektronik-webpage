@@ -28,9 +28,9 @@ const page = async ({
       `${process.env.TIMETABLE_API_URL!}/info`
     )
 
-    // console.log("api:", timetableInfoRes)
-
+    
     const timetableInfoData = await timetableInfoRes.json()
+    // console.log("api:", timetableInfoData)
 
     const isIdValid = timetableInfoData.some(
       (item: { id: string }) => item.id === idToPass
@@ -56,7 +56,7 @@ const page = async ({
         .join(" ")
     }
     const timetableValidDateRes = await fetch(
-      `${process.env.TIMETABLE_API_URL!}/dates`
+      `${process.env.TIMETABLE_API_URL!}/validDate`
     )
     const timetableValidDate = await timetableValidDateRes.json()
     return (
@@ -87,6 +87,8 @@ const page = async ({
       </div>
     )
   } catch (error) {
+    console.log(error);
+    
     return (
       <div className="grid h-screen w-screen place-items-center">
         <div className="flex flex-col gap-4">
