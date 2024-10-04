@@ -19,7 +19,13 @@ import Link from "next/link"
 import { ReactNode } from "react"
 import { Button } from "./ui/button"
 
-export default function MobileNavigation({ navItems }: { navItems: any }) {
+export default function MobileNavigation({
+  navItems,
+  additionalLinks,
+}: {
+  navItems: any
+  additionalLinks: any
+}) {
   return (
     <Drawer>
       <DrawerTrigger asChild>
@@ -79,7 +85,11 @@ export default function MobileNavigation({ navItems }: { navItems: any }) {
               asChild
               className="w-full rounded-xl bg-white text-2xl  font-semibold text-foreground"
             >
-              <Link href={"/plan"} className="py-6" prefetch={false}>
+              <Link
+                href={additionalLinks?.timetable.link}
+                className="py-6"
+                prefetch={false}
+              >
                 Plan Lekcji
               </Link>
             </Button>
@@ -89,10 +99,7 @@ export default function MobileNavigation({ navItems }: { navItems: any }) {
               asChild
               className="w-full rounded-xl text-2xl font-semibold"
             >
-              <Link
-                href={"https://uonetplus.vulcan.net.pl/zielonagora"}
-                className="py-6"
-              >
+              <Link href={additionalLinks?.gradebook.link} className="py-6">
                 E-dziennik
               </Link>
             </Button>

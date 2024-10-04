@@ -27,9 +27,11 @@ export default function Navbar({
 
       setIsSmaller(!entry.isIntersecting)
     }
+    // TODO do naprawienia
     const observer = new IntersectionObserver(handleIntersection, {
       root: null,
-      threshold: 0,
+      threshold: 1,
+      rootMargin: "0px",
     })
 
     if (sentinelRef.current) {
@@ -87,7 +89,10 @@ export default function Navbar({
             </Link>
           </div>
           <div className="flex items-center justify-center xl:hidden">
-            <MobileNavigation navItems={navItems} />
+            <MobileNavigation
+              navItems={navItems}
+              additionalLinks={additionalLinks}
+            />
           </div>
         </div>
       </motion.div>

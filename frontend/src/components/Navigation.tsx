@@ -37,7 +37,7 @@ export function Navigation({ navItems }: { navItems: any }) {
     <NavigationMenu>
       <NavigationMenuList>
         {navItems
-          ? navItems.slice(0, 4).map((item: any, index: number) => (
+          ? navItems.slice(0, 5).map((item: any, index: number) => (
               <NavigationMenuItem key={item.name}>
                 <NavigationMenuTrigger
                   onMouseEnter={handleMouseEnter}
@@ -54,14 +54,13 @@ export function Navigation({ navItems }: { navItems: any }) {
                       <li className="row-span-3">
                         <NavigationMenuLink asChild>
                           <a
-                            className={`relative flex select-none flex-col justify-end rounded-md bg-cover object-cover text-background no-underline outline-none focus:shadow-md `}
+                            className={`relative flex h-full select-none flex-col justify-end rounded-md bg-cover object-cover text-background no-underline outline-none focus:shadow-md `}
                             href="/galeria"
                           >
                             <Image
                               src={"/assets/gallery.avif"}
                               alt="Galeria"
-                              width={400}
-                              height={100}
+                              fill
                               className="rounded-md object-cover"
                             />
                             <div className="bg-white p-2 text-lg font-medium text-foreground">
@@ -96,18 +95,6 @@ export function Navigation({ navItems }: { navItems: any }) {
         {navItems.length > 5 ? (
           <>
             <NavigationMenuItem>
-              <Link href="/kontakt" legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={cn(
-                    navigationMenuTriggerStyle(),
-                    "rounded-xl text-lg group-[[data-smaller=true]]:bg-transparent group-[[data-smaller=true]]:text-base group-[[data-smaller=true]]:hover:bg-accent/50"
-                  )}
-                >
-                  Kontakt
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
               <Popover open={isOpen} onOpenChange={handlePopoverOpenChange}>
                 <PopoverTrigger asChild>
                   <Button
@@ -129,7 +116,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                     data-state={isOpen ? "open" : "closed"}
                   >
                     <ul className="mx-auto flex h-full w-full flex-wrap gap-8">
-                      {navItems.slice(4)?.map((item: any) => (
+                      {navItems.slice(5)?.map((item: any) => (
                         <li key={item.name}>
                           <Popover>
                             <PopoverTrigger asChild>
