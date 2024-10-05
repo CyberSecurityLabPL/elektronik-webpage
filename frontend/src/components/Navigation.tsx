@@ -51,22 +51,25 @@ export function Navigation({ navItems }: { navItems: any }) {
                     className="relative !z-[99999] grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[800px]"
                   >
                     {index < 1 ? (
-                      <li className="row-span-3">
-                        <NavigationMenuLink asChild>
+                      <li className="row-span-3 hover:bg-accent rounded-lg">
+                        <NavigationMenuLink asChild >
                           <a
-                            className={`relative flex h-full select-none flex-col justify-end rounded-md bg-cover object-cover text-background no-underline outline-none focus:shadow-md `}
+                            className={`relative flex h-full  select-none flex-col justify-end rounded-md bg-cover object-cover text-background no-underline outline-none focus:shadow-md `}
                             href="/galeria"
-                          >
+                          > 
+                          <div className="relative h-64">
                             <Image
                               src={"/assets/gallery.avif"}
                               alt="Galeria"
                               fill
                               className="rounded-md object-cover"
                             />
-                            <div className="bg-white p-2 text-lg font-medium text-foreground">
+                          </div>
+                            
+                            <div className="bg-transparent p-2 text-lg font-medium text-foreground z-50">
                               Galeria
                             </div>
-                            <p className="bg-white p-2 text-sm leading-tight text-foreground">
+                            <p className="bg-transparent p-2 pt-0 text-sm leading-tight text-foreground z-50">
                               Zobacz naszą galerie szkolną gdzie znajdziesz
                               przeróżne zdjęcia naszej szkoły! :)
                             </p>
