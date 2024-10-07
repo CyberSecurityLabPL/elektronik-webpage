@@ -43,14 +43,15 @@ services:
 
   db:
     image: mariadb:latest
-    platform: linux/arm64/v8
+    platform: linux/amd64
     container_name: elektronik-db
     restart: always
     command: --default-authentication-plugin=mysql_native_password
+    env_file: ./strapi/.env
     ports:
-      - '3306:3306'
+      - '3307:3306'
     expose:
-      - '3306'
+      - '3307'
     volumes:
       - my-db:/var/lib/mysql
     networks:

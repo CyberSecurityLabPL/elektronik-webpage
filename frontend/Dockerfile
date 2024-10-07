@@ -1,13 +1,23 @@
-FROM node:18-alpine AS base
+FROM node:18 AS base
 
 # Install dependencies only when needed
 FROM base AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-RUN apk add --no-cache libc6-compat
+# RUN apk add --no-cache libc6-compat
 
 # add curl for testing
-RUN apk add --no-cache curl
+# RUN apk add --no-cache curl
 WORKDIR /app
+
+# Set npm configs and environment variables
+ENV NODE_OPTIONS=--dns-result-order=ipv4first
+RUN npm config set registry https://registry.npmjs.org \
+    && npm config set fetch-retries 5 \
+    && npm config set fetch-retry-factor 5 \
+    && npm config set fetch-retry-mintimeout 20000 \
+    && npm config set fetch-retry-maxtimeout 120000 \
+    && npm config rm proxy \
+    && npm config rm https-proxy
 
 # Install dependencies based on the preferred package manager
 COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
@@ -20,7 +30,7 @@ COPY package.json yarn.lock* package-lock.json* pnpm-lock.yaml* ./
 
 # npm ci for clean install
 RUN \
-  if [ -f package-lock.json ]; then npm ci; \ 
+  if [ -f package-lock.json ]; then npm ci --verbose; \ 
   else npm i; \
   fi
 
@@ -65,12 +75,13 @@ RUN chown nextjs:nodejs .next
 # https://nextjs.org/docs/advanced-features/output-file-tracing
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder /app/public ./public
+RUN mkdir -p /app/public/assets && chown -R nextjs:nodejs /app && chmod -R 755 /app/public
 
 USER nextjs
 
 EXPOSE ${PORT}
 
-# Set to default (3001) if not set
 ENV PORT 3001
 
 # server.js is created by next build from the standalone output
