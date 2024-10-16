@@ -50,28 +50,6 @@ export async function getNavigation(): Promise<any> {
   }
 }
 
-export async function getAdditionalLinks(): Promise<any> {
-  try {
-    // const { data }: AxiosResponse<any> = await api.get("/navigation");
-
-    revalidateT("additional-links")
-    const res = await fetch(
-      `${process.env.STRAPI_API_URL}/additional-links?populate=*`,
-      {
-        next: {
-          tags: ["additional-links"],
-        },
-      }
-    )
-
-    const data = await res.json()
-
-    return data.data
-  } catch (error: any) {
-    handleError(error)
-  }
-}
-
 export async function getLandingPage(): Promise<any> {
   try {
     const { data }: AxiosResponse<any> = await api.get("/landing-page")
@@ -253,6 +231,7 @@ export async function getApprenticeships() {
 export async function getBooks() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/books-page")
+
     revalidate("/podreczniki")
 
     return flattenStrapiResponse(data)

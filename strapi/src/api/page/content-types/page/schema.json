@@ -18,9 +18,6 @@
     "description": {
       "type": "text"
     },
-    "content": {
-      "type": "richtext"
-    },
     "seo": {
       "type": "component",
       "repeatable": false,
@@ -28,6 +25,14 @@
     },
     "slug": {
       "type": "string"
+    },
+    "content": {
+      "type": "customField",
+      "options": {
+        "output": "Markdown",
+        "preset": "rich"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
     }
   }
 }

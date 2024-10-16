@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "substitutions",
+  "info": {
+    "singularName": "substitution",
+    "pluralName": "substitutions",
+    "displayName": "Substitution",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "date": {
+      "type": "date",
+      "unique": true,
+      "required": true
+    },
+    "substitutions": {
+      "type": "customField",
+      "options": {
+        "output": "Markdown",
+        "preset": "standard"
+      },
+      "required": true,
+      "customField": "plugin::ckeditor.CKEditor"
+    }
+  }
+}

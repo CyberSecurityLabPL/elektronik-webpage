@@ -5,6 +5,7 @@ export interface BlocksBenefits extends Schema.Component {
   info: {
     displayName: 'Benefits';
     icon: 'check';
+    description: '';
   };
   attributes: {
     sectionId: Attribute.String;
@@ -55,9 +56,10 @@ export interface BlocksHero extends Schema.Component {
   attributes: {
     heading: Attribute.String;
     text: Attribute.Text;
-    link: Attribute.Component<'elements.button-link'>;
-    Image: Attribute.Media;
+    linkPrimary: Attribute.Component<'elements.button-link'>;
+    images: Attribute.Media & Attribute.Required;
     sectionId: Attribute.String;
+    linkSecondary: Attribute.Component<'elements.button-link'>;
   };
 }
 
@@ -114,16 +116,6 @@ export interface BlocksPricing extends Schema.Component {
   };
 }
 
-export interface BlocksRow extends Schema.Component {
-  collectionName: 'components_blocks_rows';
-  info: {
-    displayName: 'Row';
-  };
-  attributes: {
-    Card: Attribute.Component<'elements.card', true>;
-  };
-}
-
 export interface BlocksSponsors extends Schema.Component {
   collectionName: 'components_blocks_sponsors';
   info: {
@@ -150,6 +142,7 @@ export interface ElementsBenefitCard extends Schema.Component {
   attributes: {
     title: Attribute.String;
     content: Attribute.Text;
+    image: Attribute.Media;
   };
 }
 
@@ -163,7 +156,8 @@ export interface ElementsButtonLink extends Schema.Component {
     title: Attribute.String;
     link: Attribute.String;
     isExternal: Attribute.Boolean & Attribute.DefaultTo<false>;
-    type: Attribute.Enumeration<['default', 'secondary', 'outline']>;
+    type: Attribute.Enumeration<['default', 'secondary', 'outline']> &
+      Attribute.DefaultTo<'default'>;
   };
 }
 
@@ -210,11 +204,13 @@ export interface ElementsOverviewRow extends Schema.Component {
   info: {
     displayName: 'Overview Row';
     icon: 'bulletList';
+    description: '';
   };
   attributes: {
-    Title: Attribute.String;
-    Description: Attribute.Text;
-    Image: Attribute.Media;
+    title: Attribute.String;
+    description: Attribute.Text;
+    image: Attribute.Media;
+    subTitle: Attribute.String;
   };
 }
 
@@ -246,6 +242,7 @@ export interface SharedSeo extends Schema.Component {
   info: {
     displayName: 'seo';
     icon: 'search';
+    description: '';
   };
   attributes: {
     metaTitle: Attribute.String &
@@ -256,7 +253,7 @@ export interface SharedSeo extends Schema.Component {
     metaDescription: Attribute.String &
       Attribute.Required &
       Attribute.SetMinMaxLength<{
-        minLength: 50;
+        minLength: 30;
         maxLength: 160;
       }>;
     metaImage: Attribute.Media;
@@ -291,7 +288,6 @@ declare module '@strapi/types' {
       'blocks.news': BlocksNews;
       'blocks.overview': BlocksOverview;
       'blocks.pricing': BlocksPricing;
-      'blocks.row': BlocksRow;
       'blocks.sponsors': BlocksSponsors;
       'elements.benefit-card': ElementsBenefitCard;
       'elements.button-link': ElementsButtonLink;

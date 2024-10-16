@@ -59,6 +59,7 @@ $RECYCLE.BIN/
 *.swm
 *.out
 *.pid
+*.enc
 
 
 ############################
@@ -106,6 +107,7 @@ coverage
 ############################
 
 .env
+.env.docker
 license.txt
 exports
 .strapi

@@ -590,53 +590,6 @@ export interface PluginContentReleasesReleaseAction
   };
 }
 
-export interface PluginI18NLocale extends Schema.CollectionType {
-  collectionName: 'i18n_locale';
-  info: {
-    singularName: 'locale';
-    pluralName: 'locales';
-    collectionName: 'locales';
-    displayName: 'Locale';
-    description: '';
-  };
-  options: {
-    draftAndPublish: false;
-  };
-  pluginOptions: {
-    'content-manager': {
-      visible: false;
-    };
-    'content-type-builder': {
-      visible: false;
-    };
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.SetMinMax<
-        {
-          min: 1;
-          max: 50;
-        },
-        number
-      >;
-    code: Attribute.String & Attribute.Unique;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'plugin::i18n.locale',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUsersPermissionsPermission
   extends Schema.CollectionType {
   collectionName: 'up_permissions';
@@ -858,6 +811,36 @@ export interface ApiAchievementsPageAchievementsPage extends Schema.SingleType {
   };
 }
 
+export interface ApiAdditionalLinkAdditionalLink extends Schema.CollectionType {
+  collectionName: 'additional_links';
+  info: {
+    singularName: 'additional-link';
+    pluralName: 'additional-links';
+    displayName: 'additional-link';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    link: Attribute.Component<'elements.button-link'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::additional-link.additional-link',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::additional-link.additional-link',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiApprenticeshipApprenticeship extends Schema.CollectionType {
   collectionName: 'apprenticeships';
   info: {
@@ -956,6 +939,8 @@ export interface ApiArticleArticle extends Schema.CollectionType {
           preset: 'rich';
         }
       >;
+    seo: Attribute.Component<'shared.seo'>;
+    customDate: Attribute.DateTime;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1210,6 +1195,37 @@ export interface ApiDocumentsPageDocumentsPage extends Schema.SingleType {
   };
 }
 
+export interface ApiHotAlertHotAlert extends Schema.SingleType {
+  collectionName: 'hot_alerts';
+  info: {
+    singularName: 'hot-alert';
+    pluralName: 'hot-alerts';
+    displayName: 'Hot Alert';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    alert: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::hot-alert.hot-alert',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::hot-alert.hot-alert',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiJobJob extends Schema.CollectionType {
   collectionName: 'jobs';
   info: {
@@ -1304,6 +1320,7 @@ export interface ApiLandingPageLandingPage extends Schema.SingleType {
         'blocks.news'
       ]
     >;
+    seo: Attribute.Component<'shared.seo'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1343,6 +1360,7 @@ export interface ApiLinkLink extends Schema.CollectionType {
       'api::link-group.link-group'
     >;
     isExternal: Attribute.Boolean & Attribute.DefaultTo<false>;
+    isFeatured: Attribute.Boolean & Attribute.DefaultTo<false>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1395,6 +1413,7 @@ export interface ApiNavigationNavigation extends Schema.SingleType {
     singularName: 'navigation';
     pluralName: 'navigations';
     displayName: 'Navigation';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1440,9 +1459,16 @@ export interface ApiPagePage extends Schema.CollectionType {
   attributes: {
     heading: Attribute.String;
     description: Attribute.Text;
-    content: Attribute.RichText;
     seo: Attribute.Component<'shared.seo'>;
     slug: Attribute.String;
+    content: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'Markdown';
+          preset: 'rich';
+        }
+      >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1657,6 +1683,46 @@ export interface ApiSponsorSponsor extends Schema.CollectionType {
   };
 }
 
+export interface ApiSubstitutionSubstitution extends Schema.CollectionType {
+  collectionName: 'substitutions';
+  info: {
+    singularName: 'substitution';
+    pluralName: 'substitutions';
+    displayName: 'Substitution';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    date: Attribute.Date & Attribute.Required & Attribute.Unique;
+    substitutions: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'Markdown';
+          preset: 'standard';
+        }
+      >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::substitution.substitution',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::substitution.substitution',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiSubstitutionsPageSubstitutionsPage
   extends Schema.SingleType {
   collectionName: 'substitutions_pages';
@@ -1664,15 +1730,13 @@ export interface ApiSubstitutionsPageSubstitutionsPage
     singularName: 'substitutions-page';
     pluralName: 'substitutions-pages';
     displayName: 'Substitutions Page';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     heading: Attribute.String;
-    description: Attribute.Text;
-    date: Attribute.Date;
-    content: Attribute.RichText;
     seo: Attribute.Component<'shared.seo'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -1844,12 +1908,12 @@ declare module '@strapi/types' {
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
-      'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::achievement.achievement': ApiAchievementAchievement;
       'api::achievements-page.achievements-page': ApiAchievementsPageAchievementsPage;
+      'api::additional-link.additional-link': ApiAdditionalLinkAdditionalLink;
       'api::apprenticeship.apprenticeship': ApiApprenticeshipApprenticeship;
       'api::apprenticeships-page.apprenticeships-page': ApiApprenticeshipsPageApprenticeshipsPage;
       'api::article.article': ApiArticleArticle;
@@ -1860,6 +1924,7 @@ declare module '@strapi/types' {
       'api::document.document': ApiDocumentDocument;
       'api::document-group.document-group': ApiDocumentGroupDocumentGroup;
       'api::documents-page.documents-page': ApiDocumentsPageDocumentsPage;
+      'api::hot-alert.hot-alert': ApiHotAlertHotAlert;
       'api::job.job': ApiJobJob;
       'api::jobs-page.jobs-page': ApiJobsPageJobsPage;
       'api::landing-page.landing-page': ApiLandingPageLandingPage;
@@ -1873,6 +1938,7 @@ declare module '@strapi/types' {
       'api::recruitment.recruitment': ApiRecruitmentRecruitment;
       'api::recruitments-page.recruitments-page': ApiRecruitmentsPageRecruitmentsPage;
       'api::sponsor.sponsor': ApiSponsorSponsor;
+      'api::substitution.substitution': ApiSubstitutionSubstitution;
       'api::substitutions-page.substitutions-page': ApiSubstitutionsPageSubstitutionsPage;
       'api::teacher.teacher': ApiTeacherTeacher;
       'api::teacher-group.teacher-group': ApiTeacherGroupTeacherGroup;

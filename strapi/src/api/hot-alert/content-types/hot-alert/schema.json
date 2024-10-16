@@ -1,0 +1,19 @@
+{
+  "kind": "singleType",
+  "collectionName": "hot_alerts",
+  "info": {
+    "singularName": "hot-alert",
+    "pluralName": "hot-alerts",
+    "displayName": "Hot Alert",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "alert": {
+      "type": "string"
+    }
+  }
+}

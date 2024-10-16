@@ -4,6 +4,9 @@ FROM node:18-alpine AS base
 FROM base AS deps
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 RUN apk add --no-cache libc6-compat
+
+# add curl for testing
+RUN apk add --no-cache curl
 WORKDIR /app
 
 # Install dependencies based on the preferred package manager
@@ -26,11 +29,6 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-
-RUN rm .env
-RUN mv .env.docker .env
-
-RUN cat /app/.env
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
@@ -70,10 +68,11 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
 USER nextjs
 
-EXPOSE 3001
+EXPOSE ${PORT}
 
+# Set to default (3001) if not set
 ENV PORT 3001
 
 # server.js is created by next build from the standalone output
 # https://nextjs.org/docs/pages/api-reference/next-config-js/output
-CMD PORT=3001 HOSTNAME="0.0.0.0" node server.js
+CMD HOSTNAME="0.0.0.0" node server.js

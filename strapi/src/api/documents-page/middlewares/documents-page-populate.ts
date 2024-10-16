@@ -11,7 +11,7 @@ const populate = {
         documents: {
             populate: {
                 file: {
-                    fields: ['url','ext ']
+                    fields: ['url','ext']
                 }
             }
         }
@@ -26,7 +26,7 @@ const populate = {
 export default (config, { strapi }: { strapi: Strapi }) => {
   // Add your own logic here.
   return async (ctx, next) => {
-    strapi.log.info('In jobs-page-populate middleware.');
+    strapi.log.info('In documents-page-populate middleware.');
 
     ctx.query = {
     	...populate,

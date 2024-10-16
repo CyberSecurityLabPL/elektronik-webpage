@@ -13,21 +13,26 @@
     "text": {
       "type": "text"
     },
-    "link": {
+    "linkPrimary": {
       "type": "component",
       "repeatable": false,
       "component": "elements.button-link"
     },
-    "Image": {
+    "images": {
       "type": "media",
-      "multiple": false,
-      "required": false,
+      "multiple": true,
+      "required": true,
       "allowedTypes": [
         "images"
       ]
     },
     "sectionId": {
       "type": "string"
+    },
+    "linkSecondary": {
+      "type": "component",
+      "repeatable": false,
+      "component": "elements.button-link"
     }
   }
 }

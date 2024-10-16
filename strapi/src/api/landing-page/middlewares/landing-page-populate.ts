@@ -8,17 +8,28 @@ const populate = {
     populate: {
         blocks: {
             populate: {
-                Image: {
+                images: {
                     fields: ["name","alternativeText","url"]
                 },
-                link: {
+                linkPrimary: {
+                    populate: true
+                },
+                linkSecondary: {
                     populate: true
                 },
                 row: {
-                    populate: true
+                    populate: {
+                        image: {
+                            populate: true
+                        }
+                    }
                 },
                 benefitCard: {
-                    populate: true
+                    populate: {
+                        image:{
+                            populate: true
+                        },
+                    },
                 },
                 questions: {
                     populate: true
@@ -27,6 +38,9 @@ const populate = {
                     populate: true
                 }
             }
+        },
+        seo: {
+            populate: true
         }
     }   
 }

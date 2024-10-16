@@ -82,7 +82,7 @@ export function renderMarkdown(markdown: string, options?: Readonly<Options>) {
  * @returns The formatted date
  */
 export function formatDate(date?: string) {
-  return format(new Date(date ?? new Date()), "dd/MM/yyyy HH:mm")
+  return format(new Date(date ?? new Date()), "dd.MM.yyyy - HH:mm")
 }
 
 /**
@@ -92,7 +92,6 @@ export function formatDate(date?: string) {
  */
 export const formatDateYear = (date?: string) =>
   format(new Date(date ?? new Date()), "dd/MM/yyyy")
-
 
 export const formatDateMonth = (date?: string) =>
   format(new Date(date ?? new Date()), "dd/MM")
@@ -127,12 +126,14 @@ export const getAuthor = (data?: {
   createdBy: Author
   updatedBy: Author
 }): string => {
-  if (!data) return "Pracownik CKZiU"
+  const defaultAuthor = "Pracownik CKZiU"
 
-  const createdByExists = !!data.createdBy
-  const updatedByExists = !!data.updatedBy
+  if (!data) return defaultAuthor
 
-  if (!createdByExists && !updatedByExists) return "Pracownik CKZiU"
+  const createdByExists = Object.keys(data.createdBy).length > 0
+  const updatedByExists = Object.keys(data.updatedBy).length > 0
+
+  if (!createdByExists && !updatedByExists) return defaultAuthor
 
   const author = createdByExists ? data.createdBy : data.updatedBy
 
@@ -188,4 +189,14 @@ export function uppercaseLastCharacters(
 
   // Uppercase the specified part and combine it with the rest of the string
   return restOfString + uppercasedPart.toUpperCase()
+}
+
+export function calcTimeDifference(date: string, newDate: string) {
+  const date1 = new Date(date)
+  const date2 = new Date(newDate)
+
+  const diffTime = Math.abs(date2.getTime() - date1.getTime())
+  const diffMins = Math.ceil(diffTime / (1000 * 60))
+
+  return diffMins
 }

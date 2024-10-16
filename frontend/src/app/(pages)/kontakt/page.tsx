@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import { LucideProps, Mail, MapPin, Phone } from "lucide-react"
+import { LucideProps, Mail, MapPin, Phone, School } from "lucide-react"
 import type { Metadata } from "next"
 import React from "react"
 
@@ -48,7 +48,12 @@ function page() {
             </CardDescription>
           </CardHeader>
           <CardContent className="grid w-full grid-cols-1 gap-8 md:grid-cols-2">
-            <div className="">
+            <div>
+              <InfoLabel
+                icon={School}
+                title="Nazwa szkoły"
+                text='Centrum Kształcenia Zawodowego i Ustawicznego "Elektronik" w Zielonej Górze'
+              />
               <InfoLabel icon={Phone} title="Telefon" text="+48 684 525 100" />
               <InfoLabel
                 icon={Mail}

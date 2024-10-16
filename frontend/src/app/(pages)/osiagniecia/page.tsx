@@ -5,6 +5,7 @@ import { getAchievements } from "@/lib/api"
 import { Metadata, ResolvingMetadata } from "next"
 import { MotionDiv } from "@/lib/motion"
 import PageEnterAnimation from "@/components/PageEnterAnimation"
+import { getImage } from "@/lib/utils"
 
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getAchievements()
@@ -33,7 +34,7 @@ export default async function Page() {
             <AchieveCard
               key={item.name}
               name={item.title}
-              src={item.image?.url ?? "/default/trophy.svg"}
+              src={getImage(item.image?.url) ?? "/default/trophy.svg"}
               date={item.date}
               opis={item.description}
             />

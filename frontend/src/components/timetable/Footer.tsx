@@ -39,7 +39,7 @@ const Footer = ({ timetableItems }: { timetableItems: TimetableItem[] }) => {
   ]
 
   return (
-    <div className="relative flex h-20 w-full items-center justify-center gap-8 bg-primary">
+    <div className="relative flex w-full  flex-col items-center justify-center gap-4 bg-primary py-4 md:h-20">
       <Select
         open={open}
         setOpen={setOpen}
@@ -48,6 +48,13 @@ const Footer = ({ timetableItems }: { timetableItems: TimetableItem[] }) => {
         data={timetableData}
         name={"Wyszukaj..."}
       />
+      <Button
+        variant={"secondary"}
+        asChild
+        className="right-2 bg-white md:absolute"
+      >
+        <Link href={"/"}> Wroć do strony głównej</Link>
+      </Button>
     </div>
   )
 }
@@ -67,6 +74,22 @@ function Select({
   data: { heading: string; items: { id: string; name: string }[] }[]
   name: string
 }) {
+  const modifiedItems = data[0].items.map((item) => {
+    let nameParts = item.name.split(" ")
+    if (nameParts[1]) {
+      nameParts[1] = nameParts[1].slice(1)
+    }
+    return {
+      ...item,
+      name: nameParts.join(" "),
+    }
+  })
+  const newData = [
+    { heading: "Oddziały", items: modifiedItems },
+    ...data.slice(1),
+  ]
+  const removeNumbers = (str: string) => str.replace(/(\d+[A-Za-z]+)\d+/, "$1")
+
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
@@ -74,17 +97,19 @@ function Select({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-[350px] justify-start gap-4 rounded-xl text-zinc-800 hover:border-[1px] hover:border-white hover:bg-primary hover:text-white"
+          className="w-72 justify-start gap-4 rounded-xl  text-zinc-800 hover:border-[1px] hover:border-white hover:bg-primary hover:text-white md:w-[350px]"
         >
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-          {value ? value : name}
+          <span className="truncate">
+            {value ? removeNumbers(value) : name}
+          </span>
         </Button>
       </PopoverTrigger>
       <PopoverContent className="min-w-[1000px] overflow-hidden rounded-xl p-0">
         <Command>
           <CommandInput placeholder={name} />
           <div className=" grid w-full grid-cols-1 p-4 md:grid-cols-3">
-            {data.map((group) => (
+            {newData.map((group) => (
               <CommandList
                 key={group.heading}
                 className=" hidden overflow-y-auto md:block"
@@ -92,6 +117,7 @@ function Select({
                 <CommandEmpty>Nic nie znaleziono.</CommandEmpty>
                 <CommandGroup heading={group.heading} className="scroll-m-4">
                   {group.items.map((info) => (
+                    // console.log(info.name),
                     <Link key={info.name} href={`?id=${info.id}`} passHref>
                       <CommandItem
                         value={info.name}
@@ -115,7 +141,7 @@ function Select({
             ))}
             <CommandList className="block overflow-y-auto md:hidden">
               <CommandEmpty>Nic nie znaleziono.</CommandEmpty>
-              {data.map((group) => (
+              {newData.map((group) => (
                 <CommandGroup
                   heading={group.heading}
                   className="scroll-m-4"

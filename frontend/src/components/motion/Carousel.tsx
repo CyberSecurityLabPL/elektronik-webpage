@@ -264,13 +264,15 @@ const CarouselIndicators = () => {
   const { selectedIndex, totalSlides, api } = useCarousel()
 
   return (
-    <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
+    <div className="absolute -bottom-6 left-1/2 flex -translate-x-1/2 transform space-x-2">
       {Array.from({ length: totalSlides }).map((_, index) => (
         <button
           key={index}
           className={cn(
             "h-2 w-2 rounded-full transition-colors",
-            index === selectedIndex ? "bg-primary dark:bg-zinc-50" : "bg-gray-300"
+            index === selectedIndex
+              ? "bg-primary dark:bg-zinc-50"
+              : "bg-neutral-300"
           )}
           onClick={() => api?.scrollTo(index)}
           aria-label={`Go to slide ${index + 1}`}

@@ -10,7 +10,7 @@ export default factories.createCoreRouter('api::article.article',{
             middlewares: ['api::article.article-populate']
         },
         findOne:{
-            middlewares: ['api::article.article-populate-one']
+            middlewares: ['api::article.article-populate-one', 'api::article.article-populate-creator-fields']
         }
     }
 });

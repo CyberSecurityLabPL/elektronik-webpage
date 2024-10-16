@@ -7,7 +7,7 @@ import Hero from "@/components/landingpage/Hero"
 import Map from "@/components/landingpage/Map"
 import News from "@/components/landingpage/News"
 import Overview from "@/components/landingpage/Overview"
-import { getAdditionalLinks, getLandingPage, getNavigation } from "@/lib/api"
+import { getLandingPage, getNavigation } from "@/lib/api"
 import type { Metadata } from "next"
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -22,8 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function Home() {
   const data = await getLandingPage()
-  const additionalLinks = await getAdditionalLinks()
-  const { link_groups: navItems } = await getNavigation()
+  const { link_groups: navItems, ...additionalLinks } = await getNavigation()
 
   const Content = [Overview, Benefits, News, Map, Faq]
 

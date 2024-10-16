@@ -12,9 +12,11 @@ import { PAGINATION_LIMIT } from "@/config"
 export default function PaginationComponent({
   articlesCount,
   paramsPage,
+  goToId,
 }: {
   articlesCount: number
   paramsPage: string
+  goToId?: string
 }) {
   const PAGES_LIMIT = 5
   const pagesCount = Math.ceil(articlesCount / PAGINATION_LIMIT)
@@ -37,13 +39,11 @@ export default function PaginationComponent({
 
     const isActive = page === pageOffset
 
-    // NIKLUXN
-
     if (pageOffset <= pagesCount) {
       return (
         <PaginationItem key={index}>
           <PaginationLink
-            href={`/aktualnosci?page=${pageOffset}`}
+            href={`/aktualnosci?page=${pageOffset}${goToId ? `#${goToId}` : ""}`}
             isActive={isActive}
           >
             {pageOffset}
@@ -60,13 +60,18 @@ export default function PaginationComponent({
       <PaginationContent>
         {page > 1 && (
           <PaginationItem>
-            <PaginationPrevious href={constructPageUrl(page - 1)} iconOnly />
+            <PaginationPrevious
+              href={constructPageUrl(page - 1, goToId)}
+              iconOnly
+            />
           </PaginationItem>
         )}
         {start > 1 && (
           <>
             <PaginationItem>
-              <PaginationLink href={constructPageUrl(1)}>{1}</PaginationLink>
+              <PaginationLink href={constructPageUrl(1, goToId)}>
+                {1}
+              </PaginationLink>
             </PaginationItem>
             <PaginationItem>
               <PaginationEllipsis />
@@ -81,7 +86,7 @@ export default function PaginationComponent({
             </PaginationItem>
 
             <PaginationItem>
-              <PaginationLink href={constructPageUrl(pagesCount)}>
+              <PaginationLink href={constructPageUrl(pagesCount, goToId)}>
                 {pagesCount}
               </PaginationLink>
             </PaginationItem>
@@ -89,7 +94,10 @@ export default function PaginationComponent({
         )}
         {page !== pagesCount && (
           <PaginationItem>
-            <PaginationNext href={constructPageUrl(page + 1)} iconOnly />
+            <PaginationNext
+              href={constructPageUrl(page + 1, goToId)}
+              iconOnly
+            />
           </PaginationItem>
         )}
       </PaginationContent>
@@ -97,4 +105,5 @@ export default function PaginationComponent({
   )
 }
 
-const constructPageUrl = (page: number) => `/aktualnosci?page=${page}`
+const constructPageUrl = (page: number, goToId?: string) =>
+  `/aktualnosci?page=${page}#${goToId ?? ""}`

@@ -4,11 +4,19 @@ import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { REVALIDATE } from "@/config"
 import { getArticle } from "@/lib/api"
-import { formatDate, getAuthor, getImage, renderMarkdown } from "@/lib/utils"
-import { CalendarPlus, User } from "lucide-react"
+import {
+  calcTimeDifference,
+  formatDate,
+  getAuthor,
+  getImage,
+  renderMarkdown,
+} from "@/lib/utils"
+import { CalendarPlus, User, PencilLine, LucideIcon } from "lucide-react"
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { openGraphImage } from "@/lib/shared-metadata"
+// import thumbnail from "/default/thumbnail.svg"
 
 export const revalidate = REVALIDATE
 
@@ -16,39 +24,54 @@ type Props = {
   params: { article: string }
 }
 
-const defaultMetadata: Metadata = {
+const notFoundMetadata: Metadata = {
   title: "Nie znaleziono artykułu",
   description: "Nie znaleziono artykułu.",
-  keywords: ["not found"],
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const res = await getArticle(params.article, {})
 
-  if (!res) return defaultMetadata
+  if (!res) return notFoundMetadata
 
-  const seo = res?.data?.seo ? res.data.seo : defaultMetadata
-
-  return {
-    title: seo.metaTitle,
-    description: seo.metaDescription,
-    keywords: seo.keywords,
+  const defaultMetadata: Metadata = {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL!),
+    title: res?.data?.title,
+    description: res?.data?.content.slice(0, 300),
+    keywords: ["artykuł", "news", "ckziu", "post", "elektronik"],
+    openGraph: {
+      ...openGraphImage,
+      images: [
+        {
+          url: `/default/thumbnail.svg`,
+          width: 640,
+          height: 360,
+        },
+      ],
+    },
   }
+
+  if (res?.data?.seo)
+    return {
+      title: res.data.seo.metaTitle,
+      description: res.data.seo.metaDescription,
+      keywords: res.data.seo.keywords,
+      openGraph: {
+        ...openGraphImage,
+        images: [
+          {
+            url:
+              res?.data?.seo?.metaImage?.formats?.thumbnail?.url ??
+              `${process.env.NEXT_PUBLIC_BASE_URL!}/default/thumbnail.svg`,
+            width: 640,
+            height: 360,
+          },
+        ],
+      },
+    }
+
+  return defaultMetadata
 }
-
-// Return a list of `params` to populate the [slug] dynamic segment
-// export async function generateStaticParams() {
-//   const articles = await getArticles({
-//     flatteners: ["id"],
-//     getAll: true,
-//   })
-
-//   const params = articles.data.map((article: any) => ({
-//     article: article.id + "",
-//   }))
-
-//   return params
-// }
 
 export default async function Page({
   params,
@@ -82,36 +105,48 @@ export default async function Page({
         ) : (
           <div className="my-8"></div>
         )}
-        <div className="relative flex w-full flex-col items-center gap-4 rounded bg-background py-8">
+        <div className="relative flex w-full flex-col items-center gap-4 rounded bg-background px-6 py-8 md:px-12">
           {/* ARTICLE INFO */}
 
-          <h1 className="flex w-full justify-start px-12 text-left text-xl font-semibold !no-underline sm:text-3xl">
+          <h1 className="flex w-full justify-start  text-left text-xl font-semibold !no-underline sm:text-3xl">
             {article?.title}
           </h1>
-          <div className="flex w-full flex-col items-start gap-2 px-12">
-            <div className="flex items-center justify-center gap-2 text-sm sm:text-base">
-              <CalendarPlus className="size-3 text-primary sm:size-4" />
-              <div>{formatDate(article?.updatedAt)}</div>
-            </div>
-            <div className="flex items-center justify-center gap-2 text-sm sm:text-base">
-              <User className="size-3 text-primary sm:size-4" />
-              <div>{author}</div>
-            </div>
+          <div className="flex w-full flex-col items-start gap-2">
+            {article?.customDate ? (
+              <InfoLabel
+                Icon={CalendarPlus}
+                content={formatDate(article?.customDate)}
+              />
+            ) : (
+              <>
+                <InfoLabel
+                  Icon={CalendarPlus}
+                  content={formatDate(article?.publishedAt)}
+                />
+                {article?.updatedAt &&
+                  calcTimeDifference(article?.publishedAt, article?.updatedAt) >
+                    10 && (
+                    <InfoLabel
+                      Icon={PencilLine}
+                      content={formatDate(article?.updatedAt)}
+                    />
+                  )}
+              </>
+            )}
+            <InfoLabel Icon={User} content={author} />
           </div>
 
           <Separator />
 
-
           {/* ARTICLE CONTENT */}
-          <div className="relative w-full px-12 py-2">
-            <div className="prose prose-sm prose-blue self-start overflow-x-auto text-xs sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl prose-p:!text-pretty sm:text-base">
-              
-              {article?.content ? (
-                renderMarkdown(article.content, markdownOptions)
-              ) : (
-                <FailedToLoad />
-              )}
-            </div>
+        </div>
+        <div className="relative w-full bg-background p-6 pt-0 md:p-12 md:pt-0">
+          <div className="prose prose-sm prose-blue self-start overflow-x-auto text-xs sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl prose-p:!text-pretty sm:text-base">
+            {article?.content ? (
+              renderMarkdown(article.content, markdownOptions)
+            ) : (
+              <FailedToLoad />
+            )}
           </div>
         </div>
       </article>
@@ -119,6 +154,14 @@ export default async function Page({
   )
 }
 
+function InfoLabel({ Icon, content }: { Icon: LucideIcon; content: string }) {
+  return (
+    <div className="flex items-center justify-center gap-2 text-sm sm:text-base">
+      <Icon className="size-3 text-primary sm:size-4" />
+      <div>{content}</div>
+    </div>
+  )
+}
 function FailedToLoad() {
   return (
     <div className="flex w-full flex-col items-center gap-8">

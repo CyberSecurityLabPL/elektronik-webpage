@@ -52,6 +52,7 @@ async function page({ searchParams }: PageParams) {
             variant="featured"
           />
         </div>
+        <div id="artykuly"></div>
         <h2 className="mb-4 mt-8 text-center text-lg font-bold text-foreground xs:pl-8 xs:text-start">
           Wszystkie artykuły
         </h2>
@@ -73,6 +74,7 @@ async function page({ searchParams }: PageParams) {
           <PaginationComponent
             articlesCount={meta.pagination.total}
             paramsPage={page}
+            goToId="artykuly"
           />
         </div>
       </PageEnterAnimation>

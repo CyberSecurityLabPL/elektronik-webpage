@@ -97,7 +97,19 @@ async function Sitemap() {
               </span>
               <ol className="flex w-full flex-col gap-2 ">
                 {(index === 0
-                  ? [...panel.links, { name: "Galeria", href: "/galeria", isExternal: false }]
+                  ? [
+                      ...panel.links,
+                      {
+                        name: "Kontakt",
+                        href: "kontakt",
+                        isExternal: false,
+                      },
+                      {
+                        name: "Galeria",
+                        href: "galeria",
+                        isExternal: false,
+                      },
+                    ]
                   : panel.links
                 ).map((link: any, index: number) => (
                   <li key={`l${index}`}>
