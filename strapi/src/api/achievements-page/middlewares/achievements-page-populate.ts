@@ -7,7 +7,11 @@ import { Strapi } from '@strapi/strapi';
 const populate = {
   populate: {
     achievements: {
-	populate: true
+	populate: {
+		image: {
+			populate: true
+		}
+	}
     },
     seo: {
       populate: true

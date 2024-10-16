@@ -1091,6 +1091,109 @@ export interface ApiBooksPageBooksPage extends Schema.SingleType {
   };
 }
 
+export interface ApiCourseCourse extends Schema.CollectionType {
+  collectionName: 'courses';
+  info: {
+    singularName: 'course';
+    pluralName: 'courses';
+    displayName: 'Course';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    file: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::course.course',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::course.course',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCourseGroupCourseGroup extends Schema.CollectionType {
+  collectionName: 'course_groups';
+  info: {
+    singularName: 'course-group';
+    pluralName: 'course-groups';
+    displayName: 'Course Group';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    courses: Attribute.Relation<
+      'api::course-group.course-group',
+      'oneToMany',
+      'api::course.course'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::course-group.course-group',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::course-group.course-group',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCoursesPageCoursesPage extends Schema.SingleType {
+  collectionName: 'courses_pages';
+  info: {
+    singularName: 'courses-page';
+    pluralName: 'courses-pages';
+    displayName: 'Courses Page';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.Text;
+    course_groups: Attribute.Relation<
+      'api::courses-page.courses-page',
+      'oneToMany',
+      'api::course-group.course-group'
+    >;
+    seo: Attribute.Component<'shared.seo'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::courses-page.courses-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::courses-page.courses-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiDocumentDocument extends Schema.CollectionType {
   collectionName: 'documents';
   info: {
@@ -1921,6 +2024,9 @@ declare module '@strapi/types' {
       'api::book.book': ApiBookBook;
       'api::book-group.book-group': ApiBookGroupBookGroup;
       'api::books-page.books-page': ApiBooksPageBooksPage;
+      'api::course.course': ApiCourseCourse;
+      'api::course-group.course-group': ApiCourseGroupCourseGroup;
+      'api::courses-page.courses-page': ApiCoursesPageCoursesPage;
       'api::document.document': ApiDocumentDocument;
       'api::document-group.document-group': ApiDocumentGroupDocumentGroup;
       'api::documents-page.documents-page': ApiDocumentsPageDocumentsPage;

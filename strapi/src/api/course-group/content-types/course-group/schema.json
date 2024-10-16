@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "course_groups",
+  "info": {
+    "singularName": "course-group",
+    "pluralName": "course-groups",
+    "displayName": "Course Group"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "courses": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::course.course"
+    }
+  }
+}

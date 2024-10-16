@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "courses_pages",
+  "info": {
+    "singularName": "courses-page",
+    "pluralName": "courses-pages",
+    "displayName": "Courses Page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "course_groups": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::course-group.course-group"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}
