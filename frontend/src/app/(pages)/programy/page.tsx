@@ -1,6 +1,7 @@
 import CourseCard from "@/components/cards/CourseCard"
 import Header from "@/components/Header"
 import PageEnterAnimation from "@/components/PageEnterAnimation"
+import { Separator } from "@/components/ui/separator"
 import { getCoursesPage } from "@/lib/api"
 import { Metadata } from "next"
 
@@ -38,10 +39,14 @@ export default async function Page() {
 function CourseGroup({ title, cards }: { title: string; cards: any }) {
   return (
     <div className="flex flex-col justify-center gap-6 sm:w-9/12">
-      <div className="flex items-center justify-center text-pretty text-left text-base font-bold leading-tight max-sm:px-4 sm:text-lg sm:leading-normal lg:text-2xl">
+      <div className="space-y-4">
+        <div className="flex items-center  text-pretty text-left text-base font-bold leading-tight max-sm:px-4 sm:text-lg sm:leading-normal lg:text-2xl">
         {title}
+        </div>
+        <Separator />
       </div>
-      <div className="flex flex-col items-center justify-center gap-2">
+      
+      <div className="flex flex-col  justify-center gap-2 px-2">
         {cards ? (
           cards.map((card: any) => (
             <CourseCard

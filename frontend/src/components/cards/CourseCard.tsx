@@ -21,13 +21,13 @@ export default function CourseCard({ name, url, fileType }: FileCardProps) {
   const fileProps = getFileProps(fileType)
 
   return (
-    <div className="flex items-center justify-between bg-white p-4 shadow-[0px_4px_15px] shadow-slate-400/25 xs:rounded-2xl">
+    <div className="flex items-center justify-between bg-white p-4 shadow-[0px_4px_15px] shadow-slate-400/25 rounded-lg xs:rounded-2xl">
       <div className="flex gap-4 ">
         <div className="hidden items-center lg:flex">
           <FileIcon icon={fileProps.icon} color={fileProps.color} />
         </div>
         <div className="flex max-w-[30rem] items-center justify-center max-xs:w-56 lg:px-2">
-          <span className="text-pretty text-xs lg:text-xl">{name}</span>
+          <span className="text-left text-pretty text-xs lg:text-xl">{name}</span>
         </div>
       </div>
       <div className="flex items-center justify-center">
