@@ -55,15 +55,17 @@ export async function getAdditionalLinks(): Promise<any> {
     // const { data }: AxiosResponse<any> = await api.get("/navigation");
 
     revalidateT("additional-links")
-    const res = await fetch(`${process.env.STRAPI_API_URL}/additional-links?populate=*`, {
-      next: {
-        tags: ["additional-links"],
-      },
-    })
-    
+    const res = await fetch(
+      `${process.env.STRAPI_API_URL}/additional-links?populate=*`,
+      {
+        next: {
+          tags: ["additional-links"],
+        },
+      }
+    )
 
     const data = await res.json()
-    
+
     return data.data
   } catch (error: any) {
     handleError(error)
@@ -170,6 +172,18 @@ export async function getSubstitutionsPage() {
   }
 }
 
+export async function getCoursesPage() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get(
+      "/courses-page?populate[seo][populate]=true&populate[course_groups][populate][courses][populate][file][populate]=true"
+    )
+    revalidate("/programy")
+    return flattenStrapiResponse(data)
+  } catch (error: any) {
+    handleError(error)
+  }
+}
+
 export async function getSubstitutions(date: number) {
   try {
     const data: any = (
@@ -196,8 +210,8 @@ export async function getExactSubstitutions(date: Date) {
     revalidateT("substitutions-ex")
     const final = date
     final.setDate(date.getDate() + 1)
-    const finalDate = final.toISOString().slice(0, 10);
-    
+    const finalDate = final.toISOString().slice(0, 10)
+
     const data: any = (
       await fetch(
         `${process.env.STRAPI_API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[date][$eqi]=${finalDate}`,

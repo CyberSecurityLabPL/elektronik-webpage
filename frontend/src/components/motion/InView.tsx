@@ -33,8 +33,6 @@ export function InView({
   const ref = useRef(null)
   const isInView = useInView(ref, viewOptions)
 
-  console.log(isInView)
-
   return (
     <motion.div
       id={props.id}
