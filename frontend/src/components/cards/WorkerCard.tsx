@@ -24,9 +24,9 @@ export default function WorkerCard({
 }) {
   return (
     <Card className="flex h-60 w-full shadow-sm">
-      <div className="relative hidden h-full w-1/3 md:block">
+      <div className="relative hidden h-full w-1/4 md:block">
         <Image
-          className="rounded-l-md object-cover"
+          className="rounded-l-md "
           alt={`${name} img`}
           src={src.startsWith("/default/") ? src : getImage(src)}
           fill

@@ -29,7 +29,7 @@ export default async function Page() {
             <h1 className="mb-4 mt-12 flex justify-center text-center text-2xl font-semibold sm:justify-start">
               {group.title}
             </h1>
-            <div className="flex max-w-4xl flex-wrap justify-center gap-4">
+            <div className="flex max-w-3xl flex-wrap justify-center gap-4">
               {group.teachers.map((teacher: any) => (
                 <WorkerCard
                   key={teacher.fullname}

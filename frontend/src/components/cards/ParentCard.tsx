@@ -23,7 +23,7 @@ export default function ParentCard({
     <Card className=" flex h-64 shadow-sm sm:w-[32rem]">
       <div className="relative hidden h-full w-1/3 sm:block">
         <Image
-          className="rounded-l-md object-cover"
+          className="rounded-l-md "
           alt={`${name} img`}
           src={src.startsWith("/default/") ? src : getImage(src)}
           fill
