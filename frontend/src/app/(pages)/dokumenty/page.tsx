@@ -21,8 +21,6 @@ export const revalidate = REVALIDATE
 export default async function DocumentsPage() {
   const data = await getDocuments()
 
-  console.log(data)
-
   return (
     <main className="flex w-full flex-col items-center">
       <Header title={data?.heading} />

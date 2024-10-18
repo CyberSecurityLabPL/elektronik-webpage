@@ -54,7 +54,6 @@ export default function SubstitutionsDisplay({
   function getExact(date: Date) {
     setExact(true)
     const today = new Date();
-    console.log(today.toDateString());
     
     if (today.toDateString() === date.toDateString()) {
         setExact(false);

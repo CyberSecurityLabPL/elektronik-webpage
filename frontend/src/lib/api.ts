@@ -150,6 +150,18 @@ export async function getSubstitutionsPage() {
   }
 }
 
+export async function getCoursesPage() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get(
+      "/courses-page?populate[seo][populate]=true&populate[course_groups][populate][courses][populate][file][populate]=true"
+    )
+    revalidate("/programy")
+    return flattenStrapiResponse(data)
+  } catch (error: any) {
+    handleError(error)
+  }
+}
+
 export async function getSubstitutions(date: number) {
   try {
     const data: any = (
