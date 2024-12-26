@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card"
 import { LucideProps, Mail, MapPin, Phone, School } from "lucide-react"
 import type { Metadata } from "next"
+import Link from "next/link"
 import React from "react"
 
 export const metadata: Metadata = {
@@ -54,16 +55,24 @@ function page() {
                 title="Nazwa szkoły"
                 text='Centrum Kształcenia Zawodowego i Ustawicznego "Elektronik" w Zielonej Górze'
               />
-              <InfoLabel icon={Phone} title="Telefon" text="+48 684 525 100" />
+              <InfoLabel
+                icon={Phone}
+                title="Telefon"
+                text="+48 684 525 100"
+                href="tel:+48684525100"
+              />
               <InfoLabel
                 icon={Mail}
                 title="E-mail"
                 text="sekretariat@zseis.zgora.pl"
+                href="mailto:sekretariat@zseis.zgora.pl"
               />
               <InfoLabel
                 icon={MapPin}
                 title="Adres"
                 text="ul. Staszica 2 65-175 Zielona Góra"
+                href="https://maps.app.goo.gl/8jpAnoftNGedyz747"
+                target="_blank"
               />
             </div>
             <ContactForm className=" space-y-4 md:-order-1" />
@@ -78,19 +87,28 @@ function InfoLabel({
   icon,
   title,
   text,
+  href,
+  target,
 }: {
   icon: React.FC<LucideProps>
   title: string
   text: string
+  href?: string
+  target?: string
 }) {
   return (
-    <div className="flex w-full items-center justify-start gap-4 py-2">
+    <Link
+      draggable={false}
+      href={href ?? "#"}
+      target={target}
+      className="flex w-full items-center justify-start gap-4 rounded-lg p-2 transition-colors hover:bg-secondary"
+    >
       <IconComponent icon={icon} color="blue" IsCircle={true} />
       <div className="flex flex-col ">
         <span className="font-semibold">{title}</span>
         <span className="text-sm font-medium text-slate-500">{text}</span>
       </div>
-    </div>
+    </Link>
   )
 }
 
