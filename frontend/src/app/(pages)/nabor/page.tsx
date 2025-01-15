@@ -47,8 +47,8 @@ export default async function Page() {
             </Link>
           </Button>
         </div>
-        <div className="flex w-full flex-col items-center  gap-4 px-2">
-          <div className="flex w-full flex-col justify-between sm:flex-row sm:gap-24  md:w-auto ">
+        <div className="flex w-full flex-col items-center  gap-4 ">
+          <div className="flex w-full flex-col justify-between px-2 sm:flex-row sm:gap-24 sm:px-0 md:w-auto ">
             <div className="flex items-center text-base font-semibold sm:text-2xl md:text-3xl">
               Technikum 5 letnie
             </div>
@@ -61,11 +61,11 @@ export default async function Page() {
               </p>
             </div>
           </div>
-          <div className="flex w-fit justify-center overflow-auto">
+          <div className="flex w-full justify-center ">
             <Table className="font-medium">
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-[400px] text-center">Zawód</TableHead>
+                  <TableHead className="text-center">Zawód</TableHead>
                   <TableHead className="text-center">Ilość miejsc</TableHead>
                   <TableHead className="text-center">
                     Liczba oddziałów

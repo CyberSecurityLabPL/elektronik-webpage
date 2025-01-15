@@ -2,11 +2,19 @@ import AchieveCard from "@/components/cards/AchieveCard"
 import AchieveDialog from "@/components/AchieveDialog"
 import Header from "@/components/Header"
 import { getAchievements } from "@/lib/api"
-import { Metadata, ResolvingMetadata } from "next"
-import { MotionDiv } from "@/lib/motion"
+import { Metadata } from "next"
 import PageEnterAnimation from "@/components/PageEnterAnimation"
-import { getImage } from "@/lib/utils"
+import { formatDateYear, getImage } from "@/lib/utils"
 
+interface Achievement {
+  title: string
+  description: string
+  date: string
+  createdAt: string
+  image?: {
+    url: string
+  }
+}
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getAchievements()
 
@@ -18,12 +26,21 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-  const data = await getAchievements()
+  const data: {
+    achievements: Achievement[]
+    heading: string
+    description: string
+  } = await getAchievements()
+  data.achievements.sort(
+    (a: Achievement, b: Achievement) =>
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  )
+  console.log(data.achievements[0])
 
   return (
     <main className="flex w-full flex-col items-center">
       <Header title={data.heading} subtitle={data.description} />
-      <PageEnterAnimation className="mt-4 flex flex-col items-center justify-center">
+      <PageEnterAnimation className="mx-4 mt-4 flex  flex-col items-center justify-center">
         {data?.achievements.map((item: any) => (
           <AchieveDialog
             key={item.title}
@@ -35,7 +52,7 @@ export default async function Page() {
               key={item.name}
               name={item.title}
               src={getImage(item.image?.url) ?? "/default/trophy.svg"}
-              date={item.date}
+              date={formatDateYear(item.createdAt)}
               opis={item.description}
             />
           </AchieveDialog>

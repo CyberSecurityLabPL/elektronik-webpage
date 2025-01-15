@@ -22,7 +22,7 @@ export default async function Page() {
     <main className="flex w-full flex-col items-center">
       <Header title={data?.heading} subtitle={data?.description}></Header>
       <PageEnterAnimation className="flex flex-col items-center">
-        <div className="flex flex-col items-center justify-center gap-16">
+        <div className="flex flex-col items-center justify-center gap-16 px-2 ">
           {data.course_groups.map((courseGroup: any) => (
             <CourseGroup
               key={courseGroup.title}
@@ -40,13 +40,13 @@ function CourseGroup({ title, cards }: { title: string; cards: any }) {
   return (
     <div className="flex flex-col justify-center gap-6 sm:w-9/12">
       <div className="space-y-4">
-        <div className="flex items-center  text-pretty text-left text-base font-bold leading-tight max-sm:px-4 sm:text-lg sm:leading-normal lg:text-2xl">
-        {title}
+        <div className="flex items-center text-pretty  text-left text-base font-bold leading-tight sm:px-4 sm:text-lg sm:leading-normal lg:text-2xl">
+          {title}
         </div>
         <Separator />
       </div>
-      
-      <div className="flex flex-col  justify-center gap-2 px-2">
+
+      <div className="flex flex-col  justify-center gap-2 ">
         {cards ? (
           cards.map((card: any) => (
             <CourseCard
