@@ -3,7 +3,7 @@ import { twMerge } from "tailwind-merge"
 import ReactMarkdown, { Options } from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import { format } from "date-fns"
-import pl from "date-fns/locale/pl"
+import { pl } from "date-fns/locale/pl"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -70,7 +70,19 @@ export function renderMarkdown(markdown: string, options?: Readonly<Options>) {
   )
 
   return (
-    <ReactMarkdown rehypePlugins={[rehypeRaw]} {...options}>
+    <ReactMarkdown
+      components={{
+        table: (node, ...props) => (
+          <div className="w-full overflow-x-auto p-2">
+            <table className={cn(node.className)} {...props}>
+              {node.children}
+            </table>
+          </div>
+        ),
+      }}
+      rehypePlugins={[rehypeRaw]}
+      {...options}
+    >
       {formattedMarkdown}
     </ReactMarkdown>
   )
