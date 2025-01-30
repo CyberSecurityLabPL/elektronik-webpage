@@ -4,8 +4,6 @@ import Link from "next/link"
 import { FileIcon, IconColors } from "../Icon"
 import { Csv, Default, Docx, Pdf } from "../icons"
 
-import { format } from "date-fns"
-
 type FileProps = {
   color: IconColors
   icon: React.FC<LucideProps>
@@ -23,11 +21,11 @@ export default function CourseCard({ name, url, fileType }: FileCardProps) {
   return (
     <div className="flex items-center justify-between rounded-lg bg-white p-4 shadow-[0px_4px_15px] shadow-slate-400/25 xs:rounded-2xl">
       <div className="flex gap-4 ">
-        <div className="hidden items-center lg:flex">
+        <div className=" flex items-center">
           <FileIcon icon={fileProps.icon} color={fileProps.color} />
         </div>
-        <div className="flex max-w-[30rem] items-center justify-center max-xs:w-56 lg:px-2">
-          <span className="w-full text-pretty text-left text-xs lg:text-xl">
+        <div className="flex  items-center justify-center lg:px-2">
+          <span className="lg:text-regular w-full text-pretty text-left text-xs font-medium lg:text-xl">
             {name}
           </span>
         </div>

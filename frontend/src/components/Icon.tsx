@@ -52,7 +52,7 @@ export function FileIcon({
         " rounded-xl p-2 "
       )}
     >
-      <Icon className={`h-2 w-2 rounded-lg`} />
+      <Icon className={`h-6 w-6 rounded-lg `} />
     </div>
   )
 }

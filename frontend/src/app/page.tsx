@@ -25,9 +25,28 @@ export default async function Home() {
   const { link_groups: navItems, ...additionalLinks } = await getNavigation()
 
   const Content = [Overview, Benefits, News, Map, Faq]
-
+  const FAQschema = {
+    "@context": "http://schema.org/",
+    "@type": "FAQPage",
+    mainEntity:
+      data[4].questions &&
+      data[4].questions.length > 0 &&
+      data[4].questions.map((item: any) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+  }
   return (
     <PageWrapper>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(FAQschema),
+        }}
+      />
       <Navbar navItems={navItems} additionalLinks={additionalLinks} />
       <main className="flex w-full flex-col items-center justify-center overflow-x-hidden">
         <div className="flex w-full flex-col">

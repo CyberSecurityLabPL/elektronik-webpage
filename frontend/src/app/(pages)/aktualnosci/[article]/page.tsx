@@ -81,17 +81,27 @@ export default async function Page({
   const res = await getArticle(params.article, {})
 
   const article = res?.data ? res.data : null
-
+  const image = article?.image
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    name: article?.title,
+    image: getImage(image.url),
+    description: article?.description,
+  }
   const author = article ? getAuthor(article) : "Nieznany autor"
 
   if (!article) return <FailedToLoad />
 
-  const image = article?.image
   const hasImage = image && Object.keys(image).length !== 0
 
   return (
     <PageEnterAnimation>
       <article className="relative mx-auto mt-8 flex w-full max-w-screen-2xl flex-col items-center overflow-hidden 2xl:rounded-3xl">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         {hasImage ? (
           <div className="relative aspect-[5/2] w-full sm:aspect-[3/1] ">
             <Image
