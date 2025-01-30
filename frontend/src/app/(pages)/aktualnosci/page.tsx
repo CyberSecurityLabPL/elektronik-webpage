@@ -56,7 +56,7 @@ async function page({ searchParams }: PageParams) {
         <h2 className="mb-4 mt-8 text-center text-lg font-bold text-foreground xs:pl-8 xs:text-start">
           Wszystkie artykuły
         </h2>
-        <div className="grid w-full grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className=" grid h-full w-full grid-cols-1 items-center justify-center   gap-4 md:grid-cols-2 lg:grid-cols-3">
           {articles.length
             ? articles.map((item: any, index: number) => (
                 <NewsCard

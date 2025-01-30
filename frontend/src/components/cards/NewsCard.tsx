@@ -33,7 +33,7 @@ export default function NewsCard({
       transition={{ duration: 0.3 }}
       className={cn(
         "h-full w-full  overflow-hidden rounded-3xl border",
-        isFeatured ? "" : "max-w-2xl"
+        isFeatured ? "" : "w-full"
       )}
     >
       <Link

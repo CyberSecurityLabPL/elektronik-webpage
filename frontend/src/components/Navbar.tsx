@@ -5,7 +5,7 @@ import { motion } from "framer-motion"
 
 import Image from "next/image"
 import Link from "next/link"
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import MobileNavigation from "./MobileNavigation"
 import { Navigation } from "./Navigation"
 import { buttonVariants } from "./ui/button"
@@ -19,39 +19,28 @@ export default function Navbar({
 }) {
   const [isSmaller, setIsSmaller] = useState(false)
 
-  const sentinelRef = useRef(null)
-
   useEffect(() => {
-    const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-      const entry = entries[0]
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY
+      console.log(scrollPosition)
 
-      setIsSmaller(!entry.isIntersecting)
+      setIsSmaller(scrollPosition > 0)
     }
-    // TODO do naprawienia
-    const observer = new IntersectionObserver(handleIntersection, {
-      root: null,
-      threshold: 1,
-      rootMargin: "0px",
-    })
 
-    if (sentinelRef.current) {
-      observer.observe(sentinelRef.current)
-    }
+    window.addEventListener("scroll", handleScroll)
 
     return () => {
-      observer.disconnect()
+      window.removeEventListener("scroll", handleScroll)
     }
   }, [])
   return (
     <>
-      <div
-        className="absolute left-0 top-0"
-        id="navbar-sentinel"
-        ref={sentinelRef}
-      />
+      <div className="absolute left-0 top-0" id="navbar-sentinel" />
       <motion.div
         data-smaller={isSmaller}
-        className="group sticky top-0 z-[100] flex h-32 w-full justify-between border-b border-black/10 bg-white transition-all data-[smaller=true]:h-16 data-[smaller=true]:bg-white/10 data-[smaller=true]:backdrop-blur-2xl"
+        className={`group sticky top-0 z-[100] flex  w-full justify-between border-b border-black/10 bg-white  transition-all duration-200   data-[smaller=true]:bg-white/10 data-[smaller=true]:backdrop-blur-2xl`}
+        animate={{ height: isSmaller ? "4rem" : "8rem" }}
+        transition={{ duration: 0.1, delay: 0.1 }}
       >
         <div className="flex items-center justify-center px-8 ">
           <Link href={"/"} passHref>
@@ -60,7 +49,7 @@ export default function Navbar({
               width={80}
               height={80}
               priority
-              className="h-16 w-auto group-[[data-smaller=true]]:h-12 md:h-20"
+              className={`h-16 w-auto transition-all duration-200  group-[[data-smaller=true]]:h-12 md:h-20`}
               alt="Logo"
             />
           </Link>

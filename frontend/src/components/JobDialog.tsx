@@ -1,9 +1,7 @@
-import { Button } from "@/components/ui/button"
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -30,10 +28,12 @@ export default function JobDialog({
   return (
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
-        <DialogHeader>
-          <DialogTitle className="w-11/12">{`${company} - ${jobName}`}</DialogTitle>
-          <DialogDescription>{formatDateYear(date)}</DialogDescription>
+      <DialogContent className="w-full ">
+        <DialogHeader className="box-border w-fit whitespace-pre-wrap break-words ">
+          <DialogTitle className="box-border w-11/12  whitespace-pre-wrap break-words break-all text-left ">{`${company} - ${jobName}`}</DialogTitle>
+          <DialogDescription className="text-left">
+            {formatDateYear(date)}
+          </DialogDescription>
         </DialogHeader>
         <div className="flex flex-col items-start">
           <div className="p-1">

@@ -8,7 +8,7 @@ import {
 import Image from "next/image"
 
 const truncate = (opis: string) =>
-  opis?.length > 100 ? `${opis.substring(0, 90)}...` : opis
+  opis?.length > 150 ? `${opis.substring(0, 120)}...` : opis
 
 export default function AchieveCard({
   name,
@@ -22,33 +22,23 @@ export default function AchieveCard({
   opis: string
 }) {
   return (
-    <Card className="m-4 flex  cursor-pointer items-center justify-between rounded-3xl shadow-sm">
-      <div
-        className={`flex h-full flex-col rounded-t-xl sm:flex-row sm:rounded-none sm:rounded-l-xl`}
-      >
-        <div className="relative h-56 w-full rounded-t-3xl bg-slate-200 sm:w-2/4 sm:rounded-none sm:rounded-l-3xl">
-          <Image
-            alt={name + " image"}
-            src={src}
-            fill
-            className="rounded-t-3xl object-cover  sm:rounded-none sm:rounded-l-3xl"
-          />
-        </div>
-        <div className="">
-          <CardHeader>
-            <CardTitle className="text-slate-800">{name}</CardTitle>
-          </CardHeader>
-          <CardContent className="align-center inline-block font-medium">
-            <div className="float-left flex items-center justify-end text-black">
-              {truncate(opis)}
-            </div>
+    <Card className="m-4 flex min-h-56 w-full max-w-3xl  cursor-pointer flex-col gap-4 rounded-3xl shadow-sm sm:flex-row">
+      <div className="relative h-56 flex-shrink sm:w-56 sm:flex-shrink-0">
+        <Image
+          alt={name + " image"}
+          src={src}
+          fill
+          className="min-w-56 rounded-t-3xl  object-cover sm:rounded-none sm:rounded-l-3xl  "
+        />
+      </div>
+      <div className="flex  w-full flex-col justify-between px-4 py-6  pt-0 sm:pl-0 sm:pt-6">
+        <div>
+          <CardTitle>{name}</CardTitle>
+          <CardContent className="align-center inline-block p-0 pt-4 font-medium">
+            {truncate(opis)}
           </CardContent>
-          <CardFooter className="flex py-0 text-sm font-semibold text-slate-400">
-            <div className="float-left mb-2 flex items-center justify-end text-xs font-light text-slate-400">
-              {date}
-            </div>
-          </CardFooter>
         </div>
+        <CardFooter className="p-0 pt-2 ">{date}</CardFooter>
       </div>
     </Card>
   )
