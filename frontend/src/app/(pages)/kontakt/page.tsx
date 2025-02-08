@@ -9,6 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { getContact } from "@/lib/api"
 import { LucideProps, Mail, MapPin, Phone, School } from "lucide-react"
 import type { Metadata } from "next"
 import Link from "next/link"
@@ -30,7 +31,9 @@ export const metadata: Metadata = {
   ],
 }
 
-function page() {
+export default async function page() {
+  const data = await getContact()
+
   return (
     <div className="flex w-full flex-col  items-center ">
       <Header
@@ -58,19 +61,19 @@ function page() {
               <InfoLabel
                 icon={Phone}
                 title="Telefon"
-                text="+48 684 525 100"
-                href="tel:+48684525100"
+                text={data.phone}
+                href={`tel:${data.phone}`}
               />
               <InfoLabel
                 icon={Mail}
                 title="E-mail"
-                text="sekretariat@zseis.zgora.pl"
-                href="mailto:sekretariat@zseis.zgora.pl"
+                text={data.email}
+                href={`mailto:${data.email}`}
               />
               <InfoLabel
                 icon={MapPin}
                 title="Adres"
-                text="ul. Staszica 2 65-175 Zielona Góra"
+                text={data.address}
                 href="https://maps.app.goo.gl/8jpAnoftNGedyz747"
                 target="_blank"
               />
@@ -111,5 +114,3 @@ function InfoLabel({
     </Link>
   )
 }
-
-export default page

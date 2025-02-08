@@ -29,9 +29,9 @@ export default async function Home() {
     "@context": "http://schema.org/",
     "@type": "FAQPage",
     mainEntity:
-      data[4].questions &&
-      data[4].questions.length > 0 &&
-      data[4].questions.map((item: any) => ({
+      data.blocks[4].questions &&
+      data.blocks[4].questions.length > 0 &&
+      data.blocks[4].questions.map((item: any) => ({
         "@type": "Question",
         name: item.question,
         acceptedAnswer: {

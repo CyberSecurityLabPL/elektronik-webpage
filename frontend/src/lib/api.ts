@@ -290,8 +290,7 @@ export async function getAchievements() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/achievements-page")
     revalidate("/osiagniecia")
-    
-    
+
     return flattenStrapiResponse(data)
   } catch (error: any) {
     handleError(error)
@@ -333,4 +332,17 @@ export async function getHotAlert() {
 
 function handleError(error: AxiosError) {
   console.error(error.message)
+}
+
+export async function getContact() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get("/contact-page")
+    console.log(data)
+
+    revalidate("/kontakt")
+
+    return flattenStrapiResponse(data)
+  } catch (error: any) {
+    handleError(error)
+  }
 }
