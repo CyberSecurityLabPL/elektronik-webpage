@@ -46,30 +46,27 @@ export function Navigation({ navItems }: { navItems: any }) {
                   {item.name}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="overflow-hidden">
-                  <ul
-                    id="xD"
-                    className="relative !z-[99999] grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[800px]"
-                  >
+                  <ul className="relative !z-[99999] grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[800px]">
                     {index < 1 ? (
-                      <li className="row-span-3 hover:bg-accent rounded-lg">
-                        <NavigationMenuLink asChild >
+                      <li className="row-span-3 rounded-lg hover:bg-accent">
+                        <NavigationMenuLink asChild>
                           <a
                             className={`relative flex h-full  select-none flex-col justify-end rounded-md bg-cover object-cover text-background no-underline outline-none focus:shadow-md `}
                             href="/galeria"
-                          > 
-                          <div className="relative h-64">
-                            <Image
-                              src={"/assets/gallery.avif"}
-                              alt="Galeria"
-                              fill
-                              className="rounded-md object-cover"
-                            />
-                          </div>
-                            
-                            <div className="bg-transparent p-2 text-lg font-medium text-foreground z-50">
+                          >
+                            <div className="relative h-64">
+                              <Image
+                                src={"/assets/gallery.avif"}
+                                alt="Galeria"
+                                fill
+                                className="rounded-md object-cover"
+                              />
+                            </div>
+
+                            <div className="z-50 bg-transparent p-2 text-lg font-medium text-foreground">
                               Galeria
                             </div>
-                            <p className="bg-transparent p-2 pt-0 text-sm leading-tight text-foreground z-50">
+                            <p className="z-50 bg-transparent p-2 pt-0 text-sm leading-tight text-foreground">
                               Zobacz naszą galerie szkolną gdzie znajdziesz
                               przeróżne zdjęcia naszej szkoły! :)
                             </p>

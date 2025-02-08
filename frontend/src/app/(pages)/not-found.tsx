@@ -1,5 +1,6 @@
-import Header from "@/components/Header"
 import { Metadata } from "next"
+import Image from "next/image"
+import Link from "next/link"
 import React from "react"
 
 export const metadata: Metadata = {
@@ -8,8 +9,31 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div>
-      <Header title={"Error 404"} subtitle={"Nie znaleziono strony"} />
+    <div className="mx-auto flex-col px-8">
+      <div className="mt-10 flex flex-col">
+        <h1 className="text-center text-2xl font-bold text-primary md:text-3xl">
+          Nie znaleźliśmy strony, której szukasz
+        </h1>
+      </div>
+      <div className="relative mx-auto aspect-square w-full max-w-lg">
+        <Image src={"/assets/404.svg"} alt="Błąd 404" fill />
+      </div>
+      <div className="mt-10 flex flex-col">
+        <ul className="flex flex-wrap justify-between gap-2 text-xl underline">
+          <li>
+            <Link href="/">Strona główna</Link>
+          </li>
+          <li>
+            <Link href="/aktualnosci">Aktualności</Link>
+          </li>
+          <li>
+            <Link href="/plan">Plan lekcji</Link>
+          </li>
+          <li>
+            <Link href="/kontakt">Kontakt</Link>
+          </li>
+        </ul>
+      </div>
     </div>
   )
 }
