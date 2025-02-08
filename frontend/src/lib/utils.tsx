@@ -2,7 +2,7 @@ import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import ReactMarkdown, { Options } from "react-markdown"
 import rehypeRaw from "rehype-raw"
-import { format } from "date-fns"
+import { add, format, isWeekend, startOfWeek } from "date-fns"
 import { pl } from "date-fns/locale/pl"
 
 export function cn(...inputs: ClassValue[]) {
@@ -27,6 +27,16 @@ export function flattenStrapiResponse(
     }
     return obj
   } else return flatten(obj, flatteners)
+}
+
+/**
+ * @param day - The day of week from 1 to 7
+ * @returns The date of chosen day of current week
+ */
+export function getDayOfWeek(day: number) {
+  const skip = isWeekend(new Date()) ? 2 : 0
+  const mon = startOfWeek(add(new Date(), { days: skip }), { locale: pl })
+  return add(mon, { days: day - 1 })
 }
 
 function flatten(obj: any, flatteners: string[]) {
