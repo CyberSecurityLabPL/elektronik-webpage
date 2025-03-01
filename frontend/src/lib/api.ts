@@ -346,3 +346,14 @@ export async function getContact() {
     handleError(error)
   }
 }
+
+export async function getGraduates() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get("/graduate-page")
+    revalidate("/absolwenci")
+
+    return flattenStrapiResponse(data)
+  } catch (error: any) {
+    handleError(error)
+  }
+}
