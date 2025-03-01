@@ -1,5 +1,5 @@
 "use client"
-import { useState, useEffect } from "react"
+import { useEffect, useState } from "react"
 
 export function useScreenSize() {
   const [screenSize, setScreenSize] = useState(0)
@@ -21,6 +21,7 @@ export function useScreenSize() {
 
   return {
     screenSize,
+    loading: screenSize === 0,
     breakpoints: {
       small: screenSize < 640,
       medium: screenSize >= 768 && screenSize < 1024,
