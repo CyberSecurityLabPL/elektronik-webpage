@@ -46,7 +46,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                   {item.name}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="overflow-hidden">
-                  <ul className="relative !z-[99999] grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[800px]">
+                  <ul className="relative !z-[99999] grid max-h-[452px] w-[400px] gap-3 overflow-y-auto p-4 md:w-[500px] md:grid-cols-2 lg:w-[800px]">
                     {index < 1 ? (
                       <li className="row-span-3 rounded-lg hover:bg-accent">
                         <NavigationMenuLink asChild>
