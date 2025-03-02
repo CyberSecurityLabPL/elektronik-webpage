@@ -21,16 +21,19 @@ const Hero = ({ data }: { data: any }) => {
         height={1080}
       />
 
-      <div className="relative flex w-full max-w-xl flex-col items-center gap-8 px-2 2xl:max-w-2xl">
-        <TextEffect
-          per="word"
-          preset="slide"
-          as="h1"
-          className="text-center text-4xl font-bold text-primary xs:text-5xl xl:text-6xl"
-        >
-          {data?.heading ?? "Witaj w Elektroniku"}
-        </TextEffect>
-
+      <div className="relative flex w-full max-w-xl flex-col items-center gap-8 px-2 2xl:max-w-2xl 3xl:max-w-4xl">
+        <div className="flex flex-col items-center justify-center">
+          <TextEffect
+            per="word"
+            preset="slide"
+            as="h1"
+            className="text-center text-4xl font-bold text-foreground xs:text-5xl xl:text-6xl"
+            highlightedWords={["pasje", "chęć"]}  
+          >
+            {data?.heading ?? "Witaj w Elektroniku"}
+          </TextEffect>
+        </div>
+        
         <p className="text-center text-base text-primary-foreground xs:text-lg xl:text-xl ">
           {data?.text ?? "Zapraszamy do zapoznania się z naszą ofertą."}
         </p>
@@ -98,6 +101,14 @@ const Hero = ({ data }: { data: any }) => {
       </div>
     </div>
   )
+}
+
+export function HighlightCircle({ className }: { className?: string }) {
+  return (
+    <svg width="379" height="128" viewBox="0 0 379 128" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
+      <path d="M21.8412 63.4796C15.7831 116.373 304.416 101.727 313.311 65.1704C316.558 63.8484 317.023 65.8439 318.348 69.7471C310.103 104.518 20.7865 122.743 11.6818 66.3561C0.276335 -4.28034 366.611 -32.4707 378.299 54.7832C384.536 101.346 160.664 138.193 13.5452 124.099C8.2534 123.509 4.48391 122.289 0.434328 120.914C157.008 131.193 375.31 97.9693 364.974 52.1611C347.156 -26.8073 28.4566 5.71901 21.8412 63.4796Z" fill="#6577FB"/>
+    </svg>
+  )    
 }
 
 function LeftArrow() {

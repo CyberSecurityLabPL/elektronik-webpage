@@ -1,6 +1,8 @@
 "use client"
+import { cn } from "@/lib/utils"
 import { motion, useInView, Variants } from "framer-motion"
 import React, { useRef } from "react"
+import { HighlightCircle } from "../landingpage/Hero"
 
 type PresetType = "blur" | "shake" | "scale" | "fade" | "slide"
 
@@ -78,15 +80,18 @@ const AnimationComponent: React.FC<{
   word: string
   variants: Variants
   per: "word" | "char"
-}> = React.memo(({ word, variants, per }) => {
+  highlighted?: boolean
+  last?: boolean
+}> = React.memo(({ word, variants, per, highlighted, last, }) => {
   if (per === "word") {
     return (
       <motion.span
         aria-hidden="true"
         variants={variants}
-        className="inline-block whitespace-pre"
+        className={cn("inline-block whitespace-pre my-3", highlighted ? "text-primary" : "", last ? "relative" : "")}
       >
         {word}
+        {last ? <HighlightCircle className="z-[-1] absolute left-0 top-0 transform -translate-x-[32px] xl:-translate-x-[64px] -translate-y-[40px] xs:-translate-y-[30px] xl:-translate-y-[20px] w-[260px] xs:w-[320px] xl:w-[470px] aspect-[379/128]" /> : null}
       </motion.span>
     )
   }
@@ -111,13 +116,14 @@ AnimationComponent.displayName = "AnimationComponent"
 
 export function TextEffect({
   children,
+  highlightedWords,
   per = "word",
   as = "p",
   variants,
   className,
   preset,
   ...props
-}: TextEffectProps & React.ComponentProps<typeof motion.div>) {
+}: TextEffectProps & React.ComponentProps<typeof motion.div> & {highlightedWords?: string[]}) {
   const words = children.split(/(\S+)/)
   const MotionTag = motion[as as keyof typeof motion]
   const selectedVariants = preset
@@ -144,6 +150,8 @@ export function TextEffect({
         <AnimationComponent
           key={`word-${wordIndex}`}
           word={word}
+          highlighted={highlightedWords?.includes(word)}
+          last={wordIndex === words.length - 2}
           variants={itemVariants}
           per={per}
         />
