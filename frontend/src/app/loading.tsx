@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export default function Loading() {
   return (
-    <div className=" z-50 flex h-screen  w-full flex-col items-center justify-center bg-white">
+    <div className=" z-50 flex h-screen  w-full flex-col items-center justify-center bg-background">
       <div className="animate-pulse">
         <Image
           src={"/assets/logo/logo.svg"}

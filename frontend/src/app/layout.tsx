@@ -27,7 +27,7 @@ export default async function RootLayout({
 }>) {
   const data = await getHotAlert()
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link
           rel="icon"

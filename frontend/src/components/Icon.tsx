@@ -16,7 +16,7 @@ export default function IconComponent({
     <div
       className={cn(
         {
-          "bg-blue-500/25 text-blue-600": color === "blue",
+          "bg-blue-500/25 text-blue-600 hc:bg-primary/10 hc:text-primary": color === "blue",
           "bg-red-500/25 text-red-600": color === "red",
           "bg-amber-500/25 text-amber-600": color === "amber",
           "bg-green-500/25 text-green-600": color === "green",

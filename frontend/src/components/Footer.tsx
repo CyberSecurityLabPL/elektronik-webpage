@@ -10,10 +10,10 @@ import ShootEffect from "./ShootEffect"
 
 export default function Footer() {
   return (
-    <footer className="-mt-64 flex h-fit min-h-96 w-full flex-col items-center justify-end">
+    <footer className="-mt-64 hc:mt-20 flex h-fit min-h-96 w-full flex-col items-center justify-end">
       {/* transition svg */}
-      <div className="h-80 w-full bg-footer-squares bg-cover bg-repeat-x" />
-      <div className="h-60 w-full translate-y-1 bg-lines-transition-dark bg-cover bg-bottom bg-repeat-x" />
+      <div className="h-80 w-full bg-footer-squares bg-cover bg-repeat-x hc:hidden" />
+      <div className="h-60 w-full translate-y-1 bg-lines-transition-dark bg-cover bg-bottom bg-repeat-x hc:hidden" />
       {/* footer */}
       <div className="z-[1] flex h-fit min-h-32 w-full flex-col justify-between gap-6 overflow-auto bg-[#262727] px-8 pt-16">
         <div className="flex w-fit flex-col items-center justify-center self-center">
@@ -92,29 +92,24 @@ async function Sitemap() {
               key={index}
               className="flex flex-col items-center text-start sm:justify-start sm:text-left"
             >
-              <span className="w-full text-nowrap pb-4 text-sm font-bold text-[#CACACA]">
+              <span className="w-full text-nowrap pb-4 text-sm font-bold text-[#CACACA] hc:text-primary">
                 {panel.name}
               </span>
               <ol className="flex w-full flex-col gap-2 ">
                 {(index === 0
                   ? [
-                      ...panel.links,
-                      {
-                        name: "Kontakt",
-                        href: "kontakt",
-                        isExternal: false,
-                      },
-                      {
-                        name: "Galeria",
-                        href: "galeria",
-                        isExternal: false,
-                      },
+                    {
+                      name: "Galeria",
+                      href: "galeria",
+                      isExternal: false,
+                    },
+                    ...panel.links,
                     ]
                   : panel.links
                 ).map((link: any, index: number) => (
                   <li key={`l${index}`}>
                     <Link
-                      className="w-fit text-sm text-[#808080] hover:text-[#CACACA] hover:underline"
+                      className="w-fit text-sm text-[#808080] hc:text-muted-foreground hc:hover:text-foreground hover:text-[#CACACA] hover:underline"
                       href={link.isExternal ? link.href : `/${link.href}`}
                     >
                       {link.name ?? "Empty"}

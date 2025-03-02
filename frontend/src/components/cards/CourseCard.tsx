@@ -19,7 +19,7 @@ export default function CourseCard({ name, url, fileType }: FileCardProps) {
   const fileProps = getFileProps(fileType)
 
   return (
-    <div className="flex items-center justify-between rounded-lg bg-white p-4 shadow-[0px_4px_15px] shadow-slate-400/25 xs:rounded-2xl">
+    <div className="flex items-center justify-between rounded-lg bg-background p-4 shadow-[0px_4px_15px] shadow-slate-400/25 xs:rounded-2xl hc:shadow-none hc:border border-background-accent">
       <div className="flex gap-4 ">
         <div className=" flex items-center">
           <FileIcon icon={fileProps.icon} color={fileProps.color} />

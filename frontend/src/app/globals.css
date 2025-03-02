@@ -110,6 +110,7 @@ div[cmdk-list]::-webkit-scrollbar-thumb {
   :root {
     --background: 0 0% 100%;
     --background-accent: 0, 0%, 96%;
+    --background-muted: 0, 0%, 96%;
     --foreground: 217, 33%, 17%;
 
     --card: 0 0% 100%;
@@ -139,6 +140,40 @@ div[cmdk-list]::-webkit-scrollbar-thumb {
 
     --radius: 0.5rem;
   }
+}
+
+.high-contrast {
+  --background: 0 0% 0%;
+  --background-accent: 180, 1%, 15%;
+  --background-muted: 0, 0%, 12%;
+  --foreground: 0 0 100%;
+
+  --card: 0 0% 0%;
+  --card-foreground: 0 0 100;
+
+  --popover: 0 0% 100%;
+  --popover-foreground: 217, 33%, 17%;
+
+  --primary: 175 100% 50%;
+  --primary-foreground: 0 0 100%;
+
+  --secondary: 210 40% 96.1%;
+  --secondary-foreground: 0 0 100;
+
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 0 0 80%;
+
+  --accent: 0, 0%, 20%;
+  --accent-foreground: 0 0 100%;
+
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 217, 33%, 17%;
+
+  --radius: 0.5rem;
 }
 
 @layer base {

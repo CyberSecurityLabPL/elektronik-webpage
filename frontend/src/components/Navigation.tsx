@@ -41,17 +41,17 @@ export function Navigation({ navItems }: { navItems: any }) {
               <NavigationMenuItem key={item.name}>
                 <NavigationMenuTrigger
                   onMouseEnter={handleMouseEnter}
-                  className="rounded-xl bg-transparent text-lg hover:bg-transparent group-[[data-smaller=true]]:text-base"
+                  className="rounded-xl hc:text-white bg-transparent text-lg hover:bg-transparent group-[[data-smaller=true]]:text-base hc:hover:text-white hc:hover:bg-white/10"
                 >
                   {item.name}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="overflow-hidden">
-                  <ul className="relative !z-[99999] grid max-h-[452px] w-[400px] gap-3 overflow-y-auto p-4 md:w-[500px] md:grid-cols-2 lg:w-[800px]">
+                  <ul className="relative !z-[99999] grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[800px] bg-background max-h-[452px] overflow-y-auto">
                     {index < 1 ? (
                       <li className="row-span-3 rounded-lg hover:bg-accent">
                         <NavigationMenuLink asChild>
                           <a
-                            className={`relative flex h-full  select-none flex-col justify-end rounded-md bg-cover object-cover text-background no-underline outline-none focus:shadow-md `}
+                            className={`relative flex h-full select-none flex-col justify-end rounded-md hc:hover:bg-background-muted object-cover text-background no-underline outline-none focus:shadow-md `}
                             href="/galeria"
                           >
                             <div className="relative h-64">
@@ -99,7 +99,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                 <PopoverTrigger asChild>
                   <Button
                     variant={"ghost"}
-                    className="text-lg hover:bg-accent/50"
+                    className="text-lg hover:bg-accent/50 hc:text-white hc:hover:text-white hc:hover:bg-white/10"
                     onClick={() => handlePopoverOpenChange(!isOpen)}
                   >
                     Więcej
@@ -112,7 +112,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                   className="z-10"
                 >
                   <PopoverContent
-                    className="absolute -right-32 z-10 flex w-[52rem] rounded-3xl py-6 data-[state=open]:block data-[state=closed]:hidden"
+                    className="absolute -right-32 z-10 flex w-[52rem] rounded-3xl py-6 data-[state=open]:block data-[state=closed]:hidden bg-background"
                     data-state={isOpen ? "open" : "closed"}
                   >
                     <ul className="mx-auto flex h-full w-full flex-wrap gap-8">
@@ -121,20 +121,20 @@ export function Navigation({ navItems }: { navItems: any }) {
                           <Popover>
                             <PopoverTrigger asChild>
                               <Button
-                                variant={"secondary"}
+                                variant={"ghost"}
                                 className={cn(
-                                  "text-lg font-medium text-slate-800"
+                                  "text-lg font-medium text-foreground"
                                 )}
                               >
                                 {item.name}
                                 <ChevronDown className="ml-2" />
                               </Button>
                             </PopoverTrigger>
-                            <PopoverContent className="space-y-4 rounded-3xl">
+                            <PopoverContent className="space-y-4 rounded-3xl bg-background">
                               {item.links?.map((tab: any) => (
                                 <Link
                                   key={tab.name}
-                                  className="flex gap-4 rounded-xl bg-slate-50 p-2 text-lg font-medium text-slate-800 hover:bg-slate-100 hover:text-slate-900"
+                                  className="flex gap-4 rounded-xl hover:bg-background-muted p-2 text-lg font-medium text-foreground hover:text-accent-foreground"
                                   href={
                                     tab.isExternal ? tab.href : `/${tab.href}`
                                   }
@@ -173,14 +173,14 @@ const ListItem = forwardRef<
         <Link
           ref={ref}
           className={cn(
-            "flex h-full select-none items-center justify-between gap-1 space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+            "flex h-full select-none items-center justify-between gap-1 space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-background-muted hover:text-accent-foreground focus:bg-background-muted focus:text-accent-foreground",
             className
           )}
           href={href!}
           {...props}
         >
           <div>
-            <div className="flex w-full items-center gap-3 pb-2 text-sm font-medium leading-none">
+            <div className="flex w-full text-foreground items-center gap-3 pb-2 text-sm font-medium leading-none">
               {title}
               {isFeatured ? (
                 <div className="rounded-3xl border border-primary/90 bg-primary/80 p-1 px-2 text-[12px] text-white">

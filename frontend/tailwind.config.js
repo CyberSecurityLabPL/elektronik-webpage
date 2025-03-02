@@ -1,6 +1,7 @@
-import type { Config } from "tailwindcss"
+// import type { Config } from "tailwindcss"
+const plugin = require('tailwindcss/plugin')
 
-const config = {
+module.exports = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -17,11 +18,13 @@ const config = {
     extend: {
       backgroundImage: {
         "lines-transition": "url('/backgrounds/lines-transition.svg')",
+        "lines-transition-hc": "url('/backgrounds/lines-transition-hc.svg')",
         "lines-transition-dark":
           "url('/backgrounds/lines-transition-dark.svg')",
         "footer-squares": "url('/backgrounds/footer-squares.svg')",
         "hero-squares": "url('/backgrounds/hero-squares.svg')",
         "wave-transition": "url('/backgrounds/bg-wave-transition.svg')",
+        "wave-transition-hc": "url('/backgrounds/bg-wave-transition-hc.svg')",
         "overview-bg": "url('/backgrounds/bg-overview.svg')",
         "sponsors-bg": "url('/backgrounds/bg-sponsors.svg')",
       },
@@ -32,6 +35,7 @@ const config = {
         background: {
           DEFAULT: "hsl(var(--background))",
           accent: "hsl(var(--background-accent))",
+          muted: "hsl(var(--background-muted))"
         },
         foreground: "hsl(var(--foreground))",
         primary: {
@@ -97,7 +101,13 @@ const config = {
       },
     },
   },
-  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
-} satisfies Config
-
-export default config
+  plugins: [
+    plugin(({addVariant}) => {
+      addVariant('hc', ':is(:where(.high-contrast) &)');
+    }),
+    require("tailwindcss-animate"),
+    require("@tailwindcss/typography"),
+  ],
+}
+// satisfies Config
+// export default config

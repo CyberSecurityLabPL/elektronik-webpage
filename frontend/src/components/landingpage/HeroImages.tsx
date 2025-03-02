@@ -34,7 +34,7 @@ export function HeroImages({ images }: { images: imagesProp[] }) {
               className=" basis-full pb-4  pl-4  sm:basis-2/3 md:basis-1/3  xl:basis-1/4 2xl:basis-1/5"
               key={"landing-page-image-" + index}
             >
-              <div className=" flex aspect-square  items-center justify-center  rounded-3xl border border-neutral-200 bg-neutral-100  p-4 shadow-lg shadow-slate-200">
+              <div className=" flex aspect-square  items-center justify-center  rounded-3xl border border-neutral-200 hc:shadow-none bg-neutral-100 hc:bg-background-muted hc:border-none  p-4 shadow-lg shadow-slate-200">
                 <Image
                   src={getImage(image.url)}
                   alt="Zdjęcie szkoły"
