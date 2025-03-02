@@ -30,7 +30,7 @@ export default function FileCard({ name, date, url, fileType }: FileCardProps) {
         <div className="flex flex-col">
           <span className=" text-lg xs:text-xl">{name}</span>
           <span className="text-sm font-medium text-zinc-400 xs:text-base">
-            {format(new Date(date), "dd.MM.yyyy - HH:mm")}
+            {format(new Date(date), "dd.MM.yyyy")}
           </span>
         </div>
       </div>

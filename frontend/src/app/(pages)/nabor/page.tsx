@@ -46,48 +46,76 @@ export default async function Page() {
               Wypełnij wniosek Online
             </Link>
           </Button>
+          <div className="flex items-center ">
+            <p className="text-xs lg:text-base">
+              Jesli potrzebujesz dokumentów znajdziesz je&nbsp;
+              <Link className="text-primary underline" href="/dokumenty">
+                tutaj
+              </Link>
+            </p>
+          </div>
         </div>
-        <div className="flex w-full flex-col items-center  gap-4 ">
-          <div className="flex w-full flex-col justify-between px-2 sm:flex-row sm:gap-24 sm:px-0 md:w-auto ">
-            <div className="flex items-center text-base font-semibold sm:text-2xl md:text-3xl">
-              Technikum 5 letnie
+        <div className="flex w-full flex-col  gap-4 ">
+          {data.recruitment_groups.map((recruitments: any, index: number) => (
+            <div key={index} className="pb-6">
+              <div className="flex w-full flex-col justify-between px-2 pb-2 sm:flex-row sm:gap-24 sm:px-0 md:w-auto">
+                <h1 className=" text-base font-semibold sm:text-2xl md:text-3xl">
+                  {recruitments.title}
+                </h1>
+              </div>
+
+              <div className="flex w-full justify-center ">
+                <Table className="font-medium">
+                  <TableHeader>
+                    <TableRow className="hc:text-black">
+                      <TableHead className="text-center">Zawód</TableHead>
+                      <TableHead className="text-center">
+                        Ilość miejsc
+                      </TableHead>
+                      <TableHead className="text-center">
+                        Liczba oddziałów
+                      </TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody className="text-xs lg:text-base">
+                    {recruitments.recruitments.map(
+                      (row: any, index: number) => (
+                        <TableRow
+                          className="hc:hover:bg-background-muted w-full  bg-background hover:bg-muted/90 hover:underline"
+                          key={row.profession + index}
+                        >
+                          <TableCell className="p-0 font-medium">
+                            <Link
+                              href={row.link}
+                              className="block h-full w-full p-4"
+                            >
+                              {row.profession}
+                            </Link>
+                          </TableCell>
+                          <TableCell className="p-0 text-center">
+                            <Link
+                              href={row.link}
+                              className="block h-full w-full p-4 "
+                            >
+                              {row.spaces}
+                            </Link>
+                          </TableCell>
+                          <TableCell className="p-0 text-center">
+                            <Link
+                              href={row.link}
+                              className="block h-full w-full p-4"
+                            >
+                              {row.groups}
+                            </Link>
+                          </TableCell>
+                        </TableRow>
+                      )
+                    ) ?? "Brak danych!"}
+                  </TableBody>
+                </Table>
+              </div>
             </div>
-            <div className="flex items-center ">
-              <p className="text-xs lg:text-base">
-                Jesli potrzebujesz dokumentów znajdziesz je&nbsp;
-                <Link className="text-primary underline" href="/dokumenty">
-                  tutaj
-                </Link>
-              </p>
-            </div>
-          </div>
-          <div className="flex w-full justify-center ">
-            <Table className="font-medium">
-              <TableHeader>
-                <TableRow className="hc:text-black">
-                  <TableHead className="text-center">Zawód</TableHead>
-                  <TableHead className="text-center">Ilość miejsc</TableHead>
-                  <TableHead className="text-center">
-                    Liczba oddziałów
-                  </TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody className="text-xs lg:text-base">
-                {data.recruitments?.map((row: any, index: number) => (
-                  <TableRow
-                    className="bg-background hover:bg-muted/90 hc:hover:bg-background-muted"
-                    key={row.profession + index}
-                  >
-                    <TableCell className="font-medium">
-                      {row.profession}
-                    </TableCell>
-                    <TableCell className="text-center">{row.spaces}</TableCell>
-                    <TableCell className="text-center">{row.groups}</TableCell>
-                  </TableRow>
-                )) ?? "Brak danych!"}
-              </TableBody>
-            </Table>
-          </div>
+          ))}
         </div>
       </PageEnterAnimation>
     </main>
