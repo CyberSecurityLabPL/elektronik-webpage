@@ -38,7 +38,7 @@ export default function JobCard({
     <Card className="flex w-5/6 cursor-pointer flex-col justify-between gap-4 rounded-xl p-4 md:flex-row md:p-0 lg:w-[56rem]">
       <div className="flex gap-4">
 
-      
+
       <CardContent className="relative hidden flex-shrink-0 w-48 rounded-l-lg md:block lg:w-80 ">
         <Image
           className="rounded-l-lg object-cover w-80"
@@ -50,7 +50,7 @@ export default function JobCard({
       </CardContent>
       <CardHeader className="flex w-full flex-col gap-8 px-0 pb-4 pt-0 md:py-4 ">
         <div>
-          <CardTitle className="break-all  text-slate-800">{name}</CardTitle>
+          <CardTitle className="break-all  text-slate-800 hc:text-foreground">{name}</CardTitle>
           <CardDescription className="text-base font-bold text-primary">{`${numberWithSpaces(minPay)} PLN - ${numberWithSpaces(maxPay)} PLN`}</CardDescription>
         </div>
 

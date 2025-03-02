@@ -28,9 +28,8 @@ const page = async ({
       `${process.env.TIMETABLE_API_URL!}/info`
     )
 
-    
+
     const timetableInfoData = await timetableInfoRes.json()
-    // console.log("api:", timetableInfoData)
 
     const isIdValid = timetableInfoData.some(
       (item: { id: string }) => item.id === idToPass
@@ -88,7 +87,7 @@ const page = async ({
     )
   } catch (error) {
     console.log(error);
-    
+
     return (
       <div className="grid h-screen w-screen place-items-center">
         <div className="flex flex-col gap-4">
