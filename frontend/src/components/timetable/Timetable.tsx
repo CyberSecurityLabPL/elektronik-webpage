@@ -56,8 +56,8 @@ export default function Timetable({ data }: { data: any }) {
           </TableHeader>
           <TableBody>
             {data.hours.map((hour: any, index: number) => (
-              <TableRow key={index} className="flex">
-                <TableCell className="flex w-11 items-center justify-center bg-primary p-0 text-xl text-white">
+              <TableRow key={index} className="flex hc:hover:bg-background-muted">
+                <TableCell className="flex w-11 items-center justify-center bg-primary p-0 text-xl text-white hc:text-black">
                   {index}
                 </TableCell>
                 <TableCell className="timetable-cell w-[150px] font-bold tracking-wider">

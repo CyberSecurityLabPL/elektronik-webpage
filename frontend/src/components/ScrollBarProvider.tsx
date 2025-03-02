@@ -14,7 +14,7 @@ export default function ScrollBarProvider({
   children: React.ReactNode
 }) {
   useEffect(() => {
-    const start: color = { r: 53, g: 77, b: 252 }
+    const start: color = { r: 0, g: 255, b: 234 }
     const end: color = { r: 38, g: 39, b: 39 }
 
     let color: color = start

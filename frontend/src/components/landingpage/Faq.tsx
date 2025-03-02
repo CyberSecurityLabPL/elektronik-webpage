@@ -28,7 +28,7 @@ export default function Faq({ data }: { data: any }) {
     >
       <Card className="z-50 h-fit w-4/5">
         <CardHeader>
-          <CardTitle>FAQ</CardTitle>
+          <CardTitle className="text-primary">FAQ</CardTitle>
           <CardDescription>Zobacz najczęściej zadawane pytania</CardDescription>
         </CardHeader>
         <CardContent className=" flex gap-2">

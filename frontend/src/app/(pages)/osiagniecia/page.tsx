@@ -35,7 +35,6 @@ export default async function Page() {
     (a: Achievement, b: Achievement) =>
       new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   )
-  console.log(data.achievements[0])
 
   return (
     <main className="flex w-full flex-col items-center">

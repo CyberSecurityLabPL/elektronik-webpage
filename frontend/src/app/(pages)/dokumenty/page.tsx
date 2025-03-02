@@ -52,7 +52,7 @@ function FileGroup({
 }) {
   return (
     <div className="mb-16 flex w-full flex-col justify-center">
-      <div className="flex w-full justify-center text-left text-2xl font-semibold text-slate-500 md:justify-start md:px-16">
+      <div className="flex w-full justify-center text-left text-2xl font-semibold text-slate-500 hc:text-primary md:justify-start md:px-16">
         {title}
       </div>
       <div className="mt-4 flex w-full items-center justify-center">

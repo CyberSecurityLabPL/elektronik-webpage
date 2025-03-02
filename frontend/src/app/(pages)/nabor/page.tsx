@@ -64,7 +64,7 @@ export default async function Page() {
           <div className="flex w-full justify-center ">
             <Table className="font-medium">
               <TableHeader>
-                <TableRow>
+                <TableRow className="hc:text-black">
                   <TableHead className="text-center">Zawód</TableHead>
                   <TableHead className="text-center">Ilość miejsc</TableHead>
                   <TableHead className="text-center">
@@ -75,7 +75,7 @@ export default async function Page() {
               <TableBody className="text-xs lg:text-base">
                 {data.recruitments?.map((row: any, index: number) => (
                   <TableRow
-                    className="bg-background hover:bg-muted/90"
+                    className="bg-background hover:bg-muted/90 hc:hover:bg-background-muted"
                     key={row.profession + index}
                   >
                     <TableCell className="font-medium">

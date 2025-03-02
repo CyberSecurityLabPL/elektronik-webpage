@@ -151,7 +151,7 @@ export default async function Page({
           {/* ARTICLE CONTENT */}
         </div>
         <div className="relative w-full bg-background p-6 pt-0 md:p-12 md:pt-0">
-          <div className="prose prose-sm prose-blue self-start overflow-x-auto text-xs sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl prose-p:!text-pretty sm:text-base">
+          <div className="prose prose-sm prose-blue self-start overflow-x-auto text-xs sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl prose-p:!text-pretty sm:text-base hc:text-foreground hc:prose-strong:text-foreground hc:prose-a:text-primary">
             {article?.content ? (
               renderMarkdown(article.content, markdownOptions)
             ) : (

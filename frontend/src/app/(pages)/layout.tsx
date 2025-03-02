@@ -13,7 +13,7 @@ const Layout = async ({
   return (
     <PageWrapper>
       <Navbar navItems={navItems} additionalLinks={additionalLinks} />
-      <div className="page-padding relative flex min-h-[calc(100vh-128px)] w-full flex-col justify-start">
+      <div className="page-padding relative flex min-h-[calc(100vh-128px)] w-full flex-col justify-start bg-background">
         {children}
       </div>
 

@@ -38,7 +38,7 @@ const page = async () => {
         <div className="w-full  pt-8 md:w-3/4 xl:w-1/2">
           <Table className="bg-white pt-8 ">
             <TableHeader className="text-xs md:text-base ">
-              <TableRow className="grid grid-cols-3">
+              <TableRow className="grid grid-cols-3 hc:text-black">
                 <TableHead className="text-bold flex items-center justify-center ">
                   Klasa
                 </TableHead>
@@ -54,7 +54,7 @@ const page = async () => {
               {data?.apprenticeships.map((row: any, index: number) => (
                 <TableRow
                   key={row.class + index}
-                  className="grid grid-cols-3 hover:bg-muted/90"
+                  className="grid grid-cols-3 bg-background hover:bg-background-muted"
                 >
                   <TableCell className="flex items-center justify-center text-center">
                     {row.class}

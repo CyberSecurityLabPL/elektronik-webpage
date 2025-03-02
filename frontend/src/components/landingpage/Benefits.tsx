@@ -64,7 +64,7 @@ export default function Benefits({ data }: { data: any }) {
           delay: 0.2,
         }}
         viewport={{ once: true }}
-        className="px-2 py-4 pb-14 text-center font-sans text-4xl font-bold text-slate-800"
+        className="px-2 py-4 pb-14 text-center font-sans text-4xl font-bold text-foreground"
       >
         Dlaczego warto wybrać Elektrona?
       </m.h1>
@@ -95,11 +95,11 @@ export default function Benefits({ data }: { data: any }) {
               },
             }}
             key={index}
-            className={`rounded-2xl p-6 shadow-[0_10px_25px_-10px_rgba(53,77,252,0.3)] ${
+            className={`rounded-2xl shadow-[0_10px_25px_-10px_rgba(53,77,252,0.3)] hc:shadow-none hc:bg-background-muted overflow-hidden ${
               index == 1 || index == 2 ? "md:col-span-2" : ""
             }`}
           >
-            <Card className="border-none shadow-none">
+            <Card className="border-none shadow-none hc:bg-background-muted p-4">
               <CardContent className="relative h-52 rounded-lg">
                 <Image
                   src={getImage(card.image.url)}
@@ -113,7 +113,7 @@ export default function Benefits({ data }: { data: any }) {
                 <CardTitle className="text-primary-foreground ">
                   {card.title}
                 </CardTitle>
-                <CardDescription className={` text-slate-700`}>
+                <CardDescription className="text-secondary-foreground">
                   {card.content}
                 </CardDescription>
               </CardHeader>

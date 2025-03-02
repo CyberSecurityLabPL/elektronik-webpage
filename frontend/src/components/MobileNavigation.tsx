@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/drawer"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
-import { Menu } from "lucide-react"
+import { ExternalLink, Menu } from "lucide-react"
 import Link from "next/link"
 import { ReactNode } from "react"
 import { Button } from "./ui/button"
@@ -39,7 +39,7 @@ export default function MobileNavigation({
           <Menu className="h-8 w-8" />
         </motion.div>
       </DrawerTrigger>
-      <DrawerContent className="drawer-content z-[101] h-[85%] bg-slate-100">
+      <DrawerContent className="drawer-content z-[101] h-[85%] bg-slate-100 hc:bg-background-muted hc:border-none">
         <div className="scroll-overflow flex h-full w-full flex-col items-center gap-2 overflow-x-hidden overflow-y-scroll rounded-3xl p-4">
           {navItems?.map((group: any, index: number) => (
             <LinkPanel
@@ -47,14 +47,12 @@ export default function MobileNavigation({
               title={group.name}
             >
               {group.name.toLowerCase() == "o szkole" ? (
-                <>
                   <LinkItem
                     key={"item-1"}
                     name="Galeria"
                     href="/galeria"
                     isFeatured={false}
                   />
-                </>
               ) : null}
               {group.name.toLowerCase() == "o szkole" ? (
                 <>
@@ -72,13 +70,14 @@ export default function MobileNavigation({
                   name={item.name}
                   href={item.isExternal ? item.href : `/${item.href}`}
                   isFeatured={item.isFeatured}
+                  isExternal={item.isExternal}
                 />
               ))}
             </LinkPanel>
           ))}
         </div>
         {/* </div> */}
-        <DrawerFooter className="flex items-center justify-center gap-2 text-lg shadow-[0_-12px_40px] shadow-slate-100">
+        <DrawerFooter className="flex items-center justify-center gap-2 text-lg shadow-[0_-12px_40px] shadow-slate-100 hc:shadow-none">
           <DrawerClose asChild>
             <Button
               variant={"secondary"}
@@ -125,7 +124,7 @@ function LinkPanel({
     <Accordion
       type="single"
       collapsible
-      className="flex w-full flex-col gap-4 rounded-3xl bg-white px-4 py-2 active:bg-white/60"
+      className="flex w-full flex-col gap-4 rounded-3xl bg-background px-4 py-2 active:bg-white/60 hc:active:bg-background-accent"
       key={key}
     >
       <AccordionItem value={title}>
@@ -150,25 +149,34 @@ function LinkItem({
   name,
   href,
   isFeatured,
+  isExternal
 }: {
   name: string
   href: string
   isFeatured: boolean
+  isExternal?: boolean
 }) {
   return (
     <DrawerClose asChild>
       <Link
-        className=" flex items-center justify-between gap-2 rounded-3xl bg-accent/50 px-4 py-2 text-left text-lg font-medium text-slate-600 active:bg-slate-100 md:text-center"
+        className=" flex items-center justify-between gap-2 rounded-3xl bg-accent/50 hc:text-muted-foreground px-4 py-2 text-left text-lg font-medium text-slate-600 active:bg-slate-100 md:text-center hc:active:bg-background-accent hc:!bg-background-muted "
         href={href}
       >
         {name}
-        {isFeatured ? (
-          <div className="rounded-3xl border border-primary/90 bg-primary/80 px-2 text-[10px] text-white">
-            Nowe
+        <div className="flex gap-4">
+          {isFeatured ? (
+            <div className="rounded-3xl border border-primary/90 bg-primary/80 px-2 text-[10px] text-white hc:text-black">
+              Nowe
+            </div>
+          ) : (
+            null
+          )}
+        {isExternal ? (
+          <div className="">
+            <ExternalLink className="w-6 h-6 text-foreground" />
           </div>
-        ) : (
-          ""
-        )}
+        ) : null}
+        </div>
       </Link>
     </DrawerClose>
   )

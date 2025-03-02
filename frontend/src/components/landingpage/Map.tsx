@@ -10,8 +10,8 @@ import { InView } from "../motion/InView"
 export default function Map({ data }: { data: any }) {
   return (
     <div id={data.sectionId} className="w-full">
-      <div className="h-64 w-full rotate-180 bg-wave-transition bg-repeat-x "></div>
-      <div className="relative flex h-fit w-full flex-col items-center justify-center gap-4 bg-primary px-6 py-16  md:px-10">
+      <div className="h-64 w-full rotate-180 bg-wave-transition hc:bg-wave-transition-hc bg-repeat-x "></div>
+      <div className="relative flex h-fit w-full flex-col items-center justify-center gap-4 bg-primary hc:bg-background-accent px-6 py-16  md:px-10">
         <InView
           variants={{
             hidden: {
@@ -45,12 +45,12 @@ export default function Map({ data }: { data: any }) {
           </div>
         </InView>
         <div className="flex w-full -translate-y-0.5 justify-center">
-          <Card className="mx-4 flex w-fit flex-col items-center gap-2 p-2 px-4 md:absolute md:bottom-[13%] md:translate-y-[15%] md:flex-row  md:justify-between lg:h-16 lg:gap-12">
+          <Card className="mx-4 flex w-fit flex-col bg-background-muted items-center gap-2 p-2 px-4 md:absolute md:bottom-[13%] md:translate-y-[15%] md:flex-row  md:justify-between lg:h-16 lg:gap-12">
             <div className="flex w-full items-center justify-start gap-2  border-b-2 py-2 md:border-none">
               <IconComponent icon={Phone} color="blue" IsCircle={true} />
               <div className="flex flex-col ">
-                <span className="text-slate-400">Telefon</span>
-                <span className="text-nowrap font-semibold">
+                <span className="text-foreground">Telefon</span>
+                <span className="text-nowrap font-semibold text-secondary-foreground">
                   {data.phoneNumber}
                 </span>
               </div>
@@ -59,16 +59,16 @@ export default function Map({ data }: { data: any }) {
             <div className="flex w-full items-center justify-start gap-2 border-b-2 py-2 md:border-none">
               <IconComponent icon={Mail} color="blue" IsCircle={true} />
               <div className="flex flex-col ">
-                <span className="text-slate-400">E-mail</span>
-                <span className="font-semibold">{data.email}</span>
+                <span className="text-foreground">E-mail</span>
+                <span className="font-semibold text-secondary-foreground">{data.email}</span>
               </div>
             </div>
             <Separator orientation="vertical" className="hidden md:block" />
             <div className="flex w-full items-center justify-start gap-2 py-2">
               <IconComponent icon={MapPin} color="blue" IsCircle={true} />
               <div className="flex flex-col">
-                <span className="text-slate-400">Adres</span>
-                <span className="font-semibold lg:text-nowrap">
+                <span className="text-foreground">Adres</span>
+                <span className="font-semibold lg:text-nowrap text-secondary-foreground">
                   {data.location}
                 </span>
               </div>
@@ -76,7 +76,7 @@ export default function Map({ data }: { data: any }) {
           </Card>
         </div>
       </div>
-      <div className="h-48 w-full rotate-180 bg-lines-transition bg-repeat-x"></div>
+      <div className="h-48 w-full rotate-180 bg-lines-transition hc:bg-lines-transition-hc bg-repeat-x"></div>
     </div>
   )
 }

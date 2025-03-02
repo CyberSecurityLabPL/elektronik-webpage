@@ -337,7 +337,6 @@ function handleError(error: AxiosError) {
 export async function getContact() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/contact-page")
-    console.log(data)
 
     revalidate("/kontakt")
 

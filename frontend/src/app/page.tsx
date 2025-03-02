@@ -52,8 +52,8 @@ export default async function Home() {
         <div className="flex w-full flex-col">
           {/* <Hero data={data?.blocks[0]} /> */}
           <Hero data={data?.blocks[0]} />
-          <div className="h-64 w-full bg-lines-transition bg-bottom bg-repeat-x"></div>
-          <div className="h-64 w-full bg-wave-transition bg-repeat-x"></div>
+          <div className="h-64 w-full bg-lines-transition hc:bg-lines-transition-hc bg-bottom bg-repeat-x"></div>
+          <div className="h-64 w-full bg-wave-transition hc:bg-wave-transition-hc bg-repeat-x"></div>
         </div>
         {/* Main content */}
 
