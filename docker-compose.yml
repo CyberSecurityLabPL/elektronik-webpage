@@ -21,7 +21,7 @@ services:
 
   strapi:
     container_name: elektronik-strapi
-    platform: linux/arm64/v8
+    platform: linux/arm64
     build: ./strapi/.
     image: strapi:latest
     restart: unless-stopped
@@ -33,7 +33,8 @@ services:
       - ./strapi/package-lock.json:/opt/package-lock.json
       - ./strapi/.env:/opt/app/.env
       - ./strapi/public:/opt/app/public
-      - ./strapi/types/:/opt/app/types
+      - ./strapi/types:/opt/app/types
+      - ./strapi/backups:/opt/app/backups
     ports:
       - '5000:5000'
     networks:

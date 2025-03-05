@@ -253,8 +253,8 @@ export interface SharedSeo extends Schema.Component {
     metaDescription: Attribute.String &
       Attribute.Required &
       Attribute.SetMinMaxLength<{
-        minLength: 30;
-        maxLength: 160;
+        minLength: 150;
+        maxLength: 220;
       }>;
     metaImage: Attribute.Media;
     metaSocial: Attribute.Component<'shared.meta-social', true>;
@@ -263,6 +263,18 @@ export interface SharedSeo extends Schema.Component {
     structuredData: Attribute.JSON;
     metaViewport: Attribute.String;
     canonicalURL: Attribute.String;
+  };
+}
+
+export interface UtilityLesson extends Schema.Component {
+  collectionName: 'components_utility_lessons';
+  info: {
+    displayName: 'Lesson';
+    icon: 'clock';
+  };
+  attributes: {
+    startDate: Attribute.Time;
+    endDate: Attribute.Time;
   };
 }
 
@@ -297,6 +309,7 @@ declare module '@strapi/types' {
       'elements.overview-row': ElementsOverviewRow;
       'shared.meta-social': SharedMetaSocial;
       'shared.seo': SharedSeo;
+      'utility.lesson': UtilityLesson;
       'utility.string-array': UtilityStringArray;
     }
   }

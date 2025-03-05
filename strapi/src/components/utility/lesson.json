@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_utility_lessons",
+  "info": {
+    "displayName": "Lesson",
+    "icon": "clock"
+  },
+  "options": {},
+  "attributes": {
+    "startDate": {
+      "type": "time"
+    },
+    "endDate": {
+      "type": "time"
+    }
+  }
+}

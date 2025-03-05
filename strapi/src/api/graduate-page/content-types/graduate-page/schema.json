@@ -1,0 +1,31 @@
+{
+  "kind": "singleType",
+  "collectionName": "graduate_pages",
+  "info": {
+    "singularName": "graduate-page",
+    "pluralName": "graduate-pages",
+    "displayName": "Graduate Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "heading": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "graduates": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::graduate.graduate"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.seo"
+    }
+  }
+}

@@ -23,4 +23,5 @@ export default [
   'strapi::session',
   'strapi::favicon',
   'strapi::public',
+  'global::redirect'
 ];

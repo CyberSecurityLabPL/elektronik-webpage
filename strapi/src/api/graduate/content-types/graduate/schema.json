@@ -1,0 +1,37 @@
+{
+  "kind": "collectionType",
+  "collectionName": "graduates",
+  "info": {
+    "singularName": "graduate",
+    "pluralName": "graduates",
+    "displayName": "Graduate",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "fullname": {
+      "type": "string"
+    },
+    "graduateYear": {
+      "type": "string"
+    },
+    "hobby": {
+      "type": "string"
+    },
+    "achievements": {
+      "type": "text"
+    },
+    "image": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

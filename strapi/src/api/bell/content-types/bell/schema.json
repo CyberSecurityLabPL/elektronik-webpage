@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "bells",
+  "info": {
+    "singularName": "bell",
+    "pluralName": "bells",
+    "displayName": "Bell",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "lessons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "utility.lesson",
+      "max": 10,
+      "min": 10
+    }
+  }
+}

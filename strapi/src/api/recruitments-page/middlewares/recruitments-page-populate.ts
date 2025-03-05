@@ -5,7 +5,18 @@
 import { Strapi } from '@strapi/strapi';
 
 const populate = {
-  populate: '*'
+  populate: {
+	recruitment_groups: {
+		populate: {
+			recruitments: {
+				populate: true
+			}
+		}
+	},
+	seo: {
+		populate:true
+	}
+  }
 }
 
 export default (config, { strapi }: { strapi: Strapi }) => {

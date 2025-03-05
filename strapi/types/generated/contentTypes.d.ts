@@ -841,6 +841,48 @@ export interface ApiAdditionalLinkAdditionalLink extends Schema.CollectionType {
   };
 }
 
+export interface ApiAnnouncementAnnouncement extends Schema.CollectionType {
+  collectionName: 'announcements';
+  info: {
+    singularName: 'announcement';
+    pluralName: 'announcements';
+    displayName: 'Announcement';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required;
+    image: Attribute.Media;
+    description: Attribute.Text;
+    content: Attribute.RichText &
+      Attribute.Required &
+      Attribute.CustomField<
+        'plugin::ckeditor.CKEditor',
+        {
+          output: 'Markdown';
+          preset: 'rich';
+        }
+      >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::announcement.announcement',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::announcement.announcement',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiApprenticeshipApprenticeship extends Schema.CollectionType {
   collectionName: 'apprenticeships';
   info: {
@@ -987,6 +1029,37 @@ export interface ApiBadgeBadge extends Schema.CollectionType {
   };
 }
 
+export interface ApiBellBell extends Schema.CollectionType {
+  collectionName: 'bells';
+  info: {
+    singularName: 'bell';
+    pluralName: 'bells';
+    displayName: 'Bell';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String & Attribute.Required & Attribute.Unique;
+    lessons: Attribute.Component<'utility.lesson', true> &
+      Attribute.SetMinMax<
+        {
+          min: 10;
+          max: 10;
+        },
+        number
+      >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::bell.bell', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::bell.bell', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiBookBook extends Schema.CollectionType {
   collectionName: 'books';
   info: {
@@ -1091,12 +1164,46 @@ export interface ApiBooksPageBooksPage extends Schema.SingleType {
   };
 }
 
+export interface ApiContactPageContactPage extends Schema.SingleType {
+  collectionName: 'contact_pages';
+  info: {
+    singularName: 'contact-page';
+    pluralName: 'contact-pages';
+    displayName: 'Contact Page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    phone: Attribute.String & Attribute.Required;
+    address: Attribute.String & Attribute.Required;
+    email: Attribute.String & Attribute.Required;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::contact-page.contact-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::contact-page.contact-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCourseCourse extends Schema.CollectionType {
   collectionName: 'courses';
   info: {
     singularName: 'course';
     pluralName: 'courses';
     displayName: 'Course';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1104,6 +1211,7 @@ export interface ApiCourseCourse extends Schema.CollectionType {
   attributes: {
     name: Attribute.String;
     file: Attribute.Media;
+    year: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1291,6 +1399,115 @@ export interface ApiDocumentsPageDocumentsPage extends Schema.SingleType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::documents-page.documents-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiEventEvent extends Schema.CollectionType {
+  collectionName: 'events';
+  info: {
+    singularName: 'event';
+    pluralName: 'events';
+    displayName: 'Event';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    date: Attribute.DateTime;
+    type: Attribute.Enumeration<
+      ['Zawody Szkolne', '\u015Awi\u0119to', 'Uroczysto\u015Bci']
+    >;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::event.event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::event.event',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGraduateGraduate extends Schema.CollectionType {
+  collectionName: 'graduates';
+  info: {
+    singularName: 'graduate';
+    pluralName: 'graduates';
+    displayName: 'Graduate';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    fullname: Attribute.String;
+    graduateYear: Attribute.String;
+    hobby: Attribute.String;
+    achievements: Attribute.Text;
+    image: Attribute.Media;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::graduate.graduate',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::graduate.graduate',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiGraduatePageGraduatePage extends Schema.SingleType {
+  collectionName: 'graduate_pages';
+  info: {
+    singularName: 'graduate-page';
+    pluralName: 'graduate-pages';
+    displayName: 'Graduate Page';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    heading: Attribute.String;
+    description: Attribute.String;
+    graduates: Attribute.Relation<
+      'api::graduate-page.graduate-page',
+      'oneToMany',
+      'api::graduate.graduate'
+    >;
+    seo: Attribute.Component<'shared.seo'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::graduate-page.graduate-page',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::graduate-page.graduate-page',
       'oneToOne',
       'admin::user'
     > &
@@ -1700,6 +1917,7 @@ export interface ApiRecruitmentRecruitment extends Schema.CollectionType {
     profession: Attribute.String;
     spaces: Attribute.Integer;
     groups: Attribute.Integer;
+    link: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1718,12 +1936,49 @@ export interface ApiRecruitmentRecruitment extends Schema.CollectionType {
   };
 }
 
+export interface ApiRecruitmentGroupRecruitmentGroup
+  extends Schema.CollectionType {
+  collectionName: 'recruitment_groups';
+  info: {
+    singularName: 'recruitment-group';
+    pluralName: 'recruitment-groups';
+    displayName: 'Recruitment Group';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    recruitments: Attribute.Relation<
+      'api::recruitment-group.recruitment-group',
+      'oneToMany',
+      'api::recruitment.recruitment'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::recruitment-group.recruitment-group',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::recruitment-group.recruitment-group',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiRecruitmentsPageRecruitmentsPage extends Schema.SingleType {
   collectionName: 'recruitments_pages';
   info: {
     singularName: 'recruitments-page';
     pluralName: 'recruitments-pages';
     displayName: 'Recruitments Page';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1731,12 +1986,12 @@ export interface ApiRecruitmentsPageRecruitmentsPage extends Schema.SingleType {
   attributes: {
     heading: Attribute.String;
     description: Attribute.Text;
-    recruitments: Attribute.Relation<
+    seo: Attribute.Component<'shared.seo'>;
+    recruitment_groups: Attribute.Relation<
       'api::recruitments-page.recruitments-page',
       'oneToMany',
-      'api::recruitment.recruitment'
+      'api::recruitment-group.recruitment-group'
     >;
-    seo: Attribute.Component<'shared.seo'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -2017,19 +2272,25 @@ declare module '@strapi/types' {
       'api::achievement.achievement': ApiAchievementAchievement;
       'api::achievements-page.achievements-page': ApiAchievementsPageAchievementsPage;
       'api::additional-link.additional-link': ApiAdditionalLinkAdditionalLink;
+      'api::announcement.announcement': ApiAnnouncementAnnouncement;
       'api::apprenticeship.apprenticeship': ApiApprenticeshipApprenticeship;
       'api::apprenticeships-page.apprenticeships-page': ApiApprenticeshipsPageApprenticeshipsPage;
       'api::article.article': ApiArticleArticle;
       'api::badge.badge': ApiBadgeBadge;
+      'api::bell.bell': ApiBellBell;
       'api::book.book': ApiBookBook;
       'api::book-group.book-group': ApiBookGroupBookGroup;
       'api::books-page.books-page': ApiBooksPageBooksPage;
+      'api::contact-page.contact-page': ApiContactPageContactPage;
       'api::course.course': ApiCourseCourse;
       'api::course-group.course-group': ApiCourseGroupCourseGroup;
       'api::courses-page.courses-page': ApiCoursesPageCoursesPage;
       'api::document.document': ApiDocumentDocument;
       'api::document-group.document-group': ApiDocumentGroupDocumentGroup;
       'api::documents-page.documents-page': ApiDocumentsPageDocumentsPage;
+      'api::event.event': ApiEventEvent;
+      'api::graduate.graduate': ApiGraduateGraduate;
+      'api::graduate-page.graduate-page': ApiGraduatePageGraduatePage;
       'api::hot-alert.hot-alert': ApiHotAlertHotAlert;
       'api::job.job': ApiJobJob;
       'api::jobs-page.jobs-page': ApiJobsPageJobsPage;
@@ -2042,6 +2303,7 @@ declare module '@strapi/types' {
       'api::parents-council-page.parents-council-page': ApiParentsCouncilPageParentsCouncilPage;
       'api::question.question': ApiQuestionQuestion;
       'api::recruitment.recruitment': ApiRecruitmentRecruitment;
+      'api::recruitment-group.recruitment-group': ApiRecruitmentGroupRecruitmentGroup;
       'api::recruitments-page.recruitments-page': ApiRecruitmentsPageRecruitmentsPage;
       'api::sponsor.sponsor': ApiSponsorSponsor;
       'api::substitution.substitution': ApiSubstitutionSubstitution;

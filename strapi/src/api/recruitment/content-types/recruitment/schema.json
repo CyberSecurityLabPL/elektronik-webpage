@@ -20,6 +20,9 @@
     },
     "groups": {
       "type": "integer"
+    },
+    "link": {
+      "type": "string"
     }
   }
 }

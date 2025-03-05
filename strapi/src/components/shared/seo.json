@@ -15,8 +15,8 @@
     "metaDescription": {
       "type": "string",
       "required": true,
-      "maxLength": 160,
-      "minLength": 30
+      "maxLength": 220,
+      "minLength": 150
     },
     "metaImage": {
       "type": "media",

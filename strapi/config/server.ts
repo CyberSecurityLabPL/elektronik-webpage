@@ -10,5 +10,13 @@ export default ({ env }) => {
     webhooks: {
       populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
     },
+    middleware: {
+      settings: {
+        public: {
+          index: false,
+          defaultIndex: false,
+        },
+      },
+    },
   }
 };

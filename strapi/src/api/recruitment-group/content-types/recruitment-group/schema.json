@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "recruitment_groups",
+  "info": {
+    "singularName": "recruitment-group",
+    "pluralName": "recruitment-groups",
+    "displayName": "Recruitment Group"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "recruitments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::recruitment.recruitment"
+    }
+  }
+}
