@@ -21,7 +21,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Page({ params }: { params: { page: string } }) {
   const data = await getPage(params.page)
-  console.log(data)
 
   if (!data.content) {
     notFound()
