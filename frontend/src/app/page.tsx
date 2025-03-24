@@ -1,13 +1,9 @@
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
 import PageWrapper from "@/components/PageWrapper"
-import Benefits from "@/components/landingpage/Benefits"
-import Faq from "@/components/landingpage/Faq"
 import Hero from "@/components/landingpage/Hero"
-import Map from "@/components/landingpage/Map"
-import News from "@/components/landingpage/News"
-import Overview from "@/components/landingpage/Overview"
 import { getLandingPage, getNavigation } from "@/lib/api"
+import { getSectionByName, getSectionDataByName } from "@/lib/utils"
 import type { Metadata } from "next"
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -24,14 +20,15 @@ export default async function Home() {
   const data = await getLandingPage()
   const { link_groups: navItems, ...additionalLinks } = await getNavigation()
 
-  const Content = [Overview, Benefits, News, Map, Faq]
+  const faqData = getSectionDataByName("faq", data)
+
   const FAQschema = {
-    "@context": "http://schema.org/",
+    "@context": "https://schema.org",
     "@type": "FAQPage",
     mainEntity:
-      data.blocks[4].questions &&
-      data.blocks[4].questions.length > 0 &&
-      data.blocks[4].questions.map((item: any) => ({
+      faqData.questions &&
+      faqData.questions.length > 0 &&
+      faqData.questions.map((item: any) => ({
         "@type": "Question",
         name: item.question,
         acceptedAnswer: {
@@ -50,15 +47,18 @@ export default async function Home() {
       <Navbar navItems={navItems} additionalLinks={additionalLinks} />
       <main className="flex w-full flex-col items-center justify-center overflow-x-hidden">
         <div className="flex w-full flex-col">
-          <Hero data={data?.blocks[0]} />
+          <Hero data={getSectionDataByName("hero", data)} />
           <div className="h-64 w-full bg-lines-transition hc:bg-lines-transition-hc bg-bottom bg-repeat-x"></div>
           <div className="h-64 w-full bg-wave-transition hc:bg-wave-transition-hc bg-repeat-x"></div>
         </div>
         {/* Main content */}
 
-        {Content.map((Component, index) => (
-          <Component key={index} data={data?.blocks[index + 1]} />
-        ))}
+        {data?.blocks.map((section: any, index: number) => {
+          if (index === 0) return null; // Skip the first block (Hero)
+          const SectionComponent = getSectionByName(section.__component);
+          return SectionComponent ? <SectionComponent key={index} data={section} /> : null;
+        })}
+
         <Footer />
       </main>
     </PageWrapper>

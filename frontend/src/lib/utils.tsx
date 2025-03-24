@@ -4,11 +4,37 @@ import ReactMarkdown, { Options } from "react-markdown"
 import rehypeRaw from "rehype-raw"
 import { add, format, isWeekend, startOfWeek } from "date-fns"
 import { pl } from "date-fns/locale/pl"
+import Overview from "@/components/landingpage/Overview"
+import Benefits from "@/components/landingpage/Benefits"
+import News from "@/components/landingpage/News"
+import { notFound } from "next/navigation"
+import Map from "@/components/landingpage/Map"
+import Faq from "@/components/landingpage/Faq"
+import Hero from "@/components/landingpage/Hero"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export function getSectionByName(name: string) {
+  name = name.split(".")[1]
+  switch (name) {
+    case "overview": return Overview
+    case "benefits": return Benefits
+    case "news": return News
+    case "map": return Map
+    case "faq": return Faq
+    case "hero": return Hero
+    default: return notFound()
+  }
+}
+
+export function getSectionDataByName(name: string, data: any) {
+  const { blocks } = data
+  const section = blocks.find((section: any) => section.__component === `blocks.${name}`)
+  if (!section) return null
+  return section
+}
 /**
  * Flattens the strapi response getting rid of .specified keys eg .data or .attributes .
  * @param obj - The data obj to flatten
