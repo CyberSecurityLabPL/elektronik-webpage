@@ -1,11 +1,30 @@
 "use client"
 
+import { useTheme } from "next-themes"
 import { useEffect } from "react"
 
-interface color {
-  r: number
-  g: number
-  b: number
+interface ScrollColors {
+  start: {
+    r: number
+    g: number
+    b: number
+  }
+  end: {
+    r: number
+    g: number
+    b: number
+  }
+}
+
+const THEME_COLORS: Record<string, ScrollColors> = {
+  light: {
+    start: { r: 49, g: 49, b: 241 }, // Niebieski
+    end: { r: 38, g: 39, b: 39 }     // Ciemny szary
+  },
+  "high-contrast": {
+    start: { r: 0, g: 255, b: 234 },  // Turkusowy
+    end: { r: 38, g: 39, b: 39 }      // Ciemny szary
+  }
 }
 
 export default function ScrollBarProvider({
@@ -13,65 +32,54 @@ export default function ScrollBarProvider({
 }: {
   children: React.ReactNode
 }) {
-  useEffect(() => {
-    const start: color = { r: 0, g: 255, b: 234 }
-    const end: color = { r: 38, g: 39, b: 39 }
+  const { theme } = useTheme()
 
-    let color: color = start
+  useEffect(() => {
+    const colors = THEME_COLORS[theme ?? 'light']
+    let currentColor = colors.start
 
     const onScroll = () => {
       const scrollArea = 800 + window.innerHeight
+      const scrollProgress = Math.round(
+        (Math.max(
+          window.scrollY - document.body.scrollHeight + scrollArea,
+          0
+        ) /
+          (scrollArea - window.innerHeight)) *
+          100
+      ) / 100
 
-      color = getRgbInBetween(
-        start,
-        end,
-        Math.round(
-          (Math.max(
-            window.scrollY - document.body.scrollHeight + scrollArea,
-            0
-          ) /
-            (scrollArea - window.innerHeight)) *
-            100
-        ) / 100
-      )
+      currentColor = getRgbInBetween(colors.start, colors.end, scrollProgress)
+      
       const elem = document.body
-      if (window.scrollY == 0) {
-        elem.style.setProperty("--scroll-border", "0 0 0 10px")
-        elem.style.setProperty(
-          "--scroll-color",
-          `rgb(${color.r}, ${color.g}, ${color.b})`
-        )
-      } else if (
-        Math.round(
-          window.scrollY - document.body.scrollHeight + window.innerHeight
-        ) == 0
-      ) {
-        elem.style.setProperty("--scroll-border", "10px 0 0 0")
-        elem.style.setProperty(
-          "--scroll-color",
-          `rgb(${color.r}, ${color.g}, ${color.b})`
-        )
-      } else {
-        elem.style.setProperty("--scroll-border", "10px 0 0 10px")
-        elem.style.setProperty(
-          "--scroll-color",
-          `rgb(${color.r}, ${color.g}, ${color.b})`
-        )
-      }
+      const scrollBorder = window.scrollY === 0 
+        ? "0 0 0 10px" 
+        : window.scrollY - document.body.scrollHeight + window.innerHeight === 0
+        ? "10px 0 0 0"
+        : "10px 0 0 10px"
+
+      elem.style.setProperty("--scroll-border", scrollBorder)
+      elem.style.setProperty(
+        "--scroll-thumb",
+        `rgb(${currentColor.r}, ${currentColor.g}, ${currentColor.b})`
+      )
     }
 
     onScroll()
     window.addEventListener("scroll", onScroll)
-
-    return () => {
-      window.removeEventListener("scroll", onScroll)
-    }
-  }, [])
+    return () => window.removeEventListener("scroll", onScroll)
+  }, [theme])
 
   return <>{children}</>
 }
 
-function getRgbInBetween(start: color, end: color, perc: number): color {
+interface RGBColor {
+  r: number;
+  g: number;
+  b: number;
+}
+
+function getRgbInBetween(start: RGBColor, end: RGBColor, perc: number): RGBColor {
   return {
     r: start.r - (start.r - end.r) * perc,
     g: start.g - (start.g - end.g) * perc,

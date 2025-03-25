@@ -5,7 +5,7 @@
 html,
 body {
   --scroll-border: 99px;
-  --scroll-color: hsl(var(--primary));
+  --scroll-color: hsl(var(--scroll-color));
   /* overflow-x: hidden; */
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
@@ -118,12 +118,14 @@ div[cmdk-list]::-webkit-scrollbar-thumb {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--scroll-color);
+  background: var(--scroll-thumb);
   border-radius: var(--scroll-border);
 }
 
 @layer base {
   :root {
+    --scroll-thumb: #354dfc;
+    --scroll-track: hsl(var(--background-accent));
     --background: 0 0% 100%;
     --background-accent: 0, 0%, 96%;
     --background-muted: 0, 0%, 96%;
@@ -159,6 +161,8 @@ div[cmdk-list]::-webkit-scrollbar-thumb {
 }
 
 .high-contrast {
+  --scroll-thumb: #00ffea;
+  --scroll-track: hsl(var(--background-accent));
   --background: 0 0% 0%;
   --background-accent: 180, 1%, 15%;
   --background-muted: 0, 0%, 12%;
@@ -201,18 +205,35 @@ div[cmdk-list]::-webkit-scrollbar-thumb {
   }
 }
 
+:root {
+  --left-fill: #354375;
+  --right-fill: #354dfc;
+}
+
+.high-contrast {
+  --left-fill: #00ffea;
+  --right-fill: #00ffea;
+}
+
 @keyframes leftTransition {
   from {
     fill: transparent;
   }
   to {
-    fill: #354375;
+    fill: var(--left-fill);
   }
 }
 
 .fill-left {
   animation: leftTransition 2s ease forwards;
-  animation-delay: 3s; /* Smooth fill transition */
+  animation-delay: 3s;
+}
+
+
+
+.fill-right {
+  animation: rightTransition 2s ease forwards;
+  animation-delay: 3s;
 }
 
 @keyframes rightTransition {
@@ -220,14 +241,11 @@ div[cmdk-list]::-webkit-scrollbar-thumb {
     fill: transparent;
   }
   to {
-    fill: #354dfc;
+    fill: var(--right-fill);
   }
 }
 
-.fill-right {
-  animation: rightTransition 2s ease forwards;
-  animation-delay: 3s; /* Smooth fill transition */
-}
+
 @media (min-width: 768px) {
   .mask {
     mask-image: url("../../public/assets/heroMask.svg");

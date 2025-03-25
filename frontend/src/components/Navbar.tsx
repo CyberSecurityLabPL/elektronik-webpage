@@ -26,8 +26,9 @@ export default function Navbar({
   additionalLinks?: any
 }) {
   const [isSmaller, setIsSmaller] = useState(false)
-
+  const [srcLogo, setSrcLogo] = useState("/assets/logo/logo_white.svg")
   useEffect(() => {
+    
     const handleScroll = () => {
       const scrollPosition = window.scrollY
 
@@ -40,7 +41,22 @@ export default function Navbar({
       window.removeEventListener("scroll", handleScroll)
     }
   }, [])
+  const { theme } = useTheme()
+  useEffect(() => {
+    
+    if (theme === "high-contrast") {
+      setSrcLogo("/assets/logo/logo_highcontrast.svg" );
+    } else {
+      setSrcLogo("/assets/logo/logo_blue.svg");
+    }
+  }, [theme]);
+  
+  
+
+  const isHc = theme === "high-contrast"
+
   return (
+    
     <>
       <div className="absolute left-0 top-0" id="navbar-sentinel" />
       <motion.div
@@ -52,7 +68,7 @@ export default function Navbar({
         <div className="flex items-center justify-center px-8 ">
           <Link href={"/"} passHref>
             <Image
-              src={getImage(additionalLinks?.logo.url)}
+              src={srcLogo}
               width={80}
               height={80}
               priority
@@ -60,7 +76,7 @@ export default function Navbar({
               alt="Logo"
             />
           </Link>
-          <ChangeThemeButton />
+          
         </div>
         <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center justify-center xl:flex ">
           <Navigation navItems={navItems} />
@@ -84,6 +100,7 @@ export default function Navbar({
             >
               {additionalLinks?.gradebook.title}
             </Link>
+            <ChangeThemeButton />
           </div>
           <div className="flex items-center justify-center xl:hidden">
             <MobileNavigation
