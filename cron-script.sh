@@ -13,4 +13,4 @@ filename="elektronik_backup_$current_date"
 npm run strapi export -- --file $filename --key 123
 
 # Remove backups older than 30 days
-find backups -type f -name "backup_*.tar.gz" -mtime +30 -exec rm {} \;
+# find backups -type f -name "backup_*.tar.gz" -mtime +30 -exec rm {} \;

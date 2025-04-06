@@ -1,0 +1,16 @@
+{
+  "collectionName": "components_blocks_news_redirect_buttons",
+  "info": {
+    "displayName": "News redirect button",
+    "icon": "paperPlane"
+  },
+  "options": {},
+  "attributes": {
+    "Nazwa": {
+      "type": "string"
+    },
+    "URL": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "kind": "singleType",
+  "collectionName": "lucky_numbers",
+  "info": {
+    "singularName": "lucky-number",
+    "pluralName": "lucky-numbers",
+    "displayName": "Lucky Number"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "value": {
+      "type": "integer"
+    }
+  }
+}

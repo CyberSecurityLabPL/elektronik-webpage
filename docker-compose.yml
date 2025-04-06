@@ -22,7 +22,10 @@ services:
   strapi:
     container_name: elektronik-strapi
     platform: linux/arm64
-    build: ./strapi/.
+    build: 
+      context: "./strapi/."
+      platforms:
+        - "linux/arm64"
     image: strapi:latest
     restart: unless-stopped
     env_file: ./strapi/.env
