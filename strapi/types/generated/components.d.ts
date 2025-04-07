@@ -80,6 +80,18 @@ export interface BlocksMap extends Schema.Component {
   };
 }
 
+export interface BlocksNewsRedirectButton extends Schema.Component {
+  collectionName: 'components_blocks_news_redirect_buttons';
+  info: {
+    displayName: 'News redirect button';
+    icon: 'paperPlane';
+  };
+  attributes: {
+    Nazwa: Attribute.String;
+    URL: Attribute.String;
+  };
+}
+
 export interface BlocksNews extends Schema.Component {
   collectionName: 'components_blocks_news';
   info: {
@@ -297,6 +309,7 @@ declare module '@strapi/types' {
       'blocks.faq': BlocksFaq;
       'blocks.hero': BlocksHero;
       'blocks.map': BlocksMap;
+      'blocks.news-redirect-button': BlocksNewsRedirectButton;
       'blocks.news': BlocksNews;
       'blocks.overview': BlocksOverview;
       'blocks.pricing': BlocksPricing;

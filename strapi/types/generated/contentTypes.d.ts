@@ -966,7 +966,6 @@ export interface ApiArticleArticle extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: true;
-    populateCreatorFields: true;
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
@@ -983,6 +982,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       >;
     seo: Attribute.Component<'shared.seo'>;
     customDate: Attribute.DateTime;
+    redirectButton: Attribute.Component<'blocks.news-redirect-button'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -990,12 +990,14 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       'api::article.article',
       'oneToOne',
       'admin::user'
-    >;
+    > &
+      Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::article.article',
       'oneToOne',
       'admin::user'
-    >;
+    > &
+      Attribute.Private;
   };
 }
 
@@ -1727,6 +1729,35 @@ export interface ApiLinkGroupLinkGroup extends Schema.CollectionType {
   };
 }
 
+export interface ApiLuckyNumberLuckyNumber extends Schema.SingleType {
+  collectionName: 'lucky_numbers';
+  info: {
+    singularName: 'lucky-number';
+    pluralName: 'lucky-numbers';
+    displayName: 'Lucky Number';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    value: Attribute.Integer;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::lucky-number.lucky-number',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::lucky-number.lucky-number',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiNavigationNavigation extends Schema.SingleType {
   collectionName: 'navigations';
   info: {
@@ -2297,6 +2328,7 @@ declare module '@strapi/types' {
       'api::landing-page.landing-page': ApiLandingPageLandingPage;
       'api::link.link': ApiLinkLink;
       'api::link-group.link-group': ApiLinkGroupLinkGroup;
+      'api::lucky-number.lucky-number': ApiLuckyNumberLuckyNumber;
       'api::navigation.navigation': ApiNavigationNavigation;
       'api::page.page': ApiPagePage;
       'api::parent.parent': ApiParentParent;

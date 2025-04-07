@@ -1,3 +1,5 @@
+import cronTasks from "./cron-tasks"
+
 export default ({ env }) => {
   console.log(env("APP_KEYS"))
 
@@ -9,6 +11,10 @@ export default ({ env }) => {
     },
     webhooks: {
       populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
+    },
+    cron: {
+      enabled: true,
+      tasks: cronTasks
     },
     middleware: {
       settings: {

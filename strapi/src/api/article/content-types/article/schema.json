@@ -8,8 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true,
-    "populateCreatorFields": true
+    "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
@@ -44,6 +43,11 @@
     },
     "customDate": {
       "type": "datetime"
+    },
+    "redirectButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "blocks.news-redirect-button"
     }
   }
 }
