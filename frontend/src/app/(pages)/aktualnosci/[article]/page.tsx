@@ -34,6 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!res) return notFoundMetadata
 
+
   const defaultMetadata: Metadata = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL!),
     title: res?.data?.title,
@@ -80,6 +81,8 @@ export default async function Page({
 }) {
   const res = await getArticle(params.article, {})
 
+  // console.log(res);
+  
   const article = res?.data ? res.data : null
   const image = article?.image
   const jsonLd = {

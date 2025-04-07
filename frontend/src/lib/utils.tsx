@@ -174,18 +174,35 @@ export const getAuthor = (data?: {
   createdBy: Author
   updatedBy: Author
 }): string => {
+  
   const defaultAuthor = "Pracownik CKZiU"
 
-  if (!data) return defaultAuthor
+  if (!data || !data?.createdBy) return defaultAuthor
 
-  const createdByExists = Object.keys(data.createdBy).length > 0
-  const updatedByExists = Object.keys(data.updatedBy).length > 0
 
-  if (!createdByExists && !updatedByExists) return defaultAuthor
+  if(!data?.updatedBy) {
+    console.log('test');
+    
+    const createdByExists = Object.keys(data?.createdBy).length > 0
 
-  const author = createdByExists ? data.createdBy : data.updatedBy
+    if(!createdByExists) return defaultAuthor;
 
-  return `${author.firstname} ${author.lastname}`
+    const author = createdByExists ? data?.createdBy : data?.updatedBy
+
+    return `${author.firstname} ${author.lastname}`
+    
+  }
+  else{
+    
+    const updatedByExists = Object.keys(data?.updatedBy).length > 0
+    
+   
+    if(!updatedByExists) return defaultAuthor
+    
+    return `${data?.updatedBy.firstname} ${data?.updatedBy.lastname}`
+  }
+  
+  
 }
 
 export function getRandomInt(min: number, max: number) {

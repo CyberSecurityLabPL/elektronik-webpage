@@ -32,7 +32,7 @@ export default function NewsCard({
       whileTap={{ scale: 0.95 }}
       transition={{ duration: 0.3 }}
       className={cn(
-        "h-full w-full  overflow-hidden rounded-3xl border",
+        "h-full w-full  overflow-hidden rounded-3xl border max-w-2xl",
         isFeatured ? "" : "w-full"
       )}
     >

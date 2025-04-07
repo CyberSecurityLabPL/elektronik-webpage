@@ -1,6 +1,5 @@
 "use client"
 
-import { getImage } from "@/lib/utils"
 import { motion } from "framer-motion"
 
 import Image from "next/image"
@@ -8,15 +7,10 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import MobileNavigation from "./MobileNavigation"
 import { Navigation } from "./Navigation"
-import { Button, buttonVariants } from "./ui/button"
-import { Moon, Sun } from "lucide-react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu"
+import { buttonVariants } from "./ui/button"
+
 import { useTheme } from "next-themes"
+import { ChangeThemeButton } from "./ui/themeButton"
 
 export default function Navbar({
   navItems,
@@ -102,11 +96,13 @@ export default function Navbar({
             </Link>
             <ChangeThemeButton />
           </div>
-          <div className="flex items-center justify-center xl:hidden">
+          <div className="flex items-center gap-2 justify-center xl:hidden">
+            <ChangeThemeButton />
             <MobileNavigation
               navItems={navItems}
               additionalLinks={additionalLinks}
             />
+            
           </div>
         </div>
       </motion.div>
@@ -114,26 +110,4 @@ export default function Navbar({
   )
 }
 
-function ChangeThemeButton() {
-  const { setTheme, theme } = useTheme()
 
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Zmień motyw</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Jasny
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("high-contrast")}>
-          Wysoki kontrast
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  )
-}

@@ -36,6 +36,7 @@ export default function MobileNavigation({
           }}
           whileTap={{ scale: 0.7 }}
         >
+          
           <Menu className="h-8 w-8" />
         </motion.div>
       </DrawerTrigger>

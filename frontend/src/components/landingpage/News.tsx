@@ -49,7 +49,7 @@ export default async function News() {
           },
         }}
         transition={{ duration: 0.3, ease: "easeInOut", delay: 0.5 }}
-        className="flex w-full grid-cols-1 flex-col items-center justify-center gap-4 px-4 md:grid md:grid-cols-2 md:gap-8 md:px-8 lg:grid-cols-3 xl:w-fit"
+        className="flex w-full grid-cols-1 flex-col items-center justify-center gap-4 px-4 md:grid  md:gap-8 md:px-8 lg:grid-cols-3 xl:w-fit"
       >
         {articles
           .slice(0, 3)
@@ -65,7 +65,7 @@ export default async function News() {
                   },
                 }}
                 key={index + news.title}
-                className="mb-4"
+                className="mb-4 w-full h-full flex justify-center"
               >
                 <NewsCard
                   title={news.title}
