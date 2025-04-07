@@ -2,6 +2,7 @@ import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
 import PageWrapper from "@/components/PageWrapper"
 import Hero from "@/components/landingpage/Hero"
+import MobileApp from "@/components/landingpage/MobileApp"
 import { getLandingPage, getNavigation } from "@/lib/api"
 import { getSectionByName, getSectionDataByName } from "@/lib/utils"
 import type { Metadata } from "next"
@@ -53,6 +54,7 @@ export default async function Home() {
           <div className="h-64 w-full bg-wave-transition hc:bg-wave-transition-hc bg-repeat-x"></div>
         </div>
         {/* Main content */}
+        <MobileApp /> 
 
         {data?.blocks.map((section: any, index: number) => {
           if (index === 0) return null; // Skip the first block (Hero)
