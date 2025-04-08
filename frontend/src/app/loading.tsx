@@ -6,7 +6,7 @@ export default function Loading() {
       <div className="animate-pulse">
         <div className="hc:hidden block">
           <Image
-          src={"/assets/logo/logo.svg"}
+          src={"/assets/logo/animated/logo_blue-loading.svg"}
           width={200}
           height={150}
           alt="Logo"

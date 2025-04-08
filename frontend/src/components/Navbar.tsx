@@ -22,7 +22,7 @@ export default function Navbar({
   const [isSmaller, setIsSmaller] = useState(false)
   const [srcLogo, setSrcLogo] = useState("/assets/logo/logo_white.svg")
   useEffect(() => {
-    
+
     const handleScroll = () => {
       const scrollPosition = window.scrollY
 
@@ -37,20 +37,20 @@ export default function Navbar({
   }, [])
   const { theme } = useTheme()
   useEffect(() => {
-    
+
     if (theme === "high-contrast") {
       setSrcLogo("/assets/logo/logo_highcontrast.svg" );
     } else {
-      setSrcLogo("/assets/logo/logo_blue.svg");
+      setSrcLogo("/assets/logo/animated/logo_blue-initial.svg");
     }
   }, [theme]);
-  
-  
+
+
 
   const isHc = theme === "high-contrast"
 
   return (
-    
+
     <>
       <div className="absolute left-0 top-0" id="navbar-sentinel" />
       <motion.div
@@ -70,7 +70,7 @@ export default function Navbar({
               alt="Logo"
             />
           </Link>
-          
+
         </div>
         <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center justify-center xl:flex ">
           <Navigation navItems={navItems} />
@@ -102,12 +102,10 @@ export default function Navbar({
               navItems={navItems}
               additionalLinks={additionalLinks}
             />
-            
+
           </div>
         </div>
       </motion.div>
     </>
   )
 }
-
-
