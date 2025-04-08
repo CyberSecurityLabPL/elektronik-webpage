@@ -141,7 +141,7 @@ function HourCard({
 }) {
   return (
     <div
-      className=" flex w-full items-center justify-between rounded-2xl bg-slate-50 p-2"
+      className=" flex w-full items-center justify-between rounded-2xl bg-background border p-2"
       {...props}
     >
       <div className="flex items-center justify-center gap-4">
