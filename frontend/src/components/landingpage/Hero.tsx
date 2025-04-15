@@ -10,7 +10,6 @@ import { motion as m } from "framer-motion"
 import { TextEffect } from "../motion/TextEffect"
 import { useTheme } from "next-themes"
 const Hero = ({ data }: { data: any }) => {
-
   return (
     <div className="relative mb-20 flex w-full flex-col items-center  py-32">
       {/* BUBBLES BACKGROUND */}
@@ -153,9 +152,8 @@ const Hero = ({ data }: { data: any }) => {
 }
 
 export function HighlightCircle({ className }: { className?: string }) {
-   const { theme } = useTheme()
+  const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
-  
 
   useEffect(() => {
     setMounted(true)
@@ -166,7 +164,6 @@ export function HighlightCircle({ className }: { className?: string }) {
   const isHc = theme === "high-contrast"
   const fillColor = isHc ? "#00ffea" : "#6577FB"
 
-
   return (
     <svg
       width="379"
@@ -176,9 +173,42 @@ export function HighlightCircle({ className }: { className?: string }) {
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
+      <style>
+        {`
+          .highlight-path {
+            fill: transparent;
+            stroke: ${fillColor};
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 1500;
+            stroke-dashoffset: 1500;
+            animation: drawHighlight 2s ease-out forwards;
+          }
+
+          @keyframes drawHighlight {
+            0% {
+              stroke-dashoffset: 1500;
+              fill: transparent;
+            }
+            70% {
+              stroke-dashoffset: 400;
+              fill: transparent;
+            }
+            85% {
+              stroke-dashoffset: 0;
+              fill: ${fillColor}40; /* 25% opacity */
+            }
+            100% {
+              stroke-dashoffset: 0;
+              fill: ${fillColor};
+            }
+          }
+        `}
+      </style>
       <path
+        className="highlight-path"
         d="M21.8412 63.4796C15.7831 116.373 304.416 101.727 313.311 65.1704C316.558 63.8484 317.023 65.8439 318.348 69.7471C310.103 104.518 20.7865 122.743 11.6818 66.3561C0.276335 -4.28034 366.611 -32.4707 378.299 54.7832C384.536 101.346 160.664 138.193 13.5452 124.099C8.2534 123.509 4.48391 122.289 0.434328 120.914C157.008 131.193 375.31 97.9693 364.974 52.1611C347.156 -26.8073 28.4566 5.71901 21.8412 63.4796Z"
-        fill={fillColor}
       />
     </svg>
   )
@@ -187,7 +217,6 @@ export function HighlightCircle({ className }: { className?: string }) {
 function LeftArrow() {
   const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
-  
 
   useEffect(() => {
     setMounted(true)
@@ -214,9 +243,8 @@ function LeftArrow() {
   )
 }
 function RightArrow() {
-   const { theme } = useTheme()
+  const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
-  
 
   useEffect(() => {
     setMounted(true)
@@ -257,7 +285,6 @@ function RightArrow() {
 function MSymbol() {
   const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
-  
 
   useEffect(() => {
     setMounted(true)
@@ -285,9 +312,8 @@ function MSymbol() {
   )
 }
 function Wiggle() {
-   const { theme } = useTheme()
+  const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
-  
 
   useEffect(() => {
     setMounted(true)
@@ -319,7 +345,6 @@ function Wiggle() {
 function Ball() {
   const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
-  
 
   useEffect(() => {
     setMounted(true)
