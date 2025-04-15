@@ -356,3 +356,14 @@ export async function getGraduates() {
     handleError(error)
   }
 }
+
+export async function getLuckyNumber() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get("/lucky-number")
+    revalidate("/plan")
+
+    return flattenStrapiResponse(data)
+  } catch (error: any) {
+    handleError(error)
+  }
+}
