@@ -1,4 +1,3 @@
-import { Strapi } from '@strapi/strapi';
 
 const populate = {
         populate: {
@@ -13,7 +12,7 @@ const populate = {
 }
 
 
-export default (config, { strapi }: { strapi: Strapi }) => {
+export default (config, { strapi }: { strapi: any }) => {
   // Add your own logic here.
   return async (ctx, next) => {
     strapi.log.info('In graduate-page-populate middleware.');

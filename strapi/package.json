@@ -10,19 +10,19 @@
     "strapi": "strapi"
   },
   "dependencies": {
-    "@ckeditor/strapi-plugin-ckeditor": "^0.0.11",
-    "@strapi/plugin-seo": "^1.9.8",
-    "@strapi/plugin-users-permissions": "4.24.2",
-    "@strapi/strapi": "4.23.0",
+    "@ckeditor/strapi-plugin-ckeditor": "^1.1.1",
+    "@strapi/plugin-seo": "^2.0.8",
+    "@strapi/plugin-users-permissions": "5.12.5",
+    "@strapi/strapi": "5.12.5",
     "firebase-admin": "^13.2.0",
-    "mysql": "2.18.1",
+    "better-sqlite3": "^11.9.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
-    "react-router-dom": "5.3.4",
+    "react-router-dom": "6.30.0",
     "strapi": "file:",
     "strapi-health-plugin": "^1.1.1",
-    "strapi-plugin-file-system": "1.0.8",
-    "styled-components": "5.3.3"
+    "strapi-plugin-file-system": "1.0.10",
+    "styled-components": "6.1.17"
   },
   "author": {
     "name": "A Strapi developer"
@@ -35,5 +35,10 @@
     "npm": ">=6.0.0"
   },
   "license": "MIT",
-  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
+  "overrides": {
+    "strapi-plugin-file-system": {
+      "@strapi/strapi": "5.12.5"
+    }
+  }
 }

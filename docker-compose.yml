@@ -38,12 +38,12 @@ services:
       - ./strapi/public:/opt/app/public
       - ./strapi/types:/opt/app/types
       - ./strapi/backups:/opt/app/backups
+      - ./strapi/data:/opt/app/data
     ports:
       - '5000:5000'
+      - '5173:5173'
     networks:
       - elektronik-network
-    depends_on:
-      - db
 
   db:
     image: mariadb:latest
