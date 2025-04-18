@@ -44,7 +44,7 @@
     "customDate": {
       "type": "datetime"
     },
-    "redirectButton": {
+    "redirect": {
       "type": "component",
       "repeatable": false,
       "component": "blocks.news-redirect-button"
