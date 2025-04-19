@@ -30,6 +30,7 @@ The website aims to be compatible with every viewport independent of it's size s
 - [@Wojciech Karalus](https://github.com/Iveq12)
 - [@Kacper Kozłowski](https://github.com/Carpye)
 - [@Filip Nowosielski](https://github.com/Nowosielski123)
+- [@Filip Pleszko](https://github.com/PFilip08)
 
 
 
