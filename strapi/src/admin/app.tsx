@@ -15,7 +15,7 @@ export default {
       // 'ms',
       // 'nl',
       // 'no',
-      // 'pl', wywalone bo panel admin nie działa
+      'pl',
       // 'pt-BR',
       // 'pt',
       // 'ru',
