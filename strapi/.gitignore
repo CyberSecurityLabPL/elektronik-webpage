@@ -110,6 +110,7 @@ coverage
 
 .env
 .env.docker
+.env.*
 license.txt
 exports
 .strapi
