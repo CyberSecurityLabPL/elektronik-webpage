@@ -3,7 +3,7 @@
 services:
   frontend:
     image: "school-website"
-    container_name: "elektronik-frontend"
+    container_name: "dev-elektronik-frontend"
     build: frontend
     ports:
       - "3001:3001"
@@ -12,7 +12,7 @@ services:
     env_file:
       - frontend/.env
     networks:
-      - elektronik-network
+      - dev-elektronik-network
       - timetable-api
     volumes:
       - ./frontend/.env:/app/.env
@@ -20,7 +20,7 @@ services:
       - strapi
 
   strapi:
-    container_name: elektronik-strapi
+    container_name: dev-elektronik-strapi
     platform: linux/amd64
     build: 
       context: "./strapi/."
@@ -43,32 +43,11 @@ services:
       - '5000:5000'
       - '5173:5173'
     networks:
-      - elektronik-network
-
-  db:
-    image: mariadb:latest
-    platform: linux/amd64
-    container_name: elektronik-db
-    restart: always
-    command: --default-authentication-plugin=mysql_native_password
-    env_file: ./strapi/.env
-    ports:
-      - '3307:3306'
-    expose:
-      - '3307'
-    volumes:
-      - my-db:/var/lib/mysql
-    networks:
-      - elektronik-network
-
-volumes:
-  strapi-data:
-  my-db: 
-    driver: local
+      - dev-elektronik-network
 
 networks:
-  elektronik-network:
-    name: elektronik-network
+  dev-elektronik-network:
+    name: dev-elektronik-network
     driver: bridge
   timetable-api:
     external: true

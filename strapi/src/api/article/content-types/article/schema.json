@@ -27,15 +27,6 @@
     "description": {
       "type": "text"
     },
-    "content": {
-      "type": "customField",
-      "options": {
-        "output": "Markdown",
-        "preset": "rich"
-      },
-      "customField": "plugin::ckeditor.CKEditor",
-      "required": true
-    },
     "seo": {
       "type": "component",
       "repeatable": false,
@@ -48,6 +39,9 @@
       "type": "component",
       "repeatable": false,
       "component": "blocks.news-redirect-button"
+    },
+    "content": {
+      "type": "richtext"
     }
   }
 }
