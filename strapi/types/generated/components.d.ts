@@ -88,18 +88,6 @@ export interface BlocksNews extends Struct.ComponentSchema {
   };
 }
 
-export interface BlocksNewsRedirectButton extends Struct.ComponentSchema {
-  collectionName: 'components_blocks_news_redirect_buttons';
-  info: {
-    displayName: 'News redirect button';
-    icon: 'paperPlane';
-  };
-  attributes: {
-    Nazwa: Schema.Attribute.String;
-    URL: Schema.Attribute.String;
-  };
-}
-
 export interface BlocksOverview extends Struct.ComponentSchema {
   collectionName: 'components_blocks_overviews';
   info: {
@@ -203,6 +191,17 @@ export interface ElementsInput extends Struct.ComponentSchema {
   };
 }
 
+export interface ElementsNewsRedirectButton extends Struct.ComponentSchema {
+  collectionName: 'components_elements_news_redirect_buttons';
+  info: {
+    displayName: 'News Redirect Button';
+  };
+  attributes: {
+    name: Schema.Attribute.String;
+    url: Schema.Attribute.String;
+  };
+}
+
 export interface ElementsOverviewRow extends Struct.ComponentSchema {
   collectionName: 'components_elements_overview_rows';
   info: {
@@ -302,7 +301,6 @@ declare module '@strapi/strapi' {
       'blocks.hero': BlocksHero;
       'blocks.map': BlocksMap;
       'blocks.news': BlocksNews;
-      'blocks.news-redirect-button': BlocksNewsRedirectButton;
       'blocks.overview': BlocksOverview;
       'blocks.pricing': BlocksPricing;
       'blocks.sponsors': BlocksSponsors;
@@ -311,6 +309,7 @@ declare module '@strapi/strapi' {
       'elements.card': ElementsCard;
       'elements.form': ElementsForm;
       'elements.input': ElementsInput;
+      'elements.news-redirect-button': ElementsNewsRedirectButton;
       'elements.overview-row': ElementsOverviewRow;
       'shared.meta-social': SharedMetaSocial;
       'shared.seo': SharedSeo;

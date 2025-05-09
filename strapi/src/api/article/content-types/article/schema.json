@@ -8,7 +8,8 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": true,
+    "populateCreatorFields": true
   },
   "pluginOptions": {},
   "attributes": {
@@ -20,9 +21,7 @@
       "type": "media",
       "multiple": false,
       "required": false,
-      "allowedTypes": [
-        "images"
-      ]
+      "allowedTypes": ["images"]
     },
     "description": {
       "type": "text"
@@ -35,13 +34,13 @@
     "customDate": {
       "type": "datetime"
     },
+    "content": {
+      "type": "richtext"
+    },
     "redirect": {
       "type": "component",
       "repeatable": false,
-      "component": "blocks.news-redirect-button"
-    },
-    "content": {
-      "type": "richtext"
+      "component": "elements.news-redirect-button"
     }
   }
 }

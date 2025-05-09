@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_elements_news_redirect_buttons",
+  "info": {
+    "displayName": "News Redirect Button"
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

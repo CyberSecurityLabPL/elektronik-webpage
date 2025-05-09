@@ -2,38 +2,32 @@
  * `jobs-page-populate` middleware
  */
 
-
 const populate = {
   populate: {
     teacher_groups: {
-	    populate: {
-	    	teachers: {
-			    populate:{
-                    image: {
-                        populate: true
-                    }
-                }
-		},
-		image: {
-			populate: true
-		}
-	    }
-	},
+      populate: {
+        teachers: {
+          populate: {
+            image: true,
+          },
+        },
+      },
+    },
     seo: {
-      populate: true
-    }
-  }
-}
+      populate: true,
+    },
+  },
+};
 
 export default (config, { strapi }: { strapi: any }) => {
   // Add your own logic here.
   return async (ctx, next) => {
-    strapi.log.info('In teachers-page-populate middleware.');
+    strapi.log.info("In teachers-page-populate middleware.");
 
     ctx.query = {
-    	...populate,
-	...ctx.query
-    }
+      ...populate,
+      ...ctx.query,
+    };
 
     await next();
   };
