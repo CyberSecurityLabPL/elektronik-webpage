@@ -1,7 +1,7 @@
 import Header from "@/components/Header"
 import PageEnterAnimation from "@/components/PageEnterAnimation"
 import ParentCard from "@/components/cards/ParentCard"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { getParents } from "@/lib/api"
 import { cn } from "@/lib/utils"
 import { Metadata } from "next"
@@ -39,7 +39,7 @@ export default async function Page() {
             <ParentCard
               key={item.fullname}
               name={item.fullname}
-              src={item.image.url ?? "/default/avatarFemale.svg"}
+              src={item.image?.url ?? "/default/avatarFemale.svg"}
               position={item.position}
               description={item.description}
             />

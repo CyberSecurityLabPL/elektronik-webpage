@@ -34,7 +34,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!res) return notFoundMetadata
 
-
   const defaultMetadata: Metadata = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL!),
     title: res?.data?.title,
@@ -81,8 +80,6 @@ export default async function Page({
 }) {
   const res = await getArticle(params.article, {})
 
-  // console.log(res);
-  
   const article = res?.data ? res.data : null
   const image = article?.image
   const jsonLd = {
@@ -154,7 +151,7 @@ export default async function Page({
           {/* ARTICLE CONTENT */}
         </div>
         <div className="relative w-full bg-background p-6 pt-0 md:p-12 md:pt-0">
-          <div className="prose prose-sm prose-blue self-start overflow-x-auto text-xs sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl prose-p:!text-pretty sm:text-base hc:text-foreground hc:prose-strong:text-foreground hc:prose-a:text-primary">
+          <div className="prose prose-sm prose-blue self-start overflow-x-auto text-xs sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl hc:text-foreground prose-p:!text-pretty hc:prose-a:text-primary hc:prose-strong:text-foreground sm:text-base">
             {article?.content ? (
               renderMarkdown(article.content, markdownOptions)
             ) : (

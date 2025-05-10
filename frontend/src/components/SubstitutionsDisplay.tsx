@@ -20,7 +20,7 @@ export default function SubstitutionsDisplay({
   page: any
   initial: any
 }) {
-  const sub = initial.data[0].attributes
+  const sub = initial.data[0]
   const meta = initial.meta.pagination.pageCount
 
   const [prevLoading, setPrevLoading] = useState(false)
@@ -53,10 +53,10 @@ export default function SubstitutionsDisplay({
 
   function getExact(date: Date) {
     setExact(true)
-    const today = new Date();
-    
+    const today = new Date()
+
     if (today.toDateString() === date.toDateString()) {
-        setExact(false);
+      setExact(false)
     }
     getExactSubstitution(date)
       .then((res: any) => {
@@ -94,48 +94,46 @@ export default function SubstitutionsDisplay({
       })
   }
 
-function DatePicker({ curData, getExact }: { curData: any; getExact: any }) {
-  const [open, setOpen] = useState(false)
-  const [currentDate, setCurrentDate] = useState<Date | undefined>(new Date(curData.date))
+  function DatePicker({ curData, getExact }: { curData: any; getExact: any }) {
+    const [open, setOpen] = useState(false)
+    const [currentDate, setCurrentDate] = useState<Date | undefined>(
+      new Date(curData.date)
+    )
 
-  return (
-    <Popover open={open} onOpenChange={() => setOpen(!open)}>
-      <PopoverTrigger asChild>
-        <div className="flex items-center justify-center px-2">
-          <div className="text-md flex max-w-[54rem] items-center justify-center gap-2 text-pretty stroke-primary-foreground text-center leading-relaxed text-primary-foreground hover:cursor-pointer hover:stroke-primary hover:text-primary sm:text-lg lg:text-xl">
-            {formatDateWeek(curData?.date ?? curData?.createdAt)}
-            <Button
-              className="px-3 py-2 hover:stroke-primary sm:px-2"
-              variant={"secondary"}
-            >
-              <CalendarDays className="flex size-5 items-center justify-center stroke-inherit sm:size-6" />
-            </Button>
+    return (
+      <Popover open={open} onOpenChange={() => setOpen(!open)}>
+        <PopoverTrigger asChild>
+          <div className="flex items-center justify-center px-2">
+            <div className="text-md flex max-w-[54rem] items-center justify-center gap-2 text-pretty stroke-primary-foreground text-center leading-relaxed text-primary-foreground hover:cursor-pointer hover:stroke-primary hover:text-primary sm:text-lg lg:text-xl">
+              {formatDateWeek(curData?.date ?? curData?.createdAt)}
+              <Button
+                className="px-3 py-2 hover:stroke-primary sm:px-2"
+                variant={"secondary"}
+              >
+                <CalendarDays className="flex size-5 items-center justify-center stroke-inherit sm:size-6" />
+              </Button>
+            </div>
           </div>
-        </div>
-      </PopoverTrigger>
-      <PopoverContent className="w-auto p-0" align="start">
-        <Calendar
-          mode="single"
-          selected={currentDate}
-          onSelect={(d: Date | undefined) => {
-            if (d !== undefined) {
-              const date: Date = d!
-              curData.date = date
-              setOpen(false)
-              getExact(date)
-              setCurrentDate(date)
-            }
-          }}
-          initialFocus
-        />
-      </PopoverContent>
-    </Popover>
-  )
-  
-}
-
-
-
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-0" align="start">
+          <Calendar
+            mode="single"
+            selected={currentDate}
+            onSelect={(d: Date | undefined) => {
+              if (d !== undefined) {
+                const date: Date = d!
+                curData.date = date
+                setOpen(false)
+                getExact(date)
+                setCurrentDate(date)
+              }
+            }}
+            initialFocus
+          />
+        </PopoverContent>
+      </Popover>
+    )
+  }
 
   return (
     <>
@@ -146,7 +144,7 @@ function DatePicker({ curData, getExact }: { curData: any; getExact: any }) {
         <div className="h-fit min-h-96 w-full rounded-lg border bg-background p-4 shadow-sm">
           <div className="px-2 text-xs sm:text-base">
             {renderMarkdown(
-              data?.substitutions ?? "Couldn't load content!",
+              data?.substitutions ?? "Nie udało się załadować zawartości.",
               markdownOptions
             )}
           </div>
@@ -206,5 +204,3 @@ function DatePicker({ curData, getExact }: { curData: any; getExact: any }) {
     </>
   )
 }
-
-
