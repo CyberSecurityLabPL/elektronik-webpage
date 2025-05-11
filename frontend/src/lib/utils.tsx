@@ -163,7 +163,10 @@ export const formatDateWeek = (date?: string) =>
     format(new Date(date ?? new Date()), "eeee dd/MM/yyyy", { locale: pl })
   )
 
-export const getImage = (src: string | undefined, notFoundSrc?: string) =>
+export const getImage = (
+  src: string | undefined | null,
+  notFoundSrc?: string
+) =>
   src
     ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${src}`
     : notFoundSrc ?? "/default/not-found.svg"

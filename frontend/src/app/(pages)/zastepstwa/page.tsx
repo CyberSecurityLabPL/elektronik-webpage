@@ -17,6 +17,8 @@ export default async function SubstitutionPage() {
   const data = await getSubstitutionsPage()
   const sub = await getSubstitutions(1)
 
+  // console.log(sub)
+
   return (
     <main className="flex w-full flex-col items-center gap-4">
       <SubstitutionsDisplay page={data} initial={sub} />

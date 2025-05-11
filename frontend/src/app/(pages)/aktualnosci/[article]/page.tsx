@@ -31,13 +31,14 @@ const notFoundMetadata: Metadata = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const res = await getArticle(params.article, {})
+  const seo = res?.data?.seo
 
-  if (!res) return notFoundMetadata
+  if (!seo) return notFoundMetadata
 
   const defaultMetadata: Metadata = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL!),
-    title: res?.data?.title,
-    description: res?.data?.content.slice(0, 300),
+    title: res.data?.title,
+    description: res.data?.content?.slice(0, 300) ?? "dsa",
     keywords: ["artykuł", "news", "ckziu", "post", "elektronik"],
     openGraph: {
       ...openGraphImage,
@@ -51,17 +52,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
   }
 
-  if (res?.data?.seo)
+  if (seo)
     return {
-      title: res.data.seo.metaTitle,
-      description: res.data.seo.metaDescription,
-      keywords: res.data.seo.keywords,
+      title: seo.metaTitle,
+      description: seo.metaDescription,
+      keywords: seo.keywords,
       openGraph: {
         ...openGraphImage,
         images: [
           {
             url:
-              res?.data?.seo?.metaImage?.formats?.thumbnail?.url ??
+              seo.metaImage?.formats?.thumbnail?.url ??
               `${process.env.NEXT_PUBLIC_BASE_URL!}/default/thumbnail.svg`,
             width: 640,
             height: 360,
@@ -82,11 +83,12 @@ export default async function Page({
 
   const article = res?.data ? res.data : null
   const image = article?.image
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
     name: article?.title,
-    image: getImage(image.url),
+    image: getImage(article?.image?.url),
     description: article?.description,
   }
   const author = article ? getAuthor(article) : "Nieznany autor"
@@ -108,7 +110,7 @@ export default async function Page({
               className="!m-0 object-cover"
               fill
               alt={"xd"}
-              src={getImage(image.url)}
+              src={getImage(article?.image?.url)}
               quality={100}
             />
           </div>
@@ -152,11 +154,9 @@ export default async function Page({
         </div>
         <div className="relative w-full bg-background p-6 pt-0 md:p-12 md:pt-0">
           <div className="prose prose-sm prose-blue self-start overflow-x-auto text-xs sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl hc:text-foreground prose-p:!text-pretty hc:prose-a:text-primary hc:prose-strong:text-foreground sm:text-base">
-            {article?.content ? (
-              renderMarkdown(article.content, markdownOptions)
-            ) : (
-              <FailedToLoad />
-            )}
+            {article?.content
+              ? renderMarkdown(article.content, markdownOptions)
+              : "Pusty artykuł"}
           </div>
         </div>
       </article>
