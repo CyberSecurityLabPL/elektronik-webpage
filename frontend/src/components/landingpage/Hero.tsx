@@ -118,7 +118,7 @@ const Hero = ({ data }: { data: any }) => {
             repeat: Infinity,
             ease: "linear",
             repeatType: "loop",
-            duration: 1.5,
+            duration: 25,
           }}
           className="absolute -left-[390px] top-[480px] hidden md:block"
         >

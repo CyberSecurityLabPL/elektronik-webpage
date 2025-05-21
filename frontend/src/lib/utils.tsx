@@ -155,6 +155,7 @@ export const formatStrapiDate = (date?: string | Date) =>
 
 export const formatDateMonth = (date?: string) =>
   format(new Date(date ?? new Date()), "dd/MM")
+
 /**
  * Formats provided date string to eeee dd/MM/yyyy
  * @param date - The date string if null will use current
@@ -163,7 +164,7 @@ export const formatDateMonth = (date?: string) =>
 export const formatDateWeek = (date?: string | Date) =>
   capitalizeFirstLetter(
     // @ts-ignore - locale is not in the types
-    format(new Date(date ?? new Date()), "eeee dd/MM/yyyy", { locale: pl })
+    format(new Date(date ?? new Date()), "eeee d MMMM yyyy", { locale: pl })
   )
 
 export const getImage = (
