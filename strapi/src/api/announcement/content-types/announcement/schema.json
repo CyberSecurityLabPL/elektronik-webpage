@@ -27,13 +27,7 @@
       "type": "text"
     },
     "content": {
-      "type": "customField",
-      "options": {
-        "output": "Markdown",
-        "preset": "rich"
-      },
-      "customField": "plugin::ckeditor.CKEditor",
-      "required": true
+      "type": "richtext"
     }
   }
 }

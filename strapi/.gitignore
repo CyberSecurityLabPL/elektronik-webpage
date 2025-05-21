@@ -71,6 +71,7 @@ $RECYCLE.BIN/
 *.sql
 *.sqlite
 *.sqlite3
+data/*.db
 
 
 ############################
@@ -82,6 +83,7 @@ ssl
 .idea
 nbproject
 public/uploads/*
+public/uploads_backup*
 !public/uploads/.gitkeep
 
 ############################
@@ -108,9 +110,11 @@ coverage
 
 .env
 .env.docker
+.env.*
 license.txt
 exports
 .strapi
 dist
 build
 .strapi-updater.json
+src/extensions/documentation

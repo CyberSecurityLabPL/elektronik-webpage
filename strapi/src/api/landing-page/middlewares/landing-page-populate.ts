@@ -1,59 +1,64 @@
-
-
 /**
  * `landing-page-populate` middleware
  */
 
 const populate = {
-    populate: {
-        blocks: {
-            populate: {
-                images: {
-                    fields: ["name","alternativeText","url"]
-                },
-                linkPrimary: {
-                    populate: true
-                },
-                linkSecondary: {
-                    populate: true
-                },
-                row: {
-                    populate: {
-                        image: {
-                            populate: true
-                        }
-                    }
-                },
-                benefitCard: {
-                    populate: {
-                        image:{
-                            populate: true
-                        },
-                    },
-                },
-                questions: {
-                    populate: true
-                },
-                linkButton: {
-                    populate: true
-                }
-            }
+  populate: {
+    blocks: {
+      on: {
+        "blocks.hero": {
+          populate: {
+            images: {
+              fields: ["name", "alternativeText", "url"],
+            },
+            linkPrimary: true,
+            linkSecondary: true,
+          },
         },
-        seo: {
-            populate: true
-        }
-    }   
-}
-
+        "blocks.faq": {
+          populate: {
+            questions: true,
+            linkButton: true,
+          },
+        },
+        "blocks.map": true,
+        "blocks.overview": {
+          populate: {
+            row: {
+              populate: {
+                image: true,
+              },
+            },
+          },
+        },
+        "blocks.benefits": {
+          populate: {
+            benefitCard: {
+              populate: {
+                image: true,
+              },
+            },
+          },
+        },
+        // "blocks.news": {
+        //   populate: {
+        //     linkButton: true,
+        //   },
+        // },
+      },
+    },
+    seo: true,
+  },
+};
 module.exports = (config, { strapi }) => {
   // Add your own logic here.
   return async (ctx, next) => {
-    strapi.log.info('In landing-page-populate middleware.');
+    strapi.log.info("In landing-page-populate middleware.");
 
     ctx.query = {
       ...populate,
-      ...ctx.query
-    }
+      ...ctx.query,
+    };
 
     await next();
   };

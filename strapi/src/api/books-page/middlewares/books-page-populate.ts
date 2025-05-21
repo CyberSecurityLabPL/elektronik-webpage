@@ -2,36 +2,32 @@
  * `books-page-population` middleware
  */
 
-import { Strapi } from '@strapi/strapi';
-
 const populate = {
   populate: {
     book_groups: {
       populate: {
         books: {
           populate: {
-            image: {
-                populate: true
-            }
-          }
-        }
-      }
+            image: true,
+          },
+        },
+      },
     },
     seo: {
-      populate: true
-    }
-  }
-}
+      populate: true,
+    },
+  },
+};
 
-export default (config, { strapi }: { strapi: Strapi }) => {
+export default (config, { strapi }: { strapi: any }) => {
   // Add your own logic here.
   return async (ctx, next) => {
-    strapi.log.info('In books-page-population middleware.');
+    strapi.log.info("In books-page-population middleware.");
 
     ctx.query = {
-        ...populate,
-	...ctx.query
-    }
+      ...populate,
+      ...ctx.query,
+    };
 
     await next();
   };

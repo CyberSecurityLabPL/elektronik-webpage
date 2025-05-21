@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -18,13 +18,7 @@
       "required": true
     },
     "substitutions": {
-      "type": "customField",
-      "options": {
-        "output": "Markdown",
-        "preset": "standard"
-      },
-      "required": true,
-      "customField": "plugin::ckeditor.CKEditor"
+      "type": "richtext"
     }
   }
 }
