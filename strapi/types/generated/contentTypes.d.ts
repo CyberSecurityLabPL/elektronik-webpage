@@ -1607,7 +1607,7 @@ export interface ApiSubstitutionSubstitution
     singularName: 'substitution';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
