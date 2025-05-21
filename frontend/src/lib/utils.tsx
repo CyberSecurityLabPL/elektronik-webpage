@@ -150,6 +150,9 @@ export function formatDate(date?: string) {
 export const formatDateYear = (date?: string) =>
   format(new Date(date ?? new Date()), "dd/MM/yyyy")
 
+export const formatStrapiDate = (date?: string | Date) =>
+  format(new Date(date ?? new Date()), "yyyy-MM-dd")
+
 export const formatDateMonth = (date?: string) =>
   format(new Date(date ?? new Date()), "dd/MM")
 /**
@@ -157,7 +160,7 @@ export const formatDateMonth = (date?: string) =>
  * @param date - The date string if null will use current
  * @returns The formatted date with a week name in front
  */
-export const formatDateWeek = (date?: string) =>
+export const formatDateWeek = (date?: string | Date) =>
   capitalizeFirstLetter(
     // @ts-ignore - locale is not in the types
     format(new Date(date ?? new Date()), "eeee dd/MM/yyyy", { locale: pl })
