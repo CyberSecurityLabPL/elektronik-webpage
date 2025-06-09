@@ -1,21 +1,38 @@
+"use client"
 import { Apple, CircleCheckBig, DownloadIcon } from "lucide-react"
 import Image from "next/image"
 import { Button } from "../ui/button"
 import Link from "next/link"
+import { useTheme } from "next-themes"
+import { useEffect, useState } from "react"
 
 export default function MobileAppSection() {
+  const { theme } = useTheme()
+  const [isHc, setIsHc] = useState(false)
+  useEffect(() => {
+    setIsHc(theme === "high-contrast")
+  }, [theme])
+
   return (
-    <div className="relative my-24 flex w-full flex-col items-center justify-center gap-2 bg-primary px-4 py-8 sm:px-8 md:my-72 lg:flex-row lg:gap-32">
+    <div className="relative my-24 flex w-full flex-col items-center justify-center gap-2 bg-primary px-4 py-8 hc:bg-background-accent sm:px-8 md:my-72 lg:flex-row lg:gap-32">
       <div className="absolute left-0 top-0 -z-10 aspect-[1716/216] w-full -translate-y-[65%]">
         <Image
-          src={"/assets/MobileBackgroundTop.svg"}
+          src={
+            isHc
+              ? "/assets/MobileBackgroundTopHc.svg"
+              : "/assets/MobileBackgroundTop.svg"
+          }
           alt="Mobile Image"
           fill
         />
       </div>
       <div className="absolute bottom-0 left-0 -z-10 aspect-[1713/319] w-full translate-y-[75%]">
         <Image
-          src={"/assets/MobileBackgroundBottom.svg"}
+          src={
+            isHc
+              ? "/assets/MobileBackgroundBottomHc.svg"
+              : "/assets/MobileBackgroundBottom.svg"
+          }
           alt="Mobile Image"
           fill
         />
@@ -37,10 +54,10 @@ export default function MobileAppSection() {
       </div>
       <div className="flex h-full max-w-[800px] flex-col items-start justify-center gap-12 text-background">
         <div className="flex flex-col items-start gap-4">
-          <div className="text-3xl font-semibold sm:text-4xl xl:text-5xl">
+          <div className="text-3xl font-semibold text-white sm:text-4xl xl:text-5xl">
             Chcesz być na bieżąco?
           </div>
-          <div className="text-sm text-background/80 sm:text-base xl:text-lg">
+          <div className="text-sm text-background/80 hc:text-white/80 sm:text-base xl:text-lg">
             Aplikacja Elektronik to niezastąpione narzędzie dla każdego ucznia.
             Dzięki niej zawsze wiesz, ile czasu zostało do końca lekcji i nie
             przegapisz żadnego ogłoszenia oraz wydarzenia. Wszystko to masz pod
@@ -48,7 +65,7 @@ export default function MobileAppSection() {
           </div>
         </div>
         <div className="flex flex-col items-start gap-4">
-          <div className="text-base font-semibold sm:text-lg xl:text-xl">
+          <div className="text-base font-semibold text-white sm:text-lg xl:text-xl">
             Co zyskujesz z aplikacją Elektronik?
           </div>
           <BulletPoint
@@ -67,7 +84,7 @@ export default function MobileAppSection() {
             title="Tablica Zastępstw"
             description="Sprawdź zastępstwa na dzisiaj lub inne dni"
           />
-          <div className="text-xs sm:text-sm xl:text-base">
+          <div className="text-xs text-white sm:text-sm xl:text-base">
             oraz wiele więcej!
           </div>
         </div>
@@ -87,13 +104,13 @@ const BulletPoint = ({
   return (
     <div className="flex items-center justify-center gap-2">
       <div className="flex size-5 items-center justify-center sm:size-7">
-        <CircleCheckBig className="size-5 stroke-[#032666] sm:size-7" />
+        <CircleCheckBig className="size-5 stroke-[#032666] hc:stroke-primary sm:size-7" />
       </div>
       <div>
-        <span className="text-xs font-semibold sm:text-sm xl:text-base">
+        <span className="text-xs font-semibold text-white sm:text-sm xl:text-base">
           {title}
         </span>
-        <span className="text-xs sm:text-sm xl:text-base">{` - ${description}`}</span>
+        <span className="text-xs text-white sm:text-sm xl:text-base">{` - ${description}`}</span>
       </div>
     </div>
   )
@@ -148,10 +165,10 @@ export const DownloadButton = ({
           />
         </div>
         <div className="flex flex-col items-start justify-center gap-1 md:gap-0">
-          <div className="text-sm font-light leading-none md:text-base">
+          <div className="text-sm font-light leading-none text-white md:text-base">
             {header}
           </div>
-          <div className="text-xl font-medium leading-none md:text-2xl">
+          <div className="text-xl font-medium leading-none text-white md:text-2xl">
             {storeName}
           </div>
         </div>

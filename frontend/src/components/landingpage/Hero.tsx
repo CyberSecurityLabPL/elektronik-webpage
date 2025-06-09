@@ -9,6 +9,7 @@ import { HeroImages } from "./HeroImages"
 import { motion as m } from "framer-motion"
 import { TextEffect } from "../motion/TextEffect"
 import { useTheme } from "next-themes"
+
 const Hero = ({ data }: { data: any }) => {
   return (
     <div className="relative mb-20 flex w-full flex-col items-center  py-32">
