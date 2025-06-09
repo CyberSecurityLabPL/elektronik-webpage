@@ -134,7 +134,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                               {item.links?.map((tab: any) => (
                                 <Link
                                   key={tab.name}
-                                  className="flex gap-4 rounded-xl hover:bg-background-muted p-2 text-lg font-medium text-foreground hover:text-accent-foreground"
+                                  className="flex justify-between items-center gap-4 rounded-xl hover:bg-background-muted p-2 text-lg font-medium text-foreground hover:text-accent-foreground"
                                   href={
                                     tab.isExternal ? tab.href : `/${tab.href}`
                                   }
@@ -142,7 +142,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                                 >
                                   {tab.name}
                                   {tab.isExternal && (
-                                    <ExternalLink className="h-6 w-6 text-muted-foreground" />
+                                    <ExternalLink className="min-h-6 min-w-6 text-muted-foreground" />
                                   )}
                                 </Link>
                               ))}
