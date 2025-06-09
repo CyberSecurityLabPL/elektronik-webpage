@@ -86,7 +86,9 @@ const BulletPoint = ({
 }) => {
   return (
     <div className="flex items-center justify-center gap-2">
-      <CircleCheckBig size={28} className="stroke-[#032666]" />
+      <div className="flex size-5 items-center justify-center sm:size-7">
+        <CircleCheckBig className="size-5 stroke-[#032666] sm:size-7" />
+      </div>
       <div>
         <span className="text-xs font-semibold sm:text-sm xl:text-base">
           {title}
