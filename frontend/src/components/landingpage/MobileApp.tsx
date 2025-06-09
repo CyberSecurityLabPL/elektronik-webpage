@@ -1,9 +1,11 @@
-import { CircleCheckBig } from "lucide-react"
+import { Apple, CircleCheckBig, DownloadIcon } from "lucide-react"
 import Image from "next/image"
+import { Button } from "../ui/button"
+import Link from "next/link"
 
-export default function MobileApp() {
+export default function MobileAppSection() {
   return (
-    <div className="relative my-72 flex w-full items-center justify-center gap-32 bg-primary p-8">
+    <div className="relative my-24 flex w-full flex-col items-center justify-center gap-2 bg-primary px-4 py-8 sm:px-8 md:my-72 lg:flex-row lg:gap-32">
       <div className="absolute left-0 top-0 -z-10 aspect-[1716/216] w-full -translate-y-[65%]">
         <Image
           src={"/assets/MobileBackgroundTop.svg"}
@@ -19,7 +21,7 @@ export default function MobileApp() {
         />
       </div>
 
-      <div className="relative mr-24 aspect-[364/739] h-[640px] -translate-y-12">
+      <div className="relative mr-24 mt-16 aspect-[364/739] h-80 -translate-y-12 sm:h-96 md:h-[540px] lg:mt-0 xl:h-[640px]">
         <Image
           className="relative z-10"
           src={"/assets/MobileApp.svg"}
@@ -27,7 +29,7 @@ export default function MobileApp() {
           fill
         />
         <Image
-          className="absolute left-0 top-0 -translate-y-20 translate-x-40 rotate-[9deg] scale-125"
+          className="absolute left-0 top-0 -translate-y-10 translate-x-20 rotate-[9deg] scale-125 md:-translate-y-20 md:translate-x-40"
           src={"/assets/MobileApp2.svg"}
           alt="Mobile Image"
           fill
@@ -35,8 +37,10 @@ export default function MobileApp() {
       </div>
       <div className="flex h-full max-w-[800px] flex-col items-start justify-center gap-12 text-background">
         <div className="flex flex-col items-start gap-4">
-          <div className="text-5xl font-semibold">Chcesz być na bieżąco?</div>
-          <div className="text-lg text-background/80">
+          <div className="text-3xl font-semibold sm:text-4xl xl:text-5xl">
+            Chcesz być na bieżąco?
+          </div>
+          <div className="text-sm text-background/80 sm:text-base xl:text-lg">
             Aplikacja Elektronik to niezastąpione narzędzie dla każdego ucznia.
             Dzięki niej zawsze wiesz, ile czasu zostało do końca lekcji i nie
             przegapisz żadnego ogłoszenia oraz wydarzenia. Wszystko to masz pod
@@ -44,7 +48,7 @@ export default function MobileApp() {
           </div>
         </div>
         <div className="flex flex-col items-start gap-4">
-          <div className="text-xl font-semibold">
+          <div className="text-base font-semibold sm:text-lg xl:text-xl">
             Co zyskujesz z aplikacją Elektronik?
           </div>
           <BulletPoint
@@ -63,8 +67,11 @@ export default function MobileApp() {
             title="Tablica Zastępstw"
             description="Sprawdź zastępstwa na dzisiaj lub inne dni"
           />
-          <div>oraz wiele więcej!</div>
+          <div className="text-xs sm:text-sm xl:text-base">
+            oraz wiele więcej!
+          </div>
         </div>
+        <DownloadsAndQr />
       </div>
     </div>
   )
@@ -81,9 +88,72 @@ const BulletPoint = ({
     <div className="flex items-center justify-center gap-2">
       <CircleCheckBig size={28} className="stroke-[#032666]" />
       <div>
-        <span className="font-semibold">{title}</span>
-        <span>{` - ${description}`}</span>
+        <span className="text-xs font-semibold sm:text-sm xl:text-base">
+          {title}
+        </span>
+        <span className="text-xs sm:text-sm xl:text-base">{` - ${description}`}</span>
       </div>
     </div>
+  )
+}
+
+const DownloadsAndQr = () => {
+  return (
+    <div className="flex w-full flex-col items-center justify-center gap-4 sm:flex-row">
+      <DownloadButton
+        href="https://play.google.com/store/apps/details?id=pl.krystian_wybranowski.elektronPlus"
+        header="GET IT ON"
+        storeName="Google Play"
+        type="google"
+        imageClassName="scale-110"
+      />
+      <DownloadButton
+        type="apple"
+        href=""
+        header="Download on the"
+        storeName="App Store"
+      />
+    </div>
+  )
+}
+
+export const DownloadButton = ({
+  header,
+  storeName,
+  href,
+  type,
+  imageClassName,
+}: {
+  header: string
+  storeName: string
+  href: string
+  type: "apple" | "google"
+  imageClassName?: string
+}) => {
+  return (
+    <Link href={href} target="_blank">
+      <Button className="h-fit w-fit gap-2 border border-white bg-black px-4 py-2 text-white hover:bg-black/50">
+        <div className="relative flex aspect-square size-12 items-center justify-center">
+          <Image
+            className={imageClassName}
+            src={
+              type === "google"
+                ? "/assets/google-play.svg"
+                : "/assets/apple.svg"
+            }
+            alt="Mobile Image"
+            fill
+          />
+        </div>
+        <div className="flex flex-col items-start justify-center gap-1 md:gap-0">
+          <div className="text-sm font-light leading-none md:text-base">
+            {header}
+          </div>
+          <div className="text-xl font-medium leading-none md:text-2xl">
+            {storeName}
+          </div>
+        </div>
+      </Button>
+    </Link>
   )
 }
