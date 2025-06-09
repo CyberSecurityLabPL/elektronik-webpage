@@ -13,6 +13,7 @@ import {
   CommandList,
 } from "../ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
+import { ChangeThemeButton } from "../ui/themeButton"
 
 type TimetableItem = {
   id: string
@@ -39,7 +40,7 @@ const Footer = ({ timetableItems }: { timetableItems: TimetableItem[] }) => {
   ]
 
   return (
-    <div className="relative flex w-full  flex-col items-center justify-center gap-4 bg-primary py-4 md:h-20">
+    <div className="relative flex w-full  flex-col sm:flex-row items-center justify-center gap-4 bg-primary py-4 md:h-20">
       <Select
         open={open}
         setOpen={setOpen}
@@ -48,6 +49,9 @@ const Footer = ({ timetableItems }: { timetableItems: TimetableItem[] }) => {
         data={timetableData}
         name={"Wyszukaj..."}
       />
+      <div className="flex justify-center items-center  gap-2">
+
+      
       <Button
         variant={"secondary"}
         asChild
@@ -55,6 +59,8 @@ const Footer = ({ timetableItems }: { timetableItems: TimetableItem[] }) => {
       >
         <Link href={"/"}> Wroć do strony głównej</Link>
       </Button>
+      <ChangeThemeButton /> 
+      </div>
     </div>
   )
 }

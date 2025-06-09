@@ -28,6 +28,7 @@ async function page({ searchParams }: PageParams) {
 
   const articles = data as any[]
   const featuredArticle = await getLatestArticle(["id"])
+  // console.log(featuredArticle)
 
   return (
     <>
@@ -41,14 +42,11 @@ async function page({ searchParams }: PageParams) {
             Najnowszy artykuł
           </h2>
           <NewsCard
-            title={featuredArticle.attributes.title}
-            description={featuredArticle.attributes.description}
-            link={`/aktualnosci/${featuredArticle.id}`}
-            date={
-              featuredArticle.attributes.createdAt ??
-              featuredArticle.attributes.updatedAt
-            }
-            src={featuredArticle.attributes.image.data?.attributes.url}
+            title={featuredArticle.title}
+            description={featuredArticle.description}
+            link={`/aktualnosci/${featuredArticle.documentId}`}
+            date={featuredArticle.createdAt ?? featuredArticle.updatedAt}
+            src={featuredArticle.image?.url}
             variant="featured"
           />
         </div>
@@ -61,11 +59,11 @@ async function page({ searchParams }: PageParams) {
             ? articles.map((item: any, index: number) => (
                 <NewsCard
                   key={item.id}
-                  title={item.attributes.title}
-                  description={item.attributes.description}
-                  link={`/aktualnosci/${item.id}`}
-                  date={item.attributes.createdAt ?? item.attributes.updatedAt}
-                  src={item.attributes.image.data?.attributes.url}
+                  title={item.title}
+                  description={item.description}
+                  link={`/aktualnosci/${item.documentId}`}
+                  date={item.createdAt ?? item.updatedAt}
+                  src={item.image?.url}
                 />
               ))
             : "Brak artykułów do wyświetlenia"}

@@ -34,18 +34,18 @@ export function Navigation({ navItems }: { navItems: any }) {
   }
 
   return (
-    <NavigationMenu>
+    <NavigationMenu className="">
       <NavigationMenuList>
         {navItems
           ? navItems.slice(0, 5).map((item: any, index: number) => (
-              <NavigationMenuItem key={item.name}>
+              <NavigationMenuItem key={item.name} >
                 <NavigationMenuTrigger
                   onMouseEnter={handleMouseEnter}
                   className="rounded-xl hc:text-white bg-transparent text-lg hover:bg-transparent group-[[data-smaller=true]]:text-base hc:hover:text-white hc:hover:bg-white/10"
                 >
                   {item.name}
                 </NavigationMenuTrigger>
-                <NavigationMenuContent className="overflow-hidden">
+                <NavigationMenuContent className="overflow-hidden  ">
                   <ul className="relative !z-[99999] grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[800px] bg-background max-h-[452px] overflow-y-auto">
                     {index < 1 ? (
                       <li className="row-span-3 rounded-lg hover:bg-accent">
@@ -94,7 +94,7 @@ export function Navigation({ navItems }: { navItems: any }) {
           : null}
         {navItems.length > 5 ? (
           <>
-            <NavigationMenuItem>
+            <NavigationMenuItem >
               <Popover open={isOpen} onOpenChange={handlePopoverOpenChange}>
                 <PopoverTrigger asChild>
                   <Button

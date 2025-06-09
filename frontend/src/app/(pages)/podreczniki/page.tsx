@@ -41,7 +41,7 @@ export default async function Page() {
                 {group.books?.map((book: any) => (
                   <BookCard
                     key={book.title}
-                    src={getImage(book.image.url)}
+                    src={getImage(book.image?.url)}
                     subject={book.subject}
                     title={book.title}
                     dist={book.distributor}

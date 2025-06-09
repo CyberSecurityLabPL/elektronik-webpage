@@ -11,9 +11,6 @@ WORKDIR /opt/app
 # Copy package.json and package-lock.json (if available)
 COPY package*.json ./
 
-# Debug: Print architecture and shell info
-RUN uname -m && ls -l /bin/sh
-
 # Install dependencies
 RUN npm ci --verbose
 

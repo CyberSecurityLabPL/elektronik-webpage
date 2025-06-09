@@ -162,11 +162,11 @@ export async function getCoursesPage() {
   }
 }
 
-export async function getSubstitutions(date: number) {
+export async function getSubstitutions(number: number) {
   try {
     const data: any = (
       await fetch(
-        `${process.env.STRAPI_API_URL}/substitutions?pagination[page]=${date}&pagination[pageSize]=1&sort[1]=createdAt:desc`,
+        `${process.env.STRAPI_API_URL}/substitutions?pagination[page]=${number}&pagination[pageSize]=1&sort[1]=createdAt:desc`,
         {
           next: {
             tags: ["substitutions"],
@@ -183,16 +183,13 @@ export async function getSubstitutions(date: number) {
   }
 }
 
-export async function getExactSubstitutions(date: Date) {
+export async function getExactSubstitutions(date: string) {
   try {
     revalidateT("substitutions-ex")
-    const final = date
-    final.setDate(date.getDate() + 1)
-    const finalDate = final.toISOString().slice(0, 10)
 
     const data: any = (
       await fetch(
-        `${process.env.STRAPI_API_URL}/substitutions?pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc&filters[date][$eqi]=${finalDate}`,
+        `${process.env.STRAPI_API_URL}/substitutions?filters[date][$eq]=${date}&pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc`,
         {
           cache: "no-cache",
           next: {
@@ -350,6 +347,17 @@ export async function getGraduates() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/graduate-page")
     revalidate("/absolwenci")
+
+    return flattenStrapiResponse(data)
+  } catch (error: any) {
+    handleError(error)
+  }
+}
+
+export async function getLuckyNumber() {
+  try {
+    const { data }: AxiosResponse<any> = await api.get("/lucky-number")
+    revalidate("/plan")
 
     return flattenStrapiResponse(data)
   } catch (error: any) {

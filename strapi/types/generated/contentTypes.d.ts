@@ -982,7 +982,7 @@ export interface ApiArticleArticle extends Schema.CollectionType {
       >;
     seo: Attribute.Component<'shared.seo'>;
     customDate: Attribute.DateTime;
-    redirectButton: Attribute.Component<'blocks.news-redirect-button'>;
+    redirect: Attribute.Component<'blocks.news-redirect-button'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

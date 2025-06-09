@@ -19,19 +19,28 @@ export function cn(...inputs: ClassValue[]) {
 export function getSectionByName(name: string) {
   name = name.split(".")[1]
   switch (name) {
-    case "overview": return Overview
-    case "benefits": return Benefits
-    case "news": return News
-    case "map": return Map
-    case "faq": return Faq
-    case "hero": return Hero
-    default: return notFound()
+    case "overview":
+      return Overview
+    case "benefits":
+      return Benefits
+    case "news":
+      return News
+    case "map":
+      return Map
+    case "faq":
+      return Faq
+    case "hero":
+      return Hero
+    default:
+      return notFound()
   }
 }
 
 export function getSectionDataByName(name: string, data: any) {
   const { blocks } = data
-  const section = blocks.find((section: any) => section.__component === `blocks.${name}`)
+  const section = blocks.find(
+    (section: any) => section.__component === `blocks.${name}`
+  )
   if (!section) return null
   return section
 }
@@ -141,20 +150,27 @@ export function formatDate(date?: string) {
 export const formatDateYear = (date?: string) =>
   format(new Date(date ?? new Date()), "dd/MM/yyyy")
 
+export const formatStrapiDate = (date?: string | Date) =>
+  format(new Date(date ?? new Date()), "yyyy-MM-dd")
+
 export const formatDateMonth = (date?: string) =>
   format(new Date(date ?? new Date()), "dd/MM")
+
 /**
  * Formats provided date string to eeee dd/MM/yyyy
  * @param date - The date string if null will use current
  * @returns The formatted date with a week name in front
  */
-export const formatDateWeek = (date?: string) =>
+export const formatDateWeek = (date?: string | Date) =>
   capitalizeFirstLetter(
     // @ts-ignore - locale is not in the types
-    format(new Date(date ?? new Date()), "eeee dd/MM/yyyy", { locale: pl })
+    format(new Date(date ?? new Date()), "eeee d MMMM yyyy", { locale: pl })
   )
 
-export const getImage = (src: string | undefined, notFoundSrc?: string) =>
+export const getImage = (
+  src: string | undefined | null,
+  notFoundSrc?: string
+) =>
   src
     ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${src}`
     : notFoundSrc ?? "/default/not-found.svg"
@@ -176,16 +192,23 @@ export const getAuthor = (data?: {
 }): string => {
   const defaultAuthor = "Pracownik CKZiU"
 
-  if (!data) return defaultAuthor
+  if (!data || !data?.createdBy) return defaultAuthor
 
-  const createdByExists = Object.keys(data.createdBy).length > 0
-  const updatedByExists = Object.keys(data.updatedBy).length > 0
+  if (!data?.updatedBy) {
+    const createdByExists = Object.keys(data?.createdBy).length > 0
 
-  if (!createdByExists && !updatedByExists) return defaultAuthor
+    if (!createdByExists) return defaultAuthor
 
-  const author = createdByExists ? data.createdBy : data.updatedBy
+    const author = createdByExists ? data?.createdBy : data?.updatedBy
 
-  return `${author.firstname} ${author.lastname}`
+    return `${author.firstname} ${author.lastname}`
+  } else {
+    const updatedByExists = Object.keys(data?.updatedBy).length > 0
+
+    if (!updatedByExists) return defaultAuthor
+
+    return `${data?.updatedBy.firstname} ${data?.updatedBy.lastname}`
+  }
 }
 
 export function getRandomInt(min: number, max: number) {

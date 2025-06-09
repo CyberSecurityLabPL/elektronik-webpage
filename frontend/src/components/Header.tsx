@@ -24,7 +24,7 @@ export default function Header({
         duration: 0.25,
         ease: "circOut",
       }}
-      className="my-6 flex w-full flex-col items-center justify-center sm:my-8"
+      className="my-6 flex w-full flex-col items-center justify-center sm:my-8 sm:mb-4"
     >
       <h1 className="w-full text-pretty bg-clip-text py-4 text-center text-3xl font-extrabold text-primary sm:text-4xl lg:w-auto lg:text-6xl">
         {title}

@@ -1,6 +1,5 @@
 "use client"
 
-import { getImage } from "@/lib/utils"
 import { motion } from "framer-motion"
 
 import Image from "next/image"
@@ -8,15 +7,10 @@ import Link from "next/link"
 import { useEffect, useState } from "react"
 import MobileNavigation from "./MobileNavigation"
 import { Navigation } from "./Navigation"
-import { Button, buttonVariants } from "./ui/button"
-import { Moon, Sun } from "lucide-react"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu"
+import { buttonVariants } from "./ui/button"
+
 import { useTheme } from "next-themes"
+import { ChangeThemeButton } from "./ui/themeButton"
 
 export default function Navbar({
   navItems,
@@ -28,7 +22,7 @@ export default function Navbar({
   const [isSmaller, setIsSmaller] = useState(false)
   const [srcLogo, setSrcLogo] = useState("/assets/logo/logo_white.svg")
   useEffect(() => {
-    
+
     const handleScroll = () => {
       const scrollPosition = window.scrollY
 
@@ -43,20 +37,20 @@ export default function Navbar({
   }, [])
   const { theme } = useTheme()
   useEffect(() => {
-    
+
     if (theme === "high-contrast") {
       setSrcLogo("/assets/logo/logo_highcontrast.svg" );
     } else {
-      setSrcLogo("/assets/logo/logo_blue.svg");
+      setSrcLogo("/assets/logo/animated/logo_blue-initial.svg");
     }
   }, [theme]);
-  
-  
+
+
 
   const isHc = theme === "high-contrast"
 
   return (
-    
+
     <>
       <div className="absolute left-0 top-0" id="navbar-sentinel" />
       <motion.div
@@ -76,7 +70,7 @@ export default function Navbar({
               alt="Logo"
             />
           </Link>
-          
+
         </div>
         <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center justify-center xl:flex ">
           <Navigation navItems={navItems} />
@@ -102,38 +96,16 @@ export default function Navbar({
             </Link>
             <ChangeThemeButton />
           </div>
-          <div className="flex items-center justify-center xl:hidden">
+          <div className="flex items-center gap-2 justify-center xl:hidden">
+            <ChangeThemeButton />
             <MobileNavigation
               navItems={navItems}
               additionalLinks={additionalLinks}
             />
+
           </div>
         </div>
       </motion.div>
     </>
-  )
-}
-
-function ChangeThemeButton() {
-  const { setTheme, theme } = useTheme()
-
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="outline" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Zmień motyw</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Jasny
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("high-contrast")}>
-          Wysoki kontrast
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
   )
 }

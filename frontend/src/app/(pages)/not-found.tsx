@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+
 import Image from "next/image"
 import Link from "next/link"
 import React from "react"
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default function NotFound() {
+  
   return (
     <div className="mx-auto flex-col px-8">
       <div className="mt-10 flex flex-col">
@@ -15,8 +17,11 @@ export default function NotFound() {
           Nie znaleźliśmy strony, której szukasz
         </h1>
       </div>
-      <div className="relative mx-auto aspect-square w-full max-w-lg">
+      <div className="relative mx-auto aspect-square w-full max-w-lg hc:hidden block">
         <Image src={"/assets/404.svg"} alt="Błąd 404" fill />
+      </div>
+      <div className="relative mx-auto aspect-square w-full max-w-lg hidden hc:block">
+        <Image src={"/assets/404-high_contrast.svg"} alt="Błąd 404" fill />
       </div>
       <div className="mt-10 flex flex-col">
         <ul className="flex flex-wrap justify-between gap-2 text-xl underline">

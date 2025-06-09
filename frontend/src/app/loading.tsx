@@ -4,12 +4,22 @@ export default function Loading() {
   return (
     <div className=" z-50 flex h-screen  w-full flex-col items-center justify-center bg-background">
       <div className="animate-pulse">
-        <Image
-          src={"/assets/logo/logo.svg"}
+        <div className="hc:hidden block">
+          <Image
+          src={"/assets/logo/animated/logo_blue-loading.svg"}
           width={200}
           height={150}
           alt="Logo"
         />
+        </div>
+        <div className="hc:block hidden">
+          <Image
+          src={"/assets/logo/logo_highcontrast.svg"}
+          width={200}
+          height={150}
+          alt="Logo"
+        />
+        </div>
       </div>
     </div>
   )

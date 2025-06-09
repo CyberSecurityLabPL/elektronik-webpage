@@ -15,7 +15,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Elektronik",
   description:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed est eu turpis porta fringilla. Vivamus tristique, odio et accumsan mollis.",
+    "ZSEiS Elektronik – technikum z przyszłością. Oferujemy kierunki techniczne: informatyka, programowanie, elektronika, mechanika pojazdowa i więcej. Dołącz do nas i rozwijaj pasje!",
 }
 
 export const revalidate = REVALIDATE
@@ -37,8 +37,12 @@ export default async function RootLayout({
         />
       </head>
       <body className={cn(poppins.className, "*:antialiased")}>
-        {data && <AlertBar data={data} />}
-        <Providers>{children}</Providers>
+        <Providers>
+          <div className="mx-auto max-w-screen-4xl">
+            {data && <AlertBar data={data} />}
+            {children}
+          </div>
+        </Providers>
       </body>
     </html>
   )
