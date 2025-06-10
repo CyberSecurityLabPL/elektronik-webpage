@@ -40,11 +40,7 @@ const populate = {
             },
           },
         },
-        // "blocks.news": {
-        //   populate: {
-        //     linkButton: true,
-        //   },
-        // },
+        "blocks.news": true,
       },
     },
     seo: true,
