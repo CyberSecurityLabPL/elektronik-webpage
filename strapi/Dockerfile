@@ -1,5 +1,5 @@
 # Use a more specific base image
-FROM node:18-alpine
+FROM node:20-alpine
 
 # Set NODE_ENV
 ARG NODE_ENV=development

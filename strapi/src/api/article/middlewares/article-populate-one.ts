@@ -2,38 +2,29 @@
  * `jobs-page-populate` middleware
  */
 
-import { Strapi } from '@strapi/strapi';
-
 const populate = {
   populate: {
-    image: {
-      populate: true
-    },
-    createdBy: {
-      populate: true
-    },
-    updatedBy: {
-      populate: true
-    },
+    image: true,
+    createdBy: true,
+    updatedBy: true,
     seo: {
-        populate: {
-            metaImage: {
-                populate: true
-            }
-        }
-    }
-  }
-}
+      populate: {
+        metaImage: true,
+      },
+    },
+    redirect: true,
+  },
+};
 
-export default (config, { strapi }: { strapi: Strapi }) => {
+export default (config, { strapi }: { strapi: any }) => {
   // Add your own logic here.
   return async (ctx, next) => {
-    strapi.log.info('In jobs-page-populate middleware.');
+    strapi.log.info("In jobs-page-populate middleware.");
 
     ctx.query = {
-    	...populate,
-	...ctx.query
-    }
+      ...populate,
+      ...ctx.query,
+    };
 
     await next();
   };
