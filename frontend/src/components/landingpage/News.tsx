@@ -51,32 +51,30 @@ export default async function News() {
         transition={{ duration: 0.3, ease: "easeInOut", delay: 0.5 }}
         className="flex w-full grid-cols-1 flex-col items-center justify-center gap-4 px-4 md:grid  md:gap-8 md:px-8 lg:grid-cols-3 xl:w-fit"
       >
-        {articles
-          .slice(0, 3)
-          .map(({ attributes: news, id }: any, index: number) => {
-            return (
-              <InView
-                variants={{
-                  hidden: { opacity: 0, scale: 0.8, filter: "blur(10px)" },
-                  visible: {
-                    opacity: 1,
-                    scale: 1,
-                    filter: "blur(0px)",
-                  },
-                }}
-                key={index + news.title}
-                className="mb-4 w-full h-full flex justify-center"
-              >
-                <NewsCard
-                  title={news.title}
-                  description={news.description}
-                  date={news.createdAt}
-                  link={`/aktualnosci/${id}`}
-                  src={news.image?.data?.attributes.url ?? ""}
-                />
-              </InView>
-            )
-          })}
+        {articles.slice(0, 3).map((news: any, index: number) => {
+          return (
+            <InView
+              variants={{
+                hidden: { opacity: 0, scale: 0.8, filter: "blur(10px)" },
+                visible: {
+                  opacity: 1,
+                  scale: 1,
+                  filter: "blur(0px)",
+                },
+              }}
+              key={index + news.title}
+              className="mb-4 flex h-full w-full justify-center"
+            >
+              <NewsCard
+                title={news.title}
+                description={news.description}
+                date={news.createdAt}
+                link={`/aktualnosci/${news.id}`}
+                src={news.image?.data?.attributes.url ?? ""}
+              />
+            </InView>
+          )
+        })}
       </InView>
       <div className="growAnim">
         <Button asChild className=" w-fit ">
