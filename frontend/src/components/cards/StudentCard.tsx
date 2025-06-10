@@ -16,30 +16,43 @@ export default function StudentCard({
   hobby: string
 }) {
   return (
-    <Card className="flex h-auto min-h-80 w-full rounded-xl shadow-sm">
-      <div className="relative hidden h-auto min-h-80 w-2/6 sm:block">
-        <Image className="rounded-l-xl " alt={`${name} img`} src={src} fill />
+    <Card className="flex h-auto w-full max-w-4xl rounded-xl shadow-sm">
+      <div className="relative hidden h-[400px] w-[250px] shrink-0 sm:block">
+        <Image 
+          className="rounded-l-xl object-cover" 
+          alt={`${name} img`} 
+          src={src} 
+          fill 
+          sizes="250px"
+          priority
+        />
       </div>
-      <div className="relative min-h-80 w-full  px-4 sm:w-2/3 ">
-        <CardHeader className="px-0 py-4">
-          <CardTitle className="text-3xl font-semibold text-primary">
+      <div className="flex w-full flex-col p-4">
+        <CardHeader className="px-0 py-2">
+          <CardTitle className="text-2xl font-semibold text-primary">
             {name}
           </CardTitle>
           <span className="text-base font-medium text-neutral-400">
             {yearClass}
           </span>
         </CardHeader>
-        <Separator className=" bg-neutral-200" />
-        <CardContent className="px-0  py-3">
-          <h2 className="py-1 text-sm font-semibold text-neutral-400">
-            Osiągnięcia:{" "}
-          </h2>
-          <div>{achivments}</div>
+        <Separator className="bg-neutral-200" />
+        <CardContent className="flex h-full flex-col gap-3 px-0 py-2">
+          <div>
+            <h2 className="mb-1 text-sm font-semibold text-neutral-400">
+              Osiągnięcia:
+            </h2>
+            <div className="max-h-[150px] overflow-y-auto pr-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-neutral-200">
+              <div className="text-sm leading-relaxed break-words whitespace-pre-wrap">{achivments}</div>
+            </div>
+          </div>
 
-          <h2 className="py-1 pt-6 text-sm font-semibold text-neutral-400">
-            Zainteresowania:{" "}
-          </h2>
-          <div>{hobby}</div>
+          <div>
+            <h2 className="mb-1 text-sm font-semibold text-neutral-400">
+              Zainteresowania:
+            </h2>
+            <div className="text-sm leading-relaxed break-words whitespace-pre-wrap">{hobby}</div>
+          </div>
         </CardContent>
       </div>
     </Card>

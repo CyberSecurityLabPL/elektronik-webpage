@@ -46,7 +46,7 @@ export default async function page() {
       <PageEnterAnimation className="relative flex w-full max-w-4xl flex-col items-center justify-center gap-6">
         <Card className="w-full">
           <CardHeader>
-            <CardTitle>Wyślij wiadomość</CardTitle>
+            <CardTitle className="text-2xl font-semibold text-primary">Wyślij wiadomość</CardTitle>
             <CardDescription>
               Napisz do nas a my postaramy się odpisać jak najszybciej
             </CardDescription>

@@ -15,6 +15,7 @@ import { CalendarPlus, User, PencilLine, LucideIcon } from "lucide-react"
 import { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { openGraphImage } from "@/lib/shared-metadata"
 // import thumbnail from "/default/thumbnail.svg"
 
@@ -84,6 +85,10 @@ export default async function Page({
   const article = res?.data ? res.data : null
   const image = article?.image
 
+  if (!article) {
+    notFound()
+  }
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -91,10 +96,7 @@ export default async function Page({
     image: getImage(article?.image?.url),
     description: article?.description,
   }
-  const author = article ? getAuthor(article) : "Nieznany autor"
-
-  if (!article) return <FailedToLoad />
-
+  const author = getAuthor(article)
   const hasImage = image && Object.keys(image).length !== 0
 
   return (
@@ -169,19 +171,6 @@ function InfoLabel({ Icon, content }: { Icon: LucideIcon; content: string }) {
     <div className="flex items-center justify-center gap-2 text-sm sm:text-base">
       <Icon className="size-3 text-primary sm:size-4" />
       <div>{content}</div>
-    </div>
-  )
-}
-function FailedToLoad() {
-  return (
-    <div className="flex w-full flex-col items-center gap-8">
-      <h1 className="text-center text-4xl">Nie znaleziono artykułu</h1>
-      <Button asChild>
-        <Link href={"/aktualnosci"}>Wróć do aktualności</Link>
-      </Button>
-      <div className="relative mt-8 aspect-video w-full max-w-5xl">
-        <Image src={"/assets/not-found.svg"} alt="Not found" fill />
-      </div>
     </div>
   )
 }

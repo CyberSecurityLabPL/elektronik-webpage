@@ -6,7 +6,7 @@ import {
   formatStrapiDate,
   renderMarkdown,
 } from "@/lib/utils"
-import { CalendarDays, CalendarIcon } from "lucide-react"
+import { CalendarDays, CalendarIcon, Loader2 } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import Header from "./Header"
@@ -14,6 +14,7 @@ import PageEnterAnimation from "./PageEnterAnimation"
 import { Button } from "./ui/button"
 import { Calendar } from "./ui/calendar"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
+import { Skeleton } from "./ui/skeleton"
 
 export default function SubstitutionsDisplay({
   page,
@@ -26,6 +27,8 @@ export default function SubstitutionsDisplay({
 }) {
   const sub = initial.data[0]
   const router = useRouter()
+  const [isLoading, setIsLoading] = useState(false)
+
   const addDay = (date: string) => {
     const newDate = new Date(date)
     newDate.setDate(newDate.getDate() + 1)
@@ -45,33 +48,57 @@ export default function SubstitutionsDisplay({
     return formatStrapiDate(newDate)
   }
 
+  const handleDayChange = (newDate: string) => {
+    setIsLoading(true)
+    router.push(`/zastepstwa/${newDate}`)
+  }
+
   return (
     <>
       <Header title={page?.heading ?? "Zastępstwa"}>
-        <DatePicker selectedDay={date} />
+        <DatePicker selectedDay={date} onDateChange={handleDayChange} />
       </Header>
       <PageEnterAnimation className="flex w-full max-w-7xl flex-col items-center justify-center gap-4">
         <div className="h-fit min-h-96 w-full rounded-lg border bg-background p-4 shadow-sm">
-          <div className="p-2 text-xs sm:text-base">
-            {renderMarkdown(
-              sub?.substitutions ??
-                "Brak zaplanowanych zastępstw na ten dzień bądź jeszcze ich nie wpisano.",
-              markdownOptions
-            )}
-          </div>
+          {isLoading ? (
+            <div className="flex flex-col gap-4 p-2">
+              <Skeleton className="h-6 w-3/4" />
+              <Skeleton className="h-6 w-1/2" />
+              <Skeleton className="h-6 w-2/3" />
+              <Skeleton className="h-6 w-3/5" />
+            </div>
+          ) : (
+            <div className="p-2 text-xs sm:text-base">
+              {renderMarkdown(
+                sub?.substitutions ??
+                  "Brak zaplanowanych zastępstw na ten dzień bądź jeszcze ich nie wpisano.",
+                markdownOptions
+              )}
+            </div>
+          )}
         </div>
         <div className="flex gap-2 ">
           <Button
             variant="outline"
-            onClick={() => router.push(`/zastepstwa/${subDay(date)}`)}
+            onClick={() => handleDayChange(subDay(date))}
+            disabled={isLoading}
           >
-            Poprzednie
+            {isLoading ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              "Poprzednie"
+            )}
           </Button>
           <Button
             variant="outline"
-            onClick={() => router.push(`/zastepstwa/${addDay(date)}`)}
+            onClick={() => handleDayChange(addDay(date))}
+            disabled={isLoading}
           >
-            Następne
+            {isLoading ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : (
+              "Następne"
+            )}
           </Button>
         </div>
       </PageEnterAnimation>
@@ -79,9 +106,8 @@ export default function SubstitutionsDisplay({
   )
 }
 
-function DatePicker({ selectedDay }: { selectedDay: string | Date }) {
+function DatePicker({ selectedDay, onDateChange }: { selectedDay: string | Date, onDateChange: (date: string) => void }) {
   const [open, setOpen] = useState(false)
-  const router = useRouter()
 
   return (
     <Popover open={open} onOpenChange={() => setOpen(!open)}>
@@ -116,7 +142,7 @@ function DatePicker({ selectedDay }: { selectedDay: string | Date }) {
           onSelect={(date: Date | undefined) => {
             if (date) {
               setOpen(false)
-              router.push(`/zastepstwa/${formatStrapiDate(date)}`)
+              onDateChange(formatStrapiDate(date))
             }
           }}
           initialFocus

@@ -13,7 +13,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"
+} from "@/components/ui/accordionLanding"
 import { Button } from "../ui/button"
 import Link from "next/link"
 import { motion } from "framer-motion"
