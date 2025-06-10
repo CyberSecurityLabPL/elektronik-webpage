@@ -24,7 +24,7 @@ export default async function SubstitutionPage() {
   const replace = await getSubstitutions(1)
 
   return (
-    <main className="flex w-full flex-col items-center gap-4">
+    <main className="flex w-full flex-col items-center ">
       <SubstitutionsDisplay
         page={data}
         initial={!sub.data[0] ? replace : sub}

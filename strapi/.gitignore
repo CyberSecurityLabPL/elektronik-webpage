@@ -117,4 +117,7 @@ exports
 dist
 build
 .strapi-updater.json
-src/extensions/documentation
+data/data.db
+src/extensions/documentation/documentation
+public/uploads_backup*
+

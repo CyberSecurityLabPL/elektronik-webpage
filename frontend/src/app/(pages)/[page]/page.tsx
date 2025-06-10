@@ -35,7 +35,7 @@ export default async function Page({ params }: { params: { page: string } }) {
       <PageEnterAnimation
         className={`flex w-full justify-center rounded-sm bg-background p-2 text-xs shadow-sm sm:text-base items-center${data?.content ? "" : "hidden"}`}
       >
-        <div className="prose w-full overflow-hidden p-4 hc:text-foreground hc:prose-strong:text-foreground hc:prose-a:text-primary">
+        <div className="prose w-full overflow-hidden p-4 hc:prose-headings:text-foreground hc:text-foreground hc:prose-strong:text-foreground hc:prose-a:text-primary">
           {data?.content ? renderMarkdown(data.content) : null}
         </div>
       </PageEnterAnimation>

@@ -1,7 +1,12 @@
 "use client"
 import markdownOptions from "@/components/markdown/MarkdownOptions"
-import { formatDateWeek, formatStrapiDate, renderMarkdown } from "@/lib/utils"
-import { CalendarDays } from "lucide-react"
+import {
+  cn,
+  formatDateWeek,
+  formatStrapiDate,
+  renderMarkdown,
+} from "@/lib/utils"
+import { CalendarDays, CalendarIcon } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import Header from "./Header"
@@ -20,6 +25,25 @@ export default function SubstitutionsDisplay({
   date: any
 }) {
   const sub = initial.data[0]
+  const router = useRouter()
+  const addDay = (date: string) => {
+    const newDate = new Date(date)
+    newDate.setDate(newDate.getDate() + 1)
+
+    while (newDate.getDay() === 0 || newDate.getDay() === 6) {
+      newDate.setDate(newDate.getDate() + 1)
+    }
+    return formatStrapiDate(newDate)
+  }
+
+  const subDay = (date: string) => {
+    const newDate = new Date(date)
+    newDate.setDate(newDate.getDate() - 1)
+    while (newDate.getDay() === 0 || newDate.getDay() === 6) {
+      newDate.setDate(newDate.getDate() - 1)
+    }
+    return formatStrapiDate(newDate)
+  }
 
   return (
     <>
@@ -28,12 +52,27 @@ export default function SubstitutionsDisplay({
       </Header>
       <PageEnterAnimation className="flex w-full max-w-7xl flex-col items-center justify-center gap-4">
         <div className="h-fit min-h-96 w-full rounded-lg border bg-background p-4 shadow-sm">
-          <div className="px-2 text-xs sm:text-base">
+          <div className="p-2 text-xs sm:text-base">
             {renderMarkdown(
-              sub?.substitutions ?? "Nie udało się załadować zawartości.",
+              sub?.substitutions ??
+                "Brak zaplanowanych zastępstw na ten dzień bądź jeszcze ich nie wpisano.",
               markdownOptions
             )}
           </div>
+        </div>
+        <div className="flex gap-2 ">
+          <Button
+            variant="outline"
+            onClick={() => router.push(`/zastepstwa/${subDay(date)}`)}
+          >
+            Poprzednie
+          </Button>
+          <Button
+            variant="outline"
+            onClick={() => router.push(`/zastepstwa/${addDay(date)}`)}
+          >
+            Następne
+          </Button>
         </div>
       </PageEnterAnimation>
     </>
@@ -46,20 +85,27 @@ function DatePicker({ selectedDay }: { selectedDay: string | Date }) {
 
   return (
     <Popover open={open} onOpenChange={() => setOpen(!open)}>
+      <div className="mt-3">
+        <span className="text-2xl text-foreground">
+          {formatDateWeek(selectedDay)}
+        </span>
+      </div>
       <PopoverTrigger asChild>
-        <div className="flex items-center justify-center px-2">
-          <div className="text-md flex max-w-[54rem] items-center justify-center gap-2 text-pretty stroke-primary-foreground text-center leading-relaxed text-primary-foreground hover:cursor-pointer hover:stroke-primary hover:text-primary sm:text-lg lg:text-xl">
-            {formatDateWeek(selectedDay)}
+        <div className=" flex w-full max-w-7xl justify-center px-2 sm:justify-start ">
+          <div className="text-md relative right-2  mt-2 w-fit    gap-4 text-pretty stroke-primary-foreground text-center leading-relaxed text-primary-foreground hover:cursor-pointer hover:stroke-primary hover:text-primary sm:text-lg lg:text-xl">
             <Button
-              className="px-3 py-2 hover:stroke-primary sm:px-2"
-              variant={"secondary"}
+              variant={"outline"}
+              className={cn("w-[240px] pl-3 text-left font-normal")}
             >
-              <CalendarDays className="flex size-5 items-center justify-center stroke-inherit sm:size-6" />
+              <span>Wybierz date</span>
+
+              <CalendarIcon className="ml-auto h-5 w-5 opacity-70" />
             </Button>
           </div>
         </div>
       </PopoverTrigger>
-      <PopoverContent className="w-auto p-0">
+
+      <PopoverContent className="w-auto p-0" align="start">
         <Calendar
           disabled={(date) => {
             const day = date.getDay()
