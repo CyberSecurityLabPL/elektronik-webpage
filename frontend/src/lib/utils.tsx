@@ -11,6 +11,8 @@ import { notFound } from "next/navigation"
 import Map from "@/components/landingpage/Map"
 import Faq from "@/components/landingpage/Faq"
 import Hero from "@/components/landingpage/Hero"
+import News2 from "@/components/landingpage/News2"
+import { DateTimeValue } from "@strapi/types/dist/schema/attribute"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -24,7 +26,7 @@ export function getSectionByName(name: string) {
     case "benefits":
       return Benefits
     case "news":
-      return News
+      return News2
     case "map":
       return Map
     case "faq":
@@ -155,6 +157,9 @@ export const formatStrapiDate = (date?: string | Date) =>
 
 export const formatDateMonth = (date?: string) =>
   format(new Date(date ?? new Date()), "dd/MM")
+
+export const formatDayMonthYear = (date?: string | DateTimeValue | number) =>
+  format(new Date(date ?? new Date()), "dd MMMM yyyy", { locale: pl })
 
 /**
  * Formats provided date string to eeee dd/MM/yyyy

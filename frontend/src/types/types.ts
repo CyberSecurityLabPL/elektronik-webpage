@@ -57,9 +57,9 @@ export type StrapiAuthor = {
 
 // Artykuły i strony
 export interface Article extends APIResponseData<"api::article.article"> {
-  image: StrapiImage
-  createdBy?: StrapiAuthor
-  updatedBy?: StrapiAuthor
+  image?: StrapiImage
+  // createdBy?: StrapiAuthor | null | string | number
+  // updatedBy?: StrapiAuthor | null | string | number
 }
 export type AchievementsPage =
   APIResponseData<"api::achievements-page.achievements-page">
