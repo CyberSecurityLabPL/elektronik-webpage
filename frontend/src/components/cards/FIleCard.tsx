@@ -13,7 +13,7 @@ type FileProps = {
 
 interface FileCardProps {
   name: string
-  date: string
+  date: string | Date | number
   url: string
   fileType: string
 }
@@ -22,7 +22,7 @@ export default function FileCard({ name, date, url, fileType }: FileCardProps) {
   const fileProps = getFileProps(fileType)
 
   return (
-    <div className="flex items-center justify-between bg-background p-4 shadow-[0px_4px_15px] shadow-slate-400/25 xs:rounded-2xl hc:shadow-none hc:border border-background-accent">
+    <div className="flex items-center justify-between border-background-accent bg-background p-4 shadow-[0px_4px_15px] shadow-slate-400/25 hc:border hc:shadow-none xs:rounded-2xl">
       <div className="flex gap-4 ">
         <div className="flex items-center">
           <FileIcon icon={fileProps.icon} color={fileProps.color} />
@@ -53,7 +53,7 @@ function getFileProps(type: string): FileProps {
         icon: Pdf,
       }
     case ".docx":
-    case  ".doc":
+    case ".doc":
       return {
         color: "blue",
         icon: Docx,

@@ -3,6 +3,7 @@ import axios, { AxiosError, AxiosResponse } from "axios"
 import qs from "qs"
 import { revalidate, revalidateT } from "./actions"
 import { flattenStrapiResponse } from "./utils"
+import { APIResponseCollection } from "@/types/types"
 
 /**
  * The API instance for making HTTP requests.
@@ -71,42 +72,31 @@ interface ArticlesOptions {
 
 export async function getArticles(options?: ArticlesOptions): Promise<any> {
   try {
-    const params = options?.params
-    const flatteners = options?.flatteners
-
-    const page = options?.page ?? "1"
-
+    const { params, flatteners, page = "1", getAll } = options || {}
     const isFirstPage = page === "1"
 
-    const query = qs.stringify(
-      {
-        pagination: {
-          page,
-          pageSize: isFirstPage ? PAGINATION_LIMIT + 1 : PAGINATION_LIMIT,
-        },
-      },
-      {
-        encodeValuesOnly: true, // prettify url
-      }
-    )
-
-    if (!options?.getAll) {
-      const url = params
-        ? `articles/${params}`
-        : `articles?${options?.page ? query : ""}`
-      const { data }: AxiosResponse<any> = await api.get(url)
-
-      const res = flattenStrapiResponse(data, !!!params, flatteners)
-
-      res.data = res.data.slice(isFirstPage ? 1 : 0)
-
-      return res
-    } else {
+    if (getAll) {
       const url =
         "articles?fields[0]=id&populate=false&pagination[pageSize]=10000"
-      const { data }: AxiosResponse<any> = await api.get(url)
+      const { data } = await api.get(url)
       return data
     }
+
+    const pageSize = isFirstPage ? PAGINATION_LIMIT + 1 : PAGINATION_LIMIT
+    const query = qs.stringify(
+      { pagination: { page, pageSize } },
+      { encodeValuesOnly: true }
+    )
+
+    const url = params ? `articles/${params}` : `articles?${query}`
+    const { data } = await api.get(url)
+
+    // Zakomentowane flattenery, odkomentuj i użyj, jeśli są potrzebne
+    // const res = flattenStrapiResponse(data, !params, flatteners)
+    const res = data
+    if (isFirstPage) res.data = res.data.slice(1)
+
+    return res
   } catch (error: any) {
     handleError(error)
   }
@@ -134,7 +124,9 @@ export async function getLatestArticle(flatteners: string[] = ["data"]) {
       "articles?sort=createdAt:DESC&pagination[pageSize]=1&populate[image][populate]=true&populate[createdBy][populate]=true&populate[updatedBy][populate]=true"
     )
 
-    return flattenStrapiResponse(data.data[0], true, flatteners)
+    // return flattenStrapiResponse(data.data[0], true, flatteners)
+
+    return data.data[0]
   } catch (error: any) {
     handleError(error)
   }
