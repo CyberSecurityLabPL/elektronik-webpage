@@ -23,8 +23,44 @@ export interface APIResponseCollection<T extends UID.ContentType> {
   }
 }
 
+export type StrapiImage = {
+  id: number
+  name: string
+  alternativeText?: string | null
+  caption?: string | null
+  width?: number | null
+  height?: number | null
+  formats?: Record<string, any> | null
+  hash: string
+  ext: string
+  mime: string
+  size: number
+  url: string
+  previewUrl?: string | null
+  provider: string
+  provider_metadata?: Record<string, any> | null
+  createdAt: string
+  updatedAt: string
+}
+
+export type StrapiAuthor = {
+  id: number
+  documentId: string
+  firstname: string
+  lastname: string
+  username: string | null
+  preferedLanguage: string
+  createdAt: string
+  updatedAt: string
+  publishedAt: string
+}
+
 // Artykuły i strony
-export type Article = APIResponseData<"api::article.article">
+export interface Article extends APIResponseData<"api::article.article"> {
+  image: StrapiImage
+  createdBy?: StrapiAuthor
+  updatedBy?: StrapiAuthor
+}
 export type AchievementsPage =
   APIResponseData<"api::achievements-page.achievements-page">
 export type ApprenticeshipsPage =
@@ -32,8 +68,10 @@ export type ApprenticeshipsPage =
 export type BooksPage = APIResponseData<"api::books-page.books-page">
 export type ContactPage = APIResponseData<"api::contact-page.contact-page">
 export type CoursesPage = APIResponseData<"api::courses-page.courses-page">
-export type DocumentsPage =
-  APIResponseData<"api::documents-page.documents-page">
+export interface DocumentsPage
+  extends APIResponseData<"api::documents-page.documents-page"> {
+  document_groups: Document[]
+}
 export type GraduatePage = APIResponseData<"api::graduate-page.graduate-page">
 export type JobsPage = APIResponseData<"api::jobs-page.jobs-page">
 export type LandingPage = APIResponseData<"api::landing-page.landing-page">

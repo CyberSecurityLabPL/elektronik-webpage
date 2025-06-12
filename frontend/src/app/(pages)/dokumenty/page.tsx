@@ -3,6 +3,11 @@ import Header from "@/components/Header"
 import PageEnterAnimation from "@/components/PageEnterAnimation"
 import { REVALIDATE } from "@/config"
 import { getDocuments } from "@/lib/api"
+import {
+  Document,
+  DocumentGroup,
+  DocumentsPage as IDocumentsPage,
+} from "@/types/types"
 import { Metadata } from "next"
 import { ReactNode } from "react"
 
@@ -23,15 +28,15 @@ export default async function DocumentsPage() {
 
   return (
     <main className="flex w-full flex-col items-center">
-      <Header title={data?.heading} />
+      <Header title={data?.heading ?? "Dokumenty"} />
       <PageEnterAnimation className="flex w-full flex-col items-center justify-center">
         {data.document_groups.map((item: any) => (
-          <FileGroup key={item.title} title={item.title}>
-            {item.documents.map((file: any) => (
+          <FileGroup key={item.title} title={item.title ?? "Dokumenty"}>
+            {item.documents?.map((file: Document) => (
               <FileCard
                 key={file.name}
-                name={file.name}
-                date={file.date}
+                name={file.name ? file.name : file.file.name}
+                date={file.date ? file.date : file.createdAt!}
                 fileType={file.file.ext}
                 url={file.file.url}
               />
