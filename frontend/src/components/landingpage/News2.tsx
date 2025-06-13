@@ -52,7 +52,7 @@ const News2 = async () => {
   )
 }
 
-function Article({ data }: { data: ArticleType }) {
+function Article({ data }: { data: any }) {
   return (
     <div className="flex flex-col gap-2">
       <div className="flex gap-8">
