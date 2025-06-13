@@ -32,7 +32,7 @@ export default async function DocumentsPage() {
       <PageEnterAnimation className="flex w-full flex-col items-center justify-center">
         {data.document_groups.map((item: any) => (
           <FileGroup key={item.title} title={item.title ?? "Dokumenty"}>
-            {item.documents?.map((file: Document) => (
+            {item.documents?.map((file: any) => (
               <FileCard
                 key={file.name}
                 name={file.name ? file.name : file.file.name}
