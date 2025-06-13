@@ -79,7 +79,7 @@ function Article({ data }: { data: any }) {
   )
 }
 
-function MainArticle({ data }: { data: ArticleType }) {
+function MainArticle({ data }: { data: any }) {
   return (
     <Link href={`/aktualnosci/${data.documentId}`} className="flex flex-col">
       <Image
