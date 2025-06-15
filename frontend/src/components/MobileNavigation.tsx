@@ -36,11 +36,10 @@ export default function MobileNavigation({
           }}
           whileTap={{ scale: 0.7 }}
         >
-          
           <Menu className="h-8 w-8" />
         </motion.div>
       </DrawerTrigger>
-      <DrawerContent className="drawer-content z-[101] h-[85%] bg-slate-100 hc:bg-background-muted hc:border-none">
+      <DrawerContent className="drawer-content z-[101] h-[85%] bg-slate-100 hc:border-none hc:bg-background-muted">
         <div className="scroll-overflow flex h-full w-full flex-col items-center gap-2 overflow-x-hidden overflow-y-scroll rounded-3xl p-4">
           {navItems?.map((group: any, index: number) => (
             <LinkPanel
@@ -48,22 +47,12 @@ export default function MobileNavigation({
               title={group.name}
             >
               {group.name.toLowerCase() == "o szkole" ? (
-                  <LinkItem
-                    key={"item-1"}
-                    name="Galeria"
-                    href="/galeria"
-                    isFeatured={false}
-                  />
-              ) : null}
-              {group.name.toLowerCase() == "o szkole" ? (
-                <>
-                  <LinkItem
-                    key={"item-1"}
-                    name="Kontakt"
-                    href="/kontakt"
-                    isFeatured={false}
-                  />
-                </>
+                <LinkItem
+                  key={"item-1"}
+                  name="Aktualności"
+                  href="/aktualnosci"
+                  isFeatured={false}
+                />
               ) : null}
               {group.links?.map((item: any) => (
                 <LinkItem
@@ -150,7 +139,7 @@ function LinkItem({
   name,
   href,
   isFeatured,
-  isExternal
+  isExternal,
 }: {
   name: string
   href: string
@@ -160,7 +149,7 @@ function LinkItem({
   return (
     <DrawerClose asChild>
       <Link
-        className=" flex items-center justify-between gap-2 rounded-3xl bg-accent/50 hc:text-muted-foreground px-4 py-2 text-left text-lg font-medium text-slate-600 active:bg-slate-100 md:text-center hc:active:bg-background-accent hc:!bg-background-muted "
+        className=" flex items-center justify-between gap-2 rounded-3xl bg-accent/50 px-4 py-2 text-left text-lg font-medium text-slate-600 active:bg-slate-100 hc:!bg-background-muted hc:text-muted-foreground hc:active:bg-background-accent md:text-center "
         href={href}
       >
         {name}
@@ -169,14 +158,12 @@ function LinkItem({
             <div className="rounded-3xl border border-primary/90 bg-primary/80 px-2 text-[10px] text-white hc:text-black">
               Nowe
             </div>
-          ) : (
-            null
-          )}
-        {isExternal ? (
-          <div className="">
-            <ExternalLink className="w-6 h-6 text-foreground" />
-          </div>
-        ) : null}
+          ) : null}
+          {isExternal ? (
+            <div className="">
+              <ExternalLink className="h-6 w-6 text-foreground" />
+            </div>
+          ) : null}
         </div>
       </Link>
     </DrawerClose>

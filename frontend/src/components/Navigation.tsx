@@ -16,6 +16,7 @@ import { Button } from "./ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { usePathname } from "next/navigation"
 import { motion } from "framer-motion"
+import { Badge } from "./ui/badge"
 
 export function Navigation({ navItems }: { navItems: any }) {
   const pathname = usePathname()
@@ -38,37 +39,31 @@ export function Navigation({ navItems }: { navItems: any }) {
       <NavigationMenuList>
         {navItems
           ? navItems.slice(0, 5).map((item: any, index: number) => (
-              <NavigationMenuItem key={item.name} >
+              <NavigationMenuItem key={item.name}>
                 <NavigationMenuTrigger
                   onMouseEnter={handleMouseEnter}
-                  className="rounded-xl hc:text-white bg-transparent text-lg hover:bg-transparent group-[[data-smaller=true]]:text-base hc:hover:text-white hc:hover:bg-white/10"
+                  className="rounded-xl bg-transparent text-lg hover:bg-transparent group-[[data-smaller=true]]:text-base hc:text-white hc:hover:bg-white/10 hc:hover:text-white"
                 >
                   {item.name}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="overflow-hidden  ">
-                  <ul className="relative !z-[99999] grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[800px] bg-background max-h-[452px] overflow-y-auto">
+                  <ul className="relative !z-[99999] grid max-h-[452px] w-[400px] gap-3 overflow-y-auto bg-background p-4 md:w-[500px] md:grid-cols-2 lg:w-[800px]">
                     {index < 1 ? (
-                      <li className="row-span-3 rounded-lg hover:bg-accent">
+                      <li className="col-span-2 rounded-lg transition-colors hover:bg-background-muted focus:bg-background-muted">
                         <NavigationMenuLink asChild>
                           <a
-                            className={`relative flex h-full select-none flex-col justify-end rounded-md hc:hover:bg-background-muted object-cover text-background no-underline outline-none focus:shadow-md `}
-                            href="/galeria"
+                            className={`relative flex h-full select-none flex-col justify-start rounded-md object-cover text-background no-underline outline-none`}
+                            href="/aktualnosci"
                           >
-                            <div className="relative h-64">
-                              <Image
-                                src={"/assets/gallery.avif"}
-                                alt="Galeria"
-                                fill
-                                className="rounded-md object-cover"
-                              />
+                            <div className="z-50 bg-transparent p-2 text-3xl font-medium text-foreground">
+                              Aktualności
+                              <Badge className="absolute right-2 top-2 rounded-full bg-primary px-2 text-xs font-semibold text-white hc:text-black">
+                                Popularne
+                              </Badge>
                             </div>
-
-                            <div className="z-50 bg-transparent p-2 text-lg font-medium text-foreground">
-                              Galeria
-                            </div>
-                            <p className="z-50 bg-transparent p-2 pt-0 text-sm leading-tight text-foreground">
-                              Zobacz naszą galerie szkolną gdzie znajdziesz
-                              przeróżne zdjęcia naszej szkoły! :)
+                            <p className="z-50 bg-transparent p-2 pt-0 text-sm leading-tight text-muted-foreground">
+                              Tutaj znajdują się wszystkie aktualności i
+                              ogłoszenia
                             </p>
                           </a>
                         </NavigationMenuLink>
@@ -94,12 +89,12 @@ export function Navigation({ navItems }: { navItems: any }) {
           : null}
         {navItems.length > 5 ? (
           <>
-            <NavigationMenuItem >
+            <NavigationMenuItem>
               <Popover open={isOpen} onOpenChange={handlePopoverOpenChange}>
                 <PopoverTrigger asChild>
                   <Button
                     variant={"ghost"}
-                    className="text-lg hover:bg-accent/50 hc:text-white hc:hover:text-white hc:hover:bg-white/10"
+                    className="text-lg hover:bg-accent/50 group-[[data-smaller=true]]:text-base hc:text-white hc:hover:bg-white/10 hc:hover:text-white"
                     onClick={() => handlePopoverOpenChange(!isOpen)}
                   >
                     Więcej
@@ -112,7 +107,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                   className="z-10"
                 >
                   <PopoverContent
-                    className="absolute -right-32 z-10 flex w-[52rem] rounded-3xl py-6 data-[state=open]:block data-[state=closed]:hidden bg-background"
+                    className="absolute -right-32 z-10 flex w-[52rem] rounded-3xl bg-background py-6 data-[state=open]:block data-[state=closed]:hidden"
                     data-state={isOpen ? "open" : "closed"}
                   >
                     <ul className="mx-auto flex h-full w-full flex-wrap gap-8">
@@ -134,7 +129,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                               {item.links?.map((tab: any) => (
                                 <Link
                                   key={tab.name}
-                                  className="flex justify-between items-center gap-4 rounded-xl hover:bg-background-muted p-2 text-lg font-medium text-foreground hover:text-accent-foreground"
+                                  className="flex items-center justify-between gap-4 rounded-xl p-2 text-lg font-medium text-foreground hover:bg-background-muted hover:text-accent-foreground"
                                   href={
                                     tab.isExternal ? tab.href : `/${tab.href}`
                                   }
@@ -180,7 +175,7 @@ const ListItem = forwardRef<
           {...props}
         >
           <div>
-            <div className="flex w-full text-foreground items-center gap-3 pb-2 text-sm font-medium leading-none">
+            <div className="flex w-full items-center gap-3 pb-2 text-sm font-medium leading-none text-foreground">
               {title}
               {isFeatured ? (
                 <div className="rounded-3xl border border-primary/90 bg-primary/80 p-1 px-2 text-[12px] text-white">
