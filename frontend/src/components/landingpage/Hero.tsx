@@ -129,7 +129,7 @@ const Hero = ({ data }: { data: any }) => {
         <Suspense
           fallback={
             <div className="flex h-full w-full items-center justify-center">
-              Loading...
+              Ładowanie...
             </div>
           }
         >

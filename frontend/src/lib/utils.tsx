@@ -6,13 +6,12 @@ import { add, format, isWeekend, startOfWeek } from "date-fns"
 import { pl } from "date-fns/locale/pl"
 import Overview from "@/components/landingpage/Overview"
 import Benefits from "@/components/landingpage/Benefits"
-import News from "@/components/landingpage/News"
 import { notFound } from "next/navigation"
 import Map from "@/components/landingpage/Map"
 import Faq from "@/components/landingpage/Faq"
 import Hero from "@/components/landingpage/Hero"
-import News2 from "@/components/landingpage/News2"
 import { DateTimeValue } from "@strapi/types/dist/schema/attribute"
+import News from "@/components/landingpage/News"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -26,7 +25,7 @@ export function getSectionByName(name: string) {
     case "benefits":
       return Benefits
     case "news":
-      return News2
+      return News
     case "map":
       return Map
     case "faq":
