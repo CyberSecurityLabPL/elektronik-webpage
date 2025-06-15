@@ -49,14 +49,23 @@ export default async function Home() {
       <main className="flex w-full flex-col items-center justify-center overflow-x-hidden">
         <div className="flex w-full flex-col">
           <Hero data={getSectionDataByName("hero", data)} />
-          <div className="h-64 w-full bg-lines-transition bg-bottom bg-repeat-x hc:bg-lines-transition-hc"></div>
-          <div className="h-64 w-full bg-wave-transition bg-repeat-x hc:bg-wave-transition-hc"></div>
         </div>
         {/* Main content */}
 
         {data?.blocks.map((section: any, index: number) => {
-          if (index === 0) return null // Skip the first block (Hero)
+          if (section.__component === "blocks.hero") return null // Skip Hero block
           const SectionComponent = getSectionByName(section.__component)
+
+          if (section.__component === "blocks.news") {
+            return (
+              <section key={index} className="w-full">
+                <SectionComponent data={section} />
+                <div className="h-64 w-full bg-lines-transition bg-bottom bg-repeat-x hc:bg-lines-transition-hc"></div>
+                <div className="h-64 w-full bg-wave-transition bg-repeat-x hc:bg-wave-transition-hc"></div>
+              </section>
+            )
+          }
+
           return SectionComponent ? (
             <SectionComponent key={index} data={section} />
           ) : null
