@@ -18,6 +18,14 @@ export default async function News2() {
   const latestArticle =
     (await getLatestArticle()) as APIResponseData<"api::article.article">
 
+  if (!data || !latestArticle) {
+    return (
+      <div>
+        <p>Brak danych do wyświetlenia</p>
+      </div>
+    )
+  }
+
   return (
     <section
       id={sectionId}
@@ -64,7 +72,7 @@ export default async function News2() {
               },
             }}
           >
-            {data.slice(0, 3).map((article) => (
+            {data.slice(0, 4).map((article) => (
               <MotionDiv
                 key={article.documentId}
                 variants={{
