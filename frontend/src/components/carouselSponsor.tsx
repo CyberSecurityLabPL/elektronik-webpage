@@ -40,10 +40,23 @@ const sponsors: SponsorItem[] = [
   },
   {
     id: 5,
-    name: "KSC",
-    logoUrl: "/assets/sponsors/ksc.svg",
-    websiteUrl: "https://www.ksc-automation.eu/"
+    name: "Swiss Krono",
+    logoUrl: "/assets/sponsors/swiss.svg",
+    websiteUrl: "https://www.swisskrono.pl/"
+  },
+  {
+    id: 6,
+    name: "ESA",
+    logoUrl: "/assets/sponsors/esa.svg",
+    websiteUrl: "https://www.esa.int/"
+  },
+  {
+    id: 7,
+    name: "BHPEx",
+    logoUrl: "/assets/sponsors/bhpex.svg",
+    websiteUrl: "https://bhpex.pl/"
   }
+  
 ];
 
 export default function CarouselSponsor() {
@@ -84,7 +97,7 @@ export default function CarouselSponsor() {
               rel="noopener noreferrer"
               className="block transition-transform hover:scale-105"
             >
-              <div className="flex h-16 sm:h-20 lg:h-24 items-center justify-center rounded-lg bg-secondary/50 p-2">
+              <div className="flex h-16 sm:h-20 lg:h-24 items-center justify-center rounded-lg hc:bg-white bg-secondary/50 p-2">
                 <div className="relative h-12 sm:h-16 lg:h-20 w-full">
                   <Image
                     src={sponsor.logoUrl}
@@ -123,7 +136,7 @@ export default function CarouselSponsor() {
               rel="noopener noreferrer"
               className="block transition-transform hover:scale-105"
             >
-              <div className="flex h-16 sm:h-20 lg:h-24 items-center justify-center rounded-lg bg-secondary/50 p-2">
+              <div className="flex h-16 sm:h-20 lg:h-24 items-center justify-center rounded-lg hc:bg-white bg-secondary/50 p-2">
                 <div className="relative h-12 sm:h-16 lg:h-20 w-full">
                   <Image
                     src={sponsor.logoUrl}

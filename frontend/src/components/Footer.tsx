@@ -15,7 +15,7 @@ function Sponsors() {
     { name: "KSC", logo: "/assets/sponsors/ksc.svg", url: "https://www.ksc-automation.eu/" },
     { name: "Seco/Warwick", logo: "/assets/sponsors/seco.svg", url: "https://www.secowarwick.com/" },
     { name: "ESA", logo: "/assets/sponsors/esa.svg", url: "https://www.esa.int/" },
-    { name: "BHP Ex", logo: "/assets/sponsors/bhpex.svg", url: "https://bhpex.pl/" },
+    { name: "BHP Ex", logo: "/assets/sponsors/bhpexFooter.svg", url: "https://bhpex.pl/" },
     { name: "Swiss Krono", logo: "/assets/sponsors/swiss.svg", url: "https://www.swisskrono.pl/" },
   ]
 

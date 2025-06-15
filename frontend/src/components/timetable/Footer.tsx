@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils"
 import { ChevronsUpDown } from "lucide-react"
 import Link from "next/link"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "../ui/button"
 import {
   Command,
@@ -14,6 +14,7 @@ import {
 } from "../ui/command"
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover"
 import { ChangeThemeButton } from "../ui/themeButton"
+import { useRouter } from "next/navigation"
 
 type TimetableItem = {
   id: string
@@ -23,7 +24,10 @@ type TimetableItem = {
 const Footer = ({ timetableItems }: { timetableItems: TimetableItem[] }) => {
   const [selectedId, setSelectedId] = useState("")
   const [open, setOpen] = useState(false)
-
+  const router = useRouter()
+  useEffect(() => {
+    router.push(`/plan?id=${selectedId}`)
+  }, [selectedId])
   const timetableData = [
     {
       heading: "Oddziały",
@@ -48,6 +52,7 @@ const Footer = ({ timetableItems }: { timetableItems: TimetableItem[] }) => {
         value={selectedId}
         data={timetableData}
         name={"Wyszukaj..."}
+        allItems={timetableItems}
       />
       <div className="flex justify-center items-center  gap-2">
 
@@ -72,6 +77,7 @@ function Select({
   setValue,
   data,
   name,
+  allItems,
 }: {
   open: boolean
   setOpen: (value: boolean) => void
@@ -79,7 +85,10 @@ function Select({
   setValue: (value: string) => void
   data: { heading: string; items: { id: string; name: string }[] }[]
   name: string
+  allItems: TimetableItem[]
 }) {
+  const [searchQuery, setSearchQuery] = useState("")
+  
   const modifiedItems = data[0].items.map((item) => {
     let nameParts = item.name.split(" ")
     if (nameParts[1]) {
@@ -103,43 +112,51 @@ function Select({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-72 justify-start gap-4 rounded-xl  text-zinc-800 hc:text-foreground hover:border-[1px] hover:border-white hover:bg-primary hover:text-white md:w-[350px]"
+          className="w-72 justify-start gap-4 rounded-xl text-zinc-800 hc:text-foreground hover:border-[1px] hover:border-white hover:bg-primary hover:text-white md:w-[350px]"
         >
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           <span className="truncate">
-            {value ? removeNumbers(value) : name}
+            {value ? allItems.find(item => item.id === value)?.name || name : name}
           </span>
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="min-w-[1000px] overflow-hidden rounded-xl p-0 bg-background">
-        <Command className="bg-background">
-          <CommandInput placeholder={name} />
-          <div className=" grid w-full grid-cols-1 p-4 md:grid-cols-3">
+      <PopoverContent className="min-w-[1000px] overflow-hidden rounded-xl p-0 bg-background hc:bg-background">
+        <Command className="bg-background" shouldFilter={false}>
+          <CommandInput 
+            placeholder={name} 
+            className="hc:text-foreground"
+            value={searchQuery}
+            onValueChange={setSearchQuery}
+          />
+          <div className="grid w-full grid-cols-1 p-4 md:grid-cols-3">
             {newData.map((group) => (
               <CommandList
                 key={group.heading}
-                className=" hidden overflow-y-auto md:block"
+                className="hidden overflow-y-auto md:block"
               >
                 <CommandEmpty>Nic nie znaleziono.</CommandEmpty>
                 <CommandGroup heading={group.heading} className="scroll-m-4">
-                  {group.items.map((info) => (
-                    <Link key={info.name} href={`?id=${info.id}`} passHref>
-                      <CommandItem
-                        value={info.name}
-                        onSelect={(currentValue) => {
-                          setValue(currentValue === value ? "" : currentValue)
-                          setOpen(false)
-                        }}
-                        className={cn(
-                          "cursor-pointer rounded-lg px-2 transition-colors hc:text-foreground",
-                          {
-                            "bg-primary text-white hc:text-black": value === info.name,
-                          }
-                        )}
-                      >
-                        {info.name}
-                      </CommandItem>
-                    </Link>
+                  {group.items
+                    .filter((info) => 
+                      !searchQuery || info.name.toLowerCase().includes(searchQuery.toLowerCase())
+                    )
+                    .map((info) => (
+                    <CommandItem
+                      key={info.name}
+                      value={info.name}
+                      onSelect={() => {
+                        setValue(info.id)
+                        setOpen(false)
+                      }}
+                      className={cn(
+                        "cursor-pointer rounded-lg px-2 transition-colors hc:hover:bg-accent",
+                        {
+                          "bg-primary text-white hc:bg-accent hc:text-accent-foreground": value === info.id,
+                        }
+                      )}
+                    >
+                      {info.name}
+                    </CommandItem>
                   ))}
                 </CommandGroup>
               </CommandList>
@@ -152,28 +169,27 @@ function Select({
                   className="scroll-m-4"
                   key={group.heading}
                 >
-                  {group.items.map((info) => (
-                    <Link
+                  {group.items
+                    .filter((info) => 
+                      !searchQuery || info.name.toLowerCase().includes(searchQuery.toLowerCase())
+                    )
+                    .map((info) => (
+                    <CommandItem
                       key={info.name + "asd"}
-                      href={`?id=${info.id}`}
-                      passHref
+                      value={info.name}
+                      onSelect={() => {
+                        setValue(info.id)
+                        setOpen(false)
+                      }}
+                      className={cn(
+                        "cursor-pointer rounded-lg px-2 transition-colors hc:hover:bg-accent",
+                        {
+                          "bg-primary text-white hc:bg-accent hc:text-accent-foreground": value === info.id,
+                        }
+                      )}
                     >
-                      <CommandItem
-                        value={info.name}
-                        onSelect={(currentValue) => {
-                          setValue(currentValue === value ? "" : currentValue)
-                          setOpen(false)
-                        }}
-                        className={cn(
-                          "cursor-pointer rounded-lg px-2 transition-colors",
-                          {
-                            "bg-primary text-white": value === info.name,
-                          }
-                        )}
-                      >
-                        {info.name}
-                      </CommandItem>
-                    </Link>
+                      {info.name}
+                    </CommandItem>
                   ))}
                 </CommandGroup>
               ))}

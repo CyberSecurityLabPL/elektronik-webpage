@@ -182,7 +182,7 @@ function DayTab({
     <div
       className={cn(
         "flex flex-col items-center justify-center gap-1 rounded-xl px-[0.9rem] py-[0.5rem] text-center",
-        active ? "bg-primary text-white" : "bg-secondary text-black"
+        active ? "bg-primary text-background" : "hc:text-white hc:border hc:bg-black bg-secondary text-black"
       )}
       onClick={onClick}
     >

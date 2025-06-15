@@ -33,8 +33,8 @@ const notFoundMetadata: Metadata = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const res = await getArticle(params.article, {})
   const seo = res?.data?.seo
-
-  if (!seo) return notFoundMetadata
+  
+  if (!res.data) return notFoundMetadata
 
   const defaultMetadata: Metadata = {
     metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL!),
