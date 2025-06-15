@@ -7,6 +7,42 @@ import Instagram from "./icons/Instagram"
 import Image from "next/image"
 import ShootEffect from "./ShootEffect"
 
+function Sponsors() {
+  const sponsors = [
+    { name: "Ekoenergetyka", logo: "/assets/sponsors/ekoenergetka.svg", url: "https://ekoenergetyka.com.pl/" },
+    { name: "Hertz Systems", logo: "/assets/sponsors/hertz.svg", url: "https://hertzsystems.com/" },
+    { name: "Gedia Poland", logo: "/assets/sponsors/gedia.svg", url: "https://www.gedia.com/pl/" },
+    { name: "KSC", logo: "/assets/sponsors/ksc.svg", url: "https://www.ksc-automation.eu/" },
+    { name: "Seco/Warwick", logo: "/assets/sponsors/seco.svg", url: "https://www.secowarwick.com/" },
+    { name: "ESA", logo: "/assets/sponsors/esa.svg", url: "https://www.esa.int/" },
+    { name: "BHP Ex", logo: "/assets/sponsors/bhpex.svg", url: "https://bhpex.pl/" },
+    { name: "Swiss Krono", logo: "/assets/sponsors/swiss.svg", url: "https://www.swisskrono.pl/" },
+  ]
+
+  return (
+    <div className="w-full max-w-7xl mx-auto px-4 pb-12">
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-8 items-center justify-items-center">
+        {sponsors.map((sponsor, index) => (
+          <Link 
+            key={index} 
+            href={sponsor.url}
+            target="_blank"
+            className="w-32 h-16 relative flex items-center justify-center cursor-pointer"
+          >
+            <Image
+              src={sponsor.logo}
+              alt={sponsor.name}
+              width={100}
+              height={50}
+              className="object-contain brightness-0 invert opacity-50 hover:opacity-70 transition-opacity"
+            />
+          </Link>
+        ))}
+      </div>
+    </div>
+  )
+}
+
 export default function Footer() {
   return (
     <footer className=" flex h-fit min-h-96 w-full flex-col items-center justify-end hc:mt-20">
@@ -20,6 +56,8 @@ export default function Footer() {
           <Sitemap />
         </div>
         <div className="flex w-full flex-col items-center justify-self-stretch pt-16">
+          <Sponsors />
+          
           <Link href={"/autorzy"} className="mb-1 text-xs text-[#808080]">
             <ShootEffect amount={0} sparkle sparkleAmount={2} image={[]}>
               Autorzy
