@@ -10,8 +10,8 @@ export default function Overview({ data }: { data: any }) {
       id={data.sectionId}
       className=" mb-24 mt-24 flex w-full flex-col gap-32 px-4 xs:px-8 sm:px-16"
     >
-      <Row data={data.row[0]} viewOptions={{ amount: 0.9 }} />
-      <Row data={data.row[1]} reverse={true} />
+      <Row data={data.row[0]} viewOptions={{ amount: 0.9, once: true }} />
+      <Row data={data.row[1]} reverse={true} viewOptions={{ once: true }} />
     </div>
   )
 }
@@ -42,6 +42,7 @@ function Row({
         "flex w-full flex-col items-center justify-center gap-16  md:flex-row-reverse lg:gap-24",
         reverse ? "flex-col-reverse" : ""
       )}
+      viewOptions={viewOptions}
     >
       {/* md:mt-16 */}
       <div className="flex w-full flex-col gap-8   md:gap-6 lg:w-2/5 ">
