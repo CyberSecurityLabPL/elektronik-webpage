@@ -2,15 +2,15 @@
 import { cn, getImage } from "@/lib/utils"
 import Image from "next/image"
 import { InView } from "../motion/InView"
-import { motion } from "framer-motion"
 import { UseInViewOptions } from "framer-motion"
+
 export default function Overview({ data }: { data: any }) {
   return (
     <div
       id={data.sectionId}
       className=" mb-24 mt-24 flex w-full flex-col gap-32 px-4 xs:px-8 sm:px-16"
     >
-      <Row data={data.row[0]} viewOptions={{ amount: 0.9, once: true }} />
+      <Row data={data.row[0]} viewOptions={{ once: true }} />
       <Row data={data.row[1]} reverse={true} viewOptions={{ once: true }} />
     </div>
   )
