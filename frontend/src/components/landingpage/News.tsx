@@ -1,5 +1,5 @@
 import { getArticles, getLatestArticle } from "@/lib/api"
-import { formatDayMonthYear, getImage } from "@/lib/utils"
+import { formatDayMonthYear, getAuthor, getImage } from "@/lib/utils"
 import { APIResponseData, Article as ArticleType } from "@/types/types"
 import Image from "next/image"
 import { Button, buttonVariants } from "../ui/button"
@@ -115,20 +115,10 @@ export default async function News2() {
 }
 
 function Article({ data }: { data: any }) {
+  const author = getAuthor(data)
+
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex flex-col gap-2 sm:flex-row sm:gap-8">
-        <span className="text-sm text-muted-foreground sm:text-base">
-          {formatDayMonthYear(data.createdAt)}
-        </span>
-        <span className="text-sm text-primary sm:text-base">
-          {/* {data.createdBy ? (
-            <>{data.createdBy}</>
-          ) : data.updatedBy ? (
-            <>{data.updatedBy}</>
-          ) : null} */}
-        </span>
-      </div>
       <span className="text-xl font-semibold text-foreground sm:text-2xl lg:text-3xl">
         {data.title}
       </span>
@@ -137,11 +127,21 @@ function Article({ data }: { data: any }) {
         {data.description && data.description.length > 200 && "... "}
         <span className="text-primary"> Czytaj więcej</span>
       </span>
+      <div className="flex flex-col justify-between gap-2 sm:flex-row sm:gap-8">
+        <span className="text-sm text-muted-foreground sm:text-base">
+          {formatDayMonthYear(data.createdAt)}
+        </span>
+        <span className="text-sm text-muted-foreground sm:text-base">
+          {author}
+        </span>
+      </div>
     </div>
   )
 }
 
 function MainArticle({ data }: { data: any }) {
+  const author = getAuthor(data)
+
   return (
     <Link href={`/aktualnosci/${data.documentId}`} className="flex flex-col">
       <Image
@@ -153,21 +153,17 @@ function MainArticle({ data }: { data: any }) {
         loading="eager"
         className="aspect-video h-auto w-full rounded-lg border object-cover sm:aspect-square sm:rounded-2xl"
       />
+      <span className="px-2 pt-2 text-xl font-semibold text-foreground sm:text-2xl lg:text-3xl">
+        {data.title}
+      </span>
       <div className="flex w-full flex-col gap-2 px-2 pt-4 sm:flex-row sm:justify-between sm:pt-2">
         <span className="text-sm text-muted-foreground sm:text-base">
           {formatDayMonthYear(data.createdAt?.toString())}
         </span>
-        <span className="text-sm text-muted-foreground sm:pt-8 sm:text-base">
-          {/* {data.createdBy ? (
-            <>{data.createdBy}</>
-          ) : data.updatedBy ? (
-            <>{data.updatedBy}</>
-          ) : null} */}
+        <span className="text-sm text-muted-foreground sm:text-base">
+          {author}
         </span>
       </div>
-      <span className="px-2 pt-2 text-xl font-semibold text-foreground sm:text-2xl lg:text-3xl">
-        {data.title}
-      </span>
     </Link>
   )
 }

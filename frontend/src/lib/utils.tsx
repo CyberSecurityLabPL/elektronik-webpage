@@ -205,13 +205,17 @@ export const getAuthor = (data?: {
 
     const author = createdByExists ? data?.createdBy : data?.updatedBy
 
-    return `${author.firstname} ${author.lastname}`
+    const fullAuthor = `${author?.firstname} ${author?.lastname ? author?.lastname : ""}`
+
+    return fullAuthor
   } else {
     const updatedByExists = Object.keys(data?.updatedBy).length > 0
 
     if (!updatedByExists) return defaultAuthor
 
-    return `${data?.updatedBy.firstname} ${data?.updatedBy.lastname}`
+    const fullAuthor = `${data?.updatedBy.firstname} ${data?.updatedBy.lastname ? data?.updatedBy.lastname : ""}`
+
+    return fullAuthor
   }
 }
 
