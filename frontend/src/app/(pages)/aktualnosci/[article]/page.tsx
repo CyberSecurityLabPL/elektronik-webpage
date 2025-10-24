@@ -109,12 +109,14 @@ export default async function Page({
         {hasImage ? (
           <div className="relative aspect-[5/2] w-full sm:aspect-[3/1] ">
             <Image
-              className="!m-0 object-cover"
+              className="!m-0 object-contain"
               fill
               alt={"xd"}
               src={getImage(article?.image?.url)}
               quality={100}
             />
+            {/* zeby zdjecie bylo cale widoczne */}
+            {/* na homepage wyswietlic custom date */}
           </div>
         ) : (
           <div className="my-8"></div>

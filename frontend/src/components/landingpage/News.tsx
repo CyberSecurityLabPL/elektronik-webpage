@@ -129,7 +129,7 @@ function Article({ data }: { data: any }) {
       </span>
       <div className="flex flex-col justify-between gap-2 sm:flex-row sm:gap-8">
         <span className="text-sm text-muted-foreground sm:text-base">
-          {formatDayMonthYear(data.createdAt)}
+          {formatDayMonthYear(data.customDate ? data.customDate : data.createdAt)}
         </span>
         <span className="text-sm text-muted-foreground sm:text-base">
           {author}
@@ -158,7 +158,7 @@ function MainArticle({ data }: { data: any }) {
       </span>
       <div className="flex w-full flex-col gap-2 px-2 pt-4 sm:flex-row sm:justify-between sm:pt-2">
         <span className="text-sm text-muted-foreground sm:text-base">
-          {formatDayMonthYear(data.createdAt?.toString())}
+          {formatDayMonthYear(data.customDate ? data.customDate : data.createdAt)}
         </span>
         <span className="text-sm text-muted-foreground sm:text-base">
           {author}
