@@ -119,5 +119,5 @@ build
 .strapi-updater.json
 data/data.db
 src/extensions/documentation/documentation
+src/extensions/documentation/public/index.html
 public/uploads_backup*
-
