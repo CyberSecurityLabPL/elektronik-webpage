@@ -1,2 +1,5 @@
 .env
 strapi/serviceAccountKey.json
+
+# Konfiguracja skryptów cron
+config.env

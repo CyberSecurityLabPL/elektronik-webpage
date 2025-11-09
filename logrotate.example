@@ -1,0 +1,24 @@
+# Przykładowa konfiguracja logrotate do zachowaywania logów. (umieścić w `/etc/logrotate.d/) pod nazwą np. `elektronik-backup`
+# Zamień odpowiednio <path_to_logs_folder>, <user> i <group>
+
+<path_to_logs_folder>/strapi_backup.log {
+    # Rotacja co tydzień
+    weekly
+
+    # Zachowaj 8 archiwów (ok. 2 miesiące)
+    rotate 8
+
+    # Kompresuj stare logi
+    compress
+    delaycompress
+
+    # Nie zgłaszaj błędu, jeśli pliku nie ma, i pomiń puste
+    missingok
+    notifempty
+
+    # Obetnij aktualny log po skopiowaniu (ważne, jeśli proces pisze do pliku)
+    copytruncate
+
+    # Utwórz nowy plik loga po rotacji z określonymi uprawnieniami
+    create 644 elektronik elektronik
+}

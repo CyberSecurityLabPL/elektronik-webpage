@@ -1,0 +1,5 @@
+# This script runs backups daily
+@daily "<path_to>/backup-cron.sh"
+
+# This script runs docker containers on reboot in correct order
+@reboot "<path_to>/docker-cron.sh"

@@ -1,11 +1,20 @@
 #!/bin/bash
+set -e  # zakończ skrypt, jeśli coś pójdzie nie tak
 
-docker compose up strapi -d
+# Załaduj konfigurację
+source "$(dirname "$0")/config.env"
 
-while [ "$(curl -o /dev/null -s -w "%{http_code}" https://api.elektronik.zgora.pl/admin)" != "200" ]
-do
-	sleep 5
+cd "${WORKING_DIR}"
+
+# Uruchom Strapi
+docker compose up ${STRAPI_SERVICE} -d
+
+# Czekaj, aż Strapi się uruchomi
+echo "Czekam aż Strapi się uruchomi pod ${STRAPI_URL}..."
+while [ "$(curl -o /dev/null -s -w "%{http_code}" ${STRAPI_URL})" != "200" ]; do
+    sleep 5
 done
+echo "Strapi działa — uruchamiam frontend."
 
-docker compose up frontend -d
-
+# Uruchom frontend
+docker compose up ${FRONTEND_SERVICE} -d
