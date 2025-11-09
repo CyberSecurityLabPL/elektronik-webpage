@@ -3,11 +3,6 @@ import Header from "@/components/Header"
 import PageEnterAnimation from "@/components/PageEnterAnimation"
 import { REVALIDATE } from "@/config"
 import { getDocuments } from "@/lib/api"
-import {
-  Document,
-  DocumentGroup,
-  DocumentsPage as IDocumentsPage,
-} from "@/types/types"
 import { Metadata } from "next"
 import { ReactNode } from "react"
 

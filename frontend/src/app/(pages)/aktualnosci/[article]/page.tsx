@@ -1,9 +1,9 @@
 import markdownOptions from "@/components/markdown/MarkdownOptions"
 import PageEnterAnimation from "@/components/PageEnterAnimation"
-import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { REVALIDATE } from "@/config"
 import { getArticle } from "@/lib/api"
+import { openGraphImage } from "@/lib/shared-metadata"
 import {
   calcTimeDifference,
   formatDate,
@@ -11,18 +11,15 @@ import {
   getImage,
   renderMarkdown,
 } from "@/lib/utils"
-import { CalendarPlus, User, PencilLine, LucideIcon } from "lucide-react"
+import { CalendarPlus, LucideIcon, PencilLine, User } from "lucide-react"
 import { Metadata } from "next"
 import Image from "next/image"
-import Link from "next/link"
 import { notFound } from "next/navigation"
-import { openGraphImage } from "@/lib/shared-metadata"
-// import thumbnail from "/default/thumbnail.svg"
 
 export const revalidate = REVALIDATE
 
 type Props = {
-  params: { article: string }
+  params: Promise<{ article: string }>
 }
 
 const notFoundMetadata: Metadata = {
@@ -30,10 +27,11 @@ const notFoundMetadata: Metadata = {
   description: "Nie znaleziono artykułu.",
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params
   const res = await getArticle(params.article, {})
   const seo = res?.data?.seo
-  
+
   if (!res.data) return notFoundMetadata
 
   const defaultMetadata: Metadata = {
@@ -75,11 +73,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return defaultMetadata
 }
 
-export default async function Page({
-  params,
-}: {
-  params: { article: string }
+export default async function Page(props: {
+  params: Promise<{ article: string }>
 }) {
+  const params = await props.params
   const res = await getArticle(params.article, {})
 
   const article = res?.data ? res.data : null
@@ -115,8 +112,6 @@ export default async function Page({
               src={getImage(article?.image?.url)}
               quality={100}
             />
-            {/* zeby zdjecie bylo cale widoczne */}
-            {/* na homepage wyswietlic custom date */}
           </div>
         ) : (
           <div className="my-8"></div>

@@ -3,7 +3,6 @@ import axios, { AxiosError, AxiosResponse } from "axios"
 import qs from "qs"
 import { revalidate, revalidateT } from "./actions"
 import { flattenStrapiResponse } from "./utils"
-import { APIResponseCollection } from "@/types/types"
 
 /**
  * The API instance for making HTTP requests.
@@ -26,7 +25,7 @@ export const backend = axios.create({
   },
 })
 
-process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0"
+// process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0"
 
 /**
  * Retrieves the navigation data for a specific page.

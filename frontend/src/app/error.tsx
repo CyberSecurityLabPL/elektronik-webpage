@@ -1,4 +1,4 @@
-"use client" // Error components must be Client Components
+"use client"
 
 import Header from "@/components/Header"
 import { Button } from "@/components/ui/button"
@@ -12,7 +12,6 @@ export default function Error({
   reset: () => void
 }) {
   useEffect(() => {
-    // Log the error to an error reporting service
     console.error(error)
   }, [error])
 
@@ -22,14 +21,7 @@ export default function Error({
         title="Coś poszło nie tak"
         subtitle={"Wystąpiły nieoczekiwane błędy, spróbuj ponownie później"}
       />
-      <Button
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }
-      >
-        Spróbuj ponownie
-      </Button>
+      <Button onClick={() => reset()}>Spróbuj ponownie</Button>
     </div>
   )
 }

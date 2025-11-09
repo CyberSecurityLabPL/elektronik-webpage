@@ -53,7 +53,6 @@ export default function SubstitutionsDisplay({
     router.push(`/zastepstwa/${newDate}`)
   }
 
-  console.log(sub)
   let text =
     sub?.substitutions ??
     "Brak zaplanowanych zastępstw na ten dzień bądź jeszcze ich nie wpisano."

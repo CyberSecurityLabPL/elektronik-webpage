@@ -1,12 +1,13 @@
 "use server"
 import { revalidatePath, revalidateTag } from "next/cache"
+import { after } from "next/server"
 
 export async function revalidate(path: string) {
   // "use server"
-  revalidatePath(path)
+  after(() => revalidatePath(path))
 }
 
 export async function revalidateT(tag: string) {
   // "use server"
-  revalidateTag(tag)
+  after(() => revalidateTag(tag, "max"))
 }

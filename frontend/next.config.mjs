@@ -3,13 +3,13 @@ const imagesRemoteHostname = process.env.STRAPI_HOSTNAME.toLowerCase()
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: process.env.OUTPUT === "standalone" ? "standalone" : undefined,
-  experimental: {
-    missingSuspenseWithCSRBailout: true,
-    // serverActions: {
-    //   allowedOrigins: ["thefinalpath.net", "localhost:3000"],
-    //   allowedForwardedHosts: ["thefinalpath.net", "localhost:3000"],
-    // },
-  },
+  // experimental: {
+  //   // missingSuspenseWithCSRBailout: true,
+  //   // serverActions: {
+  //   //   allowedOrigins: ["thefinalpath.net", "localhost:3000"],
+  //   //   allowedForwardedHosts: ["thefinalpath.net", "localhost:3000"],
+  //   // },
+  // },
   images: {
     remotePatterns: [
       {
@@ -26,7 +26,7 @@ const nextConfig = {
       },
     ],
     dangerouslyAllowSVG: true,
-    contentDispositionType: 'attachment',
+    contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
 }

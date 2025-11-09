@@ -10,11 +10,10 @@ const initialId = timetableConfig.initialId
 
 export const revalidate = REVALIDATE
 
-const page = async ({
-  searchParams,
-}: {
-  searchParams?: { [key: string]: string | string[] | undefined }
+const page = async (props: {
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
 }) => {
+  const searchParams = await props.searchParams
   let idToPass = initialId
 
   const areParamsValid = validateTimetableSearchParams(searchParams)
@@ -85,7 +84,7 @@ const page = async ({
       </div>
     )
   } catch (error) {
-    console.log(error)
+    console.error(error)
 
     return (
       <div className="grid h-screen w-screen place-items-center">

@@ -1,5 +1,5 @@
 import PageEnterAnimation from "@/components/PageEnterAnimation"
-import React, { PropsWithChildren, Suspense } from "react"
+import { PropsWithChildren, Suspense } from "react"
 
 const layout = ({ children }: PropsWithChildren<{}>) => {
   return (
