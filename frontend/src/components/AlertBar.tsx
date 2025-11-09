@@ -50,14 +50,14 @@ export default function AlertBar({ data }: { data: any }) {
   return (
     <div
       data-isopen={isOpen}
-      className={`relative -top-1 flex h-fit w-full items-center justify-between bg-foreground py-2  text-secondary transition-all data-[isopen=false]:invisible data-[isopen=false]:h-0 data-[isopen=false]:animate-bar-up data-[isopen=false]:py-0`}
+      className={`relative -top-1 -mb-1 flex h-fit w-full items-center justify-between bg-foreground py-2  text-secondary transition-all data-[isopen=false]:invisible data-[isopen=false]:h-0 data-[isopen=false]:animate-bar-up data-[isopen=false]:py-0`}
     >
-      <p className="flex w-full justify-center gap-2 overflow-hidden truncate whitespace-nowrap text-pretty px-2 text-xs sm:px-4 sm:text-sm md:text-base">
+      <p className="flex w-full justify-center gap-2 overflow-hidden truncate whitespace-nowrap text-pretty px-2 text-xs text-background sm:px-4 sm:text-sm md:text-base">
         {/* <span className="font-semibold">Alert: </span> */}
         {data?.alert ?? ""}
       </p>
       <span className="flex justify-end px-2 sm:px-4">
-        <X onClick={closeAlert} className="cursor-pointer" />
+        <X onClick={closeAlert} className="cursor-pointer stroke-background" />
       </span>
     </div>
   )

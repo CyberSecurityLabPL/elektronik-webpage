@@ -1,36 +1,37 @@
-import CarouselSponsor from '@/components/carouselSponsor'
-import Header from '@/components/Header'
-import PageEnterAnimation from '@/components/PageEnterAnimation'
-import Image from 'next/image'
-import React from 'react'
-
+import CarouselSponsor from "@/components/carouselSponsor"
+import Header from "@/components/Header"
+import PageEnterAnimation from "@/components/PageEnterAnimation"
+import Image from "next/image"
+import React from "react"
 
 function Page() {
   return (
-    <main className='w-full flex flex-col items-center justify-center'>
-        <Header
-        title={"Sponsorzy Elektrona"}
-        subtitle={
-          ""
-        }
-      />
-      <PageEnterAnimation className="w-full md:w-3/4 flex flex-col md:flex-row h-auto md:h-[600px] items-center justify-center rounded-lg border border-slate-200 px-4 md:px-0">
-        <div className='w-full md:w-1/2 h-full flex flex-col p-4 md:p-8 md:px-12 relative items-center md:items-start'>
-          
-          <div className="relative w-64 md:w-96 h-64 md:h-96">
-            <Image src={"/assets/sponsor.svg"} alt="Sponsorzy Elektrona" fill className='object-contain' />
+    <main className="flex w-full flex-col items-center justify-center">
+      <Header title={"Sponsorzy Elektrona"} subtitle={""} />
+      <PageEnterAnimation className="flex h-auto w-full flex-col items-center justify-center rounded-lg px-4 lg:h-[600px] lg:w-3/4 lg:flex-row lg:px-0">
+        <div className="relative flex h-full flex-1 flex-col items-center p-4 lg:items-start lg:p-8 lg:px-12">
+          <div className="relative h-64 w-64 lg:h-96 lg:w-96">
+            <Image
+              src={"/assets/sponsor.svg"}
+              alt="Sponsorzy Elektrona"
+              fill
+              className="object-contain"
+            />
           </div>
-          <div className='text-center md:text-left'>
-            <h1 className='text-3xl md:text-5xl font-bold md:w-3/4 pb-4'>Nasi kluczowi partnerzy</h1>
-            <p className='text-sm md:text-base'>Współpraca z lokalnymi partnerami to dla nas kluczowy element rozwoju i wzmacniania jakości edukacji.</p>
+          <div className="text-center lg:text-left">
+            <h1 className="pb-4 text-3xl font-bold lg:max-w-sm lg:text-5xl">
+              Nasi kluczowi partnerzy
+            </h1>
+            <p className="text-sm lg:text-base">
+              Współpraca z lokalnymi partnerami to dla nas kluczowy element
+              rozwoju i wzmacniania jakości edukacji.
+            </p>
           </div>
-          
         </div>
-        <div className='w-full md:w-1/2 h-[600px] px-2 md:px-4 mt-8 md:mt-0'>
+        <div className="mt-8 h-[360px] w-full min-w-0 px-2 sm:h-[600px] lg:mt-0 lg:min-w-[400px] lg:flex-1 lg:px-4">
           <CarouselSponsor />
         </div>
       </PageEnterAnimation>
-      
     </main>
   )
 }

@@ -53,6 +53,14 @@ export default function SubstitutionsDisplay({
     router.push(`/zastepstwa/${newDate}`)
   }
 
+  console.log(sub)
+  let text =
+    sub?.substitutions ??
+    "Brak zaplanowanych zastępstw na ten dzień bądź jeszcze ich nie wpisano."
+  if (text === "") {
+    text = "Brak Zastępstw"
+  }
+
   return (
     <>
       <Header title={page?.heading ?? "Zastępstwa"}>
@@ -69,11 +77,7 @@ export default function SubstitutionsDisplay({
             </div>
           ) : (
             <div className="p-2 text-xs sm:text-base">
-              {renderMarkdown(
-                sub?.substitutions ??
-                  "Brak zaplanowanych zastępstw na ten dzień bądź jeszcze ich nie wpisano.",
-                markdownOptions
-              )}
+              {renderMarkdown(text, markdownOptions)}
             </div>
           )}
         </div>
@@ -106,7 +110,13 @@ export default function SubstitutionsDisplay({
   )
 }
 
-function DatePicker({ selectedDay, onDateChange }: { selectedDay: string | Date, onDateChange: (date: string) => void }) {
+function DatePicker({
+  selectedDay,
+  onDateChange,
+}: {
+  selectedDay: string | Date
+  onDateChange: (date: string) => void
+}) {
   const [open, setOpen] = useState(false)
 
   return (

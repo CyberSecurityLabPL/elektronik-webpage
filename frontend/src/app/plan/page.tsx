@@ -28,7 +28,6 @@ const page = async ({
       `${process.env.TIMETABLE_API_URL!}/info`
     )
 
-
     const timetableInfoData = await timetableInfoRes.json()
 
     const isIdValid = timetableInfoData.some(
@@ -86,7 +85,7 @@ const page = async ({
       </div>
     )
   } catch (error) {
-    console.log(error);
+    console.log(error)
 
     return (
       <div className="grid h-screen w-screen place-items-center">
