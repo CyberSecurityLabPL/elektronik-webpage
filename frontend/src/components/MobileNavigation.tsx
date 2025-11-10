@@ -10,6 +10,7 @@ import {
   DrawerClose,
   DrawerContent,
   DrawerFooter,
+  DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
 import { cn } from "@/lib/utils"
@@ -40,6 +41,7 @@ export default function MobileNavigation({
         </motion.div>
       </DrawerTrigger>
       <DrawerContent className="drawer-content z-[101] h-[85%] bg-slate-100 hc:border-none hc:bg-background-muted">
+        <DrawerTitle className="hidden" />
         <div className="scroll-overflow flex h-full w-full flex-col items-center gap-2 overflow-x-hidden overflow-y-scroll rounded-3xl p-4">
           {navItems?.map((group: any, index: number) => (
             <LinkPanel

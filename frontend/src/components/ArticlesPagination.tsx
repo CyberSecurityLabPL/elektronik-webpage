@@ -21,12 +21,13 @@ export default function PaginationComponent({
   paramsPage: string
   goToId?: string
 }) {
-  const [windowWidth, setWindowWidth] = useState(0)
+  const [windowWidth, setWindowWidth] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth : 0
+  )
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth)
     if (typeof window !== "undefined") {
-      setWindowWidth(window.innerWidth)
       window.addEventListener("resize", handleResize)
     }
     return () => {

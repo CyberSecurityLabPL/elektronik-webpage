@@ -13,6 +13,7 @@ body {
 .card-description {
   display: -webkit-box;
   -webkit-line-clamp: 4;
+  line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
@@ -20,7 +21,6 @@ body {
 .lg-outer .lg-thumb-item:hover {
   border-color: rgb(49, 49, 241) !important;
 }
-/* url("../../public/assets/heroMask.svg"); */
 
 .shadow-mask {
   filter: drop-shadow(0 25px 25px rgba(0, 0, 0, 0.25));
@@ -60,7 +60,7 @@ div ::-webkit-scrollbar-thumb {
 }
 
 .prose td span {
-  @apply hc:!text-foreground
+  @apply hc:!text-foreground;
 }
 
 .prose td:has(a) {
@@ -71,16 +71,12 @@ div ::-webkit-scrollbar-thumb {
 }
 
 .prose > a {
-  @apply hc:text-primary
+  @apply hc:text-primary;
 }
 
 .prose blockquote {
-  @apply hc:text-foreground
+  @apply hc:text-foreground;
 }
-
-/* a {
-  @apply hc:!text-primary
-} */
 
 @layer components {
   .timetable-cell {
@@ -126,6 +122,11 @@ div[cmdk-list]::-webkit-scrollbar-thumb {
   :root {
     --scroll-thumb: #354dfc;
     --scroll-track: hsl(var(--background-accent));
+
+    --svg-primary: #354dfc;
+    --svg-primary-muted: #6577fb;
+    --svg-secondary: #032666;
+
     --background: 0 0% 100%;
     --background-accent: 0, 0%, 96%;
     --background-muted: 0, 0%, 96%;
@@ -163,6 +164,11 @@ div[cmdk-list]::-webkit-scrollbar-thumb {
 .high-contrast {
   --scroll-thumb: #00ffea;
   --scroll-track: hsl(var(--background-accent));
+
+  --svg-primary: #00ffea;
+  --svg-primary-muted: #00ffea;
+  --svg-secondary: white;
+
   --background: 0 0% 0%;
   --background-accent: 180, 1%, 15%;
   --background-muted: 0, 0%, 12%;
@@ -229,8 +235,6 @@ div[cmdk-list]::-webkit-scrollbar-thumb {
   animation-delay: 3s;
 }
 
-
-
 .fill-right {
   animation: rightTransition 2s ease forwards;
   animation-delay: 3s;
@@ -244,7 +248,6 @@ div[cmdk-list]::-webkit-scrollbar-thumb {
     fill: var(--right-fill);
   }
 }
-
 
 @media (min-width: 768px) {
   .mask {

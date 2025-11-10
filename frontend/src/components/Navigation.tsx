@@ -11,7 +11,14 @@ import { cn } from "@/lib/utils"
 import { ChevronDown, ExternalLink } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
-import { forwardRef, useEffect, useState, useRef } from "react"
+import {
+  forwardRef,
+  useEffect,
+  useState,
+  useRef,
+  useLayoutEffect,
+  useEffectEvent,
+} from "react"
 import { Button } from "./ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
 import { usePathname } from "next/navigation"
@@ -22,8 +29,12 @@ export function Navigation({ navItems }: { navItems: any }) {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
 
-  useEffect(() => {
+  const closePopover = useEffectEvent(() => {
     setIsOpen(false)
+  })
+
+  useEffect(() => {
+    closePopover()
   }, [pathname])
 
   const handlePopoverOpenChange = (open: boolean) => {
@@ -51,7 +62,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                     {index < 1 ? (
                       <li className="col-span-2 rounded-lg transition-colors hover:bg-background-muted focus:bg-background-muted">
                         <NavigationMenuLink asChild>
-                          <a
+                          <Link
                             className={`relative flex h-full select-none flex-col justify-start rounded-md object-cover text-background no-underline outline-none`}
                             href="/aktualnosci"
                           >
@@ -65,7 +76,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                               Tutaj znajdują się wszystkie aktualności i
                               ogłoszenia
                             </p>
-                          </a>
+                          </Link>
                         </NavigationMenuLink>
                       </li>
                     ) : null}
