@@ -8,7 +8,7 @@ import Link from "next/link"
 
 const initialId = timetableConfig.initialId
 
-export const revalidate = REVALIDATE
+export const dynamic = "force-dynamic"
 
 const page = async (props: {
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>

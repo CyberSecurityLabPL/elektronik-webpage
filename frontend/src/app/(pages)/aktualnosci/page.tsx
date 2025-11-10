@@ -4,8 +4,8 @@ import PageEnterAnimation from "@/components/PageEnterAnimation"
 import NewsCard from "@/components/cards/NewsCard"
 import { getArticles, getLatestArticle } from "@/lib/api"
 import type { Metadata } from "next"
-import { revalidatePath } from "next/cache"
-import { after } from "next/server"
+
+export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
   title: "Elektronik - Aktualności",
@@ -25,8 +25,6 @@ async function page(props: PageParams) {
     flatteners: [],
     page,
   })
-
-  after(() => revalidatePath("/aktualnosci"))
 
   const articles = data as any[]
   const featuredArticle = await getLatestArticle(["id"])

@@ -1,10 +1,9 @@
 import SubstitutionsDisplay from "@/components/SubstitutionsDisplay"
-import { REVALIDATE } from "@/config"
 import { getExactSubstitutions, getSubstitutionsPage } from "@/lib/api"
 import { formatStrapiDate } from "@/lib/utils"
 import { notFound } from "next/navigation"
 
-export const revalidate = REVALIDATE
+export const dynamic = "force-dynamic"
 
 function isValidDateFormat(date: string) {
   const regex = /^\d{4}-\d{2}-\d{2}$/

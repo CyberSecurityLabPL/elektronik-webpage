@@ -13,7 +13,8 @@ import { getContact } from "@/lib/api"
 import { LucideProps, Mail, MapPin, Phone, School } from "lucide-react"
 import type { Metadata } from "next"
 import Link from "next/link"
-import React from "react"
+
+export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
   title: "Elektronik - Kontakt",
@@ -46,7 +47,9 @@ export default async function page() {
       <PageEnterAnimation className="relative flex w-full max-w-4xl flex-col items-center justify-center gap-6">
         <Card className="w-full">
           <CardHeader>
-            <CardTitle className="text-2xl font-semibold text-primary">Wyślij wiadomość</CardTitle>
+            <CardTitle className="text-2xl font-semibold text-primary">
+              Wyślij wiadomość
+            </CardTitle>
             <CardDescription>
               Napisz do nas a my postaramy się odpisać jak najszybciej
             </CardDescription>

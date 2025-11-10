@@ -3,6 +3,8 @@ import Navbar from "@/components/Navbar"
 import PageWrapper from "@/components/PageWrapper"
 import { getNavigation } from "@/lib/api"
 
+export const dynamic = "force-dynamic"
+
 const Layout = async ({
   children,
 }: Readonly<{

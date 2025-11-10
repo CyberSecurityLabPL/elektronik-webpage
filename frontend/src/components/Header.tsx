@@ -5,10 +5,12 @@ export default function Header({
   title,
   subtitle,
   children,
+  animate = true,
 }: {
   title: string
   subtitle?: string
   children?: ReactNode
+  animate?: boolean
 }) {
   return (
     <m.header
@@ -21,7 +23,7 @@ export default function Header({
         y: 0,
       }}
       transition={{
-        duration: 0.25,
+        duration: animate ? 0.25 : 0,
         ease: "circOut",
       }}
       className="my-6 flex w-full flex-col items-center justify-center sm:my-8 sm:mb-4"

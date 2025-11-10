@@ -1,7 +1,6 @@
 import { PAGINATION_LIMIT } from "@/config"
 import axios, { AxiosError, AxiosResponse } from "axios"
 import qs from "qs"
-import { revalidate, revalidateT } from "./actions"
 import { flattenStrapiResponse } from "./utils"
 
 /**
@@ -53,7 +52,6 @@ export async function getNavigation(): Promise<any> {
 export async function getLandingPage(): Promise<any> {
   try {
     const { data }: AxiosResponse<any> = await api.get("/landing-page")
-    revalidate("/")
     return flattenStrapiResponse(data)
   } catch (error: any) {
     handleError(error)
@@ -134,7 +132,6 @@ export async function getLatestArticle(flatteners: string[] = ["data"]) {
 export async function getSubstitutionsPage() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/substitutions-page")
-    revalidate("/zastepstwa")
     return flattenStrapiResponse(data)
   } catch (error: any) {
     handleError(error)
@@ -146,7 +143,6 @@ export async function getCoursesPage() {
     const { data }: AxiosResponse<any> = await api.get(
       "/courses-page?populate[seo][populate]=true&populate[course_groups][populate][courses][populate][file][populate]=true"
     )
-    revalidate("/programy")
     return flattenStrapiResponse(data)
   } catch (error: any) {
     handleError(error)
@@ -166,8 +162,6 @@ export async function getSubstitutions(number: number) {
       )
     ).json()
 
-    revalidateT("substitutions")
-
     return flattenStrapiResponse(data)
   } catch (error: any) {
     handleError(error)
@@ -176,8 +170,6 @@ export async function getSubstitutions(number: number) {
 
 export async function getExactSubstitutions(date: string) {
   try {
-    revalidateT("substitutions-ex")
-
     const data: any = (
       await fetch(
         `${process.env.STRAPI_API_URL}/substitutions?filters[date][$eq]=${date}&pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc`,
@@ -199,7 +191,6 @@ export async function getExactSubstitutions(date: string) {
 export async function getJobs() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/jobs-page")
-    revalidate("/praca")
     return flattenStrapiResponse(data)
   } catch (error: any) {
     handleError(error)
@@ -209,7 +200,6 @@ export async function getJobs() {
 export async function getApprenticeships() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/apprenticeships-page")
-    revalidate("/praktyki")
     return flattenStrapiResponse(data)
   } catch (error: any) {
     handleError(error)
@@ -220,8 +210,6 @@ export async function getBooks() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/books-page")
 
-    revalidate("/podreczniki")
-
     return flattenStrapiResponse(data)
   } catch (error: any) {
     handleError(error)
@@ -231,7 +219,6 @@ export async function getBooks() {
 export async function getTeachers() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/teachers-page")
-    revalidate("/kadra")
 
     return flattenStrapiResponse(data)
   } catch (error: any) {
@@ -242,7 +229,6 @@ export async function getTeachers() {
 export async function getRecruitments() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/recruitments-page")
-    revalidate("/nabor")
 
     return flattenStrapiResponse(data)
   } catch (error: any) {
@@ -266,7 +252,6 @@ export async function getPage(page: string) {
 export async function getParents() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/parents-council-page")
-    revalidate("/rada")
 
     return flattenStrapiResponse(data)
   } catch (error: any) {
@@ -277,7 +262,6 @@ export async function getParents() {
 export async function getAchievements() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/achievements-page")
-    revalidate("/osiagniecia")
 
     return flattenStrapiResponse(data)
   } catch (error: any) {
@@ -288,7 +272,6 @@ export async function getDocuments() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/documents-page")
 
-    revalidate("/dokumenty")
     return flattenStrapiResponse(data)
   } catch (error: any) {
     console.error(error)
@@ -301,7 +284,6 @@ export async function getImages() {
       "/file-system/docs/gallery?populate=*"
     )
 
-    revalidate("/galeria")
     return flattenStrapiResponse(data)
   } catch (error: any) {
     handleError(error)
@@ -311,7 +293,6 @@ export async function getImages() {
 export async function getHotAlert() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/hot-alert")
-    // revalidate("/")
     return flattenStrapiResponse(data)
   } catch (error: any) {
     handleError(error)
@@ -326,8 +307,6 @@ export async function getContact() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/contact-page")
 
-    revalidate("/kontakt")
-
     return flattenStrapiResponse(data)
   } catch (error: any) {
     handleError(error)
@@ -337,7 +316,6 @@ export async function getContact() {
 export async function getGraduates() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/graduate-page")
-    revalidate("/absolwenci")
 
     return flattenStrapiResponse(data)
   } catch (error: any) {
@@ -348,7 +326,6 @@ export async function getGraduates() {
 export async function getLuckyNumber() {
   try {
     const { data }: AxiosResponse<any> = await api.get("/lucky-number")
-    revalidate("/plan")
 
     return flattenStrapiResponse(data)
   } catch (error: any) {

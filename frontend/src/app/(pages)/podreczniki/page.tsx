@@ -5,6 +5,8 @@ import { getBooks } from "@/lib/api"
 import { getImage } from "@/lib/utils"
 import { Metadata } from "next"
 
+export const dynamic = "force-dynamic"
+
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getBooks()
 

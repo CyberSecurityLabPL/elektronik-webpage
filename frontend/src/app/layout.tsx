@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import { Poppins } from "next/font/google"
 import "./globals.css"
-import { REVALIDATE } from "@/config"
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -18,7 +17,7 @@ export const metadata: Metadata = {
     "ZSEiS Elektronik – technikum z przyszłością. Oferujemy kierunki techniczne: informatyka, programowanie, elektronika, mechanika pojazdowa i więcej. Dołącz do nas i rozwijaj pasje!",
 }
 
-export const revalidate = REVALIDATE
+export const dynamic = "force-dynamic"
 
 export default async function RootLayout({
   children,

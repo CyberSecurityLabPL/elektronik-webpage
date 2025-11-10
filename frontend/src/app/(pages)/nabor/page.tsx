@@ -13,6 +13,8 @@ import { getRecruitments } from "@/lib/api"
 import { Metadata } from "next"
 import Link from "next/link"
 
+export const dynamic = "force-dynamic"
+
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getRecruitments()
 
@@ -81,7 +83,7 @@ export default async function Page() {
                     {recruitments.recruitments.map(
                       (row: any, index: number) => (
                         <TableRow
-                          className="hc:hover:bg-background-muted w-full  bg-background hover:bg-muted/90 hover:underline"
+                          className="w-full bg-background  hover:bg-muted/90 hover:underline hc:hover:bg-background-muted"
                           key={row.profession + index}
                         >
                           <TableCell className="p-0 font-medium">

@@ -9,7 +9,7 @@ type PresetType = "blur" | "shake" | "scale" | "fade" | "slide"
 type TextEffectProps = {
   children: string
   per?: "word" | "char"
-  as?: keyof JSX.IntrinsicElements
+  as?: keyof React.JSX.IntrinsicElements
   variants?: {
     container?: Variants
     item?: Variants
@@ -82,16 +82,22 @@ const AnimationComponent: React.FC<{
   per: "word" | "char"
   highlighted?: boolean
   last?: boolean
-}> = React.memo(({ word, variants, per, highlighted, last, }) => {
+}> = React.memo(({ word, variants, per, highlighted, last }) => {
   if (per === "word") {
     return (
       <motion.span
         aria-hidden="true"
         variants={variants}
-        className={cn("inline-block whitespace-pre my-3", highlighted ? "text-primary" : "", last ? "relative" : "")}
+        className={cn(
+          "my-3 inline-block whitespace-pre",
+          highlighted ? "text-primary" : "",
+          last ? "relative" : ""
+        )}
       >
         {word}
-        {last ? <HighlightCircle className="z-[-1] absolute left-0 top-0 transform -translate-x-[32px] xl:-translate-x-[64px] -translate-y-[40px] xs:-translate-y-[30px] xl:-translate-y-[20px] w-[260px] xs:w-[320px] xl:w-[470px] aspect-[379/128]" /> : null}
+        {last ? (
+          <HighlightCircle className="absolute left-0 top-0 z-[-1] aspect-[379/128] w-[260px] -translate-x-[32px] -translate-y-[40px] transform xs:w-[320px] xs:-translate-y-[30px] xl:w-[470px] xl:-translate-x-[64px] xl:-translate-y-[20px]" />
+        ) : null}
       </motion.span>
     )
   }
@@ -123,7 +129,8 @@ export function TextEffect({
   className,
   preset,
   ...props
-}: TextEffectProps & React.ComponentProps<typeof motion.div> & {highlightedWords?: string[]}) {
+}: TextEffectProps &
+  React.ComponentProps<typeof motion.div> & { highlightedWords?: string[] }) {
   const words = children.split(/(\S+)/)
   const MotionTag = motion[as as keyof typeof motion]
   const selectedVariants = preset

@@ -5,6 +5,8 @@ import { Separator } from "@/components/ui/separator"
 import { getCoursesPage } from "@/lib/api"
 import { Metadata } from "next"
 
+export const dynamic = "force-dynamic"
+
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getCoursesPage()
 

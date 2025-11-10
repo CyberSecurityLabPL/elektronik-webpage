@@ -1,7 +1,6 @@
 import markdownOptions from "@/components/markdown/MarkdownOptions"
 import PageEnterAnimation from "@/components/PageEnterAnimation"
 import { Separator } from "@/components/ui/separator"
-import { REVALIDATE } from "@/config"
 import { getArticle } from "@/lib/api"
 import { openGraphImage } from "@/lib/shared-metadata"
 import {
@@ -16,7 +15,7 @@ import { Metadata } from "next"
 import Image from "next/image"
 import { notFound } from "next/navigation"
 
-export const revalidate = REVALIDATE
+export const dynamic = "force-dynamic"
 
 type Props = {
   params: Promise<{ article: string }>

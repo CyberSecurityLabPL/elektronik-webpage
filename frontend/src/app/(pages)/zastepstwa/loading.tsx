@@ -1,21 +1,28 @@
+import Header from "@/components/Header"
+import { Button } from "@/components/ui/button"
 import { Skeleton } from "@/components/ui/skeleton"
+import { cn } from "@/lib/utils"
+import { CalendarIcon } from "lucide-react"
 
 export default function Loading() {
   return (
     <main className="flex w-full flex-col items-center">
       <div className="flex w-full max-w-7xl flex-col items-center justify-center gap-4">
         {/* Header skeleton */}
-        <header className="my-6 flex w-full flex-col items-center justify-center sm:my-8 sm:mb-4">
-          <div className="w-full text-center py-4">
-            <Skeleton className="mx-auto h-12 w-64 sm:h-14 sm:w-72 lg:h-16 lg:w-96" />
+        <Header animate={false} title={"Zastępstwa"}>
+          <div className=" flex w-full max-w-7xl justify-center px-2 sm:justify-start ">
+            <div className="text-md relative right-2  mt-2 w-fit    gap-4 text-pretty stroke-primary-foreground text-center leading-relaxed text-primary-foreground hover:cursor-pointer hover:stroke-primary hover:text-primary sm:text-lg lg:text-xl">
+              <Button
+                variant={"outline"}
+                className={cn("w-[240px] pl-3 text-left font-normal")}
+              >
+                <span>Wybierz date</span>
+
+                <CalendarIcon className="ml-auto h-5 w-5 opacity-70" />
+              </Button>
+            </div>
           </div>
-          <div className="mt-2 flex w-full justify-center">
-            <Skeleton className="h-8 w-32 sm:h-9 sm:w-36" />
-          </div>
-          <div className="mt-2 flex w-full justify-start px-2">
-            <Skeleton className="h-10 w-60 sm:h-11 sm:w-64" />
-          </div>
-        </header>
+        </Header>
 
         {/* Content skeleton */}
         <div className="h-fit min-h-96 w-full rounded-lg border bg-background p-4 shadow-sm">
@@ -35,4 +42,4 @@ export default function Loading() {
       </div>
     </main>
   )
-} 
+}

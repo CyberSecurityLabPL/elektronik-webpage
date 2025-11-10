@@ -12,6 +12,8 @@ import { getApprenticeships } from "@/lib/api"
 import { formatDateMonth, formatDateYear } from "@/lib/utils"
 import { Metadata } from "next"
 
+export const dynamic = "force-dynamic"
+
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getApprenticeships()
 
@@ -63,7 +65,9 @@ const page = async () => {
                     {row.specialization}
                   </TableCell>
                   <TableCell className="flex items-center justify-center text-center">
-                    {formatDateMonth(row.dateStart)+" - "+formatDateYear(row.dateEnd)}
+                    {formatDateMonth(row.dateStart) +
+                      " - " +
+                      formatDateYear(row.dateEnd)}
                   </TableCell>
                 </TableRow>
               )) ?? "Brak danych"}

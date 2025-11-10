@@ -62,10 +62,11 @@ export default function SubstitutionsDisplay({
 
   return (
     <>
-      <Header title={page?.heading ?? "Zastępstwa"}>
+      <Header animate={false} title={page?.heading ?? "Zastępstwa"}>
         <DatePicker selectedDay={date} onDateChange={handleDayChange} />
       </Header>
-      <PageEnterAnimation className="flex w-full max-w-7xl flex-col items-center justify-center gap-4">
+      <div className="flex w-full max-w-7xl flex-col items-center justify-center gap-4">
+        {/* <PageEnterAnimation className="flex w-full max-w-7xl flex-col items-center justify-center gap-4"> */}
         <div className="h-fit min-h-96 w-full rounded-lg border bg-background p-4 shadow-sm">
           {isLoading ? (
             <div className="flex flex-col gap-4 p-2">
@@ -104,7 +105,8 @@ export default function SubstitutionsDisplay({
             )}
           </Button>
         </div>
-      </PageEnterAnimation>
+        {/* </PageEnterAnimation> */}
+      </div>
     </>
   )
 }
