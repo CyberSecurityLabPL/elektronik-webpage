@@ -44,7 +44,7 @@ export default async function Page() {
               value={group.title}
               className="px-2 py-4 sm:px-4 md:px-6"
             >
-              <AccordionTrigger className="pb-4 text-xl font-semibold leading-none sm:pb-6 sm:text-2xl">
+              <AccordionTrigger className="flex w-full items-center justify-center gap-36  px-0   text-xl font-semibold leading-none sm:mx-6 sm:justify-between sm:text-2xl">
                 {group.title}
               </AccordionTrigger>
               <AccordionContent className="grid grid-cols-1 justify-items-center gap-6 gap-y-8 overflow-visible pt-4 sm:grid-cols-2 sm:gap-8 sm:gap-y-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
