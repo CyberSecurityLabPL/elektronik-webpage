@@ -9,32 +9,64 @@ import ShootEffect from "./ShootEffect"
 
 function Sponsors() {
   const sponsors = [
-    { name: "Ekoenergetyka", logo: "/assets/sponsors/ekoenergetka.svg", url: "https://ekoenergetyka.com.pl/" },
-    { name: "Hertz Systems", logo: "/assets/sponsors/hertz.svg", url: "https://hertzsystems.com/" },
-    { name: "Gedia Poland", logo: "/assets/sponsors/gedia.svg", url: "https://www.gedia.com/pl/" },
-    { name: "KSC", logo: "/assets/sponsors/ksc.svg", url: "https://www.ksc-automation.eu/" },
-    { name: "Seco/Warwick", logo: "/assets/sponsors/seco.svg", url: "https://www.secowarwick.com/" },
-    { name: "ESA", logo: "/assets/sponsors/esa.svg", url: "https://www.esa.int/" },
-    { name: "BHP Ex", logo: "/assets/sponsors/bhpexFooter.svg", url: "https://bhpex.pl/" },
-    { name: "Swiss Krono", logo: "/assets/sponsors/swiss.svg", url: "https://www.swisskrono.pl/" },
+    {
+      name: "Ekoenergetyka",
+      logo: "/assets/sponsors/ekoenergetka.svg",
+      url: "https://ekoenergetyka.com.pl/",
+    },
+    {
+      name: "Hertz Systems",
+      logo: "/assets/sponsors/hertz.svg",
+      url: "https://hertzsystems.com/",
+    },
+    {
+      name: "Gedia Poland",
+      logo: "/assets/sponsors/gedia.svg",
+      url: "https://www.gedia.com/pl/",
+    },
+    {
+      name: "KSC",
+      logo: "/assets/sponsors/ksc.svg",
+      url: "https://www.ksc-automation.eu/",
+    },
+    {
+      name: "Seco/Warwick",
+      logo: "/assets/sponsors/seco.svg",
+      url: "https://www.secowarwick.com/",
+    },
+    {
+      name: "ESA",
+      logo: "/assets/sponsors/esa.svg",
+      url: "https://www.esa.int/",
+    },
+    {
+      name: "BHP Ex",
+      logo: "/assets/sponsors/bhpexFooter.svg",
+      url: "https://bhpex.pl/",
+    },
+    {
+      name: "Swiss Krono",
+      logo: "/assets/sponsors/swiss.svg",
+      url: "https://www.swisskrono.pl/",
+    },
   ]
 
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 pb-12">
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-8 items-center justify-items-center">
+    <div className="mx-auto w-full max-w-7xl px-4 pb-12">
+      <div className="grid grid-cols-2 items-center justify-items-center gap-8 sm:grid-cols-4 lg:grid-cols-8">
         {sponsors.map((sponsor, index) => (
-          <Link 
-            key={index} 
+          <Link
+            key={index}
             href={sponsor.url}
             target="_blank"
-            className="w-32 h-16 relative flex items-center justify-center cursor-pointer"
+            className="relative flex h-16 w-32 cursor-pointer items-center justify-center"
           >
             <Image
               src={sponsor.logo}
               alt={sponsor.name}
               width={100}
               height={50}
-              className="object-contain brightness-0 invert opacity-50 hover:opacity-70 transition-opacity"
+              className="object-contain opacity-50 brightness-0 invert transition-opacity hover:opacity-70"
             />
           </Link>
         ))}
@@ -51,13 +83,13 @@ export default function Footer() {
       </div>
 
       {/* footer */}
-      <div className="z-[1] flex h-fit min-h-32 w-full flex-col justify-between gap-6 overflow-auto bg-[#262727] px-8 pt-16">
+      <div className="z-1 flex h-fit min-h-32 w-full flex-col justify-between gap-6 overflow-auto bg-[#262727] px-8 pt-16">
         <div className="flex w-fit flex-col items-center justify-center self-center">
           <Sitemap />
         </div>
         <div className="flex w-full flex-col items-center justify-self-stretch pt-16">
           <Sponsors />
-          
+
           <Link href={"/autorzy"} className="mb-1 text-xs text-[#808080]">
             <ShootEffect amount={0} sparkle sparkleAmount={2} image={[]}>
               Autorzy
@@ -130,7 +162,7 @@ async function Sitemap() {
               key={index}
               className="flex flex-col items-center text-start sm:justify-start sm:text-left"
             >
-              <span className="w-full text-nowrap pb-4 text-sm font-bold text-[#CACACA] hc:text-primary">
+              <span className="w-full whitespace-normal text-nowrap break-words pb-4 text-sm font-bold text-[#CACACA] hc:text-primary">
                 {panel.name}
               </span>
               <ol className="flex w-full flex-col gap-2 ">
@@ -147,7 +179,7 @@ async function Sitemap() {
                 ).map((link: any, index: number) => (
                   <li key={`l${index}`}>
                     <Link
-                      className="w-fit text-sm text-[#808080] hover:text-[#CACACA] hover:underline hc:text-muted-foreground hc:hover:text-foreground"
+                      className="w-fit text-sm text-[#808080] hover:text-[#CACACA] hover:underline hc:text-muted-foreground hover:hc:text-foreground"
                       href={link.isExternal ? link.href : `/${link.href}`}
                     >
                       {link.name ?? "Empty"}

@@ -83,7 +83,7 @@ function Row({
       </div>
       <div
         className={cn(
-          "shadow-mask  relative aspect-[125/84] w-full  rounded-3xl md:w-[625px]",
+          "shadow-mask  relative aspect-125/84 w-full  rounded-3xl md:w-[625px]",
           reverse ? " order-first" : ""
         )}
       >

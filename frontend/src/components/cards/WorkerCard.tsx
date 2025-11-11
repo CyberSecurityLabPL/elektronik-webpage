@@ -27,7 +27,7 @@ export default function WorkerCard({
 }) {
   return (
     <div className={cn("flex flex-col gap-4", className)}>
-        <div className="relative aspect-[3/4] w-full">
+        <div className="relative aspect-3/4 w-full">
           <Image
             className="rounded-xl object-cover"
             alt={`${name} img`}

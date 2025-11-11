@@ -6,6 +6,8 @@ import { getJobs } from "@/lib/api"
 import { getImage } from "@/lib/utils"
 import { Metadata } from "next"
 
+export const dynamic = "force-dynamic"
+
 export async function generateMetadata(): Promise<Metadata> {
   const { seo } = await getJobs()
 
@@ -27,7 +29,7 @@ export default async function Page() {
           data?.description ?? "Oferty pracy dla absolwentów naszej szkoły."
         }
       />
-      <PageEnterAnimation className="flex flex-col items-center justify-center p-2 gap-4">
+      <PageEnterAnimation className="flex flex-col items-center justify-center gap-4 p-2">
         {data?.jobs.map((item: any) => (
           <JobDialog
             key={item.name}

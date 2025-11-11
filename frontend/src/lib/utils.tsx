@@ -10,7 +10,6 @@ import { notFound } from "next/navigation"
 import Map from "@/components/landingpage/Map"
 import Faq from "@/components/landingpage/Faq"
 import Hero from "@/components/landingpage/Hero"
-import { DateTimeValue } from "@strapi/types/dist/schema/attribute"
 import News from "@/components/landingpage/News"
 
 export function cn(...inputs: ClassValue[]) {
@@ -157,7 +156,7 @@ export const formatStrapiDate = (date?: string | Date) =>
 export const formatDateMonth = (date?: string) =>
   format(new Date(date ?? new Date()), "dd/MM")
 
-export const formatDayMonthYear = (date?: string | DateTimeValue | number) =>
+export const formatDayMonthYear = (date?: string | number) =>
   format(new Date(date ?? new Date()), "dd MMMM yyyy", { locale: pl })
 
 /**

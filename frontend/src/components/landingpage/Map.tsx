@@ -31,7 +31,7 @@ export default function Map({ data }: { data: any }) {
           viewOptions={{ margin: "0px 0px -350px 0px", once: true }}
           className="flex h-2/3 w-full flex-col-reverse items-start justify-center gap-8 lg:flex-row xl:items-center"
         >
-          <Card className="h-[40rem] w-full lg:w-3/5">
+          <Card className="h-160 w-full lg:w-3/5">
             <GoogleMaps />
           </Card>
           {/* </motion.div> */}

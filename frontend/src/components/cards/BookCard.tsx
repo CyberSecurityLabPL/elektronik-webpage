@@ -23,9 +23,9 @@ export default function BookCard({
   url: string
 }) {
   return (
-    <Card className="relative flex w-fit p-3 shadow-sm">
+    <Card className="relative flex w-fit p-3 shadow-xs">
       <div className="flex h-full items-center">
-        <div className="relative flex aspect-[8/12] w-20 items-center justify-center sm:w-32 ">
+        <div className="relative flex aspect-8/12 w-20 items-center justify-center sm:w-32 ">
           <Image
             alt={`${title} img`}
             src={src}
@@ -35,7 +35,7 @@ export default function BookCard({
         </div>
       </div>
 
-      <div className="flex h-full w-52 flex-col justify-between lg:w-[19rem]">
+      <div className="flex h-full w-52 flex-col justify-between lg:w-76">
         <CardHeader className="py-0 lg:pb-2">
           <CardTitle className="text-lg font-semibold text-foreground lg:text-2xl">
             {subject}

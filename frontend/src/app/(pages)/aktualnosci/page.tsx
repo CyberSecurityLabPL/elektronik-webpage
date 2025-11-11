@@ -4,7 +4,8 @@ import PageEnterAnimation from "@/components/PageEnterAnimation"
 import NewsCard from "@/components/cards/NewsCard"
 import { getArticles, getLatestArticle } from "@/lib/api"
 import type { Metadata } from "next"
-import { revalidatePath } from "next/cache"
+
+export const dynamic = "force-dynamic"
 
 export const metadata: Metadata = {
   title: "Elektronik - Aktualności",
@@ -13,10 +14,11 @@ export const metadata: Metadata = {
 }
 
 interface PageParams {
-  searchParams: { page: string | undefined }
+  searchParams: Promise<{ page: string | undefined }>
 }
 
-async function page({ searchParams }: PageParams) {
+async function page(props: PageParams) {
+  const searchParams = await props.searchParams
   const page = searchParams["page"] ?? "1"
 
   const { data, meta } = await getArticles({
@@ -24,11 +26,8 @@ async function page({ searchParams }: PageParams) {
     page,
   })
 
-  revalidatePath("/aktualnosci")
-
   const articles = data as any[]
   const featuredArticle = await getLatestArticle(["id"])
-  // console.log(featuredArticle)
 
   return (
     <>

@@ -20,7 +20,7 @@ export default function ParentCard({
   description: string
 }) {
   return (
-    <Card className=" flex h-64 shadow-sm sm:w-[32rem]">
+    <Card className=" flex h-64 shadow-xs sm:w-lg">
       <div className="relative hidden h-full w-1/3 sm:block">
         <Image
           className="rounded-l-md "

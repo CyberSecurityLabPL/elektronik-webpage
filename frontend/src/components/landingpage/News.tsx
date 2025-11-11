@@ -1,6 +1,5 @@
 import { getArticles, getLatestArticle } from "@/lib/api"
 import { formatDayMonthYear, getAuthor, getImage } from "@/lib/utils"
-import { APIResponseData, Article as ArticleType } from "@/types/types"
 import Image from "next/image"
 import { Button, buttonVariants } from "../ui/button"
 import { Separator } from "../ui/separator"
@@ -8,15 +7,17 @@ import Link from "next/link"
 import { InView } from "../motion/InView"
 import { MotionDiv } from "@/lib/motion"
 
+type Article = {
+  documentId: string
+  [key: string]: string | any
+}
+
 export default async function News2() {
   const sectionId = "news"
 
-  const { data } = (await getArticles()) as {
-    data: APIResponseData<"api::article.article">[]
-  }
+  const { data } = (await getArticles()) as { data: Article[] }
 
-  const latestArticle =
-    (await getLatestArticle()) as APIResponseData<"api::article.article">
+  const latestArticle = await getLatestArticle()
 
   if (!data || !latestArticle) {
     return (
@@ -29,7 +30,7 @@ export default async function News2() {
   return (
     <section
       id={sectionId}
-      className="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-8"
+      className="mx-auto w-full max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8"
     >
       <h2 className="mb-8 text-3xl font-bold text-foreground sm:mb-12 sm:text-4xl lg:mb-20 lg:text-6xl">
         Aktualności ze szkoły
@@ -129,7 +130,9 @@ function Article({ data }: { data: any }) {
       </span>
       <div className="flex flex-col justify-between gap-2 sm:flex-row sm:gap-8">
         <span className="text-sm text-muted-foreground sm:text-base">
-          {formatDayMonthYear(data.customDate ? data.customDate : data.createdAt)}
+          {formatDayMonthYear(
+            data.customDate ? data.customDate : data.createdAt
+          )}
         </span>
         <span className="text-sm text-muted-foreground sm:text-base">
           {author}
@@ -158,7 +161,9 @@ function MainArticle({ data }: { data: any }) {
       </span>
       <div className="flex w-full flex-col gap-2 px-2 pt-4 sm:flex-row sm:justify-between sm:pt-2">
         <span className="text-sm text-muted-foreground sm:text-base">
-          {formatDayMonthYear(data.customDate ? data.customDate : data.createdAt)}
+          {formatDayMonthYear(
+            data.customDate ? data.customDate : data.createdAt
+          )}
         </span>
         <span className="text-sm text-muted-foreground sm:text-base">
           {author}

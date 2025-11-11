@@ -6,6 +6,8 @@ import { Metadata } from "next"
 import PageEnterAnimation from "@/components/PageEnterAnimation"
 import { formatDateYear, getImage } from "@/lib/utils"
 
+export const dynamic = "force-dynamic"
+
 interface Achievement {
   title: string
   description: string

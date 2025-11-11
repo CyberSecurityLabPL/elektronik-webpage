@@ -6,10 +6,11 @@ import { Metadata } from "next"
 import { notFound } from "next/navigation"
 
 type Props = {
-  params: { page: string }
+  params: Promise<{ page: string }>
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params;
   const { seo } = await getPage(params.page)
 
   return {
@@ -19,7 +20,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default async function Page({ params }: { params: { page: string } }) {
+export default async function Page(props: { params: Promise<{ page: string }> }) {
+  const params = await props.params;
   const data = await getPage(params.page)
 
   if (!data.content) {
@@ -33,9 +35,9 @@ export default async function Page({ params }: { params: { page: string } }) {
         subtitle={data?.description ?? `Page /${params.page} not found!`}
       />
       <PageEnterAnimation
-        className={`flex w-full justify-center rounded-sm bg-background p-2 text-xs shadow-sm sm:text-base items-center${data?.content ? "" : "hidden"}`}
+        className={`flex w-full justify-center rounded-sm bg-background p-2 text-xs shadow-xs sm:text-base items-center${data?.content ? "" : "hidden"}`}
       >
-        <div className="prose w-full overflow-hidden p-4 hc:prose-headings:text-foreground hc:text-foreground hc:prose-strong:text-foreground hc:prose-a:text-primary">
+        <div className="prose w-full overflow-hidden p-4 prose-headings:hc:text-foreground hc:text-foreground prose-strong:hc:text-foreground prose-a:hc:text-primary">
           {data?.content ? renderMarkdown(data.content) : null}
         </div>
       </PageEnterAnimation>

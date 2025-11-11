@@ -32,18 +32,25 @@ export default function AlertBar({ data }: { data: any }) {
     JSON.parse(localStorage.getItem("alertbar_closed_at") ?? "null")
 
   useEffect(() => {
-    const isAlertbarClosed = getAlertbarStatus()
+    const timeout = setTimeout(() => {
+      const isAlertbarClosed = getAlertbarStatus()
 
-    const alertbarClosedAt = getAlertbarClosedAt()
+      const alertbarClosedAt = getAlertbarClosedAt()
 
-    if (isAlertbarClosed) {
-      if (alertbarClosedAt !== null && new Date(alertbarClosedAt) < updatedAt) {
+      if (isAlertbarClosed) {
+        if (
+          alertbarClosedAt !== null &&
+          new Date(alertbarClosedAt) < updatedAt
+        ) {
+          openAlert()
+        }
+      } else {
         openAlert()
       }
-    } else {
-      openAlert()
-    }
-  }, [isOpen, updatedAt])
+    }, 0)
+
+    return () => clearTimeout(timeout)
+  }, [updatedAt])
 
   if (!data.alert) return null
 

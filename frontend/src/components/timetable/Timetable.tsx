@@ -27,7 +27,7 @@ export default function Timetable({ data }: { data: any }) {
     )
   else if (screenSize.breakpoints.large || screenSize.breakpoints.medium)
     return (
-      <main className="relative flex w-full flex-grow p-2 max-[1200px]:overflow-x-scroll min-[1200px]:justify-center">
+      <main className="relative flex w-full grow p-2 max-[1200px]:overflow-x-scroll min-[1200px]:justify-center">
         <Table className="overflow-hidden rounded-xl shadow-xl">
           <TableHeader>
             <TableRow className="timetable-row h-11">
@@ -56,7 +56,7 @@ export default function Timetable({ data }: { data: any }) {
           </TableHeader>
           <TableBody>
             {data.hours.map((hour: any, index: number) => (
-              <TableRow key={index} className="flex hc:hover:bg-background-muted">
+              <TableRow key={index} className="flex hover:hc:bg-background-muted">
                 <TableCell className="flex w-11 items-center justify-center bg-primary p-0 text-xl text-white hc:text-black">
                   {index}
                 </TableCell>
@@ -90,7 +90,7 @@ export default function Timetable({ data }: { data: any }) {
     )
   else
     return (
-      <main className="relative flex w-full flex-grow flex-col items-center justify-start self-start py-4 sm:p-4">
+      <main className="relative flex w-full grow flex-col items-center justify-start self-start py-4 sm:p-4">
         <div className="flex w-full justify-center gap-1 sm:gap-2">
           {Array(5)
             .fill("")
@@ -181,7 +181,7 @@ function DayTab({
   return (
     <div
       className={cn(
-        "flex flex-col items-center justify-center gap-1 rounded-xl px-[0.9rem] py-[0.5rem] text-center",
+        "flex flex-col items-center justify-center gap-1 rounded-xl px-[0.9rem] py-2 text-center",
         active ? "bg-primary text-background" : "hc:text-white hc:border hc:bg-black bg-secondary text-black"
       )}
       onClick={onClick}

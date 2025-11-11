@@ -2,7 +2,6 @@ import CarouselSponsor from "@/components/carouselSponsor"
 import Header from "@/components/Header"
 import PageEnterAnimation from "@/components/PageEnterAnimation"
 import Image from "next/image"
-import React from "react"
 
 function Page() {
   return (

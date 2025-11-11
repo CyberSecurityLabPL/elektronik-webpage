@@ -10,6 +10,7 @@ import {
   DrawerClose,
   DrawerContent,
   DrawerFooter,
+  DrawerTitle,
   DrawerTrigger,
 } from "@/components/ui/drawer"
 import { cn } from "@/lib/utils"
@@ -39,7 +40,8 @@ export default function MobileNavigation({
           <Menu className="h-8 w-8" />
         </motion.div>
       </DrawerTrigger>
-      <DrawerContent className="drawer-content z-[101] h-[85%] bg-slate-100 hc:border-none hc:bg-background-muted">
+      <DrawerContent className="drawer-content z-101 h-[85%] bg-slate-100 hc:border-none hc:bg-background-muted">
+        <DrawerTitle className="hidden" />
         <div className="scroll-overflow flex h-full w-full flex-col items-center gap-2 overflow-x-hidden overflow-y-scroll rounded-3xl p-4">
           {navItems?.map((group: any, index: number) => (
             <LinkPanel
@@ -114,7 +116,7 @@ function LinkPanel({
     <Accordion
       type="single"
       collapsible
-      className="flex w-full flex-col gap-4 rounded-3xl bg-background px-4 py-2 active:bg-white/60 hc:active:bg-background-accent"
+      className="flex w-full flex-col gap-4 rounded-3xl bg-background px-4 py-2 active:bg-white/60 active:hc:bg-background-accent"
       key={key}
     >
       <AccordionItem value={title}>
@@ -149,7 +151,7 @@ function LinkItem({
   return (
     <DrawerClose asChild>
       <Link
-        className=" flex items-center justify-between gap-2 rounded-3xl bg-accent/50 px-4 py-2 text-left text-lg font-medium text-slate-600 active:bg-slate-100 hc:!bg-background-muted hc:text-muted-foreground hc:active:bg-background-accent md:text-center "
+        className=" flex items-center justify-between gap-2 rounded-3xl bg-accent/50 px-4 py-2 text-left text-lg font-medium text-slate-600 active:bg-slate-100 hc:bg-background-muted! hc:text-muted-foreground active:hc:bg-background-accent md:text-center "
         href={href}
       >
         {name}

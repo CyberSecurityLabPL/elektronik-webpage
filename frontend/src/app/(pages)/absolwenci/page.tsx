@@ -3,7 +3,8 @@ import Header from "@/components/Header"
 import PageEnterAnimation from "@/components/PageEnterAnimation"
 import { getGraduates } from "@/lib/api"
 import { getImage } from "@/lib/utils"
-import React from "react"
+
+export const dynamic = "force-dynamic"
 
 async function page() {
   const data = await getGraduates()

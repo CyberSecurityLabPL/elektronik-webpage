@@ -1,9 +1,8 @@
 import markdownOptions from "@/components/markdown/MarkdownOptions"
 import PageEnterAnimation from "@/components/PageEnterAnimation"
-import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { REVALIDATE } from "@/config"
 import { getArticle } from "@/lib/api"
+import { openGraphImage } from "@/lib/shared-metadata"
 import {
   calcTimeDifference,
   formatDate,
@@ -11,18 +10,15 @@ import {
   getImage,
   renderMarkdown,
 } from "@/lib/utils"
-import { CalendarPlus, User, PencilLine, LucideIcon } from "lucide-react"
+import { CalendarPlus, LucideIcon, PencilLine, User } from "lucide-react"
 import { Metadata } from "next"
 import Image from "next/image"
-import Link from "next/link"
 import { notFound } from "next/navigation"
-import { openGraphImage } from "@/lib/shared-metadata"
-// import thumbnail from "/default/thumbnail.svg"
 
-export const revalidate = REVALIDATE
+export const dynamic = "force-dynamic"
 
 type Props = {
-  params: { article: string }
+  params: Promise<{ article: string }>
 }
 
 const notFoundMetadata: Metadata = {
@@ -30,10 +26,11 @@ const notFoundMetadata: Metadata = {
   description: "Nie znaleziono artykułu.",
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const params = await props.params
   const res = await getArticle(params.article, {})
   const seo = res?.data?.seo
-  
+
   if (!res.data) return notFoundMetadata
 
   const defaultMetadata: Metadata = {
@@ -75,11 +72,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return defaultMetadata
 }
 
-export default async function Page({
-  params,
-}: {
-  params: { article: string }
+export default async function Page(props: {
+  params: Promise<{ article: string }>
 }) {
+  const params = await props.params
   const res = await getArticle(params.article, {})
 
   const article = res?.data ? res.data : null
@@ -101,22 +97,20 @@ export default async function Page({
 
   return (
     <PageEnterAnimation>
-      <article className="relative mx-auto mt-8 flex w-full max-w-screen-2xl flex-col items-center overflow-hidden 2xl:rounded-3xl">
+      <article className="relative mx-auto mt-8 flex w-full max-w-(--breakpoint-2xl) flex-col items-center overflow-hidden 2xl:rounded-3xl">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {hasImage ? (
-          <div className="relative aspect-[5/2] w-full sm:aspect-[3/1] ">
+          <div className="relative aspect-5/2 w-full sm:aspect-3/1 ">
             <Image
-              className="!m-0 object-contain"
+              className="m-0! object-contain"
               fill
               alt={"xd"}
               src={getImage(article?.image?.url)}
               quality={100}
             />
-            {/* zeby zdjecie bylo cale widoczne */}
-            {/* na homepage wyswietlic custom date */}
           </div>
         ) : (
           <div className="my-8"></div>
@@ -124,7 +118,7 @@ export default async function Page({
         <div className="relative flex w-full flex-col items-center gap-4 rounded bg-background px-6 py-8 md:px-12">
           {/* ARTICLE INFO */}
 
-          <h1 className="flex w-full justify-start  text-left text-xl font-semibold !no-underline sm:text-3xl">
+          <h1 className="flex w-full justify-start  text-left text-xl font-semibold no-underline! sm:text-3xl">
             {article?.title}
           </h1>
           <div className="flex w-full flex-col items-start gap-2">
@@ -157,7 +151,7 @@ export default async function Page({
           {/* ARTICLE CONTENT */}
         </div>
         <div className="relative w-full bg-background p-6 pt-0 md:p-12 md:pt-0">
-          <div className="prose prose-sm prose-blue self-start overflow-x-auto text-xs sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl hc:text-foreground prose-p:!text-pretty hc:prose-a:text-primary hc:prose-strong:text-foreground sm:text-base">
+          <div className="prose prose-sm prose-blue self-start overflow-x-auto text-xs sm:prose-base lg:prose-lg xl:prose-xl 2xl:prose-2xl hc:text-foreground prose-p:text-pretty! prose-a:hc:text-primary prose-strong:hc:text-foreground sm:text-base">
             {article?.content
               ? renderMarkdown(article.content, markdownOptions)
               : "Pusty artykuł"}
