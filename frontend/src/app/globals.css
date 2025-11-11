@@ -1,6 +1,5 @@
-@import 'tailwindcss';
-
-@config '../../tailwind.config.js';
+@import "tailwindcss";
+@config "../../tailwind.config.js";
 
 /*
   The default border color has changed to `currentcolor` in Tailwind CSS v4,
@@ -10,6 +9,7 @@
   If we ever want to remove these styles, we need to add an explicit border
   color utility to any element that depends on these defaults.
 */
+
 @layer base {
   *,
   ::after,
@@ -21,7 +21,7 @@
 }
 
 @utility timetable-cell {
-  @apply flex h-11 w-[200px] items-center justify-center gap-1 p-0 outline-solid outline-1 outline-secondary;
+  @apply outline-solid flex h-11 w-[200px] items-center justify-center gap-1 p-0 outline-1 outline-secondary;
 }
 
 @utility timetable-headcell {

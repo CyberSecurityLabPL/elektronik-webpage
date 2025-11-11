@@ -4,7 +4,7 @@ import { motion, useInView, Variants } from "framer-motion"
 import React, { useRef } from "react"
 import { HighlightCircle } from "../landingpage/Hero"
 
-type PresetType = "blur-sm" | "shake" | "scale" | "fade" | "slide"
+type PresetType = "blur" | "shake" | "scale" | "fade" | "slide"
 
 type TextEffectProps = {
   children: string
@@ -96,7 +96,7 @@ const AnimationComponent: React.FC<{
       >
         {word}
         {last ? (
-          <HighlightCircle className="absolute left-0 top-0 z-[-1] aspect-379/128 w-[260px] -translate-x-[32px] -translate-y-[40px] transform xs:w-[320px] xs:-translate-y-[30px] xl:w-[470px] xl:-translate-x-[64px] xl:-translate-y-[20px]" />
+          <HighlightCircle className="aspect-379/128 absolute left-0 top-0 z-[-1] w-[260px] -translate-x-[32px] -translate-y-[40px] transform xs:w-[320px] xs:-translate-y-[30px] xl:w-[470px] xl:-translate-x-[64px] xl:-translate-y-[20px]" />
         ) : null}
       </motion.span>
     )

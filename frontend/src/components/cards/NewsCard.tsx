@@ -32,7 +32,7 @@ export default function NewsCard({
       whileTap={{ scale: 0.95 }}
       transition={{ duration: 0.3 }}
       className={cn(
-        "h-full w-full  overflow-hidden rounded-3xl border ",
+        "h-full w-full overflow-hidden rounded-3xl border",
         isFeatured ? "" : "w-full"
       )}
     >
@@ -42,7 +42,7 @@ export default function NewsCard({
         className={cn(
           "relative flex h-full w-full min-w-64 flex-col items-center gap-4 bg-background transition-colors hover:bg-background-muted xs:rounded-3xl md:items-start md:gap-2",
           {
-            " h-full w-full max-w-full flex-col shadow-lg shadow-slate-400/25 transition-shadow duration-300 hover:shadow-xl hover:shadow-slate-400/50 md:col-span-2 md:flex-row md:gap-12 lg:col-span-3":
+            "h-full w-full max-w-full flex-col shadow-lg shadow-slate-400/25 transition-shadow duration-300 hover:shadow-xl hover:shadow-slate-400/50 md:col-span-2 md:flex-row md:gap-12 lg:col-span-3":
               isFeatured,
           },
           className
@@ -51,8 +51,8 @@ export default function NewsCard({
         {/* IMAGE */}
         <div
           className={cn(
-            "aspect-[21:9] relative h-48 w-full overflow-hidden md:h-[200px] md:w-full",
-            isFeatured ? "h-[250px] w-full  md:w-3/5 lg:h-[400px]" : ""
+            "aspect-21/9 relative h-48 w-full overflow-hidden md:h-[200px] md:w-full",
+            isFeatured ? "h-[250px] w-full md:w-3/5 lg:h-[400px]" : ""
           )}
         >
           <Image
@@ -66,7 +66,7 @@ export default function NewsCard({
         {/* CONTENT */}
         <div
           className={cn(
-            "flex flex-col self-start overflow-hidden p-4 ",
+            "flex flex-col self-start overflow-hidden p-4",
             isFeatured ? "w-full py-4 md:w-2/5" : ""
           )}
         >
@@ -81,7 +81,7 @@ export default function NewsCard({
           <h3
             className={cn(
               "pb-[.5em] pt-[.3em] text-lg font-semibold",
-              isFeatured ? " text-2xl md:text-4xl" : ""
+              isFeatured ? "text-2xl md:text-4xl" : ""
             )}
             title={title}
           >
@@ -91,11 +91,11 @@ export default function NewsCard({
           {/* DESCRIPTION */}
           <div
             className={cn(
-              "h-20 truncate text-pretty break-all ",
-              !isFeatured ? "hidden md:block " : " pr-8"
+              "h-20 truncate text-pretty break-all",
+              !isFeatured ? "hidden md:block" : "pr-8"
             )}
           >
-            <p className="card-description block min-w-0 text-sm ">
+            <p className="card-description block min-w-0 text-sm">
               {description}
             </p>
           </div>

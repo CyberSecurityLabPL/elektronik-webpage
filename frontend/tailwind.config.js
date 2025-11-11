@@ -1,5 +1,5 @@
 // import type { Config } from "tailwindcss"
-const plugin = require('tailwindcss/plugin')
+const plugin = require("tailwindcss/plugin")
 
 module.exports = {
   darkMode: ["class"],
@@ -35,7 +35,7 @@ module.exports = {
         background: {
           DEFAULT: "hsl(var(--background))",
           accent: "hsl(var(--background-accent))",
-          muted: "hsl(var(--background-muted))"
+          muted: "hsl(var(--background-muted))",
         },
         foreground: "hsl(var(--foreground))",
         primary: {
@@ -102,8 +102,8 @@ module.exports = {
     },
   },
   plugins: [
-    plugin(({addVariant}) => {
-      addVariant('hc', ':is(:where(.high-contrast) &)');
+    plugin(({ addVariant }) => {
+      addVariant("hc", ":is(:where(.high-contrast) &)")
     }),
     require("tailwindcss-animate"),
     require("@tailwindcss/typography"),
