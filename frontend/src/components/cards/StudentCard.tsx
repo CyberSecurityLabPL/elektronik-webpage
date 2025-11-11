@@ -16,7 +16,7 @@ export default function StudentCard({
   hobby: string
 }) {
   return (
-    <Card className="flex h-auto w-full max-w-4xl rounded-xl shadow-sm">
+    <Card className="flex h-auto w-full max-w-4xl rounded-xl shadow-xs">
       <div className="relative hidden h-[400px] w-[250px] shrink-0 sm:block">
         <Image 
           className="rounded-l-xl object-cover" 
@@ -43,7 +43,7 @@ export default function StudentCard({
               Osiągnięcia:
             </h2>
             <div className="max-h-[150px] overflow-y-auto pr-2 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-neutral-200">
-              <div className="text-sm leading-relaxed break-words whitespace-pre-wrap">{achivments}</div>
+              <div className="text-sm leading-relaxed wrap-break-word whitespace-pre-wrap">{achivments}</div>
             </div>
           </div>
 
@@ -51,7 +51,7 @@ export default function StudentCard({
             <h2 className="mb-1 text-sm font-semibold text-neutral-400">
               Zainteresowania:
             </h2>
-            <div className="text-sm leading-relaxed break-words whitespace-pre-wrap">{hobby}</div>
+            <div className="text-sm leading-relaxed wrap-break-word whitespace-pre-wrap">{hobby}</div>
           </div>
         </CardContent>
       </div>

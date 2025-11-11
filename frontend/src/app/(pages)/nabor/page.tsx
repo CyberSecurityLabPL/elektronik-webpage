@@ -83,7 +83,7 @@ export default async function Page() {
                     {recruitments.recruitments.map(
                       (row: any, index: number) => (
                         <TableRow
-                          className="w-full bg-background  hover:bg-muted/90 hover:underline hc:hover:bg-background-muted"
+                          className="w-full bg-background  hover:bg-muted/90 hover:underline hover:hc:bg-background-muted"
                           key={row.profession + index}
                         >
                           <TableCell className="p-0 font-medium">

@@ -22,8 +22,8 @@ export default function AchieveCard({
   opis: string
 }) {
   return (
-    <Card className="m-4 flex min-h-56 w-full max-w-3xl  cursor-pointer flex-col gap-4 rounded-3xl shadow-sm sm:flex-row">
-      <div className="relative h-56 flex-shrink sm:w-56 sm:flex-shrink-0">
+    <Card className="m-4 flex min-h-56 w-full max-w-3xl  cursor-pointer flex-col gap-4 rounded-3xl shadow-xs sm:flex-row">
+      <div className="relative h-56 shrink sm:w-56 sm:shrink-0">
         <Image
           alt={name + " image"}
           src={src}

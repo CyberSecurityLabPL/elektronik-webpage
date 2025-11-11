@@ -49,18 +49,18 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.17",
     "@tailwindcss/typography": "^0.5.12",
     "@types/node": "^20",
     "@types/qs": "^6.9.15",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
-    "autoprefixer": "^10.0.1",
     "eslint": "^9",
     "eslint-config-next": "16.0.0",
     "postcss": "^8",
     "prettier": "3.2.5",
-    "prettier-plugin-tailwindcss": "^0.5.14",
-    "tailwindcss": "^3.4.0",
+    "prettier-plugin-tailwindcss": "^0.7.1",
+    "tailwindcss": "^4.1.17",
     "typescript": "5.3.3"
   },
   "overrides": {

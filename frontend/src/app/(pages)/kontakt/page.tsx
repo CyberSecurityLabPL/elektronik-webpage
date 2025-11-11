@@ -107,7 +107,7 @@ function InfoLabel({
       draggable={false}
       href={href ?? "#"}
       target={target}
-      className="flex w-full items-center justify-start gap-4 rounded-lg p-2 transition-colors hover:bg-secondary hc:hover:bg-background-muted hc:hover:text-muted-foreground"
+      className="flex w-full items-center justify-start gap-4 rounded-lg p-2 transition-colors hover:bg-secondary hover:hc:bg-background-muted hover:hc:text-muted-foreground"
     >
       <IconComponent icon={icon} color="blue" IsCircle={true} />
       <div className="flex flex-col ">

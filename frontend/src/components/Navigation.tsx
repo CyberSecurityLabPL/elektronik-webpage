@@ -53,17 +53,17 @@ export function Navigation({ navItems }: { navItems: any }) {
               <NavigationMenuItem key={item.name}>
                 <NavigationMenuTrigger
                   onMouseEnter={handleMouseEnter}
-                  className="rounded-xl bg-transparent text-lg hover:bg-transparent group-[[data-smaller=true]]:text-base hc:text-white hc:hover:bg-white/10 hc:hover:text-white"
+                  className="rounded-xl bg-transparent text-lg hover:bg-transparent group-data-[smaller=true]:text-base hc:text-white hover:hc:bg-white/10 hover:hc:text-white"
                 >
                   {item.name}
                 </NavigationMenuTrigger>
                 <NavigationMenuContent className="overflow-hidden  ">
-                  <ul className="relative !z-[99999] grid max-h-[452px] w-[400px] gap-3 overflow-y-auto bg-background p-4 md:w-[500px] md:grid-cols-2 lg:w-[800px]">
+                  <ul className="relative z-99999! grid max-h-[452px] w-[400px] gap-3 overflow-y-auto bg-background p-4 md:w-[500px] md:grid-cols-2 lg:w-[800px]">
                     {index < 1 ? (
                       <li className="col-span-2 rounded-lg transition-colors hover:bg-background-muted focus:bg-background-muted">
                         <NavigationMenuLink asChild>
                           <Link
-                            className={`relative flex h-full select-none flex-col justify-start rounded-md object-cover text-background no-underline outline-none`}
+                            className={`relative flex h-full select-none flex-col justify-start rounded-md object-cover text-background no-underline outline-hidden`}
                             href="/aktualnosci"
                           >
                             <div className="z-50 bg-transparent p-2 text-3xl font-medium text-foreground">
@@ -105,7 +105,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                 <PopoverTrigger asChild>
                   <Button
                     variant={"ghost"}
-                    className="text-lg hover:bg-accent/50 group-[[data-smaller=true]]:text-base hc:text-white hc:hover:bg-white/10 hc:hover:text-white"
+                    className="text-lg hover:bg-accent/50 group-data-[smaller=true]:text-base hc:text-white hover:hc:bg-white/10 hover:hc:text-white"
                     onClick={() => handlePopoverOpenChange(!isOpen)}
                   >
                     Więcej
@@ -118,7 +118,7 @@ export function Navigation({ navItems }: { navItems: any }) {
                   className="z-10"
                 >
                   <PopoverContent
-                    className="absolute -right-32 z-10 flex w-[52rem] rounded-3xl bg-background py-6 data-[state=open]:block data-[state=closed]:hidden"
+                    className="absolute -right-32 z-10 flex w-208 rounded-3xl bg-background py-6 data-[state=open]:block data-[state=closed]:hidden"
                     data-state={isOpen ? "open" : "closed"}
                   >
                     <ul className="mx-auto flex h-full w-full flex-wrap gap-8">
@@ -179,7 +179,7 @@ const ListItem = forwardRef<
         <Link
           ref={ref}
           className={cn(
-            "flex h-full select-none items-center justify-between gap-1 space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-background-muted hover:text-accent-foreground focus:bg-background-muted focus:text-accent-foreground",
+            "flex h-full select-none items-center justify-between gap-1 space-y-1 rounded-md p-3 leading-none no-underline outline-hidden transition-colors hover:bg-background-muted hover:text-accent-foreground focus:bg-background-muted focus:text-accent-foreground",
             className
           )}
           href={href!}

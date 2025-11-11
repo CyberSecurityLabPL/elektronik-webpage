@@ -35,9 +35,9 @@ export default async function Page(props: { params: Promise<{ page: string }> })
         subtitle={data?.description ?? `Page /${params.page} not found!`}
       />
       <PageEnterAnimation
-        className={`flex w-full justify-center rounded-sm bg-background p-2 text-xs shadow-sm sm:text-base items-center${data?.content ? "" : "hidden"}`}
+        className={`flex w-full justify-center rounded-sm bg-background p-2 text-xs shadow-xs sm:text-base items-center${data?.content ? "" : "hidden"}`}
       >
-        <div className="prose w-full overflow-hidden p-4 hc:prose-headings:text-foreground hc:text-foreground hc:prose-strong:text-foreground hc:prose-a:text-primary">
+        <div className="prose w-full overflow-hidden p-4 prose-headings:hc:text-foreground hc:text-foreground prose-strong:hc:text-foreground prose-a:hc:text-primary">
           {data?.content ? renderMarkdown(data.content) : null}
         </div>
       </PageEnterAnimation>

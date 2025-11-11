@@ -38,7 +38,7 @@ export default function Header({
           animate={{ opacity: 1 }}
           transition={{ delay: 0.25, duration: 0.25, ease: "circOut" }}
         >
-          <div className="text-md flex max-w-[54rem] items-center justify-center text-pretty text-center leading-relaxed text-primary-foreground sm:text-lg lg:text-xl">
+          <div className="text-md flex max-w-216 items-center justify-center text-pretty text-center leading-relaxed text-primary-foreground sm:text-lg lg:text-xl">
             {subtitle}
           </div>
         </m.div>

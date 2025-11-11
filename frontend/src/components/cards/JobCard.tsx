@@ -35,11 +35,11 @@ export default function JobCard({
   }>
 }) {
   return (
-    <Card className="flex w-5/6 cursor-pointer flex-col justify-between gap-4 rounded-xl p-4 md:flex-row md:p-0 lg:w-[56rem]">
+    <Card className="flex w-5/6 cursor-pointer flex-col justify-between gap-4 rounded-xl p-4 md:flex-row md:p-0 lg:w-4xl">
       <div className="flex gap-4">
 
 
-      <CardContent className="relative hidden flex-shrink-0 w-48 rounded-l-lg md:block lg:w-80 ">
+      <CardContent className="relative hidden shrink-0 w-48 rounded-l-lg md:block lg:w-80 ">
         <Image
           className="rounded-l-lg object-cover w-80"
           alt={name + " image"}

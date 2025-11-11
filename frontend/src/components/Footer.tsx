@@ -51,7 +51,7 @@ export default function Footer() {
       </div>
 
       {/* footer */}
-      <div className="z-[1] flex h-fit min-h-32 w-full flex-col justify-between gap-6 overflow-auto bg-[#262727] px-8 pt-16">
+      <div className="z-1 flex h-fit min-h-32 w-full flex-col justify-between gap-6 overflow-auto bg-[#262727] px-8 pt-16">
         <div className="flex w-fit flex-col items-center justify-center self-center">
           <Sitemap />
         </div>
@@ -147,7 +147,7 @@ async function Sitemap() {
                 ).map((link: any, index: number) => (
                   <li key={`l${index}`}>
                     <Link
-                      className="w-fit text-sm text-[#808080] hover:text-[#CACACA] hover:underline hc:text-muted-foreground hc:hover:text-foreground"
+                      className="w-fit text-sm text-[#808080] hover:text-[#CACACA] hover:underline hc:text-muted-foreground hover:hc:text-foreground"
                       href={link.isExternal ? link.href : `/${link.href}`}
                     >
                       {link.name ?? "Empty"}

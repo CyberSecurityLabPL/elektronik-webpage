@@ -29,8 +29,8 @@ export default function JobDialog({
     <Dialog>
       <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="w-full ">
-        <DialogHeader className="box-border w-fit whitespace-pre-wrap break-words ">
-          <DialogTitle className="box-border w-11/12  whitespace-pre-wrap break-words break-all text-left ">{`${company} - ${jobName}`}</DialogTitle>
+        <DialogHeader className="box-border w-fit whitespace-pre-wrap wrap-break-word ">
+          <DialogTitle className="box-border w-11/12  whitespace-pre-wrap wrap-break-word break-all text-left ">{`${company} - ${jobName}`}</DialogTitle>
           <DialogDescription className="text-left">
             {formatDateYear(date)}
           </DialogDescription>

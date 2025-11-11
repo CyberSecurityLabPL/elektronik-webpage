@@ -14,7 +14,7 @@ const Logo = () => {
       width={80}
       height={80}
       priority
-      className={`h-16 w-auto transition-all duration-200  group-[[data-smaller=true]]:h-12 md:h-20`}
+      className={`h-16 w-auto transition-all duration-200  group-data-[smaller=true]:h-12 md:h-20`}
       alt="Logo"
     />
   )

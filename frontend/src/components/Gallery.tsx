@@ -22,7 +22,7 @@ export default function Gallery({ initialData }: { initialData: any }) {
       transition={{ delay: 0.5, duration: 0.25, ease: "circOut" }}
       className="flex w-full flex-col items-center justify-center gap-4"
     >
-      <section className="grid w-full auto-rows-[10px] grid-cols-[repeat(auto-fit,_minmax(250px,_1fr))]">
+      <section className="grid w-full auto-rows-[10px] grid-cols-[repeat(auto-fit,minmax(250px,1fr))]">
         {initialData.files.slice(0, pageSize + offset).map(
           (
             item: {

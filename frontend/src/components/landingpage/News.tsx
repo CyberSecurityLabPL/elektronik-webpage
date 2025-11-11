@@ -30,7 +30,7 @@ export default async function News2() {
   return (
     <section
       id={sectionId}
-      className="mx-auto w-full max-w-screen-2xl px-4 sm:px-6 lg:px-8"
+      className="mx-auto w-full max-w-(--breakpoint-2xl) px-4 sm:px-6 lg:px-8"
     >
       <h2 className="mb-8 text-3xl font-bold text-foreground sm:mb-12 sm:text-4xl lg:mb-20 lg:text-6xl">
         Aktualności ze szkoły

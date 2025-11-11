@@ -59,7 +59,7 @@ const page = async (props: {
     return (
       <div className="flex h-full flex-col">
         <Headbar name={name} />
-        <div className="relative grid flex-grow place-items-center">
+        <div className="relative grid grow place-items-center">
           <Timetable data={targetData} />
           <div className="absolute bottom-0 left-0 w-1/3 p-1 text-xs sm:w-auto md:text-base">
             Plan obowiązuje od:{" "}

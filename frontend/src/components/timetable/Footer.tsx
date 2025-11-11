@@ -112,7 +112,7 @@ function Select({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="w-72 justify-start gap-4 rounded-xl text-zinc-800 hover:border-[1px] hover:border-white hover:bg-primary hover:text-white hc:text-foreground md:w-[350px]"
+          className="w-72 justify-start gap-4 rounded-xl text-zinc-800 hover:border hover:border-white hover:bg-primary hover:text-white hc:text-foreground md:w-[350px]"
         >
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
           <span className="truncate">
@@ -155,7 +155,7 @@ function Select({
                           setOpen(false)
                         }}
                         className={cn(
-                          "cursor-pointer rounded-lg px-2 transition-colors hc:hover:bg-accent",
+                          "cursor-pointer rounded-lg px-2 transition-colors hover:hc:bg-accent",
                           {
                             "bg-primary text-white hc:bg-accent hc:text-accent-foreground":
                               value === info.id,
@@ -193,7 +193,7 @@ function Select({
                           setOpen(false)
                         }}
                         className={cn(
-                          "cursor-pointer rounded-lg px-2 transition-colors hc:hover:bg-accent",
+                          "cursor-pointer rounded-lg px-2 transition-colors hover:hc:bg-accent",
                           {
                             "bg-primary text-white hc:bg-accent hc:text-accent-foreground":
                               value === info.id,

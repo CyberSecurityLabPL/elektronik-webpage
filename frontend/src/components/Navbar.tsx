@@ -42,7 +42,7 @@ export default function Navbar({
       <div className="absolute left-0 top-0" id="navbar-sentinel" />
       <motion.div
         data-smaller={isSmaller}
-        className={`group sticky top-0 z-[100] flex w-full justify-between border-b border-black/10 bg-background transition-all duration-200 data-[smaller=true]:bg-white/10 data-[smaller=true]:backdrop-blur-2xl`}
+        className={`group sticky top-0 z-100 flex w-full justify-between border-b border-black/10 bg-background transition-all duration-200 data-[smaller=true]:bg-white/10 data-[smaller=true]:backdrop-blur-2xl`}
         animate={{ height: isSmaller ? "4rem" : "8rem" }}
         transition={{ duration: 0.1, delay: 0.1 }}
       >
