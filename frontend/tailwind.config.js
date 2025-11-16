@@ -92,13 +92,13 @@ module.exports = {
         "bar-up": "bar-up 0.5s ease-out",
       },
 
-      screens: {
-        xs: "360px",
-        s: "430px",
-        "2xl": "1440px",
-        "3xl": "1536px",
-        "4xl": "1920px",
-      },
+      // screens: {
+      //   xs: "360px",
+      //   s: "430px",
+      //   "2xl": "1440px",
+      //   "3xl": "1536px",
+      //   "4xl": "1920px",
+      // },
     },
   },
   plugins: [

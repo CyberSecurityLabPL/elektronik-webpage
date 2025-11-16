@@ -59,7 +59,7 @@ export default function NewsCard({
             src={getImage(src, "/default/article.svg")}
             alt="Miniaturka artykułu"
             fill
-            className="object-cover"
+            className="object-contain"
           />
         </div>
 

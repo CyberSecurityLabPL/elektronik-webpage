@@ -10,6 +10,15 @@
   color utility to any element that depends on these defaults.
 */
 
+@theme {
+  --breakpoint-xs: 360px;
+  /* --breakpoint-xl: 1280px; */
+  /* --breakpoint-s: 430px;
+  --breakpoint-2xl: 1440px;*/
+  --breakpoint-3xl: 1536px;
+  --breakpoint-4xl: 1920px;
+}
+
 @layer base {
   *,
   ::after,

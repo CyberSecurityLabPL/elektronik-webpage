@@ -37,7 +37,7 @@ export default async function RootLayout({
       </head>
       <body className={cn(poppins.className, "*:antialiased")}>
         <Providers>
-          <div className="max-w-(--breakpoint-4xl) mx-auto">
+          <div className="mx-auto max-w-[1920px]">
             {data && <AlertBar data={data} />}
             {children}
           </div>

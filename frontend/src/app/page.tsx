@@ -62,6 +62,8 @@ export default async function Home() {
             return (
               <section key={index} className="w-full">
                 <SectionComponent data={section} />
+
+                {/* Section Transition */}
                 <div className="h-64 w-full bg-lines-transition bg-bottom bg-repeat-x hc:bg-lines-transition-hc"></div>
                 <div className="h-64 w-full bg-wave-transition bg-repeat-x hc:bg-wave-transition-hc"></div>
               </section>
