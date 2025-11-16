@@ -44,7 +44,11 @@ async function page(props: PageParams) {
             title={featuredArticle.title}
             description={featuredArticle.description}
             link={`/aktualnosci/${featuredArticle.documentId}`}
-            date={featuredArticle.createdAt ?? featuredArticle.updatedAt}
+            date={
+              featuredArticle.customDate ??
+              featuredArticle.createdAt ??
+              featuredArticle.updatedAt
+            }
             src={featuredArticle.image?.url}
             variant="featured"
           />
@@ -53,7 +57,7 @@ async function page(props: PageParams) {
         <h2 className="mb-4 mt-8 text-center text-lg font-bold text-foreground xs:pl-8 xs:text-start">
           Wszystkie artykuły
         </h2>
-        <div className=" grid h-full w-full grid-cols-1 items-center justify-center   gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid h-full w-full grid-cols-1 items-center justify-center gap-4 md:grid-cols-2 lg:grid-cols-3">
           {articles.length
             ? articles.map((item: any, index: number) => (
                 <NewsCard
