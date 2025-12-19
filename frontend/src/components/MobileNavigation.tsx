@@ -74,7 +74,7 @@ export default function MobileNavigation({
             <Button
               variant={"secondary"}
               asChild
-              className="w-full rounded-xl bg-white text-2xl  font-semibold text-foreground"
+              className="w-full rounded-xl bg-white text-2xl font-semibold text-foreground"
             >
               <Link
                 href={additionalLinks?.timetable.link}
@@ -105,24 +105,21 @@ function LinkPanel({
   title,
   children,
   className,
-  key,
 }: {
   children?: ReactNode
   title: string
   className?: string
-  key?: string
 }) {
   return (
     <Accordion
       type="single"
       collapsible
       className="flex w-full flex-col gap-4 rounded-3xl bg-background px-4 py-2 active:bg-white/60 active:hc:bg-background-accent"
-      key={key}
     >
       <AccordionItem value={title}>
         <AccordionTrigger
           className={cn(
-            "flex w-full items-center justify-between py-2 text-2xl  font-semibold [&[data-state=open]>svg]:rotate-180",
+            "flex w-full items-center justify-between py-2 text-2xl font-semibold [&[data-state=open]>svg]:rotate-180",
             className
           )}
         >
@@ -151,7 +148,7 @@ function LinkItem({
   return (
     <DrawerClose asChild>
       <Link
-        className=" flex items-center justify-between gap-2 rounded-3xl bg-accent/50 px-4 py-2 text-left text-lg font-medium text-slate-600 active:bg-slate-100 hc:bg-background-muted! hc:text-muted-foreground active:hc:bg-background-accent md:text-center "
+        className="hc:bg-background-muted! flex items-center justify-between gap-2 rounded-3xl bg-accent/50 px-4 py-2 text-left text-lg font-medium text-slate-600 active:bg-slate-100 hc:text-muted-foreground active:hc:bg-background-accent md:text-center"
         href={href}
       >
         {name}
