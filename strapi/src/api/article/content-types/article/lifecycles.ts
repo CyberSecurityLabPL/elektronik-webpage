@@ -1,8 +1,7 @@
 "use strict";
-const { initializeApp } = require("firebase-admin/app");
-const admin = require("firebase-admin");
-const { getMessaging } = require("firebase-admin/messaging");
-// @ts-ignore
+import * as admin from "firebase-admin";
+import { initializeApp } from "firebase-admin/app";
+import { getMessaging } from "firebase-admin/messaging";
 
 import {
   CustomConfig,
@@ -15,10 +14,28 @@ const { DISCORD_WEBHOOK_URL, HOST_URL } = strapi.config.get(
 ) as CustomConfig;
 
 initializeApp({
-  credential: admin.credential.cert(SERVICE_ACCOUNT_KEY),
+  credential: admin.credential.cert(
+    SERVICE_ACCOUNT_KEY as admin.ServiceAccount,
+  ),
 });
 
-module.exports = {
+// For event object see: https://docs.strapi.io/cms/backend-customization/models#hook-event-object
+
+export default {
+  async beforeCreate(event) {
+    const { data } = event.params;
+
+    if (!data.customDate) {
+      data.customDate = data.createdAt;
+    }
+  },
+  async beforeUpdate(event) {
+    const { data } = event.params;
+
+    if (!data.customDate) {
+      data.customDate = data.publishedAt ? data.publishedAt : data.createdAt;
+    }
+  },
   async afterUpdate(event) {
     console.log("triggered");
     const { result } = event;
@@ -50,7 +67,7 @@ module.exports = {
           visibility: "public",
         },
       },
-    };
+    } as admin.messaging.Message;
 
     if (
       result.redirect &&
