@@ -10,8 +10,14 @@ type Props = {
 }
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
-  const params = await props.params;
-  const { seo } = await getPage(params.page)
+  const params = await props.params
+  const { seo, data } = await getPage(params.page)
+
+  if (!seo) {
+    return {
+      title: data?.heading ?? "Elektronik",
+    }
+  }
 
   return {
     title: seo?.metaTitle ?? "Elektronik - Nie znaleziono strony",
@@ -20,8 +26,10 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   }
 }
 
-export default async function Page(props: { params: Promise<{ page: string }> }) {
-  const params = await props.params;
+export default async function Page(props: {
+  params: Promise<{ page: string }>
+}) {
+  const params = await props.params
   const data = await getPage(params.page)
 
   if (!data.content) {
@@ -35,9 +43,9 @@ export default async function Page(props: { params: Promise<{ page: string }> })
         subtitle={data?.description ?? `Page /${params.page} not found!`}
       />
       <PageEnterAnimation
-        className={`flex w-full justify-center rounded-sm bg-background p-2 text-xs shadow-xs sm:text-base items-center${data?.content ? "" : "hidden"}`}
+        className={`shadow-xs flex w-full justify-center rounded-sm bg-background p-2 text-xs sm:text-base items-center${data?.content ? "" : "hidden"}`}
       >
-        <div className="prose w-full overflow-hidden p-4 prose-headings:hc:text-foreground hc:text-foreground prose-strong:hc:text-foreground prose-a:hc:text-primary">
+        <div className="prose w-full overflow-hidden p-4 hc:text-foreground prose-headings:hc:text-foreground prose-a:hc:text-primary prose-strong:hc:text-foreground">
           {data?.content ? renderMarkdown(data.content) : null}
         </div>
       </PageEnterAnimation>

@@ -65,7 +65,7 @@ export function flattenStrapiResponse(
 }
 
 /**
- *
+ * Return a correct date
  * @param article Article object to get date from
  * @returns Correct date (custom > createdAt > updatedAt)
  */
@@ -198,7 +198,7 @@ interface Author {
 }
 
 /**
- *
+ * Formats data to get authors full name
  * @param data data object at level of attributes ( contains createdBy and updatedBy )
  * @returns returns author full name
  */

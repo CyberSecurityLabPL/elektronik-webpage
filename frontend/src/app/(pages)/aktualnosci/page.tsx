@@ -22,9 +22,7 @@ async function page(props: PageParams) {
   const searchParams = await props.searchParams
   const page = searchParams["page"] ?? "1"
 
-  const { data, meta } = await getArticles({
-    page,
-  })
+  const { data, meta } = await getArticles(page)
 
   const articles = data as any[]
   const featuredArticle = await getLatestArticle()

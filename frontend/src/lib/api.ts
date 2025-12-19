@@ -1,7 +1,6 @@
 import { PAGINATION_LIMIT } from "@/config"
 import axios, { AxiosError, AxiosResponse } from "axios"
 import qs from "qs"
-import { flattenStrapiResponse } from "./utils"
 
 /**
  * The API instance for making HTTP requests.
@@ -40,26 +39,21 @@ function formatedQs(query: { [key: string]: any }) {
   )
 }
 
-// process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0"
-
-/**
- * Retrieves the navigation data for a specific page.
- * @param page - The page to retrieve the navigation data for. Used for page revalidation
- * @returns The navigation data.
- */
 export async function getNavigation(): Promise<any> {
   try {
-    // const { data }: AxiosResponse<any> = await api.get("/navigation");
+    const { data } = await api.get<AxiosResponse<any>>("/navigation")
 
-    const res = await fetch(`${process.env.STRAPI_API_URL}/navigation`, {
-      next: {
-        tags: ["navigation"],
-      },
-    })
+    // Use this if navigation is not revalidated
 
-    const data = await res.json()
+    // const res = await fetch(`${process.env.STRAPI_API_URL}/navigation`, {
+    //   next: {
+    //     tags: ["navigation"],
+    //   },
+    // })
 
-    return flattenStrapiResponse(data)
+    // const data = await res.json()
+
+    return data.data
   } catch (error: any) {
     handleError(error)
   }
@@ -67,24 +61,16 @@ export async function getNavigation(): Promise<any> {
 
 export async function getLandingPage(): Promise<any> {
   try {
-    const { data }: AxiosResponse<any> = await api.get("/landing-page")
-    return flattenStrapiResponse(data)
+    const { data } = await api.get<AxiosResponse<any>>("/landing-page")
+
+    return data.data
   } catch (error: any) {
     handleError(error)
   }
 }
-/**
- * Interface for optional object properties.
- */
-interface ArticlesOptions {
-  params?: string
-  flatteners?: string[]
-  page?: string
-}
 
-export async function getArticles(options?: ArticlesOptions): Promise<any> {
+export async function getArticles(page = "1"): Promise<any> {
   try {
-    const { params, page = "1" } = options || {}
     const isFirstPage = page === "1"
 
     const pageSize = isFirstPage ? PAGINATION_LIMIT + 1 : PAGINATION_LIMIT
@@ -93,31 +79,21 @@ export async function getArticles(options?: ArticlesOptions): Promise<any> {
       pagination: { page, pageSize },
     })
 
-    const url = params ? `articles/${params}` : `articles?${query}`
-    const { data } = await api.get(url)
+    const { data } = await api.get(`articles?${query}`)
 
-    // Zakomentowane flattenery, odkomentuj i użyj, jeśli są potrzebne
-    // const res = flattenStrapiResponse(data, !params, flatteners)
-    const res = data
-    if (isFirstPage) res.data = res.data.slice(1)
+    if (isFirstPage) data.data = data.data.slice(1)
 
-    return res
+    return data
   } catch (error: any) {
     handleError(error)
   }
 }
 
-export async function getArticle(
-  id: string,
-  options: ArticlesOptions
-): Promise<any> {
+export async function getArticle(id: string): Promise<any> {
   try {
-    const params = options?.params
-    const flatteners = options?.flatteners
+    const { data } = await api.get<AxiosResponse<any>>(`articles/${id}`)
 
-    const { data }: AxiosResponse<any> = await api.get(`articles/${id}`)
-
-    return flattenStrapiResponse(data, !!!params, flatteners)
+    return data
   } catch (error: any) {
     handleError(error)
   }
@@ -125,9 +101,16 @@ export async function getArticle(
 
 export async function getLatestArticle() {
   try {
-    const { data }: AxiosResponse<any> = await api.get(
-      "articles?sort=customDate:desc&pagination[pageSize]=1&populate[image][populate]=true&populate[createdBy][populate]=true&populate[updatedBy][populate]=true"
-    )
+    const query = formatedQs({
+      sort: ["customDate:desc"],
+      pagination: { pageSize: 1 },
+      populate: {
+        image: { populate: true },
+        createdBy: { populate: true },
+        updatedBy: { populate: true },
+      },
+    })
+    const { data } = await api.get<AxiosResponse<any>>(`articles?${query}`)
 
     return data.data[0]
   } catch (error: any) {
@@ -137,8 +120,8 @@ export async function getLatestArticle() {
 
 export async function getSubstitutionsPage() {
   try {
-    const { data }: AxiosResponse<any> = await api.get("/substitutions-page")
-    return flattenStrapiResponse(data)
+    const { data } = await api.get<AxiosResponse<any>>("/substitutions-page")
+    return data
   } catch (error: any) {
     handleError(error)
   }
@@ -146,10 +129,22 @@ export async function getSubstitutionsPage() {
 
 export async function getCoursesPage() {
   try {
-    const { data }: AxiosResponse<any> = await api.get(
-      "/courses-page?populate[seo][populate]=true&populate[course_groups][populate][courses][populate][file][populate]=true"
-    )
-    return flattenStrapiResponse(data)
+    const query = formatedQs({
+      populate: {
+        seo: { populate: true },
+        course_groups: {
+          populate: {
+            courses: {
+              populate: {
+                file: { populate: true },
+              },
+            },
+          },
+        },
+      },
+    })
+    const { data } = await api.get<AxiosResponse<any>>(`/courses-page?${query}`)
+    return data.data
   } catch (error: any) {
     handleError(error)
   }
@@ -157,18 +152,15 @@ export async function getCoursesPage() {
 
 export async function getSubstitutions(number: number) {
   try {
-    const data: any = (
-      await fetch(
-        `${process.env.STRAPI_API_URL}/substitutions?pagination[page]=${number}&pagination[pageSize]=1&sort[1]=createdAt:desc`,
-        {
-          next: {
-            tags: ["substitutions"],
-          },
-        }
-      )
-    ).json()
+    const query = formatedQs({
+      pagination: { page: number, pageSize: 1 },
+      sort: ["createdAt:desc"],
+    })
+    const { data }: AxiosResponse<any> = await api.get(
+      `/substitutions?${query}`
+    )
 
-    return flattenStrapiResponse(data)
+    return data.data
   } catch (error: any) {
     handleError(error)
   }
@@ -176,19 +168,20 @@ export async function getSubstitutions(number: number) {
 
 export async function getExactSubstitutions(date: string) {
   try {
-    const data: any = (
-      await fetch(
-        `${process.env.STRAPI_API_URL}/substitutions?filters[date][$eq]=${date}&pagination[page]=1&pagination[pageSize]=1&sort[1]=createdAt:desc`,
-        {
-          cache: "no-cache",
-          next: {
-            tags: ["substitutions-ex"],
-          },
-        }
-      )
-    ).json()
+    const query = formatedQs({
+      filters: {
+        date: {
+          $eq: date,
+        },
+      },
+      pagination: { page: 1, pageSize: 1 },
+      sort: ["createdAt:desc"],
+    })
+    const { data }: AxiosResponse<any> = await api.get(
+      `/substitutions?${query}`
+    )
 
-    return await flattenStrapiResponse(data)
+    return data
   } catch (error: any) {
     handleError(error)
   }
@@ -196,8 +189,8 @@ export async function getExactSubstitutions(date: string) {
 
 export async function getJobs() {
   try {
-    const { data }: AxiosResponse<any> = await api.get("/jobs-page")
-    return flattenStrapiResponse(data)
+    const { data } = await api.get<AxiosResponse<any>>("/jobs-page")
+    return data.data
   } catch (error: any) {
     handleError(error)
   }
@@ -205,8 +198,8 @@ export async function getJobs() {
 
 export async function getApprenticeships() {
   try {
-    const { data }: AxiosResponse<any> = await api.get("/apprenticeships-page")
-    return flattenStrapiResponse(data)
+    const { data } = await api.get<AxiosResponse<any>>("/apprenticeships-page")
+    return data.data
   } catch (error: any) {
     handleError(error)
   }
@@ -214,9 +207,9 @@ export async function getApprenticeships() {
 
 export async function getBooks() {
   try {
-    const { data }: AxiosResponse<any> = await api.get("/books-page")
+    const { data } = await api.get<AxiosResponse<any>>("/books-page")
 
-    return flattenStrapiResponse(data)
+    return data.data
   } catch (error: any) {
     handleError(error)
   }
@@ -224,9 +217,9 @@ export async function getBooks() {
 
 export async function getTeachers() {
   try {
-    const { data }: AxiosResponse<any> = await api.get("/teachers-page")
+    const { data } = await api.get<AxiosResponse<any>>("/teachers-page")
 
-    return flattenStrapiResponse(data)
+    return data.data
   } catch (error: any) {
     handleError(error)
   }
@@ -234,9 +227,9 @@ export async function getTeachers() {
 
 export async function getRecruitments() {
   try {
-    const { data }: AxiosResponse<any> = await api.get("/recruitments-page")
+    const { data } = await api.get<AxiosResponse<any>>("/recruitments-page")
 
-    return flattenStrapiResponse(data)
+    return data.data
   } catch (error: any) {
     handleError(error)
   }
@@ -244,12 +237,17 @@ export async function getRecruitments() {
 
 export async function getPage(page: string) {
   try {
-    const { data }: AxiosResponse<any> = await api.get(
-      `/pages?filters[slug][$eq]=${page}`
-    )
+    const query = formatedQs({
+      filters: {
+        slug: {
+          $eq: page,
+        },
+      },
+    })
+    const { data } = await api.get<AxiosResponse<any>>(`/pages?${query}`)
 
-    if (data.data.length < 1) return {}
-    return flattenStrapiResponse(data.data[0])
+    if (data.data.length < 1) throw new AxiosError()
+    return data.data[0]
   } catch (error: any) {
     handleError(error)
   }
@@ -257,9 +255,9 @@ export async function getPage(page: string) {
 
 export async function getParents() {
   try {
-    const { data }: AxiosResponse<any> = await api.get("/parents-council-page")
+    const { data } = await api.get<AxiosResponse<any>>("/parents-council-page")
 
-    return flattenStrapiResponse(data)
+    return data.data
   } catch (error: any) {
     handleError(error)
   }
@@ -267,18 +265,18 @@ export async function getParents() {
 
 export async function getAchievements() {
   try {
-    const { data }: AxiosResponse<any> = await api.get("/achievements-page")
+    const { data } = await api.get<AxiosResponse<any>>("/achievements-page")
 
-    return flattenStrapiResponse(data)
+    return data.data
   } catch (error: any) {
     handleError(error)
   }
 }
 export async function getDocuments() {
   try {
-    const { data }: AxiosResponse<any> = await api.get("/documents-page")
+    const { data } = await api.get<AxiosResponse<any>>("/documents-page")
 
-    return flattenStrapiResponse(data)
+    return data.data
   } catch (error: any) {
     console.error(error)
   }
@@ -286,11 +284,11 @@ export async function getDocuments() {
 
 export async function getImages() {
   try {
-    const { data }: AxiosResponse<any> = await backend.get(
+    const { data } = await backend.get<AxiosResponse<any>>(
       "/file-system/docs/gallery?populate=*"
     )
 
-    return flattenStrapiResponse(data)
+    return data
   } catch (error: any) {
     handleError(error)
   }
@@ -298,22 +296,18 @@ export async function getImages() {
 
 export async function getHotAlert() {
   try {
-    const { data }: AxiosResponse<any> = await api.get("/hot-alert")
-    return flattenStrapiResponse(data)
+    const { data } = await api.get<AxiosResponse<any>>("/hot-alert")
+    return data.data
   } catch (error: any) {
     handleError(error)
   }
 }
 
-function handleError(error: AxiosError) {
-  console.error(error.message)
-}
-
 export async function getContact() {
   try {
-    const { data }: AxiosResponse<any> = await api.get("/contact-page")
+    const { data } = await api.get<AxiosResponse<any>>("/contact-page")
 
-    return flattenStrapiResponse(data)
+    return data.data
   } catch (error: any) {
     handleError(error)
   }
@@ -321,9 +315,9 @@ export async function getContact() {
 
 export async function getGraduates() {
   try {
-    const { data }: AxiosResponse<any> = await api.get("/graduate-page")
+    const { data } = await api.get<AxiosResponse<any>>("/graduate-page")
 
-    return flattenStrapiResponse(data)
+    return data.data
   } catch (error: any) {
     handleError(error)
   }
@@ -331,10 +325,14 @@ export async function getGraduates() {
 
 export async function getLuckyNumber() {
   try {
-    const { data }: AxiosResponse<any> = await api.get("/lucky-number")
+    const { data } = await api.get<AxiosResponse<any>>("/lucky-number")
 
-    return flattenStrapiResponse(data)
+    return data.data
   } catch (error: any) {
     handleError(error)
   }
+}
+
+function handleError(error: AxiosError) {
+  console.error(error.message)
 }
