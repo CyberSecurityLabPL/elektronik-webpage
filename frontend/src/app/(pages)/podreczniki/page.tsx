@@ -40,9 +40,9 @@ export default async function Page() {
                 {group.title}
               </div>
               <div className="grid gap-4 xl:grid-cols-2">
-                {group.books?.map((book: any) => (
+                {group.books?.map((book: any, i: number) => (
                   <BookCard
-                    key={book.title}
+                    key={book.title + i}
                     src={getImage(book.image?.url)}
                     subject={book.subject}
                     title={book.title}
