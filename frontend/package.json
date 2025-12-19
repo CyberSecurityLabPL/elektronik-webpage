@@ -55,6 +55,7 @@
     "@types/qs": "^6.9.15",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
+    "baseline-browser-mapping": "^2.9.10",
     "eslint": "^9",
     "eslint-config-next": "16.0.0",
     "postcss": "^8",
