@@ -65,6 +65,19 @@ export function flattenStrapiResponse(
 }
 
 /**
+ *
+ * @param article Article object to get date from
+ * @returns Correct date (custom > createdAt > updatedAt)
+ */
+export function getDate(article: any): string {
+  return article.customDate
+    ? article.customDate
+    : article.createdAt
+      ? article.createdAt
+      : article.updatedAt
+}
+
+/**
  * @param day - The day of week from 1 to 7
  * @returns The date of chosen day of current week
  */
@@ -135,7 +148,7 @@ export function renderMarkdown(markdown: string, options?: Readonly<Options>) {
 
 /**
  * Formats provided date string to dd/MM/yyyy HH:mm
- * @param date - The date string if null will use current
+ * @param date - The date string, if null will use current date
  * @returns The formatted date
  */
 export function formatDate(date?: string) {

@@ -1,5 +1,5 @@
 import { getArticles, getLatestArticle } from "@/lib/api"
-import { formatDayMonthYear, getAuthor, getImage } from "@/lib/utils"
+import { formatDayMonthYear, getAuthor, getDate, getImage } from "@/lib/utils"
 import Image from "next/image"
 import { Button, buttonVariants } from "../ui/button"
 import { Separator } from "../ui/separator"
@@ -126,13 +126,10 @@ function Article({ data }: { data: any }) {
       <span className="mt-2 text-sm sm:text-base">
         {data.description && data.description?.substring(0, 200)}
         {data.description && data.description.length > 200 && "... "}
-        {/* <span className="text-primary"> Czytaj więcej</span> */}
       </span>
       <div className="flex flex-row justify-between gap-2 sm:flex-row sm:gap-8">
         <span className="text-sm text-muted-foreground sm:text-base">
-          {formatDayMonthYear(
-            data.customDate ? data.customDate : data.createdAt
-          )}
+          {formatDayMonthYear(getDate(data))}
         </span>
         <span className="text-sm text-muted-foreground sm:text-base">
           {author}
@@ -166,9 +163,7 @@ function MainArticle({ data }: { data: any }) {
           </span>
           <div className="mt-6 flex w-full flex-row justify-between gap-2 px-2 sm:justify-between">
             <span className="text-sm text-muted-foreground sm:text-base">
-              {formatDayMonthYear(
-                data.customDate ? data.customDate : data.createdAt
-              )}
+              {formatDayMonthYear(getDate(data))}
             </span>
             <span className="text-sm text-muted-foreground sm:text-base">
               {author}
