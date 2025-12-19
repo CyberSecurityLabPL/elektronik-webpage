@@ -24,6 +24,22 @@ export const backend = axios.create({
   },
 })
 
+function formatedQs(query: { [key: string]: any }) {
+  return qs.stringify(
+    { ...query },
+    {
+      encodeValuesOnly: true,
+      encoder: (str, defaultEncoder, charset, type): string => {
+        if (type === "value" && typeof str === "string") {
+          return defaultEncoder(str).replace(/%3A/g, ":")
+        }
+
+        return defaultEncoder(str)
+      },
+    }
+  )
+}
+
 // process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = "0"
 
 /**
@@ -64,26 +80,18 @@ interface ArticlesOptions {
   params?: string
   flatteners?: string[]
   page?: string
-  getAll?: boolean
 }
 
 export async function getArticles(options?: ArticlesOptions): Promise<any> {
   try {
-    const { params, flatteners, page = "1", getAll } = options || {}
+    const { params, page = "1" } = options || {}
     const isFirstPage = page === "1"
 
-    if (getAll) {
-      const url =
-        "articles?fields[0]=id&populate=false&pagination[pageSize]=10000"
-      const { data } = await api.get(url)
-      return data
-    }
-
     const pageSize = isFirstPage ? PAGINATION_LIMIT + 1 : PAGINATION_LIMIT
-    const query = qs.stringify(
-      { pagination: { page, pageSize } },
-      { encodeValuesOnly: true }
-    )
+    const query = formatedQs({
+      sort: ["customDate:desc"],
+      pagination: { page, pageSize },
+    })
 
     const url = params ? `articles/${params}` : `articles?${query}`
     const { data } = await api.get(url)
@@ -115,13 +123,11 @@ export async function getArticle(
   }
 }
 
-export async function getLatestArticle(flatteners: string[] = ["data"]) {
+export async function getLatestArticle() {
   try {
     const { data }: AxiosResponse<any> = await api.get(
-      "articles?sort=createdAt:DESC&pagination[pageSize]=1&populate[image][populate]=true&populate[createdBy][populate]=true&populate[updatedBy][populate]=true"
+      "articles?sort=customDate:desc&pagination[pageSize]=1&populate[image][populate]=true&populate[createdBy][populate]=true&populate[updatedBy][populate]=true"
     )
-
-    // return flattenStrapiResponse(data.data[0], true, flatteners)
 
     return data.data[0]
   } catch (error: any) {
