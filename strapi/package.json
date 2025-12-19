@@ -15,6 +15,7 @@
     "@strapi/plugin-seo": "^2.0.8",
     "@strapi/plugin-users-permissions": "5.12.5",
     "@strapi/strapi": "5.12.5",
+    "@strapi/typescript-utils": "^5.33.0",
     "better-sqlite3": "^11.9.1",
     "firebase-admin": "^13.2.0",
     "react": "^18.0.0",
@@ -25,7 +26,7 @@
     "styled-components": "6.1.17"
   },
   "author": {
-    "name": "A Strapi developer"
+    "name": "Elektronik"
   },
   "strapi": {
     "uuid": "ac642650-a24d-4eb5-a76b-7facd272c578"
@@ -35,7 +36,6 @@
     "npm": ">=6.0.0"
   },
   "license": "MIT",
-  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
   "overrides": {
     "strapi-plugin-file-system": {
       "@strapi/strapi": "5.12.5"
