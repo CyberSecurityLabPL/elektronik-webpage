@@ -11,11 +11,11 @@ type Props = {
 
 export async function generateMetadata(props: Props): Promise<Metadata> {
   const params = await props.params
-  const { seo, data } = await getPage(params.page)
+  const { seo, heading } = await getPage(params.page)
 
   if (!seo) {
     return {
-      title: data?.heading ?? "Elektronik",
+      title: heading ?? "Elektronik",
     }
   }
 
