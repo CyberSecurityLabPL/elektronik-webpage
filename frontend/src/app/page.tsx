@@ -1,9 +1,18 @@
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
 import PageWrapper from "@/components/PageWrapper"
+import Faq from "@/components/landingpage/Faq"
 import Hero from "@/components/landingpage/Hero"
+import Map from "@/components/landingpage/Map"
+import MobileAppSection from "@/components/landingpage/MobileApp"
+import News from "@/components/landingpage/News"
+import News2 from "@/components/landingpage/News"
+import Opinion from "@/components/landingpage/Opinion"
+import Overview from "@/components/landingpage/Overview"
+import Stats from "@/components/landingpage/Stats"
 import { getLandingPage, getNavigation } from "@/lib/api"
 import { getSectionByName, getSectionDataByName } from "@/lib/utils"
+import { mapMockData, faqMockData } from "@/lib/mockData"
 import type { Metadata } from "next"
 
 export const dynamic = "force-dynamic"
@@ -53,27 +62,37 @@ export default async function Home() {
           <Hero data={getSectionDataByName("hero", data)} />
         </div>
         {/* Main content */}
-
-        {data?.blocks.map((section: any, index: number) => {
+        
+        {/* Na testa zeby w strapi nie zmieniac */}
+        {/* {data?.blocks.map((section: any, index: number) => {
           if (section.__component === "blocks.hero") return null // Skip Hero block
           const SectionComponent = getSectionByName(section.__component)
 
           if (section.__component === "blocks.news") {
             return (
-              <section key={index} className="w-full">
+              <section key={index} className="w-full pb-32">
                 <SectionComponent data={section} />
 
-                {/* Section Transition */}
                 <div className="h-64 w-full bg-lines-transition bg-bottom bg-repeat-x hc:bg-lines-transition-hc"></div>
                 <div className="h-64 w-full bg-wave-transition bg-repeat-x hc:bg-wave-transition-hc"></div>
               </section>
             )
-          }
+          } */}
 
-          return SectionComponent ? (
+            {/* Na test i do usuniecia */}
+            <News />
+            <MobileAppSection />
+            <Overview />
+            <Stats />
+            <Opinion />
+            <Map data={mapMockData} />
+            <Faq data={faqMockData} />
+          
+          
+          {/* return SectionComponent ? (
             <SectionComponent key={index} data={section} />
           ) : null
-        })}
+        })} */}
 
         <Footer />
       </main>

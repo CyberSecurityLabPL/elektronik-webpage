@@ -34,9 +34,9 @@ const AccordionTrigger = React.forwardRef<
       {...props}
     >
       <div className="flex w-5/6 gap-2 text-left">{children}</div>
-      <Minus className="minus absolute right-0 rotate-90  transition-transform duration-200" />
+      <Minus className="minus absolute right-0 rotate-90   transition-transform duration-200 bg-primary/40 text-primary/80 w-8 h-8 p-1 rounded-2xl" />
 
-      <Plus className="plus absolute right-0  transition-transform duration-200" />
+      <Plus className="plus absolute right-0  transition-transform duration-200 bg-primary/40 text-primary/80 w-8 h-8 p-1 rounded-2xl" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ))

@@ -12,7 +12,7 @@ type ArticleType = {
   [key: string]: string | any
 }
 
-export default async function News2() {
+export default async function News() {
   const sectionId = "news"
 
   const { data } = (await getArticles()) as { data: ArticleType[] }

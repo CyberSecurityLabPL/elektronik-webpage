@@ -292,3 +292,23 @@
     mask-size: cover;
   }
 }
+
+@keyframes draw-line {
+  from {
+    stroke-dasharray: 220;
+    stroke-dashoffset: 220;
+  }
+  to {
+    stroke-dasharray: 220;
+    stroke-dashoffset: 0;
+  }
+}
+
+.menu-line-path {
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+}
+
+.menu-line-anim .menu-line-path {
+  animation: draw-line 0.5s ease-out forwards;
+}
