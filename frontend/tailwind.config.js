@@ -105,7 +105,7 @@ module.exports = {
     plugin(({ addVariant }) => {
       addVariant("hc", ":is(:where(.high-contrast) &)")
     }),
-    require("tailwindcss-animate"),
+    // require("tw-animate-css"),
     require("@tailwindcss/typography"),
   ],
 }

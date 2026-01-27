@@ -4,28 +4,24 @@ import {
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
+  NavigationMenuTrigger
 } from "@/components/ui/navigation-menu"
 import { cn } from "@/lib/utils"
+import { motion } from "framer-motion"
 import { ChevronDown, ExternalLink } from "lucide-react"
-import Image from "next/image"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import {
   forwardRef,
   useEffect,
-  useState,
-  useRef,
-  useLayoutEffect,
   useEffectEvent,
+  useState
 } from "react"
+import { Badge } from "./ui/badge"
 import { Button } from "./ui/button"
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover"
-import { usePathname } from "next/navigation"
-import { motion } from "framer-motion"
-import { Badge } from "./ui/badge"
 
-export function Navigation({ navItems }: { navItems: any }) {
+export function Navigation({ navItems, isSmaller }: { navItems: any, isSmaller: boolean }) {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
 
@@ -50,53 +46,62 @@ export function Navigation({ navItems }: { navItems: any }) {
       <NavigationMenuList>
         {navItems
           ? navItems.slice(0, 5).map((item: any, index: number) => (
-              <NavigationMenuItem key={item.name}>
-                <NavigationMenuTrigger
-                  onMouseEnter={handleMouseEnter}
-                  className="rounded-xl bg-transparent text-lg hover:bg-transparent group-data-[smaller=true]:text-base hc:text-white hover:hc:bg-white/10 hover:hc:text-white"
+            <NavigationMenuItem key={item.name}>
+
+              <NavigationMenuTrigger
+                onMouseEnter={handleMouseEnter}
+                className="rounded-xl bg-transparent hover:bg-transparent hc:text-white hover:hc:bg-white/10 hover:hc:text-white"
+              >
+                <motion.div
+                  initial={{
+                    fontSize: isSmaller ? ".6rem" : ".8rem"
+                  }}
+                  animate={{ fontSize: isSmaller ? "1rem" : "1.125rem" }} // text-base = 1rem, text-lg = 1.125rem
+                  transition={{ type: "spring", stiffness: 200, damping: 20 }}
                 >
                   {item.name}
-                </NavigationMenuTrigger>
-                <NavigationMenuContent className="overflow-hidden  ">
-                  <ul className="relative z-99999! grid max-h-[452px] w-[400px] gap-3 overflow-y-auto bg-background p-4 md:w-[500px] md:grid-cols-2 lg:w-[800px]">
-                    {index < 1 ? (
-                      <li className="col-span-2 rounded-lg transition-colors hover:bg-background-muted focus:bg-background-muted">
-                        <NavigationMenuLink asChild>
-                          <Link
-                            className={`relative flex h-full select-none flex-col justify-start rounded-md object-cover text-background no-underline outline-hidden`}
-                            href="/aktualnosci"
-                          >
-                            <div className="z-50 bg-transparent p-2 text-3xl font-medium text-foreground">
-                              Aktualności
-                              <Badge className="absolute right-2 top-2 rounded-full bg-primary px-2 text-xs font-semibold text-white hc:text-black">
-                                Popularne
-                              </Badge>
-                            </div>
-                            <p className="z-50 bg-transparent p-2 pt-0 text-sm leading-tight text-muted-foreground">
-                              Tutaj znajdują się wszystkie aktualności i
-                              ogłoszenia
-                            </p>
-                          </Link>
-                        </NavigationMenuLink>
-                      </li>
-                    ) : null}
-                    {item.links
-                      .sort((a: any, b: any) => b.isFeatured - a.isFeatured)
-                      .map((tab: any) => (
-                        <ListItem
-                          key={tab.name}
-                          title={tab.name}
-                          href={tab.isExternal ? tab.href : `/${tab.href}`}
-                          target={tab.isExternal ? "_blank" : "_self"}
-                          isFeatured={tab.isFeatured}
+                </motion.div>
+              </NavigationMenuTrigger>
+              <NavigationMenuContent className="overflow-hidden  ">
+                <ul className="relative z-99999! grid max-h-[452px] w-[400px] gap-3 overflow-y-auto bg-background p-4 md:w-[500px] md:grid-cols-2 lg:w-[800px]">
+                  {index < 1 ? (
+                    <li className="col-span-2 rounded-lg transition-colors hover:bg-background-muted focus:bg-background-muted">
+                      <NavigationMenuLink asChild>
+                        <Link
+                          className={`relative flex h-full select-none flex-col justify-start rounded-md object-cover text-background no-underline outline-hidden`}
+                          href="/aktualnosci"
                         >
-                          {tab?.description}
-                        </ListItem>
-                      ))}
-                  </ul>
-                </NavigationMenuContent>
-              </NavigationMenuItem>
-            ))
+                          <div className="z-50 bg-transparent p-2 text-3xl font-medium text-foreground">
+                            Aktualności
+                            <Badge className="absolute right-2 top-2 rounded-full bg-primary px-2 text-xs font-semibold text-white hc:text-black">
+                              Popularne
+                            </Badge>
+                          </div>
+                          <p className="z-50 bg-transparent p-2 pt-0 text-sm leading-tight text-muted-foreground">
+                            Tutaj znajdują się wszystkie aktualności i
+                            ogłoszenia
+                          </p>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                  ) : null}
+                  {item.links
+                    .sort((a: any, b: any) => b.isFeatured - a.isFeatured)
+                    .map((tab: any) => (
+                      <ListItem
+                        key={tab.name}
+                        title={tab.name}
+                        href={tab.isExternal ? tab.href : `/${tab.href}`}
+                        target={tab.isExternal ? "_blank" : "_self"}
+                        isFeatured={tab.isFeatured}
+                      >
+                        {tab?.description}
+                      </ListItem>
+                    ))}
+                </ul>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          ))
           : null}
         {navItems.length > 5 ? (
           <>

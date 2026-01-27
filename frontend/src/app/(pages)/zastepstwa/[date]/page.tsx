@@ -15,7 +15,7 @@ export default async function Page({
 }) {
   const { date } = await params
 
-  if (!isValidDateFormat(date) || isWeekend(date)) {
+  if (!isValidDateFormat(date)) {
     notFound()
   }
 

@@ -246,7 +246,10 @@ export async function getPage(page: string) {
     })
     const { data } = await api.get<AxiosResponse<any>>(`/pages?${query}`)
 
-    if (data.data.length < 1) throw new AxiosError()
+    console.log(data)
+
+    // Error handling has to be done outside this function. Some pages expect different behaviours.
+    // if (data.data.length < 1) throw new AxiosError()
     return data.data[0]
   } catch (error: any) {
     handleError(error)
@@ -334,5 +337,5 @@ export async function getLuckyNumber() {
 }
 
 function handleError(error: AxiosError) {
-  console.error(error.message)
+  console.error(error)
 }
