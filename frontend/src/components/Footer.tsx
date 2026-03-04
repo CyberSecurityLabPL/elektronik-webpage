@@ -7,50 +7,50 @@ import Instagram from "./icons/Instagram"
 import Image from "next/image"
 import ShootEffect from "./ShootEffect"
 
-function Sponsors() {
-  const sponsors = [
-    {
-      name: "Ekoenergetyka",
-      logo: "/assets/sponsors/ekoenergetka.svg",
-      url: "https://ekoenergetyka.com.pl/",
-    },
-    {
-      name: "Hertz Systems",
-      logo: "/assets/sponsors/hertz.svg",
-      url: "https://hertzsystems.com/",
-    },
-    {
-      name: "Gedia Poland",
-      logo: "/assets/sponsors/gedia.svg",
-      url: "https://www.gedia.com/pl/",
-    },
-    {
-      name: "KSC",
-      logo: "/assets/sponsors/ksc.svg",
-      url: "https://www.ksc-automation.eu/",
-    },
-    {
-      name: "Seco/Warwick",
-      logo: "/assets/sponsors/seco.svg",
-      url: "https://www.secowarwick.com/",
-    },
-    {
-      name: "ESA",
-      logo: "/assets/sponsors/esa.svg",
-      url: "https://www.esa.int/",
-    },
-    {
-      name: "BHP Ex",
-      logo: "/assets/sponsors/bhpexFooter.svg",
-      url: "https://bhpex.pl/",
-    },
-    {
-      name: "Swiss Krono",
-      logo: "/assets/sponsors/swiss.svg",
-      url: "https://www.swisskrono.pl/",
-    },
-  ]
+const sponsors = [
+  {
+    name: "Ekoenergetyka",
+    logo: "/assets/sponsors/ekoenergetka.svg",
+    url: "https://ekoenergetyka.com.pl/",
+  },
+  {
+    name: "Hertz Systems",
+    logo: "/assets/sponsors/hertz.svg",
+    url: "https://hertzsystems.com/",
+  },
+  {
+    name: "Gedia Poland",
+    logo: "/assets/sponsors/gedia.svg",
+    url: "https://www.gedia.com/pl/",
+  },
+  {
+    name: "KSC",
+    logo: "/assets/sponsors/ksc.svg",
+    url: "https://www.ksc-automation.eu/",
+  },
+  {
+    name: "Seco/Warwick",
+    logo: "/assets/sponsors/seco.svg",
+    url: "https://www.secowarwick.com/",
+  },
+  {
+    name: "ESA",
+    logo: "/assets/sponsors/esa.svg",
+    url: "https://www.esa.int/",
+  },
+  {
+    name: "BHP Ex",
+    logo: "/assets/sponsors/bhpexFooter.svg",
+    url: "https://bhpex.pl/",
+  },
+  {
+    name: "Swiss Krono",
+    logo: "/assets/sponsors/swiss.svg",
+    url: "https://www.swisskrono.pl/",
+  },
+]
 
+function Sponsors() {
   return (
     <div className="mx-auto w-full max-w-7xl px-4 pb-12">
       <div className="grid grid-cols-2 items-center justify-items-center gap-8 sm:grid-cols-4 lg:grid-cols-8">
@@ -96,8 +96,8 @@ export default function Footer() {
             </ShootEffect>
           </Link>
           <Separator className="bg-[#3D3D3D]" />
-          <div className="relative grid w-full grid-cols-2 items-center justify-between gap-y-4  py-4 pb-6 s:grid-cols-3 sm:px-5">
-            <div className=" col-span-2 flex w-full justify-center gap-6 py-6 s:order-2 s:col-span-1">
+          <div className="relative grid w-full grid-cols-2 col-span-2 items-center justify-between gap-y-4 py-4 pb-6 sm:grid-cols-3 sm:px-5">
+            <div className="col-span-2 flex w-full justify-center gap-6 py-6 sm:order-2 sm:col-span-1">
               <Link
                 href={
                   "https://github.com/CyberSecurityLabPL/elektronik-webpage"
@@ -122,7 +122,7 @@ export default function Footer() {
             <Link
               passHref
               href={"/"}
-              className="justify-self-center s:order-1 s:justify-self-start"
+              className="justify-self-center sm:order-1 sm:justify-self-start"
             >
               <Image
                 alt="logo"
@@ -135,7 +135,7 @@ export default function Footer() {
               passHref
               href={"https://cslsoft.pl/pl_pl/"}
               target="_blank"
-              className="justify-self-center s:order-3 s:justify-self-end"
+              className="justify-self-center sm:order-2 sm:justify-self-end"
             >
               <Image
                 alt="logo"
@@ -158,37 +158,37 @@ async function Sitemap() {
     <ul className="grid grid-cols-2 flex-wrap justify-center gap-8 sm:grid-cols-4 lg:flex lg:gap-16">
       {nav?.link_groups
         ? nav?.link_groups.map((panel: any, index: number) => (
-            <li
-              key={index}
-              className="flex flex-col items-center text-start sm:justify-start sm:text-left"
-            >
-              <span className="w-full whitespace-normal text-nowrap break-words pb-4 text-sm font-bold text-[#CACACA] hc:text-primary">
-                {panel.name}
-              </span>
-              <ol className="flex w-full flex-col gap-2 ">
-                {(index === 0
-                  ? [
-                      {
-                        name: "Galeria",
-                        href: "galeria",
-                        isExternal: false,
-                      },
-                      ...panel.links,
-                    ]
-                  : panel.links
-                ).map((link: any, index: number) => (
-                  <li key={`l${index}`}>
-                    <Link
-                      className="w-fit text-sm text-[#808080] hover:text-[#CACACA] hover:underline hc:text-muted-foreground hover:hc:text-foreground"
-                      href={link.isExternal ? link.href : `/${link.href}`}
-                    >
-                      {link.name ?? "Empty"}
-                    </Link>
-                  </li>
-                ))}
-              </ol>
-            </li>
-          ))
+          <li
+            key={index}
+            className="flex flex-col items-center text-start sm:justify-start sm:text-left"
+          >
+            <span className="w-full whitespace-normal text-nowrap wrap-break-words pb-4 text-sm font-bold text-[#CACACA] hc:text-primary">
+              {panel.name}
+            </span>
+            <ol className="flex w-full flex-col gap-2 ">
+              {(index === 0
+                ? [
+                  {
+                    name: "Galeria",
+                    href: "galeria",
+                    isExternal: false,
+                  },
+                  ...panel.links,
+                ]
+                : panel.links
+              ).map((link: any, index: number) => (
+                <li key={`l${index}`}>
+                  <Link
+                    className="w-fit text-sm text-[#808080] hover:text-[#CACACA] hover:underline hc:text-muted-foreground hover:hc:text-foreground"
+                    href={link.isExternal ? link.href : `/${link.href}`}
+                  >
+                    {link.name ?? "Empty"}
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          </li>
+        ))
         : null}
     </ul>
   )
