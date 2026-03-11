@@ -30,7 +30,7 @@ export default async function RootLayout({
       <head>
         <link
           rel="icon"
-          href="/assets/logo/logo_white.svg"
+          href="/assets/logo/logo_blue.svg"
           type="image/<generated>"
           sizes="<generated>"
         />
