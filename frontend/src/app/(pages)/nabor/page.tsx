@@ -55,6 +55,8 @@ export default async function Page() {
                 tutaj
               </Link>
             </p>
+          </div>
+          <div className="flex items-center">
             <p className="text-xs lg:text-base">
               <Link className="text-primary underline" href="https://nabor.pcss.pl/zielonagora/szkolaponadpodstawowa/Informator/Calkulator">
                 Kalkulator punktów
