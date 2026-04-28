@@ -60,7 +60,7 @@ export default async function Page() {
             <p className="text-xs lg:text-base">
               <Link className="text-primary underline" href="https://nabor.pcss.pl/zielonagora/szkolaponadpodstawowa/Informator/Calkulator">
                 Kalkulator punktów
-              </Link>,
+              </Link><br/>
               <Link className="text-primary underline" href="https://www.zielona-gora.pl/nabor-do-szkol-ponadpodstawowych-2026/">
                 INFORMATOR NA STRONIE MIASTA ZG - terminy postępowania rekrutacyjnego, wymagane załączniki do pobrania
               </Link>
