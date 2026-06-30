@@ -56,6 +56,16 @@ export default async function Page() {
               </Link>
             </p>
           </div>
+          <div className="flex items-center">
+            <p className="text-xs lg:text-base">
+              <Link className="text-primary underline" href="https://nabor.pcss.pl/zielonagora/szkolaponadpodstawowa/Informator/Calkulator">
+                Kalkulator punktów
+              </Link><br/>
+              <Link className="text-primary underline" href="https://www.zielona-gora.pl/nabor-do-szkol-ponadpodstawowych-2026/">
+                INFORMATOR NA STRONIE MIASTA ZG - terminy postępowania rekrutacyjnego, wymagane załączniki do pobrania
+              </Link>
+            </p>
+          </div>
         </div>
         <div className="flex w-full flex-col  gap-4 ">
           {data.recruitment_groups.map((recruitments: any, index: number) => (
