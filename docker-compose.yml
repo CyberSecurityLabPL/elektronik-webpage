@@ -5,6 +5,7 @@ services:
     image: "school-website"
     container_name: "dev-elektronik-frontend"
     build: frontend
+    restart: unless-stopped
     ports:
       - "3001:3001"
     environment:
@@ -17,7 +18,8 @@ services:
     volumes:
       - ./frontend/.env:/app/.env
     depends_on:
-      - strapi
+      strapi:
+        condition: service_healthy
 
   strapi:
     container_name: dev-elektronik-strapi
@@ -44,6 +46,14 @@ services:
       - '5173:5173'
     networks:
       - dev-elektronik-network
+    healthcheck:
+      test:
+        - CMD-SHELL
+        - wget --quiet --spider http://127.0.0.1:5000/_health || exit 1
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
 
 networks:
   dev-elektronik-network:
