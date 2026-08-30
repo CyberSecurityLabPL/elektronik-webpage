@@ -4,7 +4,7 @@ export default ({ env }) => {
   return {
     host: env("HOST", "0.0.0.0"),
     port: env.int("PORT", 1337),
-    url: "https://api.elektronik.zgora.pl",
+    url: env("HOST_URL"),
     proxy: true,
     app: {
       keys: env.array("APP_KEYS"),
