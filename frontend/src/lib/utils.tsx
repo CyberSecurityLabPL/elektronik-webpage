@@ -2,6 +2,7 @@ import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import ReactMarkdown, { Options } from "react-markdown"
 import rehypeRaw from "rehype-raw"
+import { getStrapiAssetUrl } from "./strapi-assets"
 import { add, format, isWeekend, startOfWeek } from "date-fns"
 import { pl } from "date-fns/locale/pl"
 import Overview from "@/components/landingpage/Overview"
@@ -115,15 +116,14 @@ function hasKey(obj: any, key: string) {
 
 export function renderMarkdown(markdown: string, options?: Readonly<Options>) {
   const imagesFolder = "uploads"
-  const newHostname = process.env.NEXT_PUBLIC_STRAPI_URL
   const imageBlockRegex = /\!\[(.*?)\]\((.*?)\/uploads\/(.*?)\)/g
 
   const formattedMarkdown = markdown.replace(
     imageBlockRegex,
     (...fragments: string[]) => {
-      const [fullImageString, alt, hostname, image] = fragments
+      const [, alt, , image] = fragments
 
-      return `![${alt}](${newHostname}/${imagesFolder}/${image})`
+      return `![${alt}](${getStrapiAssetUrl(`/${imagesFolder}/${image}`)})`
     }
   )
 
@@ -188,7 +188,7 @@ export const getImage = (
   notFoundSrc?: string
 ) =>
   src
-    ? `${process.env.NEXT_PUBLIC_STRAPI_URL}${src}`
+    ? getStrapiAssetUrl(src)
     : notFoundSrc ?? "/default/not-found.svg"
 
 interface Author {

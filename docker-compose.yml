@@ -10,6 +10,8 @@ services:
       - "3001:3001"
     environment:
       - NODE_ENV=production
+      # nadpisujemy .env fronta
+      - STRAPI_INTERNAL_URL=http://strapi:5000
     env_file:
       - frontend/.env
     networks:

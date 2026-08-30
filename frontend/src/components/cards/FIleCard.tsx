@@ -3,6 +3,7 @@ import { Download, LucideProps } from "lucide-react"
 import Link from "next/link"
 import { FileIcon, IconColors } from "../Icon"
 import { Csv, Default, Docx, Pdf } from "../icons"
+import { getStrapiAssetUrl } from "@/lib/strapi-assets"
 
 import { format } from "date-fns"
 
@@ -36,7 +37,7 @@ export default function FileCard({ name, date, url, fileType }: FileCardProps) {
       </div>
       <div className="flex items-center justify-center">
         <Button variant="ghost" size="icon" asChild>
-          <Link href={process.env.NEXT_PUBLIC_STRAPI_URL + url} target="_blank">
+          <Link href={getStrapiAssetUrl(url)} target="_blank">
             <Download className="h-5 w-5" />
           </Link>
         </Button>

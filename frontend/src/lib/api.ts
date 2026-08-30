@@ -2,11 +2,20 @@ import { PAGINATION_LIMIT } from "@/config"
 import axios, { AxiosError, AxiosResponse } from "axios"
 import qs from "qs"
 
+// This address is resolved by the Next.js server, never by a site visitor.
+// In Docker it points to the internal service DNS name; when running
+// `next dev` directly it reaches the locally published Strapi port.
+const strapiInternalUrl =
+  process.env.STRAPI_INTERNAL_URL ??
+  (process.env.NODE_ENV === "development"
+    ? "http://127.0.0.1:5000"
+    : "http://strapi:5000")
+
 /**
  * The API instance for making HTTP requests.
  */
 export const api = axios.create({
-  baseURL: process.env.STRAPI_API_URL,
+  baseURL: `${strapiInternalUrl}/api`,
   headers: {
     Authorization: process.env.STRAPI_API_KEY
       ? `${process.env.STRAPI_API_KEY}`
@@ -15,7 +24,7 @@ export const api = axios.create({
 })
 
 export const backend = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_STRAPI_URL,
+  baseURL: strapiInternalUrl,
   headers: {
     Authorization: process.env.STRAPI_API_KEY
       ? `Bearer ${process.env.STRAPI_API_KEY}`
@@ -45,7 +54,7 @@ export async function getNavigation(): Promise<any> {
 
     // Use this if navigation is not revalidated
 
-    // const res = await fetch(`${process.env.STRAPI_API_URL}/navigation`, {
+    // const res = await fetch(`${strapiInternalUrl}/api/navigation`, {
     //   next: {
     //     tags: ["navigation"],
     //   },
