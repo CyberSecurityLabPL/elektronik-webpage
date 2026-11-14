@@ -2,6 +2,7 @@ import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import ReactMarkdown, { Options } from "react-markdown"
 import rehypeRaw from "rehype-raw"
+import remarkGfm from 'remark-gfm'
 import { add, format, isWeekend, startOfWeek } from "date-fns"
 import { pl } from "date-fns/locale/pl"
 import Overview from "@/components/landingpage/Overview"
@@ -114,6 +115,77 @@ function hasKey(obj: any, key: string) {
 }
 
 export function renderMarkdown(markdown: string, options?: Readonly<Options>) {
+  const markdownTableComponents: Options["components"] = {
+    table: ({ className, children, ...props }) => (
+      <div className="not-prose my-6 w-full overflow-x-auto border border-zinc-200 hc:border-zinc-600">
+        <table
+          className={cn(
+            "w-full table-fixed border-collapse text-sm text-zinc-700 hc:text-foreground",
+            className
+          )}
+          {...props}
+        >
+          {children}
+        </table>
+      </div>
+    ),
+    thead: ({ className, children, ...props }) => (
+      <thead
+        className={cn(
+          "border-b border-zinc-200 bg-zinc-100 hc:border-zinc-600 hc:bg-zinc-800",
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </thead>
+    ),
+    tbody: ({ className, children, ...props }) => (
+      <tbody
+        className={cn(
+          "bg-white hc:bg-black [&_tr:nth-child(even)]:bg-zinc-50 hc:[&_tr:nth-child(even)]:bg-background-muted",
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </tbody>
+    ),
+    tr: ({ className, children, ...props }) => (
+      <tr
+        className={cn(
+          "border-b border-zinc-200 last:border-b-0 hc:border-zinc-600",
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </tr>
+    ),
+    th: ({ className, children, ...props }) => (
+      <th
+        className={cn(
+          "px-4 py-2 text-left align-top text-sm font-semibold text-zinc-900 break-words hc:text-white",
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </th>
+    ),
+    td: ({ className, children, ...props }) => (
+      <td
+        className={cn(
+          "px-4 py-2 align-top text-zinc-700 break-words hc:text-foreground",
+          className
+        )}
+        {...props}
+      >
+        {children}
+      </td>
+    ),
+  }
+
   const imagesFolder = "uploads"
   const newHostname = process.env.NEXT_PUBLIC_STRAPI_URL
   const imageBlockRegex = /\!\[(.*?)\]\((.*?)\/uploads\/(.*?)\)/g
@@ -127,19 +199,17 @@ export function renderMarkdown(markdown: string, options?: Readonly<Options>) {
     }
   )
 
+  const { components: optionComponents, ...restOptions } = options ?? {}
+
   return (
     <ReactMarkdown
-      components={{
-        table: (node, ...props) => (
-          <div className="w-full overflow-x-auto p-2">
-            <table className={cn(node.className)} {...props}>
-              {node.children}
-            </table>
-          </div>
-        ),
-      }}
       rehypePlugins={[rehypeRaw]}
-      {...options}
+      remarkPlugins={[remarkGfm]}
+      {...restOptions}
+      components={{
+        ...markdownTableComponents,
+        ...optionComponents,
+      }}
     >
       {formattedMarkdown}
     </ReactMarkdown>

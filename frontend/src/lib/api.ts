@@ -246,8 +246,6 @@ export async function getPage(page: string) {
     })
     const { data } = await api.get<AxiosResponse<any>>(`/pages?${query}`)
 
-    console.log(data)
-
     // Error handling has to be done outside this function. Some pages expect different behaviours.
     // if (data.data.length < 1) throw new AxiosError()
     return data.data[0]
