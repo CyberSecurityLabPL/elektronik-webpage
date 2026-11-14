@@ -8,7 +8,7 @@ source "$(dirname "$0")/config.env"
 mkdir -p "${BACKUP_DIR}" "${LOG_DIR}"
 
 # Ustal datę i nazwę pliku
-BACKUP_DATE=$(date +%d-%m-%Y)
+BACKUP_DATE=$(date +%Y-%m-%d)
 BACKUP_FILENAME="backup_${BACKUP_DATE}"
 
 cd "${WORKING_DIR}"

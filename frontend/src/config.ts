@@ -3,7 +3,7 @@ export const PAGINATION_LIMIT = 6
 export const REVALIDATE = 10
 
 export const timetableConfig = {
-  initialId: "o25",
+  initialId: "o19",
   formattingExceptions: [
     {
       initialValue: "witr. intern",
