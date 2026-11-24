@@ -248,11 +248,30 @@
 :root {
   --left-fill: #354375;
   --right-fill: #354dfc;
+
+  /* Landing page section colors (used by SVG transitions & blue sections) */
+  --landing-blue: #354dfc;
+  --landing-wave-light: #e3e8f1;
+  --landing-shadow: #eef1f6;
+  --landing-deco-muted: #e9ecf2;
 }
 
 .high-contrast {
   --left-fill: #00ffea;
   --right-fill: #00ffea;
+
+  --landing-blue: hsl(180, 1%, 15%);
+  --landing-wave-light: hsl(0, 0%, 12%);
+  --landing-shadow: hsl(0, 0%, 8%);
+  --landing-deco-muted: hsl(0, 0%, 18%);
+}
+
+/* Landing: hide scrollbar of horizontally scrollable tab lists */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
 }
 
 @keyframes leftTransition {
@@ -291,5 +310,22 @@
   .mask2 {
     mask-image: url("../../public/assets/heroMask2.svg");
     mask-size: cover;
+  }
+}
+
+/* Respect the OS "reduce motion" setting for CSS animations/transitions
+   (framer-motion animations are handled by <MotionConfig reducedMotion="user">) */
+@media (prefers-reduced-motion: reduce) {
+  html,
+  body {
+    scroll-behavior: auto !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

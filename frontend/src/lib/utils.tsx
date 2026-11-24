@@ -6,36 +6,9 @@ import { getStrapiAssetUrl } from "./strapi-assets"
 import remarkGfm from "remark-gfm"
 import { add, format, isWeekend, startOfWeek } from "date-fns"
 import { pl } from "date-fns/locale/pl"
-import Overview from "@/components/landingpage/Overview"
-import Benefits from "@/components/landingpage/Benefits"
-import { notFound } from "next/navigation"
-import Map from "@/components/landingpage/Map"
-import Faq from "@/components/landingpage/Faq"
-import Hero from "@/components/landingpage/Hero"
-import News from "@/components/landingpage/News"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
-}
-
-export function getSectionByName(name: string) {
-  name = name.split(".")[1]
-  switch (name) {
-    case "overview":
-      return Overview
-    case "benefits":
-      return Benefits
-    case "news":
-      return News
-    case "map":
-      return Map
-    case "faq":
-      return Faq
-    case "hero":
-      return Hero
-    default:
-      return notFound()
-  }
 }
 
 export function getSectionDataByName(name: string, data: any) {

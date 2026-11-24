@@ -1,82 +1,85 @@
 import Footer from "@/components/Footer"
 import Navbar from "@/components/Navbar"
 import PageWrapper from "@/components/PageWrapper"
+import AboutQuote from "@/components/landingpage/AboutQuote"
+import AppPromo from "@/components/landingpage/AppPromo"
+import Faq from "@/components/landingpage/Faq"
 import Hero from "@/components/landingpage/Hero"
+import Map from "@/components/landingpage/Map"
+import News from "@/components/landingpage/News"
+import Programs from "@/components/landingpage/Programs"
+import Stats from "@/components/landingpage/Stats"
+import WhyUs from "@/components/landingpage/WhyUs"
 import { getLandingPage, getNavigation } from "@/lib/api"
-import { getSectionByName, getSectionDataByName } from "@/lib/utils"
+import { getSectionDataByName } from "@/lib/utils"
 import type { Metadata } from "next"
 
 export const dynamic = "force-dynamic"
 
 export async function generateMetadata(): Promise<Metadata> {
-  const { seo } = await getLandingPage()
+  const data = await getLandingPage()
 
   return {
-    title: seo.metaTitle,
-    description: seo.metaDescription,
-    keywords: seo.keywords,
+    title: data?.seo?.metaTitle,
+    description: data?.seo?.metaDescription,
+    keywords: data?.seo?.keywords,
   }
 }
 
+/**
+ * Landing page.
+ * Hero, News, Map and FAQ use data from Strapi (`landing-page` blocks),
+ * Programs uses the recruitment data (`recruitments-page`, same as /nabor),
+ * the remaining sections use static content from `src/content/landing.ts`.
+ */
 export default async function Home() {
-  const data = await getLandingPage()
-  const { link_groups: navItems, ...additionalLinks } = await getNavigation()
+  const [data, navigation] = await Promise.all([
+    getLandingPage(),
+    getNavigation(),
+  ])
+  const { link_groups: navItems, ...additionalLinks } = navigation ?? {}
 
-  const faqData = getSectionDataByName("faq", data)
+  const hero = data ? getSectionDataByName("hero", data) : null
+  const news = data ? getSectionDataByName("news", data) : null
+  const map = data ? getSectionDataByName("map", data) : null
+  const faq = data ? getSectionDataByName("faq", data) : null
 
-  const FAQschema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity:
-      faqData.questions &&
-      faqData.questions.length > 0 &&
-      faqData.questions.map((item: any) => ({
-        "@type": "Question",
-        name: item.question,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: item.answer,
-        },
-      })),
-  }
+  const faqSchema = faq?.questions?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: faq.questions.map((item: any) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: item.answer,
+          },
+        })),
+      }
+    : null
+
   return (
     <PageWrapper>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(FAQschema),
-        }}
-      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <Navbar navItems={navItems} additionalLinks={additionalLinks} />
-      <main className="flex w-full flex-col items-center justify-center overflow-x-hidden">
-        <div className="flex w-full flex-col">
-          <Hero data={getSectionDataByName("hero", data)} />
-        </div>
-        {/* Main content */}
-
-        {data?.blocks.map((section: any, index: number) => {
-          if (section.__component === "blocks.hero") return null // Skip Hero block
-          const SectionComponent = getSectionByName(section.__component)
-
-          if (section.__component === "blocks.news") {
-            return (
-              <section key={index} className="w-full">
-                <SectionComponent data={section} />
-
-                {/* Section Transition */}
-                <div className="h-64 w-full bg-lines-transition bg-bottom bg-repeat-x hc:bg-lines-transition-hc"></div>
-                <div className="h-64 w-full bg-wave-transition bg-repeat-x hc:bg-wave-transition-hc"></div>
-              </section>
-            )
-          }
-
-          return SectionComponent ? (
-            <SectionComponent key={index} data={section} />
-          ) : null
-        })}
-
-        <Footer />
+      <main className="flex w-full flex-col items-center overflow-x-hidden">
+        <Hero data={hero} />
+        <News data={news} />
+        <AppPromo />
+        <WhyUs />
+        <Programs />
+        <Stats />
+        <AboutQuote />
+        {map && <Map data={map} />}
+        {faq && <Faq data={faq} />}
       </main>
+      <Footer />
     </PageWrapper>
   )
 }
